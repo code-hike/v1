@@ -24,7 +24,7 @@ async function SingleCode({ codeblock, config, components }) {
         config={config}
         components={components}
         data-ch-lang={lang}
-        className="px-4 py-2 !bg-zinc-800/50"
+        className="px-4 py-2 !bg-zinc-800/50 leading-normal"
       />
     </div>
   )

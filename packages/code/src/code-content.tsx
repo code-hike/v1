@@ -4,6 +4,8 @@ import { AnyToken, CodeBlock, isGroup, isWhitespace } from "./types.js"
 import React from "react"
 import { CodeClient } from "./code-client.js"
 
+let annotationWarning = new Set()
+
 export async function CodeContent({
   codeblock,
   components,
@@ -66,7 +68,10 @@ function TokenComponent({
       )
     }
 
-    console.warn("Missing annotation component", name)
+    if (!annotationWarning.has(name)) {
+      annotationWarning.add(name)
+      console.warn("Missing annotation component", name)
+    }
 
     return (
       <span className={name}>
