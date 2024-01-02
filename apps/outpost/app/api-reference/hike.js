@@ -51,7 +51,7 @@ function SubSteps({ steps, setStep }) {
   if (collapsed) {
     return (
       <div
-        className="hover:neutral-800 cursor-pointer rounded-xl border border-zinc-300/20 px-4 py-1 text-zinc-400 hover:text-slate-50"
+        className="hover:neutral-800 cursor-pointer rounded-xl border border-zinc-300/20 px-4 py-1 text-zinc-400 hover:text-slate-50 select-none"
         onClick={() => setCollapsed(false)}
       >
         Show child attributes
@@ -62,7 +62,7 @@ function SubSteps({ steps, setStep }) {
   return (
     <div className="rounded-xl border border-zinc-300/20 px-4 py-1 ">
       <header
-        className=" cursor-pointer pb-1 text-zinc-400 hover:text-slate-50"
+        className=" cursor-pointer pb-1 text-zinc-400 hover:text-slate-50 select-none"
         onClick={() => setCollapsed(true)}
       >
         Hide child attributes
