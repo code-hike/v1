@@ -4,6 +4,12 @@
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
+  "repository": "code-hike/codehike",
+  "homepage": "https://codehike.org",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/code-hike"
+  },
   "exports": {
     ".": "./dist/code.js",
     "./mdx": "./dist/remark.js"
@@ -13,7 +19,7 @@
   ],
   "scripts": {
     "build": "tsc -p . ",
-    "dev": "tsc  -p . --watch",
+    "dev": "tsc -p . --watch",
     "test": "vitest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
