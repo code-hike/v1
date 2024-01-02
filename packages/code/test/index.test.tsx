@@ -58,7 +58,7 @@ function logRemark({ name }: { name: string }) {
 
 const codeRemark = (config) => {
   return async (tree, file) => {
-    tree = (await codeTransform(tree)) as any
+    tree = (await codeTransform(tree, config)) as any
     return tree as any
   }
 }
@@ -68,7 +68,7 @@ async function testCompilation(name: string, mdx: string) {
     jsx: true,
     remarkPlugins: [
       [logRemark, { name: name + ".2.remark" }],
-      [codeRemark, {}],
+      [codeRemark, { theme: "nord" }],
       [(n) => logRemark(n), { name: name + ".3.remark" }],
     ],
     rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],

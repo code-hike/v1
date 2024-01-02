@@ -16,7 +16,7 @@ export async function CodeContent({
 }) {
   const { lang, meta, value, annotations } = codeblock
   const tokens = await tokenize(value, lang || "txt", annotations, {
-    theme: config.themeName,
+    theme: config.theme,
     ...config,
   })
   return (

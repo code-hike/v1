@@ -2,6 +2,7 @@ import { MDXComponents } from "mdx/types.js"
 import { AnyToken, CodeBlock, isGroup, isWhitespace } from "./types.js"
 import React from "react"
 import { CodeContent } from "./code-content.js"
+import { Theme } from "@code-hike/lighter"
 
 export { CodeContent }
 
@@ -12,7 +13,7 @@ export async function Code({
   as,
   ...rest
 }: {
-  config: { themeName: string }
+  config: { theme: Theme }
   codeblocks: CodeBlock[]
   components: MDXComponents
   as?: any

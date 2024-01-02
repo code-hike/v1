@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark bg-zinc-900">
       <body className={inter.className}>
-        <main className="prose prose-zinc prose-pre:m-0 dark:prose-invert max-w-4xl mx-auto ">
+        <main className="prose prose-zinc dark:prose-invert max-w-4xl mx-auto ">
           {children}
         </main>
       </body>

@@ -18,7 +18,7 @@ export function HikeLayout({ hike }) {
           <Step step={step} setStep={setStep} key={i} />
         ))}
       </div>
-      <div style={{ maxWidth: 400, minWidth: 400 }}>
+      <div className="not-prose" style={{ maxWidth: 400, minWidth: 400 }}>
         <div className="sticky top-10">{code}</div>
       </div>
     </div>

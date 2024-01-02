@@ -128,14 +128,46 @@ export function getSpreadElement(name: string): any {
   }
 }
 
-export function getConfigAttribute(config: any) {
+export function getConfigDeclaration(
+  config: any,
+  CH_CODE_CONFIG_VAR_NAME: string,
+) {
+  return {
+    type: "mdxjsEsm",
+    value: `export const ${CH_CODE_CONFIG_VAR_NAME} = {}`,
+
+    data: program([
+      {
+        type: "ExportNamedDeclaration",
+        declaration: {
+          type: "VariableDeclaration",
+          declarations: [
+            {
+              type: "VariableDeclarator",
+              id: {
+                type: "Identifier",
+                name: CH_CODE_CONFIG_VAR_NAME,
+              },
+              init: serialize(config),
+            },
+          ],
+          kind: "const",
+        },
+        specifiers: [],
+        source: null,
+      },
+    ]),
+  }
+}
+
+export function getConfigAttribute(CH_CODE_CONFIG_VAR_NAME: string) {
   return {
     type: "mdxJsxAttributeValueExpression",
     value: "{}",
     data: program([
       {
         type: "ExpressionStatement",
-        expression: serialize(config),
+        expression: { type: "Identifier", name: CH_CODE_CONFIG_VAR_NAME },
       },
     ]),
   }
@@ -214,8 +246,8 @@ function serialize(value: any): any {
         shorthand: false,
         computed: false,
         key: {
-          type: "Identifier",
-          name: key,
+          type: "Literal",
+          value: key,
         },
         kind: "init",
         value: serialize(value),

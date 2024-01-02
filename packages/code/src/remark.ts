@@ -1,6 +1,6 @@
 // this add the jsx node types to Root
 import "mdast-util-mdx-jsx"
-import { Content, Root, Code } from "mdast"
+import { Content, Root, Code, RootContent } from "mdast"
 import { tokenize } from "./code-to-tokens.js"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { Annotation, Theme, getThemeColors } from "@code-hike/lighter"
@@ -9,6 +9,7 @@ import {
   getCodeBlocksAttribute,
   getComponentsAttribute,
   getConfigAttribute,
+  getConfigDeclaration,
   getTemplateLiteralAttribute,
   getTokensAttribute,
 } from "./estree.js"
@@ -18,6 +19,7 @@ type Config = {
   theme: Theme
   annotationPrefix?: string
 }
+const CH_CODE_CONFIG_VAR_NAME = "chConfig"
 
 export async function codeTransform(tree: Root, config?: Config) {
   const { theme = "github-dark" } = config || {}
@@ -31,11 +33,20 @@ export async function codeTransform(tree: Root, config?: Config) {
   // TODO: dont add style if there's no code
   await prependStyle(tree, finalConfig)
   await transformAllCode(tree, finalConfig)
+
+  const globalConfig = {
+    theme: finalConfig.theme,
+    themeName: finalConfig.themeName,
+  }
+  tree.children.unshift(
+    getConfigDeclaration(globalConfig, CH_CODE_CONFIG_VAR_NAME) as any,
+  )
+
   return tree
 }
 
 export async function transformAllCode(
-  node: Root | Content,
+  node: Root | RootContent,
   config: FinalConfig,
 ) {
   if (node.type === "mdxJsxFlowElement" && node.name === "Code") {
@@ -60,7 +71,6 @@ export async function transformCodeComponent(
   node: MdxJsxFlowElement,
   config: FinalConfig,
 ): Promise<MdxJsxFlowElement> {
-  const { theme, themeName } = config || {}
   const codeblocks = await Promise.all(
     node.children
       .filter((c) => c.type === "code")
@@ -71,7 +81,7 @@ export async function transformCodeComponent(
   node.attributes.push({
     type: "mdxJsxAttribute",
     name: "config",
-    value: getConfigAttribute({ themeName }) as any,
+    value: getConfigAttribute(CH_CODE_CONFIG_VAR_NAME) as any,
   })
 
   node.attributes.push({
@@ -95,7 +105,6 @@ export async function transformCode(
   node: Code,
   config: FinalConfig,
 ): Promise<MdxJsxFlowElement> {
-  const { theme, themeName } = config || {}
   let codeblock = await parseCodeBlock(node, config)
   const annotationNames = getAnnotationNames([codeblock])
 
@@ -106,7 +115,7 @@ export async function transformCode(
       {
         type: "mdxJsxAttribute",
         name: "config",
-        value: getConfigAttribute({ themeName }) as any,
+        value: getConfigAttribute(CH_CODE_CONFIG_VAR_NAME) as any,
       },
       {
         type: "mdxJsxAttribute",

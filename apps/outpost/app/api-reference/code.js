@@ -14,9 +14,9 @@ async function SingleCode({ codeblock, config, components }) {
   return (
     <div
       data-ch-theme={config.themeName}
-      className="overflow-hidden rounded  bg-[#21252c] ring-1 ring-zinc-300/20"
+      className="overflow-hidden rounded ring-1 ring-zinc-300/20"
     >
-      <div className="border-b border-zinc-300/20 bg-[#21252c] p-2 pl-4 text-xs font-bold">
+      <div className="border-b border-zinc-300/20 bg-zinc-700/50 p-2 pl-4 text-xs font-bold">
         {meta}
       </div>
       <CodeContent
@@ -24,6 +24,7 @@ async function SingleCode({ codeblock, config, components }) {
         config={config}
         components={components}
         data-ch-lang={lang}
+        className="px-4 py-2 !bg-zinc-800/50"
       />
     </div>
   )

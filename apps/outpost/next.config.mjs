@@ -1,7 +1,8 @@
 import nextMDX from "@next/mdx"
 import { remarkCodeHike } from "codehike/mdx"
 
-const theme = "material-default"
+import theme from "./theme.mjs"
+// const theme = "material-default"
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
