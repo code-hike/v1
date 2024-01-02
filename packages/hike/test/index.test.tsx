@@ -1,10 +1,11 @@
 import { expect, test, describe } from "vitest"
-import { codeTransform } from "../src/remark"
+import { transformAllHikes } from "../src/remark"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import * as prettier from "prettier"
+import { getStepsFromChildren } from "../src/Hike"
 import React from "react"
-import { renderToReadableStream } from "react-dom/server.edge"
+import { renderToStaticMarkup } from "react-dom/server"
 
 // test/data/*.0.mdx
 const testNames = await getTestNames()
@@ -23,21 +24,39 @@ testNames.forEach((name) => {
 })
 
 async function testRender(MDXContent: any, name: string) {
-  const stream = await renderToReadableStream(
-    <MDXContent components={{ Line }} />,
-  )
-  await stream.allReady
-  const response = new Response(stream)
+  const { children } = MDXContent().props
+  const slots = getStepsFromChildren(children)
+  expect(slots).toMatchFileSnapshot(`./data/${name}.7.slots.jsx`)
 
-  const html = await prettier.format(await response.text(), {
+  const html = await prettier.format(renderToStaticMarkup(<MDXContent />), {
     parser: "html",
-    htmlWhitespaceSensitivity: "ignore",
   })
-  expect(html).toMatchFileSnapshot(`./data/${name}.7.static.html`)
+  expect(html).toMatchFileSnapshot(`./data/${name}.8.static.html`)
 }
 
-async function Line({ children }: { children: React.ReactNode }) {
-  return <div data-ch-line>{children}</div>
+async function testCompilation(name: string, mdx: string) {
+  const result = await compile(mdx, {
+    jsx: true,
+    remarkPlugins: [
+      [logRemark, { name: name + ".2.remark" }],
+      [hikeRemark, {}],
+      [(n) => logRemark(n), { name: name + ".3.remark" }],
+    ],
+    rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],
+    recmaPlugins: [[(n) => logRemark(n), { name: name + ".5.recma" }]],
+  })
+  const out = await prettier.format(String(result), {
+    semi: false,
+    parser: "babel",
+  })
+  await expect(out).toMatchFileSnapshot(`./data/${name}.6.out.jsx`)
+}
+
+const hikeRemark = (config) => {
+  return async (tree, file) => {
+    tree = (await transformAllHikes(tree)) as any
+    return tree as any
+  }
 }
 
 const ignoreProperties = ["start", "end", "position", "loc", "range"]
@@ -54,33 +73,6 @@ function logRemark({ name }: { name: string }) {
     )
     expect(out).toMatchFileSnapshot(`./data/${name}.json`)
   }
-}
-
-const codeRemark = (config) => {
-  return async (tree, file) => {
-    tree = (await codeTransform(tree)) as any
-    return tree as any
-  }
-}
-
-async function testCompilation(name: string, mdx: string) {
-  const compiled = await compile(mdx, {
-    jsx: true,
-    remarkPlugins: [
-      [logRemark, { name: name + ".2.remark" }],
-      [codeRemark, {}],
-      [(n) => logRemark(n), { name: name + ".3.remark" }],
-    ],
-    rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],
-    recmaPlugins: [[(n) => logRemark(n), { name: name + ".5.recma" }]],
-    // providerImportSource: "../mdx-components",
-  })
-  const out = await prettier.format(String(compiled), {
-    semi: false,
-    parser: "babel",
-  })
-
-  await expect(out).toMatchFileSnapshot(`./data/${name}.6.out.jsx`)
 }
 
 async function getTestNames() {

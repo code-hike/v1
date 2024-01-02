@@ -1,0 +1,139 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Hike } from \"../../src/Hike\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Hike" },
+                  "local": { "type": "Identifier", "name": "Hike" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/Hike",
+                "raw": "\"../../src/Hike\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    { "type": "text", "value": "\n" },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Hike",
+      "attributes": [],
+      "data": { "_mdxExplicitJsx": true },
+      "children": [
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [],
+          "children": [
+            {
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [
+                { "type": "text", "value": "Hello " },
+                {
+                  "type": "element",
+                  "tagName": "strong",
+                  "properties": {},
+                  "children": [{ "type": "text", "value": "world" }]
+                },
+                { "type": "text", "value": "!" }
+              ]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "placeholder",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
+              ],
+              "children": []
+            },
+            {
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [{ "type": "text", "value": "More" }]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "placeholder",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "foo" }
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
+            { "type": "mdxJsxAttribute", "name": "query" }
+          ],
+          "children": [
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [],
+              "children": [
+                {
+                  "type": "element",
+                  "tagName": "pre",
+                  "properties": {},
+                  "children": [
+                    {
+                      "type": "element",
+                      "tagName": "code",
+                      "properties": { "className": ["language-js"] },
+                      "children": [{ "type": "text", "value": "const a = 1\n" }]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "name", "value": "foo" },
+            { "type": "mdxJsxAttribute", "name": "query", "value": "" }
+          ],
+          "children": [
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [],
+              "children": [
+                {
+                  "type": "element",
+                  "tagName": "p",
+                  "properties": {},
+                  "children": [{ "type": "text", "value": "bar" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

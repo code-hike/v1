@@ -3,6 +3,7 @@
   "scripts": {
     "build": "turbo build",
     "web": "turbo dev --filter=web...",
+    "test": "turbo test",
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "changeset": "changeset",
