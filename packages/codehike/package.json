@@ -1,0 +1,38 @@
+{
+  "name": "codehike",
+  "version": "0.9.9",
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": "code-hike/codehike",
+  "homepage": "https://codehike.org",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/code-hike"
+  },
+  "exports": {
+    "./mdx": "./dist/remark.js",
+    ".": "./dist/components.js"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc -p . ",
+    "dev": "tsc -p . --watch",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "@code-hike/code": "workspace:*",
+    "@code-hike/hike": "workspace:*",
+    "mdast-util-mdx-jsx": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.3",
+    "typescript": "^5.3.3",
+    "unified": "^11.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
