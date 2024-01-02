@@ -1,0 +1,61 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Code } from \"../../src/code\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Code" },
+                  "local": { "type": "Identifier", "name": "Code" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/code",
+                "raw": "\"../../src/code\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Code",
+      "attributes": [
+        { "type": "mdxJsxAttribute", "name": "foo", "value": "bar" }
+      ],
+      "children": [
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": "index.js",
+          "value": "const foo = \"foo\"\r\n// !Foo bar\r\nconst bar = \"bar\""
+        },
+        {
+          "type": "code",
+          "lang": "html",
+          "meta": "foo",
+          "value": "<div>bar</div>"
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "meta": "foo",
+      "value": "const foo = \"foo\"\r\nconst bar = \"bar\""
+    }
+  ]
+}

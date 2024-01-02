@@ -1,0 +1,1279 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "style",
+      "attributes": [],
+      "children": [
+        {
+          "type": "mdxFlowExpression",
+          "value": "\"[data-ch-theme=github-dark] {  --ch-t-colorScheme: dark;--ch-t-foreground: #c9d1d9;--ch-t-background: #0d1117;--ch-t-lighter-inlineBackground: #0d1117e6;--ch-t-editor-background: #0d1117;--ch-t-editor-foreground: #c9d1d9;--ch-t-editor-lineHighlightBackground: #6e76811a;--ch-t-editor-rangeHighlightBackground: #ffffff0b;--ch-t-editor-infoForeground: #3794FF;--ch-t-editor-selectionBackground: #264F78;--ch-t-focusBorder: #1f6feb;--ch-t-tab-activeBackground: #0d1117;--ch-t-tab-activeForeground: #c9d1d9;--ch-t-tab-inactiveBackground: #010409;--ch-t-tab-inactiveForeground: #8b949e;--ch-t-tab-border: #30363d;--ch-t-tab-activeBorder: #0d1117;--ch-t-tab-activeBorderTop: #f78166;--ch-t-editorGroup-border: #30363d;--ch-t-editorGroupHeader-tabsBackground: #010409;--ch-t-editorLineNumber-foreground: #6e7681;--ch-t-input-background: #0d1117;--ch-t-input-foreground: #c9d1d9;--ch-t-input-border: #30363d;--ch-t-icon-foreground: #8b949e;--ch-t-sideBar-background: #010409;--ch-t-sideBar-foreground: #c9d1d9;--ch-t-sideBar-border: #30363d;--ch-t-list-activeSelectionBackground: #6e768166;--ch-t-list-activeSelectionForeground: #c9d1d9;--ch-t-list-hoverBackground: #6e76811a;--ch-t-list-hoverForeground: #c9d1d9; } [data-ch-theme=github-dark] ::selection {background-color: var(--ch-t-editor-selectionBackground);color: inherit;}\"",
+          "data": {
+            "estree": {
+              "type": "Program",
+              "body": [
+                {
+                  "type": "ExpressionStatement",
+                  "expression": {
+                    "type": "Literal",
+                    "value": "[data-ch-theme=github-dark] {  --ch-t-colorScheme: dark;--ch-t-foreground: #c9d1d9;--ch-t-background: #0d1117;--ch-t-lighter-inlineBackground: #0d1117e6;--ch-t-editor-background: #0d1117;--ch-t-editor-foreground: #c9d1d9;--ch-t-editor-lineHighlightBackground: #6e76811a;--ch-t-editor-rangeHighlightBackground: #ffffff0b;--ch-t-editor-infoForeground: #3794FF;--ch-t-editor-selectionBackground: #264F78;--ch-t-focusBorder: #1f6feb;--ch-t-tab-activeBackground: #0d1117;--ch-t-tab-activeForeground: #c9d1d9;--ch-t-tab-inactiveBackground: #010409;--ch-t-tab-inactiveForeground: #8b949e;--ch-t-tab-border: #30363d;--ch-t-tab-activeBorder: #0d1117;--ch-t-tab-activeBorderTop: #f78166;--ch-t-editorGroup-border: #30363d;--ch-t-editorGroupHeader-tabsBackground: #010409;--ch-t-editorLineNumber-foreground: #6e7681;--ch-t-input-background: #0d1117;--ch-t-input-foreground: #c9d1d9;--ch-t-input-border: #30363d;--ch-t-icon-foreground: #8b949e;--ch-t-sideBar-background: #010409;--ch-t-sideBar-foreground: #c9d1d9;--ch-t-sideBar-border: #30363d;--ch-t-list-activeSelectionBackground: #6e768166;--ch-t-list-activeSelectionForeground: #c9d1d9;--ch-t-list-hoverBackground: #6e76811a;--ch-t-list-hoverForeground: #c9d1d9; } [data-ch-theme=github-dark] ::selection {background-color: var(--ch-t-editor-selectionBackground);color: inherit;}",
+                    "raw": "\"[data-ch-theme=github-dark] {  --ch-t-colorScheme: dark;--ch-t-foreground: #c9d1d9;--ch-t-background: #0d1117;--ch-t-lighter-inlineBackground: #0d1117e6;--ch-t-editor-background: #0d1117;--ch-t-editor-foreground: #c9d1d9;--ch-t-editor-lineHighlightBackground: #6e76811a;--ch-t-editor-rangeHighlightBackground: #ffffff0b;--ch-t-editor-infoForeground: #3794FF;--ch-t-editor-selectionBackground: #264F78;--ch-t-focusBorder: #1f6feb;--ch-t-tab-activeBackground: #0d1117;--ch-t-tab-activeForeground: #c9d1d9;--ch-t-tab-inactiveBackground: #010409;--ch-t-tab-inactiveForeground: #8b949e;--ch-t-tab-border: #30363d;--ch-t-tab-activeBorder: #0d1117;--ch-t-tab-activeBorderTop: #f78166;--ch-t-editorGroup-border: #30363d;--ch-t-editorGroupHeader-tabsBackground: #010409;--ch-t-editorLineNumber-foreground: #6e7681;--ch-t-input-background: #0d1117;--ch-t-input-foreground: #c9d1d9;--ch-t-input-border: #30363d;--ch-t-icon-foreground: #8b949e;--ch-t-sideBar-background: #010409;--ch-t-sideBar-foreground: #c9d1d9;--ch-t-sideBar-border: #30363d;--ch-t-list-activeSelectionBackground: #6e768166;--ch-t-list-activeSelectionForeground: #c9d1d9;--ch-t-list-hoverBackground: #6e76811a;--ch-t-list-hoverForeground: #c9d1d9; } [data-ch-theme=github-dark] ::selection {background-color: var(--ch-t-editor-selectionBackground);color: inherit;}\""
+                  }
+                }
+              ],
+              "sourceType": "module",
+              "comments": []
+            }
+          }
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    },
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Code } from \"../../src/code\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Code" },
+                  "local": { "type": "Identifier", "name": "Code" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/code",
+                "raw": "\"../../src/code\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Code",
+      "attributes": [
+        { "type": "mdxJsxAttribute", "name": "foo", "value": "bar" },
+        {
+          "type": "mdxJsxAttribute",
+          "name": "config",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "{}",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Identifier", "name": "themeName" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "github-dark",
+                            "raw": "\"github-dark\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        },
+        {
+          "type": "mdxJsxAttribute",
+          "name": "codeblocks",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "[]",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ArrayExpression",
+                      "elements": [
+                        {
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "js",
+                                "raw": "\"js\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "index.js",
+                                "raw": "\"index.js\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "const foo = \"foo\"\nconst bar = \"bar\"",
+                                "raw": "\"const foo = \\\"foo\\\"\\nconst bar = \\\"bar\\\"\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "name": "annotations"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "1",
+                                          "raw": "\"1\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "2",
+                                          "raw": "\"2\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "3",
+                                          "raw": "\"3\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 3,
+                                                    "raw": "3"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 3,
+                                                    "raw": "3"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Foo",
+                                          "raw": "\"Foo\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "bar",
+                                          "raw": "\"bar\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "html",
+                                "raw": "\"html\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "foo",
+                                "raw": "\"foo\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "<div>bar</div>",
+                                "raw": "\"<div>bar</div>\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "name": "annotations"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "1",
+                                          "raw": "\"1\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        },
+        {
+          "type": "mdxJsxAttribute",
+          "name": "components",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "_",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "LogicalExpression",
+                            "left": {
+                              "type": "BinaryExpression",
+                              "left": {
+                                "type": "UnaryExpression",
+                                "operator": "typeof",
+                                "prefix": true,
+                                "argument": {
+                                  "type": "Identifier",
+                                  "name": "_provideComponents"
+                                }
+                              },
+                              "operator": "===",
+                              "right": {
+                                "type": "Literal",
+                                "value": "function",
+                                "raw": "\"function\""
+                              }
+                            },
+                            "operator": "&&",
+                            "right": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "Identifier",
+                                "name": "_provideComponents"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        },
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "Identifier",
+                            "name": "props.components"
+                          }
+                        },
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "LogicalExpression",
+                            "left": {
+                              "type": "BinaryExpression",
+                              "left": {
+                                "type": "UnaryExpression",
+                                "operator": "typeof",
+                                "prefix": true,
+                                "argument": {
+                                  "type": "Identifier",
+                                  "name": "Line"
+                                }
+                              },
+                              "operator": "!==",
+                              "right": {
+                                "type": "Literal",
+                                "value": "undefined",
+                                "raw": "\"undefined\""
+                              }
+                            },
+                            "operator": "&&",
+                            "right": {
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": true,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Identifier",
+                                    "name": "Line"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Identifier",
+                                    "name": "Line"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "LogicalExpression",
+                            "left": {
+                              "type": "BinaryExpression",
+                              "left": {
+                                "type": "UnaryExpression",
+                                "operator": "typeof",
+                                "prefix": true,
+                                "argument": {
+                                  "type": "Identifier",
+                                  "name": "Foo"
+                                }
+                              },
+                              "operator": "!==",
+                              "right": {
+                                "type": "Literal",
+                                "value": "undefined",
+                                "raw": "\"undefined\""
+                              }
+                            },
+                            "operator": "&&",
+                            "right": {
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": true,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Identifier",
+                                    "name": "Foo"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Identifier",
+                                    "name": "Foo"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": [],
+      "data": { "_mdxExplicitJsx": true }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Code",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "config",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "{}",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Identifier", "name": "themeName" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "github-dark",
+                            "raw": "\"github-dark\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        },
+        {
+          "type": "mdxJsxAttribute",
+          "name": "codeblocks",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "[]",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ArrayExpression",
+                      "elements": [
+                        {
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "js",
+                                "raw": "\"js\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "foo",
+                                "raw": "\"foo\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Identifier", "name": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "const foo = \"foo\"\nconst bar = \"bar\"",
+                                "raw": "\"const foo = \\\"foo\\\"\\nconst bar = \\\"bar\\\"\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "name": "annotations"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "1",
+                                          "raw": "\"1\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 1,
+                                                    "raw": "1"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "name"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "Line",
+                                          "raw": "\"Line\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "query"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "2",
+                                          "raw": "\"2\""
+                                        }
+                                      },
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Identifier",
+                                          "name": "ranges"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "ArrayExpression",
+                                          "elements": [
+                                            {
+                                              "type": "ObjectExpression",
+                                              "properties": [
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "fromLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "Property",
+                                                  "method": false,
+                                                  "shorthand": false,
+                                                  "computed": false,
+                                                  "key": {
+                                                    "type": "Identifier",
+                                                    "name": "toLineNumber"
+                                                  },
+                                                  "kind": "init",
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": 2,
+                                                    "raw": "2"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        },
+        {
+          "type": "mdxJsxAttribute",
+          "name": "components",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "_",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "LogicalExpression",
+                            "left": {
+                              "type": "BinaryExpression",
+                              "left": {
+                                "type": "UnaryExpression",
+                                "operator": "typeof",
+                                "prefix": true,
+                                "argument": {
+                                  "type": "Identifier",
+                                  "name": "_provideComponents"
+                                }
+                              },
+                              "operator": "===",
+                              "right": {
+                                "type": "Literal",
+                                "value": "function",
+                                "raw": "\"function\""
+                              }
+                            },
+                            "operator": "&&",
+                            "right": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "Identifier",
+                                "name": "_provideComponents"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        },
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "Identifier",
+                            "name": "props.components"
+                          }
+                        },
+                        {
+                          "type": "SpreadElement",
+                          "argument": {
+                            "type": "LogicalExpression",
+                            "left": {
+                              "type": "BinaryExpression",
+                              "left": {
+                                "type": "UnaryExpression",
+                                "operator": "typeof",
+                                "prefix": true,
+                                "argument": {
+                                  "type": "Identifier",
+                                  "name": "Line"
+                                }
+                              },
+                              "operator": "!==",
+                              "right": {
+                                "type": "Literal",
+                                "value": "undefined",
+                                "raw": "\"undefined\""
+                              }
+                            },
+                            "operator": "&&",
+                            "right": {
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": true,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Identifier",
+                                    "name": "Line"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Identifier",
+                                    "name": "Line"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  ]
+}
