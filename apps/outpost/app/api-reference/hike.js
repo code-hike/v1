@@ -1,9 +1,10 @@
 "use client"
 import React from "react"
+import { ChevronRight } from "lucide-react"
 
 export function HikeLayout({ hike }) {
   const { slots, children } = hike
-  const { steps } = slots
+  const { steps, extra } = slots
 
   const [step, setStep] = React.useState(steps[0])
   const code = step.slots["code"]
@@ -11,15 +12,44 @@ export function HikeLayout({ hike }) {
     : hike.slots["code"][0].children
 
   return (
-    <div className="relative flex flex-row gap-12">
+    <div className="relative flex flex-row gap-12 mb-24">
       <div className="flex-1">
         {children}
         {steps.map((step, i) => (
           <Step step={step} setStep={setStep} key={i} />
         ))}
+        <div className="mt-8">More Attributes</div>
+        {extra.map((step, i) => (
+          <ExtraAttribute step={step} setStep={setStep} key={i} />
+        ))}
       </div>
-      <div className="not-prose" style={{ maxWidth: 400, minWidth: 400 }}>
+      <div className="not-prose max-w-sm w-full">
         <div className="sticky top-10">{code}</div>
+      </div>
+    </div>
+  )
+}
+
+function ExtraAttribute({ step, setStep }) {
+  const [collapsed, setCollapsed] = React.useState(true)
+  const [name, ...rest] = step.query.split(" ")
+  const type = rest.join(" ")
+
+  return (
+    <div onMouseEnter={() => setStep(step)} className="mb-4">
+      <h4 onClick={() => setCollapsed(!collapsed)} className="cursor-pointer">
+        <ChevronRight
+          size={16}
+          className={`inline-block mr-1 -ml-5 transform ${
+            collapsed ? "" : "rotate-90"
+          } transition-transform`}
+        />
+        <span className="font-mono">{name}</span>
+        <span className="ml-2 text-sm text-slate-400">{type}</span>
+      </h4>
+      <div className={collapsed ? "hidden" : ""}>
+        {step["children"]}
+        <SubSteps steps={step.slots.steps} setStep={setStep} />
       </div>
     </div>
   )
@@ -30,10 +60,7 @@ function Step({ step, setStep }) {
   const type = rest.join(" ")
 
   return (
-    <div
-      onMouseEnter={() => setStep(step)}
-      className="mb-4 border-t border-zinc-300/20 "
-    >
+    <div onMouseEnter={() => setStep(step)} className="mb-6">
       <h4>
         <span className="font-mono">{name}</span>
         <span className="ml-2 text-sm text-slate-400">{type}</span>

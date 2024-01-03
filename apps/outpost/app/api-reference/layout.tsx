@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark bg-zinc-900">
+    <html lang="en" className="dark bg-zinc-900 mb-96">
       <body className={inter.className}>
         <main className="prose prose-zinc dark:prose-invert max-w-4xl mx-auto ">
           {children}

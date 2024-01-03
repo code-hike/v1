@@ -80,8 +80,104 @@ The customer’s email address.
 
 String representing the object’s type. Objects of the same type share the same value.
 
-## !balance integer
+## !extra balance integer
 
 The current balance, if any, that’s stored on the customer. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that’s added to their next invoice. The balance only considers amounts that Stripe hasn’t successfully applied to any invoice. It doesn’t reflect unpaid invoices. This balance is only taken into account after invoices finalize.
+
+## !extra created timestamp
+
+Time at which the object was created. Measured in seconds since the Unix epoch.
+
+## !extra currency nullable string
+
+Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
+
+</Hike>
+
+## Create a customer
+
+<Hike as={HikeLayout}>
+
+```jsonc RESPONSE
+{
+  "id": "cus_NffrFeUfNV2Hib",
+  "object": "customer",
+  "address": null,
+  "balance": 0,
+  "created": 1680893993,
+  "currency": null,
+  "default_source": null,
+  "delinquent": false,
+  "description": null,
+  "discount": null,
+  "email": "jennyrosen@example.com",
+  "invoice_prefix": "0759376C",
+  "invoice_settings": {
+    "custom_fields": null,
+    "default_payment_method": null,
+    "footer": null,
+    "rendering_options": null
+  },
+  "livemode": false,
+  "metadata": {},
+  "name": "Jenny Rosen",
+  "next_invoice_sequence": 1,
+  "phone": null,
+  "preferred_locales": [],
+  "shipping": null,
+  "tax_exempt": "none",
+  "test_clock": null
+}
+```
+
+Attributes
+
+## ! id string
+
+Unique identifier for the object.
+
+## ! address nullable string
+
+The customer’s address.
+
+### ! address.city nullable string
+
+City, district, suburb, town, or village.
+
+### ! address.country nullable string
+
+Two-letter country code (ISO 3166-1 alpha-2).
+
+### ! address.line1 nullable string
+
+Address line 1 (e.g., street, PO Box, or company name).
+
+### ! address.postal_code nullable string
+
+ZIP or postal code.
+
+## ! description nullable string
+
+An arbitrary string attached to the object. Often useful for displaying to users.
+
+## ! email nullable string
+
+The customer’s email address.
+
+## !extra object string
+
+String representing the object’s type. Objects of the same type share the same value.
+
+## !extra balance integer
+
+The current balance, if any, that’s stored on the customer. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that’s added to their next invoice. The balance only considers amounts that Stripe hasn’t successfully applied to any invoice. It doesn’t reflect unpaid invoices. This balance is only taken into account after invoices finalize.
+
+## !extra created timestamp
+
+Time at which the object was created. Measured in seconds since the Unix epoch.
+
+## !extra currency nullable string
+
+Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
 
 </Hike>
