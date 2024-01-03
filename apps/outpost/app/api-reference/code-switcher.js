@@ -27,7 +27,7 @@ export function CodeSwitcher({ options }) {
         {option.meta}
 
         <Select value={option.lang} onValueChange={setOptionByLang}>
-          <SelectTrigger className="w-24 text-xs h-6 ml-auto">
+          <SelectTrigger className="w-24 text-xs h-6 ml-auto dark:bg-zinc-900">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

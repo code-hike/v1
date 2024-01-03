@@ -18,7 +18,7 @@ export function HikeLayout({ hike }) {
         <Extra query={extra.query} steps={extra.slots.steps} />
         {returns && (
           <div>
-            <h3>Returns</h3>
+            <h3 className="mt-8 border-b border-zinc-700">Returns</h3>
             {returns.children}
           </div>
         )}
@@ -34,7 +34,7 @@ function Main({ query, steps }) {
   const setStep = () => {}
   return (
     <section>
-      <h3 className="mt-8">{query}</h3>
+      <h3 className="mt-8 border-b border-zinc-700">{query}</h3>
       {steps.map((step, i) => (
         <Step step={step} setStep={setStep} key={i} />
       ))}
@@ -46,7 +46,7 @@ function Extra({ query, steps }) {
   const setStep = () => {}
   return (
     <section>
-      <h3 className="mt-8">{query}</h3>
+      <h3 className="mt-8 border-b border-zinc-700">{query}</h3>
       {steps.map((step, i) => (
         <ExtraAttribute step={step} setStep={setStep} key={i} />
       ))}
