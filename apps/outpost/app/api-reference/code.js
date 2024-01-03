@@ -1,15 +1,15 @@
-import { CodeContent } from "codehike"
-import { CodeSwitcher } from "./code-switcher"
+import { CodeContent } from "codehike";
+import { CodeSwitcher } from "./code-switcher";
 
 export async function Code({ codeblocks, config, components }) {
-  const blocks = {}
+  const blocks = {};
   codeblocks.forEach((codeblock) => {
-    const { meta } = codeblock
+    const { meta } = codeblock;
     if (!blocks[meta]) {
-      blocks[meta] = []
+      blocks[meta] = [];
     }
-    blocks[meta].push(codeblock)
-  })
+    blocks[meta].push(codeblock);
+  });
 
   const tabs = Object.entries(blocks).map(([meta, codeblocks]) =>
     codeblocks.length > 1 ? (
@@ -25,9 +25,9 @@ export async function Code({ codeblocks, config, components }) {
         components={components}
       />
     ),
-  )
+  );
 
-  return tabs
+  return tabs;
 }
 
 async function MultiCode({ codeblocks, config, components }) {
@@ -40,10 +40,10 @@ async function MultiCode({ codeblocks, config, components }) {
         config={config}
         components={components}
         data-ch-lang={codeblock.lang}
-        className="px-4 py-2 !bg-zinc-800/50 leading-normal"
+        className="px-4 py-2 !bg-zinc-800/50 leading-normal overflow-auto w-full"
       />
     ),
-  }))
+  }));
 
   return (
     <div
@@ -52,11 +52,11 @@ async function MultiCode({ codeblocks, config, components }) {
     >
       <CodeSwitcher options={options} />
     </div>
-  )
+  );
 }
 
 async function SingleCode({ codeblock, config, components }) {
-  const { lang, meta, value, annotations } = codeblock
+  const { lang, meta, value, annotations } = codeblock;
 
   return (
     <div
@@ -71,8 +71,8 @@ async function SingleCode({ codeblock, config, components }) {
         config={config}
         components={components}
         data-ch-lang={lang}
-        className="px-4 py-2 !bg-zinc-800/50 leading-normal"
+        className="px-4 py-2 !bg-zinc-800/50 leading-normal overflow-auto w-full"
       />
     </div>
-  )
+  );
 }
