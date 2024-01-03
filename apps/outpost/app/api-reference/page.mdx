@@ -134,11 +134,7 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
 
 ## !main Parameters
 
-### ! id string
-
-Unique identifier for the object.
-
-### ! address nullable string
+### ! address object
 
 The customer’s address.
 
@@ -166,23 +162,23 @@ An arbitrary string attached to the object. Often useful for displaying to users
 
 The customer’s email address.
 
+### ! metadata object
+
+Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.
+
 ## !extra More parameters
-
-### ! object string
-
-String representing the object’s type. Objects of the same type share the same value.
 
 ### ! balance integer
 
 The current balance, if any, that’s stored on the customer. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that’s added to their next invoice. The balance only considers amounts that Stripe hasn’t successfully applied to any invoice. It doesn’t reflect unpaid invoices. This balance is only taken into account after invoices finalize.
 
-### ! created timestamp
+### ! cash_balance object
 
-Time at which the object was created. Measured in seconds since the Unix epoch.
+Balance information and default balance settings for this customer.
 
-### ! currency nullable string
+#### ! cash_balance.settings object
 
-Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
+Settings controlling the behavior of the customer’s cash balance, such as reconciliation of funds received.
 
 ## !returns
 
