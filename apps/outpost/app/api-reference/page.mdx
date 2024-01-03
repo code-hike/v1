@@ -1,6 +1,6 @@
-import { Hike } from "codehike";
-import { HikeLayout } from "./hike";
-import { Code } from "./code";
+import { Hike } from "codehike"
+import { HikeLayout } from "./hike"
+import { Code } from "./code"
 
 ## Customers
 
@@ -104,13 +104,13 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
 
 ```js POST /v1/customers
 const stripe = require("stripe")(
-  "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y",
-);
+  "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
+)
 const customer =
   await stripe.customers.create({
     name: "Jenny Rosen",
-    email: "jennyrosen@example.com",
-  });
+    email: "jennyrosen@example.com"
+  })
 ```
 
 ```py POST /v1/customers
@@ -146,11 +146,7 @@ stripe.Customer.create(
   "metadata": {},
   "name": "Jenny Rosen",
   "next_invoice_sequence": 1,
-  "phone": null,
-  "preferred_locales": [],
-  "shipping": null,
-  "tax_exempt": "none",
-  "test_clock": null
+  "phone": null
 }
 ```
 

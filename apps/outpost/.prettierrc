@@ -3,7 +3,9 @@
     {
       "files": ["*.mdx"],
       "options": {
-        "printWidth": 42
+        "printWidth": 42,
+        "trailingComma": "none",
+        "semi": false
       }
     }
   ]
