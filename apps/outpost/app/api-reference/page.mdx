@@ -42,53 +42,55 @@ This object represents a customer of your business. Use it to create recurring c
 }
 ```
 
-Attributes
+## !main Attributes
 
-## ! id string
+### ! id string
 
 Unique identifier for the object.
 
-## ! address nullable string
+### ! address nullable string
 
 The customer’s address.
 
-### ! address.city nullable string
+#### ! address.city nullable string
 
 City, district, suburb, town, or village.
 
-### ! address.country nullable string
+#### ! address.country nullable string
 
 Two-letter country code (ISO 3166-1 alpha-2).
 
-### ! address.line1 nullable string
+#### ! address.line1 nullable string
 
 Address line 1 (e.g., street, PO Box, or company name).
 
-### ! address.postal_code nullable string
+#### ! address.postal_code nullable string
 
 ZIP or postal code.
 
-## ! description nullable string
+### ! description nullable string
 
 An arbitrary string attached to the object. Often useful for displaying to users.
 
-## ! email nullable string
+### ! email nullable string
 
 The customer’s email address.
 
-## !extra object string
+## !extra More attributes
+
+### ! object string
 
 String representing the object’s type. Objects of the same type share the same value.
 
-## !extra balance integer
+### ! balance integer
 
 The current balance, if any, that’s stored on the customer. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that’s added to their next invoice. The balance only considers amounts that Stripe hasn’t successfully applied to any invoice. It doesn’t reflect unpaid invoices. This balance is only taken into account after invoices finalize.
 
-## !extra created timestamp
+### ! created timestamp
 
 Time at which the object was created. Measured in seconds since the Unix epoch.
 
-## !extra currency nullable string
+### ! currency nullable string
 
 Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
 
@@ -130,54 +132,60 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
 }
 ```
 
-Attributes
+## !main Parameters
 
-## ! id string
+### ! id string
 
 Unique identifier for the object.
 
-## ! address nullable string
+### ! address nullable string
 
 The customer’s address.
 
-### ! address.city nullable string
+#### ! address.city nullable string
 
 City, district, suburb, town, or village.
 
-### ! address.country nullable string
+#### ! address.country nullable string
 
 Two-letter country code (ISO 3166-1 alpha-2).
 
-### ! address.line1 nullable string
+#### ! address.line1 nullable string
 
 Address line 1 (e.g., street, PO Box, or company name).
 
-### ! address.postal_code nullable string
+#### ! address.postal_code nullable string
 
 ZIP or postal code.
 
-## ! description nullable string
+### ! description nullable string
 
 An arbitrary string attached to the object. Often useful for displaying to users.
 
-## ! email nullable string
+### ! email nullable string
 
 The customer’s email address.
 
-## !extra object string
+## !extra More parameters
+
+### ! object string
 
 String representing the object’s type. Objects of the same type share the same value.
 
-## !extra balance integer
+### ! balance integer
 
 The current balance, if any, that’s stored on the customer. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that’s added to their next invoice. The balance only considers amounts that Stripe hasn’t successfully applied to any invoice. It doesn’t reflect unpaid invoices. This balance is only taken into account after invoices finalize.
 
-## !extra created timestamp
+### ! created timestamp
 
 Time at which the object was created. Measured in seconds since the Unix epoch.
 
-## !extra currency nullable string
+### ! currency nullable string
 
 Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
+
+## !returns
+
+Returns the Customer object after successful customer creation. Raises an error if create parameters are invalid (for example, specifying an invalid coupon or an invalid source).
 
 </Hike>

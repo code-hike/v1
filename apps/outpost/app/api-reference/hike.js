@@ -4,29 +4,53 @@ import { ChevronRight } from "lucide-react"
 
 export function HikeLayout({ hike }) {
   const { slots, children } = hike
-  const { steps, extra } = slots
+  const main = slots["main"][0]
+  const extra = slots["extra"][0]
+  const returns = slots["returns"] && slots["returns"][0]
 
-  const [step, setStep] = React.useState(steps[0])
-  const code = step.slots["code"]
-    ? step.slots["code"][0].children
-    : hike.slots["code"][0].children
+  // const [step, setStep] = React.useState(steps[0])
+  const code = hike.slots["code"][0].children
 
   return (
     <div className="relative flex flex-row gap-12 mb-24">
       <div className="flex-1">
-        {children}
-        {steps.map((step, i) => (
-          <Step step={step} setStep={setStep} key={i} />
-        ))}
-        <div className="mt-8">More Attributes</div>
-        {extra.map((step, i) => (
-          <ExtraAttribute step={step} setStep={setStep} key={i} />
-        ))}
+        <Main query={main.query} steps={main.slots.steps} />
+        <Extra query={extra.query} steps={extra.slots.steps} />
+        {returns && (
+          <div>
+            <h3>Returns</h3>
+            {returns.children}
+          </div>
+        )}
       </div>
       <div className="not-prose max-w-sm w-full">
         <div className="sticky top-10">{code}</div>
       </div>
     </div>
+  )
+}
+
+function Main({ query, steps }) {
+  const setStep = () => {}
+  return (
+    <section>
+      <h3 className="mt-8">{query}</h3>
+      {steps.map((step, i) => (
+        <Step step={step} setStep={setStep} key={i} />
+      ))}
+    </section>
+  )
+}
+
+function Extra({ query, steps }) {
+  const setStep = () => {}
+  return (
+    <section>
+      <h3 className="mt-8">{query}</h3>
+      {steps.map((step, i) => (
+        <ExtraAttribute step={step} setStep={setStep} key={i} />
+      ))}
+    </section>
   )
 }
 
