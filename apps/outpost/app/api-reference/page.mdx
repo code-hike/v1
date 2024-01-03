@@ -100,6 +100,25 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
 
 <Hike as={HikeLayout}>
 
+<Code>
+
+```js POST /v1/customers
+const stripe = require("stripe")("sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y")
+const customer = await stripe.customers.create({
+  name: "Jenny Rosen",
+  email: "jennyrosen@example.com",
+})
+```
+
+```py POST /v1/customers
+import stripe
+stripe.api_key = "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
+stripe.Customer.create(
+  name="Jenny Rosen",
+  email="jennyrosen@example.com",
+)
+```
+
 ```jsonc RESPONSE
 {
   "id": "cus_NffrFeUfNV2Hib",
@@ -131,6 +150,8 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
   "test_clock": null
 }
 ```
+
+</Code>
 
 ## !main Parameters
 
