@@ -39,7 +39,9 @@
         {
           "type": "mdxJsxFlowElement",
           "name": "slot",
-          "attributes": [],
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "role", "value": "children" }
+          ],
           "children": [
             {
               "type": "element",
@@ -91,22 +93,36 @@
             {
               "type": "mdxJsxFlowElement",
               "name": "slot",
-              "attributes": [],
-              "children": [
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
+                { "type": "mdxJsxAttribute", "name": "lang", "value": "js" },
+                { "type": "mdxJsxAttribute", "name": "meta", "value": null },
                 {
-                  "type": "element",
-                  "tagName": "pre",
-                  "properties": {},
-                  "children": [
-                    {
-                      "type": "element",
-                      "tagName": "code",
-                      "properties": { "className": ["language-js"] },
-                      "children": [{ "type": "text", "value": "const a = 1\n" }]
+                  "type": "mdxJsxAttribute",
+                  "name": "code",
+                  "value": {
+                    "type": "mdxJsxAttributeValueExpression",
+                    "value": "\"\"",
+                    "data": {
+                      "estree": {
+                        "type": "Program",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "Literal",
+                              "value": "const a = 1",
+                              "raw": "\"const a = 1\""
+                            }
+                          }
+                        ],
+                        "sourceType": "module"
+                      }
                     }
-                  ]
+                  }
                 }
-              ]
+              ],
+              "children": []
             }
           ]
         },
@@ -121,7 +137,13 @@
             {
               "type": "mdxJsxFlowElement",
               "name": "slot",
-              "attributes": [],
+              "attributes": [
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "role",
+                  "value": "children"
+                }
+              ],
               "children": [
                 {
                   "type": "element",

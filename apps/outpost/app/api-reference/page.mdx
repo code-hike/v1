@@ -1,6 +1,5 @@
 import { Hike } from "codehike"
 import { HikeLayout } from "./hike"
-import { Code } from "./code"
 
 ## Customers
 
@@ -104,8 +103,6 @@ Three-letter ISO code for the currency the customer can be charged in for recurr
 
 <Hike as={HikeLayout}>
 
-<Code>
-
 ```js POST /v1/customers
 const stripe = require("stripe")(
   "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
@@ -153,8 +150,6 @@ stripe.Customer.create(
   "phone": null
 }
 ```
-
-</Code>
 
 ## !main Parameters
 

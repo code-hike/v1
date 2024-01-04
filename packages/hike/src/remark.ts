@@ -24,8 +24,8 @@ export async function transformAllHikes(node: Root | Content, config?: Config) {
 type JSXChild = BlockContent | DefinitionContent
 
 async function transformHike(node: MdxJsxFlowElement) {
-  const root = treeToSteps(node.children)
-  node.children = slotToTree(root)
+  const rootStep = treeToSteps(node.children)
+  node.children = slotToTree(rootStep)
 
   return node
 }
@@ -36,8 +36,15 @@ type Step = {
   children: JSXChild[]
   depth: number
   parent?: Step
-  slots: Step[]
+  slots: (Step | CodeBlockStep)[]
 }
+
+type CodeBlockStep = Step & {
+  lang?: string | null | undefined
+  meta?: string | null | undefined
+  code: string
+}
+
 function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
   const root: Step = {
     slotName: "root",
@@ -48,28 +55,18 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
   let parent = root
 
   children.forEach((child) => {
-    // if (child.type === "thematicBreak") {
-    //   parent.slots["steps"] = parent.slots["steps"] || []
-    //   parent.slots["steps"].push({
-    //     slotName: "steps",
-    //     parent,
-    //     slots: {},
-    //     children: [],
-    //     depth: parent.depth == -1 ? -1 : parent.depth + 1,
-    //   })
-    //   return
-    // }
-
-    // is codeblock
-    const codeSlot = parseCodeSlot(child)
-    if (codeSlot) {
+    if (child.type === "code") {
       parent.slots.push({
-        slotName: codeSlot,
+        slotName: "code",
         parent,
         slots: [],
         children: [child],
         depth: parent.depth + 1,
+        lang: child.lang,
+        meta: child.meta,
+        code: child.value,
       })
+
       parent.children.push({
         type: "mdxJsxFlowElement",
         name: "placeholder",
@@ -77,13 +74,39 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
           {
             type: "mdxJsxAttribute",
             name: "name",
-            value: codeSlot,
+            value: "code",
           },
         ],
         children: [],
       })
+
       return
     }
+
+    // is codeblock (old)
+    // const codeSlot = parseCodeSlot(child)
+    // if (codeSlot) {
+    //   parent.slots.push({
+    //     slotName: codeSlot,
+    //     parent,
+    //     slots: [],
+    //     children: [child],
+    //     depth: parent.depth + 1,
+    //   })
+    //   parent.children.push({
+    //     type: "mdxJsxFlowElement",
+    //     name: "placeholder",
+    //     attributes: [
+    //       {
+    //         type: "mdxJsxAttribute",
+    //         name: "name",
+    //         value: codeSlot,
+    //       },
+    //     ],
+    //     children: [],
+    //   })
+    //   return
+    // }
 
     const { slotName, query, depth, close } = parseHeading(child)
 
@@ -142,12 +165,71 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
 function slotToTree(slot: Step): MdxJsxFlowElement[] {
   const elements: MdxJsxFlowElement[] = []
 
-  elements.push({
-    type: "mdxJsxFlowElement",
-    name: "slot",
-    attributes: [],
-    children: slot.children,
-  })
+  if (slot.slotName === "code") {
+    const codeblock = slot as CodeBlockStep
+    console.log(codeblock.code)
+    elements.push({
+      type: "mdxJsxFlowElement",
+      name: "slot",
+      attributes: [
+        // TODO we can remove this
+        {
+          type: "mdxJsxAttribute",
+          name: "role",
+          value: "code",
+        },
+        {
+          type: "mdxJsxAttribute",
+          name: "lang",
+          value: codeblock.lang,
+        },
+        {
+          type: "mdxJsxAttribute",
+          name: "meta",
+          value: codeblock.meta,
+        },
+        {
+          type: "mdxJsxAttribute",
+          name: "code",
+          value: {
+            type: "mdxJsxAttributeValueExpression",
+            value: '""',
+            data: {
+              estree: {
+                type: "Program",
+                body: [
+                  {
+                    type: "ExpressionStatement",
+                    expression: {
+                      type: "Literal",
+                      value: codeblock.code,
+                      raw: JSON.stringify(codeblock.code),
+                    },
+                  },
+                ],
+                sourceType: "module",
+              },
+            },
+          },
+        },
+      ],
+      children: [],
+    })
+  } else {
+    elements.push({
+      type: "mdxJsxFlowElement",
+      name: "slot",
+      attributes: [
+        // TODO we can remove this
+        {
+          type: "mdxJsxAttribute",
+          name: "role",
+          value: "children",
+        },
+      ],
+      children: slot.children,
+    })
+  }
 
   slot.slots.forEach((slot) => {
     elements.push({

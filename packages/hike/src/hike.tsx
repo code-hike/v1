@@ -25,6 +25,13 @@ function slotToStaticJSX(slot: Step): React.ReactNode[] {
   return slot.children.flatMap((child: any) => {
     if (child.type === "placeholder") {
       const name = child.props.name
+      if (name === "code") {
+        return slot.code!.map((code, i) => (
+          <pre key={i}>
+            <code className={code.lang}>{code.value}</code>
+          </pre>
+        ))
+      }
       const childSlot = slot.slots[name].shift()
       if (!childSlot) {
         throw new Error(`Missing slot ${name}`)
@@ -34,11 +41,18 @@ function slotToStaticJSX(slot: Step): React.ReactNode[] {
     return child
   })
 }
+type CodeBlock = {
+  value: string
+  lang: string
+  meta: string
+  // annotations: Annotation[]
+}
 
 export type Step = {
   query: string
   children: React.ReactNode[]
   slots: { [key: string]: Step[] }
+  code?: CodeBlock[]
 }
 
 export function getStepsFromChildren(
@@ -47,16 +61,32 @@ export function getStepsFromChildren(
 ): Step {
   const [children, ...slotElements] = React.Children.toArray(kids)
   const slots: { [key: string]: Step[] } = {}
+  const code: CodeBlock[] = []
 
   slotElements.forEach((slotElement: any) => {
     const { name, query } = slotElement.props || {}
-    slots[name] = slots[name] || []
-    slots[name].push(getStepsFromChildren(slotElement.props.children, query))
+
+    if (name === "code") {
+      code.push(getCodeBlockFromChildren(slotElement.props.children))
+    } else {
+      slots[name] = slots[name] || []
+      slots[name].push(getStepsFromChildren(slotElement.props.children, query))
+    }
   })
 
   return {
     query,
     children: React.Children.toArray((children as any).props.children),
     slots,
+    code,
+  }
+}
+
+function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
+  const { props } = React.Children.toArray(children)[0] as any
+  return {
+    value: props.code,
+    meta: props.meta,
+    lang: props.lang,
   }
 }

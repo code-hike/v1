@@ -1,0 +1,77 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Hike } from \"../../src/Hike\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Hike" },
+                  "local": { "type": "Identifier", "name": "Hike" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/Hike",
+                "raw": "\"../../src/Hike\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Hike",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "foo",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "\"bar\"",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "Literal",
+                      "value": "bar",
+                      "raw": "\"bar\""
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "Hello world!" }]
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": "my meta",
+          "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")"
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    }
+  ]
+}

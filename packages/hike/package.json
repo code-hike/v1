@@ -21,6 +21,7 @@
     "build": "tsc -p . ",
     "dev": "tsc -p . --watch",
     "test": "vitest run",
+    "watch": "vitest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {

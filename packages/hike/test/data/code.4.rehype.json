@@ -29,10 +29,38 @@
         }
       }
     },
+    { "type": "text", "value": "\n" },
     {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
-      "attributes": [],
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "foo",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "\"bar\"",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "Literal",
+                      "value": "bar",
+                      "raw": "\"bar\""
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true },
       "children": [
         {
           "type": "mdxJsxFlowElement",
@@ -42,33 +70,16 @@
           ],
           "children": [
             {
-              "type": "paragraph",
-              "children": [
-                { "type": "text", "value": "Hello " },
-                {
-                  "type": "strong",
-                  "children": [{ "type": "text", "value": "world" }]
-                },
-                { "type": "text", "value": "!" }
-              ]
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [{ "type": "text", "value": "Hello world!" }]
             },
             {
               "type": "mdxJsxFlowElement",
               "name": "placeholder",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
-              ],
-              "children": []
-            },
-            {
-              "type": "paragraph",
-              "children": [{ "type": "text", "value": "More" }]
-            },
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "placeholder",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "foo" }
               ],
               "children": []
             }
@@ -88,7 +99,11 @@
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
                 { "type": "mdxJsxAttribute", "name": "lang", "value": "js" },
-                { "type": "mdxJsxAttribute", "name": "meta", "value": null },
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "meta",
+                  "value": "my meta"
+                },
                 {
                   "type": "mdxJsxAttribute",
                   "name": "code",
@@ -103,8 +118,8 @@
                             "type": "ExpressionStatement",
                             "expression": {
                               "type": "Literal",
-                              "value": "const a = 1",
-                              "raw": "\"const a = 1\""
+                              "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
+                              "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
                             }
                           }
                         ],
@@ -117,36 +132,8 @@
               "children": []
             }
           ]
-        },
-        {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            { "type": "mdxJsxAttribute", "name": "name", "value": "foo" },
-            { "type": "mdxJsxAttribute", "name": "query", "value": "" }
-          ],
-          "children": [
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "role",
-                  "value": "children"
-                }
-              ],
-              "children": [
-                {
-                  "type": "paragraph",
-                  "children": [{ "type": "text", "value": "bar" }]
-                }
-              ]
-            }
-          ]
         }
-      ],
-      "data": { "_mdxExplicitJsx": true }
+      ]
     }
   ]
 }

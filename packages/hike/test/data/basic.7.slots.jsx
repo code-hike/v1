@@ -17,24 +17,15 @@
       name="foo"
     />,
   ],
+  "code": [
+    {
+      "lang": "js",
+      "meta": true,
+      "value": "const a = 1",
+    },
+  ],
   "query": "",
   "slots": {
-    "code": [
-      {
-        "children": [
-          <pre>
-            <code
-              className="language-js"
-            >
-              const a = 1
-
-            </code>
-          </pre>,
-        ],
-        "query": true,
-        "slots": {},
-      },
-    ],
     "foo": [
       {
         "children": [
@@ -42,6 +33,7 @@
             bar
           </p>,
         ],
+        "code": [],
         "query": "",
         "slots": {},
       },

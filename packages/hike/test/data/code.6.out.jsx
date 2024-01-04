@@ -5,28 +5,21 @@ function _createMdxContent(props) {
     p: "p",
     placeholder: "placeholder",
     slot: "slot",
-    strong: "strong",
     ...props.components,
   }
   return (
-    <Hike>
+    <Hike foo={"bar"}>
       <_components.slot role="children">
-        <_components.p>
-          {"Hello "}
-          <_components.strong>{"world"}</_components.strong>
-          {"!"}
-        </_components.p>
+        <_components.p>{"Hello world!"}</_components.p>
         <_components.placeholder name="code" />
-        <_components.p>{"More"}</_components.p>
-        <_components.placeholder name="foo" />
       </_components.slot>
       <_components.slot name="code" query>
-        <_components.slot role="code" lang="js" meta code={"const a = 1"} />
-      </_components.slot>
-      <_components.slot name="foo" query="">
-        <_components.slot role="children">
-          <_components.p>{"bar"}</_components.p>
-        </_components.slot>
+        <_components.slot
+          role="code"
+          lang="js"
+          meta="my meta"
+          code={'console.log("hello world")\r\nconsole.log("bye world")'}
+        />
       </_components.slot>
     </Hike>
   )
