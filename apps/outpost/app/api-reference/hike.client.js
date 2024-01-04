@@ -2,13 +2,45 @@
 import React from "react"
 import { ChevronRight } from "lucide-react"
 
-export function Main({ query, steps }) {
-  const setStep = () => {}
+export function Hike({ codehike }) {
+  const { slots, children } = codehike
+  const main = slots["main"][0]
+  const extra = slots["extra"][0]
+  const returns = slots["returns"] && slots["returns"][0]
+
+  const [code, setCode] = React.useState(codehike.codeElement)
+
+  return (
+    <div className="relative flex flex-row gap-12 mb-24">
+      <div className="flex-1">
+        <Main
+          query={main.query}
+          steps={main.slots.steps}
+          setCode={(code) =>
+            code ? setCode(code) : setCode(codehike.codeElement)
+          }
+        />
+        <Extra query={extra.query} steps={extra.slots.steps} />
+        {returns && (
+          <div>
+            <h3 className="mt-8 border-b border-zinc-700">Returns</h3>
+            {returns.children}
+          </div>
+        )}
+      </div>
+      <div className="not-prose max-w-sm w-full">
+        <div className="sticky top-10">{code}</div>
+      </div>
+    </div>
+  )
+}
+
+export function Main({ query, steps, setCode }) {
   return (
     <section>
       <h3 className="mt-8 border-b border-zinc-700">{query}</h3>
       {steps.map((step, i) => (
-        <Step step={step} setStep={setStep} key={i} />
+        <Step step={step} setCode={setCode} key={i} />
       ))}
     </section>
   )
@@ -51,23 +83,31 @@ function ExtraAttribute({ step, setStep }) {
   )
 }
 
-function Step({ step, setStep }) {
+function Step({ step, setCode }) {
   const [name, ...rest] = step.query.split(" ")
   const type = rest.join(" ")
 
   return (
-    <div onMouseEnter={() => setStep(step)} className="mb-6">
+    <div
+      onMouseEnter={() => {
+        if (step.codeElement) setCode(step.codeElement)
+      }}
+      onMouseLeave={() => {
+        if (step.codeElement) setCode(null)
+      }}
+      className="mb-6 rounded hover:outline outline-2 outline-offset-8 outline-blue-500/60"
+    >
       <h4>
         <span className="font-mono">{name}</span>
         <span className="ml-2 text-sm text-slate-400">{type}</span>
       </h4>
       {step["children"]}
-      <SubSteps steps={step.slots.steps} setStep={setStep} />
+      <SubSteps steps={step.slots.steps} setCode={setCode} />
     </div>
   )
 }
 
-function SubSteps({ steps, setStep }) {
+function SubSteps({ steps, setCode }) {
   const [collapsed, setCollapsed] = React.useState(true)
   if (!steps || steps.length === 0) return null
 
@@ -91,7 +131,7 @@ function SubSteps({ steps, setStep }) {
         Hide child attributes
       </header>
       {steps.map((step, i) => (
-        <Step step={step} setStep={setStep} key={i} />
+        <Step step={step} setCode={setCode} key={i} />
       ))}
     </div>
   )

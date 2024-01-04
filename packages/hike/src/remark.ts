@@ -3,6 +3,8 @@ import "mdast-util-mdx-jsx"
 import { BlockContent, DefinitionContent, Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
+import { splitAnnotationsAndCode } from "./extract-annotations"
+import { getArrayAttribute, getLiteralAttribute } from "./estree"
 
 type Config = {}
 
@@ -25,7 +27,7 @@ type JSXChild = BlockContent | DefinitionContent
 
 async function transformHike(node: MdxJsxFlowElement) {
   const rootStep = treeToSteps(node.children)
-  node.children = slotToTree(rootStep)
+  node.children = await slotToTree(rootStep)
 
   return node
 }
@@ -162,12 +164,16 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
   return root
 }
 
-function slotToTree(slot: Step): MdxJsxFlowElement[] {
+async function slotToTree(slot: Step): Promise<MdxJsxFlowElement[]> {
   const elements: MdxJsxFlowElement[] = []
 
   if (slot.slotName === "code") {
     const codeblock = slot as CodeBlockStep
-    console.log(codeblock.code)
+    const { code, annotations } = await splitAnnotationsAndCode(
+      codeblock.code,
+      codeblock.lang || "txt",
+      { annotationPrefix: "!" },
+    )
     elements.push({
       type: "mdxJsxFlowElement",
       name: "slot",
@@ -191,26 +197,12 @@ function slotToTree(slot: Step): MdxJsxFlowElement[] {
         {
           type: "mdxJsxAttribute",
           name: "code",
-          value: {
-            type: "mdxJsxAttributeValueExpression",
-            value: '""',
-            data: {
-              estree: {
-                type: "Program",
-                body: [
-                  {
-                    type: "ExpressionStatement",
-                    expression: {
-                      type: "Literal",
-                      value: codeblock.code,
-                      raw: JSON.stringify(codeblock.code),
-                    },
-                  },
-                ],
-                sourceType: "module",
-              },
-            },
-          },
+          value: getLiteralAttribute(code),
+        },
+        {
+          type: "mdxJsxAttribute",
+          name: "annotations",
+          value: getArrayAttribute(annotations),
         },
       ],
       children: [],
@@ -231,7 +223,7 @@ function slotToTree(slot: Step): MdxJsxFlowElement[] {
     })
   }
 
-  slot.slots.forEach((slot) => {
+  for (const s of slot.slots) {
     elements.push({
       type: "mdxJsxFlowElement",
       name: "slot",
@@ -239,17 +231,17 @@ function slotToTree(slot: Step): MdxJsxFlowElement[] {
         {
           type: "mdxJsxAttribute",
           name: "name",
-          value: slot.slotName,
+          value: s.slotName,
         },
         {
           type: "mdxJsxAttribute",
           name: "query",
-          value: slot.query,
+          value: s.query,
         },
       ],
-      children: slotToTree(slot),
+      children: await slotToTree(s),
     })
-  })
+  }
 
   return elements
 }

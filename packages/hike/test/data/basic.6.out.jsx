@@ -21,7 +21,24 @@ function _createMdxContent(props) {
         <_components.placeholder name="foo" />
       </_components.slot>
       <_components.slot name="code" query>
-        <_components.slot role="code" lang="js" meta code={"const a = 1"} />
+        <_components.slot
+          role="code"
+          lang="js"
+          meta
+          code={"const a = 1"}
+          annotations={[
+            {
+              name: "Line",
+              query: "1",
+              ranges: [
+                {
+                  fromLineNumber: 1,
+                  toLineNumber: 1,
+                },
+              ],
+            },
+          ]}
+        />
       </_components.slot>
       <_components.slot name="foo" query="">
         <_components.slot role="children">

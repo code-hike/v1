@@ -1,38 +1,75 @@
 import React from "react"
 import { Code } from "./code"
-import { Extra, Main } from "./hike.client"
+import { Hike } from "./hike.client"
 import theme from "../../theme.mjs"
 
 export function HikeLayout({ hike }) {
-  const { slots, children } = hike
-  const main = slots["main"][0]
-  const extra = slots["extra"][0]
-  const returns = slots["returns"] && slots["returns"][0]
+  const codehike = addCode(hike)
 
-  // const [step, setStep] = React.useState(steps[0])
-  const codeblocks = hike.code
+  return <Hike codehike={codehike} />
+}
 
-  return (
-    <div className="relative flex flex-row gap-12 mb-24">
-      <div className="flex-1">
-        <Main query={main.query} steps={main.slots.steps} />
-        <Extra query={extra.query} steps={extra.slots.steps} />
-        {returns && (
-          <div>
-            <h3 className="mt-8 border-b border-zinc-700">Returns</h3>
-            {returns.children}
-          </div>
-        )}
-      </div>
-      <div className="not-prose max-w-sm w-full">
-        <div className="sticky top-10">
-          <Code
-            codeblocks={codeblocks}
-            config={{ theme, themeName: theme.name }}
-            components={{}}
-          />
-        </div>
-      </div>
-    </div>
-  )
+function addCode(slot, parentCodeBlocks = []) {
+  const { slots } = slot
+
+  const hasCode = slot.code && slot.code.length
+
+  console.log({ q: slot.query, hasCode })
+
+  const newSlots =
+    slots &&
+    Object.fromEntries(
+      Object.entries(slots).map(([key, value]) => {
+        return [key, addCode(value, hasCode ? slot.code : parentCodeBlocks)]
+      }),
+    )
+
+  if (!hasCode) {
+    return {
+      ...slot,
+      slots: newSlots,
+    }
+  }
+
+  const codeblocks = [...parentCodeBlocks]
+
+  // merge codeblock with parents
+  slot.code.forEach((codeblock) => {
+    const parent = codeblocks.find(
+      (c) => c.meta === codeblock.meta && c.lang === codeblock.lang,
+    )
+
+    let newBlock = { ...codeblock }
+
+    if (parent && codeblock.value.trim() === "") {
+      // only annotations
+      newBlock = { ...codeblock, value: parent.value }
+    }
+
+    if (parent) {
+      // replace parent with new block
+      const index = codeblocks.indexOf(parent)
+      codeblocks[index] = newBlock
+    } else {
+      codeblocks.push(newBlock)
+    }
+  })
+
+  console.log(codeblocks.map((c) => c.annotations))
+
+  return {
+    ...slot,
+    codeElement: (
+      <Code
+        codeblocks={codeblocks}
+        config={{ theme, themeName: theme.name, annotationPrefix: "!" }}
+        components={{ Mark }}
+      />
+    ),
+    slots: newSlots,
+  }
+}
+
+function Mark({ children }) {
+  return <div className="bg-blue-500/20 rounded">{children}</div>
 }

@@ -6,6 +6,9 @@
     <placeholder
       name="code"
     />,
+    <placeholder
+      name="code"
+    />,
   ],
   "code": [
     {
@@ -13,6 +16,11 @@
       "meta": "my meta",
       "value": "console.log("hello world")
 console.log("bye world")",
+    },
+    {
+      "lang": "js",
+      "meta": "my meta",
+      "value": "",
     },
   ],
   "query": "",

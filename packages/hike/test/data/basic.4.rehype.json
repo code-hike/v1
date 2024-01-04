@@ -102,7 +102,7 @@
                   "name": "code",
                   "value": {
                     "type": "mdxJsxAttributeValueExpression",
-                    "value": "\"\"",
+                    "value": "",
                     "data": {
                       "estree": {
                         "type": "Program",
@@ -116,7 +116,123 @@
                             }
                           }
                         ],
-                        "sourceType": "module"
+                        "sourceType": "module",
+                        "comments": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "annotations",
+                  "value": {
+                    "type": "mdxJsxAttributeValueExpression",
+                    "value": "",
+                    "data": {
+                      "estree": {
+                        "type": "Program",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "ArrayExpression",
+                              "elements": [
+                                {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "name"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "Line",
+                                        "raw": "\"Line\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "query"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "1",
+                                        "raw": "\"1\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "ranges"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ArrayExpression",
+                                        "elements": [
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "fromLineNumber"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": 1,
+                                                  "raw": "1"
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "toLineNumber"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": 1,
+                                                  "raw": "1"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "sourceType": "module",
+                        "comments": []
                       }
                     }
                   }
