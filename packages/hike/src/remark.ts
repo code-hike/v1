@@ -3,8 +3,8 @@ import "mdast-util-mdx-jsx"
 import { BlockContent, DefinitionContent, Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
-import { splitAnnotationsAndCode } from "./extract-annotations"
-import { getArrayAttribute, getLiteralAttribute } from "./estree"
+import { splitAnnotationsAndCode } from "./extract-annotations.js"
+import { getArrayAttribute, getLiteralAttribute } from "./estree.js"
 
 type Config = {}
 

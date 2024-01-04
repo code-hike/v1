@@ -47,8 +47,8 @@ function _createMdxContent(props) {
       <_components.slot name="code" query>
         <_components.slot
           role="code"
-          lang="js"
-          meta="my meta"
+          lang="jsonc"
+          meta="THE CUSTOMER OBJECT"
           code={""}
           annotations={[
             {
@@ -62,12 +62,12 @@ function _createMdxContent(props) {
               ],
             },
             {
-              name: "Foo",
-              query: "bar",
+              name: "Mark",
+              query: "",
               ranges: [
                 {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
+                  fromLineNumber: 2,
+                  toLineNumber: 2,
                 },
               ],
             },

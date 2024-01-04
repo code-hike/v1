@@ -12,17 +12,19 @@ export function HikeLayout({ hike }) {
 function addCode(slot, parentCodeBlocks = []) {
   const { slots } = slot
 
+  console.log("-", slot.query)
+
   const hasCode = slot.code && slot.code.length
 
-  console.log({ q: slot.query, hasCode })
+  // console.log({ q: slot.query, hasCode })
 
-  const newSlots =
-    slots &&
-    Object.fromEntries(
-      Object.entries(slots).map(([key, value]) => {
-        return [key, addCode(value, hasCode ? slot.code : parentCodeBlocks)]
-      }),
+  const newSlots = {}
+
+  Object.keys(slots).forEach((key) => {
+    newSlots[key] = slots[key].map((s) =>
+      addCode(s, hasCode ? slot.code : parentCodeBlocks),
     )
+  })
 
   if (!hasCode) {
     return {
@@ -30,6 +32,8 @@ function addCode(slot, parentCodeBlocks = []) {
       slots: newSlots,
     }
   }
+
+  console.log("x", slot.query)
 
   const codeblocks = [...parentCodeBlocks]
 
@@ -43,7 +47,11 @@ function addCode(slot, parentCodeBlocks = []) {
 
     if (parent && codeblock.value.trim() === "") {
       // only annotations
-      newBlock = { ...codeblock, value: parent.value }
+      newBlock = {
+        ...codeblock,
+        value: parent.value,
+        annotations: codeblock.annotations.filter((a) => a.name !== "Line"),
+      }
     }
 
     if (parent) {
@@ -55,7 +63,7 @@ function addCode(slot, parentCodeBlocks = []) {
     }
   })
 
-  console.log(codeblocks.map((c) => c.annotations))
+  // console.log(codeblocks.flatMap((c) => c.annotations)[0])
 
   return {
     ...slot,

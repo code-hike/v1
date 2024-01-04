@@ -61,7 +61,12 @@ async function extractCommentAnnotations(
     }
   }
 
-  return extractAnnotations(code, lang, extractor)
+  const { code: codeWithoutComments, annotations } = await extractAnnotations(
+    code + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    lang,
+    extractor,
+  )
+  return { code: codeWithoutComments.trim(), annotations }
 }
 
 async function extractLineAnnotations(code: string) {

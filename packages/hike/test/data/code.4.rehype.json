@@ -360,11 +360,11 @@
               "name": "slot",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
-                { "type": "mdxJsxAttribute", "name": "lang", "value": "js" },
+                { "type": "mdxJsxAttribute", "name": "lang", "value": "jsonc" },
                 {
                   "type": "mdxJsxAttribute",
                   "name": "meta",
-                  "value": "my meta"
+                  "value": "THE CUSTOMER OBJECT"
                 },
                 {
                   "type": "mdxJsxAttribute",
@@ -511,8 +511,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "Foo",
-                                        "raw": "\"Foo\""
+                                        "value": "Mark",
+                                        "raw": "\"Mark\""
                                       }
                                     },
                                     {
@@ -527,8 +527,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "bar",
-                                        "raw": "\"bar\""
+                                        "value": "",
+                                        "raw": "\"\""
                                       }
                                     },
                                     {
@@ -559,8 +559,8 @@
                                                 "kind": "init",
                                                 "value": {
                                                   "type": "Literal",
-                                                  "value": 1,
-                                                  "raw": "1"
+                                                  "value": 2,
+                                                  "raw": "2"
                                                 }
                                               },
                                               {
@@ -575,8 +575,8 @@
                                                 "kind": "init",
                                                 "value": {
                                                   "type": "Literal",
-                                                  "value": 1,
-                                                  "raw": "1"
+                                                  "value": 2,
+                                                  "raw": "2"
                                                 }
                                               }
                                             ]

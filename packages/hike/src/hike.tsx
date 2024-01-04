@@ -1,4 +1,5 @@
 import React, { ComponentType } from "react"
+import type { Annotation } from "@code-hike/lighter"
 
 export function Hike({
   children,
@@ -45,7 +46,7 @@ type CodeBlock = {
   value: string
   lang: string
   meta: string
-  // annotations: Annotation[]
+  annotations: Annotation[]
 }
 
 export type Step = {
@@ -88,5 +89,6 @@ function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
     value: props.code,
     meta: props.meta,
     lang: props.lang,
+    annotations: props.annotations,
   }
 }

@@ -567,12 +567,15 @@
                           {
                             "type": "JSXAttribute",
                             "name": { "type": "JSXIdentifier", "name": "lang" },
-                            "value": { "type": "Literal", "value": "js" }
+                            "value": { "type": "Literal", "value": "jsonc" }
                           },
                           {
                             "type": "JSXAttribute",
                             "name": { "type": "JSXIdentifier", "name": "meta" },
-                            "value": { "type": "Literal", "value": "my meta" }
+                            "value": {
+                              "type": "Literal",
+                              "value": "THE CUSTOMER OBJECT"
+                            }
                           },
                           {
                             "type": "JSXAttribute",
@@ -702,8 +705,8 @@
                                         "kind": "init",
                                         "value": {
                                           "type": "Literal",
-                                          "value": "Foo",
-                                          "raw": "\"Foo\""
+                                          "value": "Mark",
+                                          "raw": "\"Mark\""
                                         }
                                       },
                                       {
@@ -718,8 +721,8 @@
                                         "kind": "init",
                                         "value": {
                                           "type": "Literal",
-                                          "value": "bar",
-                                          "raw": "\"bar\""
+                                          "value": "",
+                                          "raw": "\"\""
                                         }
                                       },
                                       {
@@ -750,8 +753,8 @@
                                                   "kind": "init",
                                                   "value": {
                                                     "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
+                                                    "value": 2,
+                                                    "raw": "2"
                                                   }
                                                 },
                                                 {
@@ -766,8 +769,8 @@
                                                   "kind": "init",
                                                   "value": {
                                                     "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
+                                                    "value": 2,
+                                                    "raw": "2"
                                                   }
                                                 }
                                               ]
