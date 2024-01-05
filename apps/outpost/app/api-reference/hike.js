@@ -3,7 +3,7 @@ import { Code } from "./code"
 import { Hike } from "./hike.client"
 import theme from "../../theme.mjs"
 
-export function HikeLayout({ hike }) {
+export async function HikeLayout({ hike }) {
   const codehike = addCode(hike)
 
   return <Hike codehike={codehike} />
@@ -12,11 +12,7 @@ export function HikeLayout({ hike }) {
 function addCode(slot, parentCodeBlocks = []) {
   const { slots } = slot
 
-  console.log("-", slot.query)
-
   const hasCode = slot.code && slot.code.length
-
-  // console.log({ q: slot.query, hasCode })
 
   const newSlots = {}
 
@@ -33,8 +29,6 @@ function addCode(slot, parentCodeBlocks = []) {
     }
   }
 
-  console.log("x", slot.query)
-
   const codeblocks = [...parentCodeBlocks]
 
   // merge codeblock with parents
@@ -50,7 +44,10 @@ function addCode(slot, parentCodeBlocks = []) {
       newBlock = {
         ...codeblock,
         value: parent.value,
-        annotations: codeblock.annotations.filter((a) => a.name !== "Line"),
+        annotations: [
+          ...parent.annotations,
+          ...codeblock.annotations.filter((a) => a.name !== "Line"),
+        ],
       }
     }
 
@@ -62,8 +59,6 @@ function addCode(slot, parentCodeBlocks = []) {
       codeblocks.push(newBlock)
     }
   })
-
-  // console.log(codeblocks.flatMap((c) => c.annotations)[0])
 
   return {
     ...slot,
