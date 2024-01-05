@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <main className="prose max-w-xl w-full mx-auto my-48 flex flex-col gap-8">
-      <h2>Demos:</h2>
+      <h2>Code Hike v1 demos and experiments:</h2>
       <Card href="/api-reference" title="API Reference">
         A clone of Stripe's API reference pages
       </Card>
@@ -26,7 +26,7 @@ function Card({
   return (
     <Link
       href={href}
-      className="rounded w-full block p-6 no-underline border border-zinc-300 hover:border-zinc-400 transition-colors duration-150 ease-in-out text-zinc-600 hover:text-black"
+      className="rounded w-full block p-6 no-underline border border-zinc-300 hover:border-zinc-400 transition-colors duration-150 ease-in-out text-zinc-700 hover:text-black"
     >
       <h2 className="mt-0 text-inherit">{title}</h2>
       <p className="mb-0">{children}</p>
