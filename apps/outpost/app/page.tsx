@@ -4,12 +4,14 @@ export default function Home() {
   return (
     <main className="prose max-w-xl w-full mx-auto my-48 flex flex-col gap-8">
       <h2>Code Hike v1 demos and experiments:</h2>
+
+      <Card href="/hike-explainer" title="Hike Explainer">
+        Explains how the new <code>{`<Hike/>`}</code> component will work in
+        Code Hike v1.0
+      </Card>
       <Card href="/api-reference" title="API Reference">
         A clone of Stripe's API reference pages
       </Card>
-      {/* <Card href="/api-reference" title="API Reference">
-        A clone of Stripe's API reference pages
-      </Card> */}
     </main>
   )
 }

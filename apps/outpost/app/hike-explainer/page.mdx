@@ -1,0 +1,346 @@
+import { Hike } from "codehike"
+import { ExplainerLayout } from "./hike"
+
+<Hike as={ExplainerLayout}>
+
+## ! 0
+
+```mdx
+# Hello world
+
+Lorem ipsum
+```
+
+```jsx
+function MDXContent() {
+  return (
+    <>
+      <h1>Hello world</h1>
+      <p>Lorem ipsum</p>
+    </>
+  )
+}
+```
+
+hello
+
+## ! 1
+
+```mdx
+import { Hike } from "codehike"
+import { MyLayout } from "./my-layout"
+
+# Hello world
+
+<Hike as={MyLayout}>
+
+...
+
+</Hike>
+```
+
+```jsx
+import { MyLayout } from "./my-layout"
+
+function MDXContent() {
+  return (
+    <>
+      <h1>Hello World</h1>
+      <MyLayout data={{...}} />
+    </>
+  )
+}
+```
+
+## ! 2
+
+```mdx
+import { Hike } from "codehike"
+import { MyLayout } from "./my-layout"
+
+# Hello world
+
+<Hike as={MyLayout}>
+
+zero
+
+</Hike>
+```
+
+```jsx
+import { MyLayout } from "./my-layout"
+
+function MDXContent() {
+  return (
+    <>
+      <h1>Hello World</h1>
+      <MyLayout
+        data={{
+          children: <p>zero</p>
+        }}
+      />
+    </>
+  )
+}
+```
+
+## !
+
+```mdx
+import { Hike } from "codehike"
+import { MyLayout } from "./my-layout"
+
+# Hello world
+
+<Hike as={MyLayout}>
+
+zero
+
+## !steps one 1
+
+uno
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<>
+  <h1>Hello World</h1>
+  <MyLayout
+    data={{
+      children: <p>zero</p>,
+      steps: [
+        {
+          query: "one 1",
+          children: <p>uno</p>
+        },
+        {
+          query: "two 2",
+          children: <p>dos</p>
+        }
+      ]
+    }}
+  />
+</>
+```
+
+## !
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !steps one 1
+
+uno
+
+### !steps one and a half
+
+uno y medio
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [
+          {
+            query: "one and a half",
+            children: <p>uno y medio</p>
+          }
+        ]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+Headers can have names other than `steps`
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !foo lorem ipsum
+
+bar
+
+## !steps one 1
+
+uno
+
+### !steps one and a half
+
+uno y medio
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    foo: [
+      {
+        query: "lorem ipsum",
+        children: <p>bar</p>
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+`steps` is the default, so you can omit it
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !foo lorem ipsum
+
+bar
+
+## ! one 1
+
+uno
+
+### ! one and a half
+
+uno y medio
+
+## ! two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    foo: [
+      {
+        query: "lorem ipsum",
+        children: <p>bar</p>
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+codeblocks are also given special treatment
+
+````mdx
+<Hike as={MyLayout}>
+
+zero
+
+```js log 1
+console.log(1)
+```
+
+```py log 2
+print(2)
+```
+
+## ! one 1
+
+uno
+
+### ! one and a half
+
+uno y medio
+
+## ! two 2
+
+dos
+
+</Hike>
+````
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    code: [
+      {
+        lang: "js",
+        meta: "log 1",
+        value: "console.log(1)"
+      },
+      {
+        lang: "py",
+        meta: "log 2",
+        value: "print(2)"
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+</Hike>
