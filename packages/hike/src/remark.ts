@@ -8,15 +8,23 @@ import { getArrayAttribute, getLiteralAttribute } from "./estree.js"
 
 type Config = {}
 
-export async function transformAllHikes(node: Root | Content, config?: Config) {
+export async function transformAllHikes(
+  node: Root | Content,
+  config?: Config,
+  file?: any,
+) {
+  const mdxPath = file?.history
+    ? file.history[file.history.length - 1]
+    : undefined
+
   if (node.type === "mdxJsxFlowElement" && node.name === "Hike") {
-    return await transformHike(node)
+    return await transformHike(node, mdxPath)
   }
 
   if ("children" in node && node.children.length > 0) {
     // @ts-ignore
     node.children = await Promise.all(
-      node.children.map((child) => transformAllHikes(child, config)),
+      node.children.map((child) => transformAllHikes(child, config, file)),
     )
   }
 
@@ -25,9 +33,9 @@ export async function transformAllHikes(node: Root | Content, config?: Config) {
 
 type JSXChild = BlockContent | DefinitionContent
 
-async function transformHike(node: MdxJsxFlowElement) {
+async function transformHike(node: MdxJsxFlowElement, mdxPath?: string) {
   const rootStep = treeToSteps(node.children)
-  node.children = await slotToTree(rootStep)
+  node.children = await slotToTree(rootStep, mdxPath)
 
   return node
 }
@@ -164,7 +172,10 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
   return root
 }
 
-async function slotToTree(slot: Step): Promise<MdxJsxFlowElement[]> {
+async function slotToTree(
+  slot: Step,
+  mdxPath?: string,
+): Promise<MdxJsxFlowElement[]> {
   const elements: MdxJsxFlowElement[] = []
 
   if (slot.slotName === "code") {
@@ -172,7 +183,7 @@ async function slotToTree(slot: Step): Promise<MdxJsxFlowElement[]> {
     const { code, annotations } = await splitAnnotationsAndCode(
       codeblock.code,
       codeblock.lang || "txt",
-      { annotationPrefix: "!" },
+      { annotationPrefix: "!", mdxPath },
     )
     elements.push({
       type: "mdxJsxFlowElement",
@@ -239,7 +250,7 @@ async function slotToTree(slot: Step): Promise<MdxJsxFlowElement[]> {
           value: s.query,
         },
       ],
-      children: await slotToTree(s),
+      children: await slotToTree(s, mdxPath),
     })
   }
 
