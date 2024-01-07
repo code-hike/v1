@@ -157,7 +157,6 @@ async function readFile(
   mdxFilePath: string,
   range: string | undefined,
 ) {
-  console.log("readFile", externalCodePath, mdxFilePath, range)
   const annotationContent = "from " + mdxFilePath + " " + (range || "")
 
   let fs, path
