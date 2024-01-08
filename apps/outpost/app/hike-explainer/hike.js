@@ -11,6 +11,11 @@ export function ExplainerLayout({ hike }) {
       left: <Code codeblock={left} title="MDX file" />,
       right: <Code codeblock={right} title="JSX output" />,
       caption: step.children,
+      messages:
+        step.slots?.messages?.map((message) => ({
+          className: message.query,
+          children: message.children,
+        })) || [],
     }
   })
   return (
