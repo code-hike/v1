@@ -22,6 +22,7 @@ In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>
 ## !
 
 ```mdx
+{/* !Mark(1,6:10) */}
 {/* !from ./snippets/00.hike.mdx */}
 ```
 
@@ -31,7 +32,21 @@ In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>
 
 ### !messages top-[140px] left-[220px] w-[240px]
 
-In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>` component to **render complex content**.
+Code Hike will process anything inside a `<Hike/>` component and pass it to a custom layout component.
+
+## !
+
+```mdx
+{/* !from ./snippets/00.hike.mdx */}
+```
+
+```jsx
+// !from ./snippets/00.hike.jsx
+```
+
+### !messages top-[140px] left-[220px] w-[240px] delay-100
+
+In this example, MyLayout is a custom component that will receive the content processed by Code Hike inside a `data` prop.
 
 ## ! 2
 
@@ -51,6 +66,7 @@ zero
 ```jsx
 import { MyLayout } from "./my-layout"
 
+// !Mark
 function MDXContent() {
   return (
     <>

@@ -1,12 +1,11 @@
 "use client"
 import React from "react"
+import { cn } from "../../lib/utils"
 
 export function Slideshow({ steps }) {
   const [stepIndex, setStepIndex] = React.useState(0)
   const step = steps[stepIndex]
-  const { left, right, caption, messages } = step
-
-  console.log(messages)
+  const { left, right, messages } = step
 
   return (
     <div className="relative max-w-4xl mx-auto">
@@ -59,12 +58,14 @@ function Message({ children, className }) {
 
   return (
     <div
-      className={`absolute bg-sky-800 p-4 rounded ${className} shadow-md`}
+      className={cn(
+        `absolute bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-5 transition delay-500  duration-300`,
+        className,
+      )}
       style={{
         opacity: show ? 0.9 : 0,
-        transform: show ? "translateX(0)" : "translateX(10px)",
-        transition: "all 0.5s ease",
-        transitionDelay: "0.6s",
+        transform: show ? "translateX(0)" : "translateX(15px)",
+        transitionTimingFunction: "ease",
       }}
     >
       {children}

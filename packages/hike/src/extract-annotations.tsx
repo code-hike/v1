@@ -2,7 +2,7 @@ import { Annotation, extractAnnotations } from "@code-hike/lighter"
 
 const extractors: AnnotationsExtractor[] = [
   // extractTwoSlashAnnotations,
-  extractLineAnnotations,
+  // extractLineAnnotations,
   extractCommentAnnotations,
 ]
 
@@ -39,7 +39,10 @@ export async function splitAnnotationsAndCode(
     const { code: newCode, annotations: newAnnotations } =
       await splitAnnotationsAndCode(externalFileContent, lang, config)
 
-    annotations = [...annotations, ...newAnnotations]
+    annotations = [
+      ...annotations.filter((a) => a.name !== "from" && a.name !== "Line"),
+      ...newAnnotations,
+    ]
     codeWithoutAnnotations = newCode
   }
 

@@ -1,6 +1,7 @@
 import { CodeContent } from "codehike"
 import theme from "../../theme.mjs"
 import { Slideshow } from "./hike.client"
+
 const config = { theme, themeName: theme.name, annotationPrefix: "!" }
 
 export function ExplainerLayout({ hike }) {
@@ -32,11 +33,32 @@ function Code({ codeblock, title }) {
         {title}
       </div>
       <CodeContent
-        codeblock={codeblock}
+        codeblock={addLineAnnotations(codeblock)}
         config={config}
-        components={{}}
+        components={{
+          Mark: ({ children }) => <div data-focus>{children}</div>,
+          Line: ({ children }) => <div data-line>{children}</div>,
+        }}
         className="p-4 !bg-transparent"
       />
     </div>
   )
+}
+
+function addLineAnnotations(codeblock) {
+  const lines = codeblock.value.split("\n")
+  const annotations = lines.map((line, index) => ({
+    name: "Line",
+    query: index + 1,
+    ranges: [
+      {
+        fromLineNumber: index + 1,
+        toLineNumber: index + 1,
+      },
+    ],
+  }))
+  return {
+    ...codeblock,
+    annotations: [...codeblock.annotations, ...annotations],
+  }
 }
