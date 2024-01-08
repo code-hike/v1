@@ -1,0 +1,347 @@
+import { Hike } from "codehike"
+import { ExplainerLayout } from "./hike"
+
+<Hike as={ExplainerLayout}>
+
+# Code Hike v1.0: new markdown API
+
+## ! top-[250px] left-[180px] w-[400px]
+
+In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>` component to **render complex content**.
+
+```mdx
+{/* !from ./snippets/00.start.mdx */}
+```
+
+```jsx
+// !from ./snippets/00.start.jsx
+```
+
+## ! top-[140px] left-[220px] w-[240px]
+
+Code Hike will process anything inside a `<Hike/>` component and pass it to a custom layout component.
+
+```mdx
+{/* !Mark(1,7:10) */}
+{/* !Mark(6[1:5,20]) */}
+{/* !from ./snippets/00.hike.mdx */}
+```
+
+```jsx
+// !Mark(2)
+// !from ./snippets/00.hike.jsx
+```
+
+## ! top-[140px] left-[220px] w-[240px] delay-100
+
+In this example, MyLayout is a custom component that will receive the content processed by Code Hike inside a `data` prop.
+
+```mdx
+{/* !Mark(2,6) */}
+{/* !from ./snippets/00.hike.mdx */}
+```
+
+```jsx
+// !Mark(1,7)
+// !from ./snippets/00.hike.jsx
+```
+
+## !
+
+Foo
+
+```mdx
+import { Hike } from "codehike"
+import { MyLayout } from "./my-layout"
+
+# Hello world
+
+<Hike as={MyLayout}>
+
+zero
+
+</Hike>
+```
+
+```jsx
+import { MyLayout } from "./my-layout"
+
+// !Mark
+function MDXContent() {
+  return (
+    <>
+      <h1>Hello World</h1>
+      <MyLayout
+        data={{
+          children: <p>zero</p>
+        }}
+      />
+    </>
+  )
+}
+```
+
+## !
+
+Bar
+
+```mdx
+import { Hike } from "codehike"
+import { MyLayout } from "./my-layout"
+
+# Hello world
+
+<Hike as={MyLayout}>
+
+zero
+
+## !steps one 1
+
+uno
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<>
+  <h1>Hello World</h1>
+  <MyLayout
+    data={{
+      children: <p>zero</p>,
+      steps: [
+        {
+          query: "one 1",
+          children: <p>uno</p>
+        },
+        {
+          query: "two 2",
+          children: <p>dos</p>
+        }
+      ]
+    }}
+  />
+</>
+```
+
+## !
+
+xx
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !steps one 1
+
+uno
+
+### !steps one and a half
+
+uno y medio
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [
+          {
+            query: "one and a half",
+            children: <p>uno y medio</p>
+          }
+        ]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+Headers can have names other than `steps`
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !foo lorem ipsum
+
+bar
+
+## !steps one 1
+
+uno
+
+### !steps one and a half
+
+uno y medio
+
+## !steps two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    foo: [
+      {
+        query: "lorem ipsum",
+        children: <p>bar</p>
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+`steps` is the default, so you can omit it
+
+```mdx
+<Hike as={MyLayout}>
+
+zero
+
+## !foo lorem ipsum
+
+bar
+
+## ! one 1
+
+uno
+
+### ! one and a half
+
+uno y medio
+
+## ! two 2
+
+dos
+
+</Hike>
+```
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    foo: [
+      {
+        query: "lorem ipsum",
+        children: <p>bar</p>
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+## !
+
+codeblocks are also given special treatment
+
+````mdx
+<Hike as={MyLayout}>
+
+zero
+
+```js log 1
+console.log(1)
+```
+
+```py log 2
+print(2)
+```
+
+## ! one 1
+
+uno
+
+### ! one and a half
+
+uno y medio
+
+## ! two 2
+
+dos
+
+</Hike>
+````
+
+```jsx
+<MyLayout
+  data={{
+    children: <p>zero</p>,
+    code: [
+      {
+        lang: "js",
+        meta: "log 1",
+        value: "console.log(1)"
+      },
+      {
+        lang: "py",
+        meta: "log 2",
+        value: "print(2)"
+      }
+    ],
+    steps: [
+      {
+        query: "one 1",
+        children: <p>uno</p>,
+        steps: [...]
+      },
+      {
+        query: "two 2",
+        children: <p>dos</p>
+      }
+    ]
+  }}
+/>
+```
+
+</Hike>
