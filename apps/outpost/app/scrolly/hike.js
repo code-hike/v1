@@ -11,7 +11,7 @@ export function ExplainerLayout({ hike }) {
     return {
       left: <Code codeblock={left} title="MDX file" />,
       right: <Code codeblock={right} title="JSX output" />,
-      children: step.children,
+      children: step.children.filter((c) => c.type !== "placeholder"),
       className: step.query,
     }
   })
