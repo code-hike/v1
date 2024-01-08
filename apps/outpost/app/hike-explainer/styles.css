@@ -1,3 +1,8 @@
-pre:has([data-focus]) [data-line]:not(:has([data-focus])) {
-  opacity: 0.5 !important;
+/* Lines that don't have data-focus inside  */
+pre:has([data-focus]) [data-line]:not(:has([data-focus])),
+/* spans in lines that have inline data-focus but aren't inside the data-focus */
+pre:has([data-focus])
+  [data-line]:has(span[data-focus])
+  :not([data-focus], [data-focus] > span) {
+  opacity: 0.3 !important;
 }

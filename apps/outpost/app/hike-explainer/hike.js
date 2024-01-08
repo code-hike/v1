@@ -36,7 +36,12 @@ function Code({ codeblock, title }) {
         codeblock={addLineAnnotations(codeblock)}
         config={config}
         components={{
-          Mark: ({ children }) => <div data-focus>{children}</div>,
+          Mark: ({ children, inline }) =>
+            inline ? (
+              <span data-focus>{children}</span>
+            ) : (
+              <div data-focus>{children}</div>
+            ),
           Line: ({ children }) => <div data-line>{children}</div>,
         }}
         className="p-4 !bg-transparent"

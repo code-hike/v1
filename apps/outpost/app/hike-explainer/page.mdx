@@ -22,11 +22,13 @@ In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>
 ## !
 
 ```mdx
-{/* !Mark(1,6:10) */}
+{/* !Mark(1,7:10) */}
+{/* !Mark(6[1:5,20]) */}
 {/* !from ./snippets/00.hike.mdx */}
 ```
 
 ```jsx
+// !Mark(2)
 // !from ./snippets/00.hike.jsx
 ```
 
@@ -37,10 +39,12 @@ Code Hike will process anything inside a `<Hike/>` component and pass it to a cu
 ## !
 
 ```mdx
+{/* !Mark(2,6) */}
 {/* !from ./snippets/00.hike.mdx */}
 ```
 
 ```jsx
+// !Mark(1,7)
 // !from ./snippets/00.hike.jsx
 ```
 
