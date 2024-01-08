@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
 import { cn } from "../../lib/utils"
+import { Scroller, ScrollerStep } from "./scroller"
 
 export function Slideshow({ steps, children }) {
   const [stepIndex, setStepIndex] = React.useState(0)
@@ -16,16 +17,37 @@ export function Slideshow({ steps, children }) {
         {left}
         {right}
       </div>
-      {steps.map((s, i) => (
-        <section
-          key={i}
-          className="snap-start outline outline-red-500 opacity-90 z-10 relative h-[500px] scroll-mt-10"
-        >
-          <Message className={s.className}>{s.children}</Message>
-        </section>
-      ))}
+      <Scroller onStepChange={setStepIndex} triggerPosition="400px">
+        {steps.map((s, i) => (
+          <ScrollerStep
+            key={i}
+            index={i}
+            data-selected={i === stepIndex ? "true" : "false"}
+            className="snap-start z-10 relative h-[500px] scroll-mt-10"
+          >
+            <Message className={s.className}>{s.children}</Message>
+          </ScrollerStep>
+        ))}
+      </Scroller>
     </div>
   )
+}
+
+function defaultRootMargin(vh, triggerPosition = "50%") {
+  let y = vh * 0.5
+
+  if (triggerPosition.endsWith("%")) {
+    const percent = parseFloat(triggerPosition.replace("%", ""))
+    y = vh * (percent / 100)
+  } else if (triggerPosition.endsWith("px")) {
+    y = parseFloat(triggerPosition.replace("px", ""))
+  }
+
+  if (y < 0) {
+    y = vh + y
+  }
+
+  return `-${y - 2}px 0px -${vh - y - 2}px`
 }
 
 function Message({ children, className }) {
@@ -38,14 +60,9 @@ function Message({ children, className }) {
   return (
     <div
       className={cn(
-        `absolute bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-5 transition delay-500  duration-300`,
+        `absolute bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-5 opacity-90`,
         className,
       )}
-      style={{
-        opacity: show ? 0.9 : 0,
-        transform: show ? "translateX(0)" : "translateX(15px)",
-        transitionTimingFunction: "ease",
-      }}
     >
       {children}
     </div>

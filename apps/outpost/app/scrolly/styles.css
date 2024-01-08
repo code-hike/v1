@@ -6,3 +6,12 @@ pre:has([data-focus])
   :not([data-focus], [data-focus] > span) {
   opacity: 0.3 !important;
 }
+
+section[data-selected] {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+section[data-selected="false"] {
+  opacity: 0.1;
+}
