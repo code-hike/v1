@@ -23,7 +23,7 @@ export function Slideshow({ steps, children }) {
             key={i}
             index={i}
             data-selected={i === stepIndex ? "true" : "false"}
-            className="snap-start z-10 relative h-[500px] scroll-mt-10 outline outline-red-300"
+            className="snap-start z-10 relative h-[500px] scroll-mt-10 pointer-events-none "
           >
             <Message className={s.className}>{s.children}</Message>
           </ScrollerStep>
@@ -43,7 +43,7 @@ function Message({ children, className }) {
   return (
     <div
       className={cn(
-        `absolute bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-normal opacity-90`,
+        `absolute pointer-events-auto bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-normal opacity-90`,
         className,
       )}
     >

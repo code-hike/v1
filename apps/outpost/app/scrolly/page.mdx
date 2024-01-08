@@ -1,41 +1,48 @@
 import { Hike } from "codehike"
 import { ExplainerLayout } from "./hike"
+import { ChevronsDown } from "lucide-react"
 
 <Hike as={ExplainerLayout}>
 
 # Code Hike v1.0<span className="text-sky-200">\*</span>: new markdown API
 
-<span className="text-sky-200 text-2xl">
+<span className="text-sky-200 text-2xl opacity-80">
 
-\*under development
+\*under development and open for feedback
 
 </span>
 
-## ! top-48 left-64 w-72
+## ! bottom-16 w-56 mx-auto inset-x-0 text-center
 
-Code Hike v1.0 will introduce a `<Hike/>` component with **special markdown syntax** to **render complex content**.
+Scroll down
+
+<ChevronsDown
+  className="mx-auto -mt-4"
+  size={28}
+/>
 
 ```mdx
-{/* !from ./snippets/00.start.mdx */}
+{/* !from ./snipets/00.start.mdx */}
 ```
 
 ```jsx
-// !from ./snippets/00.start.jsx
+// !from ./snipets/00.start.jsx
 ```
 
-## ! top-36 left-56 w-60
+## ! top-48 right-64 w-72
+
+Code Hike v1.0 will introduce a `<Hike/>` component with **special markdown syntax** to **render complex content**.
 
 Code Hike will process anything inside a `<Hike/>` component and pass it to a custom layout component.
 
 ```mdx
-{/* !Mark(1,7:10) */}
-{/* !Mark(6[1:5,20]) */}
-{/* !from ./snippets/00.hike.mdx */}
+{/* !Mark(1,5:9) */}
+{/* !from ./snipets/00.hike.mdx */}
 ```
 
 ```jsx
-// !Mark(2)
-// !from ./snippets/00.hike.jsx
+// !Mark(2[1])
+// !from ./snipets/00.hike.jsx
 ```
 
 ## ! top-36 left-56 w-60
@@ -44,19 +51,20 @@ In this example, MyLayout is a custom component that will receive the content pr
 
 ```mdx
 {/* !Mark(2,6) */}
-{/* !from ./snippets/00.hike.mdx */}
+{/* !from ./snipets/00.layout.mdx */}
 ```
 
 ```jsx
 // !Mark(1,7)
-// !from ./snippets/00.hike.jsx
+// !from ./snipets/00.layout.jsx
 ```
 
-## ! top-36 left-56 w-60
+## ! top-72 right-24 w-60
 
-Foo
+By default, any content inside `<Hike/>` will be passed to the `children` prop.
 
 ```mdx
+{/* !Mark(6:10) */}
 import { Hike } from "codehike"
 import { MyLayout } from "./my-layout"
 
@@ -70,9 +78,9 @@ zero
 ```
 
 ```jsx
+// !Mark(7:11)
 import { MyLayout } from "./my-layout"
 
-// !Mark
 function MDXContent() {
   return (
     <>
@@ -87,13 +95,12 @@ function MDXContent() {
 }
 ```
 
-## ! top-36 left-56 w-60
+## ! top-52 left-48 w-60
 
-Bar
+If you add a header that starts with `!`
 
 ```mdx
-import { Hike } from "codehike"
-import { MyLayout } from "./my-layout"
+{/* !Mark(7:14) */}
 
 # Hello world
 
@@ -113,6 +120,7 @@ dos
 ```
 
 ```jsx
+// !Mark(6:15)
 <>
   <h1>Hello World</h1>
   <MyLayout
@@ -172,10 +180,7 @@ dos
           }
         ]
       },
-      {
-        query: "two 2",
-        children: <p>dos</p>
-      }
+      {...}
     ]
   }}
 />
