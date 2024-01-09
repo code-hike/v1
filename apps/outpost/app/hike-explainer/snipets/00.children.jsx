@@ -4,7 +4,11 @@ function MDXContent() {
   return (
     <>
       <h1>Hello World</h1>
-      <MyLayout data={{}} />
+      <MyLayout
+        data={{
+          children: <p>zero</p>,
+        }}
+      />
     </>
   )
 }

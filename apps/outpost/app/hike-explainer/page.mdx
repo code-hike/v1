@@ -1,114 +1,89 @@
 import { Hike } from "codehike"
 import { ExplainerLayout } from "./hike"
+import { ChevronsDown } from "lucide-react"
 
 <Hike as={ExplainerLayout}>
 
-## !
+# Code Hike v1.0<span className="text-sky-200">\*</span>: new markdown API
+
+<span className="text-sky-200 text-2xl opacity-80">
+
+\*under development and open for feedback
+
+</span>
+
+## ! bottom-16 w-56 mx-auto inset-x-0 text-center
+
+Scroll down
+
+<ChevronsDown
+  className="mx-auto -mt-4"
+  size={28}
+/>
 
 ```mdx
-{/* !from ./snippets/00.start.mdx */}
+{/* !from ./snipets/00.start.mdx */}
 ```
 
 ```jsx
-// !from ./snippets/00.start.jsx
+// !from ./snipets/00.start.jsx
 ```
 
-In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>` component to **render complex content**.
+## ! top-48 inset-x-0 mx-auto w-72
 
-### !messages top-[250px] left-[180px] w-[400px]
-
-In Code Hike v1.0 we will introduce a **special markdown syntax** and a `<Hike/>` component to **render complex content**.
-
-## !
+Code Hike v1.0 will introduce a `<Hike/>` component that enables the definition of content with a complex structure in plain markdown.
 
 ```mdx
-{/* !Mark(1,7:10) */}
-{/* !Mark(6[1:5,20]) */}
-{/* !from ./snippets/00.hike.mdx */}
+{/* !Focus(1,5:9) */}
+{/* !from ./snipets/00.hike.mdx */}
 ```
 
 ```jsx
-// !Mark(2)
-// !from ./snippets/00.hike.jsx
+// !Focus(2[1])
+// !from ./snipets/00.hike.jsx
 ```
 
-### !messages top-[140px] left-[220px] w-[240px]
+## ! top-60 right-40 w-60
 
-Code Hike will process anything inside a `<Hike/>` component and pass it to a custom layout component.
-
-## !
+The processed content is then passed as props to a custom React component that you define.
 
 ```mdx
-{/* !Mark(2,6) */}
-{/* !from ./snippets/00.hike.mdx */}
+{/* !Focus(2,6) */}
+{/* !from ./snipets/00.layout.mdx */}
 ```
 
 ```jsx
-// !Mark(1,7)
-// !from ./snippets/00.hike.jsx
+// !Focus(1,7)
+// !from ./snipets/00.layout.jsx
 ```
 
-### !messages top-[140px] left-[220px] w-[240px] delay-100
+## ! top-72 right-24 w-60
 
-In this example, MyLayout is a custom component that will receive the content processed by Code Hike inside a `data` prop.
-
-## ! 2
+Any plain content inside `<Hike/>` will be passed inside the `children` prop.
 
 ```mdx
-import { Hike } from "codehike"
-import { MyLayout } from "./my-layout"
-
-# Hello world
-
-<Hike as={MyLayout}>
-
-zero
-
-</Hike>
+{/* !Mark(8) */}
+{/* !Focus(6:10) */}
+{/* !from ./snipets/00.children.mdx */}
 ```
 
 ```jsx
-import { MyLayout } from "./my-layout"
-
-// !Mark
-function MDXContent() {
-  return (
-    <>
-      <h1>Hello World</h1>
-      <MyLayout
-        data={{
-          children: <p>zero</p>
-        }}
-      />
-    </>
-  )
-}
+// !Mark(9)
+// !Focus(7:11)
+// !from ./snipets/00.children.jsx
 ```
 
-## !
+## ! top-52 left-48 w-72
+
+Any header that starts with `!` defines a new section. The word after `!` will be the name of the section, in this case `steps`.
 
 ```mdx
-import { Hike } from "codehike"
-import { MyLayout } from "./my-layout"
-
-# Hello world
-
-<Hike as={MyLayout}>
-
-zero
-
-## !steps one 1
-
-uno
-
-## !steps two 2
-
-dos
-
-</Hike>
+{/* !Focus(7[1:9],11[1:9]) */}
+{/* !from ./snipets/01.steps.mdx */}
 ```
 
 ```jsx
+// !Focus(2[1])
 <>
   <h1>Hello World</h1>
   <MyLayout
@@ -129,81 +104,103 @@ dos
 </>
 ```
 
-## !
+## ! top-40 right-20 w-48
+
+Sections are passed to the layout component as arrays grouped by name.
 
 ```mdx
-<Hike as={MyLayout}>
-
-zero
-
-## !steps one 1
-
-uno
-
-### !steps one and a half
-
-uno y medio
-
-## !steps two 2
-
-dos
-
-</Hike>
+{/* !Focus(7[1:9],11[1:9]) */}
+{/* !from ./snipets/01.steps.mdx */}
 ```
 
 ```jsx
-<MyLayout
-  data={{
-    children: <p>zero</p>,
-    steps: [
-      {
-        query: "one 1",
-        children: <p>uno</p>,
-        steps: [
-          {
-            query: "one and a half",
-            children: <p>uno y medio</p>
-          }
-        ]
-      },
-      {
-        query: "two 2",
-        children: <p>dos</p>
-      }
-    ]
-  }}
-/>
+// !Focus(4,6,15,16)
+<>
+  <h1>Hello World</h1>
+  <MyLayout
+    data={{
+      children: <p>zero</p>,
+      steps: [
+        {
+          query: "one 1",
+          children: <p>uno</p>
+        },
+        {
+          query: "two 2",
+          children: <p>dos</p>
+        }
+      ]
+    }}
+  />
+</>
 ```
 
-## !
+## ! top-48 left-48 w-72
 
-Headers can have names other than `steps`
+The rest of the header becomes the `query` property.
+
+The content of the section is passed in the `children` property.
 
 ```mdx
-<Hike as={MyLayout}>
-
-zero
-
-## !foo lorem ipsum
-
-bar
-
-## !steps one 1
-
-uno
-
-### !steps one and a half
-
-uno y medio
-
-## !steps two 2
-
-dos
-
-</Hike>
+{/* !Mark(7:10) */}
+{/* !Focus(7:14) */}
+{/* !from ./snipets/01.steps.mdx */}
 ```
 
 ```jsx
+// !Mark(7:10)
+// !Focus(6:15)
+<>
+  <h1>Hello World</h1>
+  <MyLayout
+    data={{
+      children: <p>zero</p>,
+      steps: [
+        {
+          query: "one 1",
+          children: <p>uno</p>
+        },
+        {
+          query: "two 2",
+          children: <p>dos</p>
+        }
+      ]
+    }}
+  />
+</>
+```
+
+## ! top-12 left-48 w-72
+
+You can nest sections using **deeper headers**.
+
+Here `### !steps one and a half` will be inside `## !steps one 1`.
+
+```mdx
+{/* !Mark(9:12) */}
+{/* !Focus(5,9:12) */}
+{/* !from ./snipets/01.nested.mdx */}
+```
+
+```jsx
+// !Mark(9:12)
+// !Focus(4,6,8:13,16)
+// !from ./snipets/01.nested.jsx
+```
+
+## ! top-64 left-48 w-60
+
+You can have sections with different names too.
+
+```mdx
+{/* !Mark(5:8) */}
+{/* !Focus(5:8) */}
+{/* !from ./snipets/01.names.mdx */}
+```
+
+```jsx
+// !Mark(4:9)
+// !Focus(4:9)
 <MyLayout
   data={{
     children: <p>zero</p>,
@@ -216,132 +213,27 @@ dos
     steps: [
       {
         query: "one 1",
-        children: <p>uno</p>,
-        steps: [...]
-      },
-      {
-        query: "two 2",
-        children: <p>dos</p>
+        children: <p>uno</p>
       }
     ]
   }}
 />
 ```
 
-## !
+## ! top-56 left-48 w-60
 
-`steps` is the default, so you can omit it
+Code blocks are also processed, and passed to the component as `code` sections.
 
 ```mdx
-<Hike as={MyLayout}>
-
-zero
-
-## !foo lorem ipsum
-
-bar
-
-## ! one 1
-
-uno
-
-### ! one and a half
-
-uno y medio
-
-## ! two 2
-
-dos
-
-</Hike>
+{/* !Mark(5:7) */}
+{/* !Focus(5:11) */}
+{/* !from ./snipets/02.code.mdx */}
 ```
 
 ```jsx
-<MyLayout
-  data={{
-    children: <p>zero</p>,
-    foo: [
-      {
-        query: "lorem ipsum",
-        children: <p>bar</p>
-      }
-    ],
-    steps: [
-      {
-        query: "one 1",
-        children: <p>uno</p>,
-        steps: [...]
-      },
-      {
-        query: "two 2",
-        children: <p>dos</p>
-      }
-    ]
-  }}
-/>
-```
-
-## !
-
-codeblocks are also given special treatment
-
-````mdx
-<Hike as={MyLayout}>
-
-zero
-
-```js log 1
-console.log(1)
-```
-
-```py log 2
-print(2)
-```
-
-## ! one 1
-
-uno
-
-### ! one and a half
-
-uno y medio
-
-## ! two 2
-
-dos
-
-</Hike>
-````
-
-```jsx
-<MyLayout
-  data={{
-    children: <p>zero</p>,
-    code: [
-      {
-        lang: "js",
-        meta: "log 1",
-        value: "console.log(1)"
-      },
-      {
-        lang: "py",
-        meta: "log 2",
-        value: "print(2)"
-      }
-    ],
-    steps: [
-      {
-        query: "one 1",
-        children: <p>uno</p>,
-        steps: [...]
-      },
-      {
-        query: "two 2",
-        children: <p>dos</p>
-      }
-    ]
-  }}
-/>
+// !Mark(5:9)
+// !Focus(4:15)
+// !from ./snipets/02.code.jsx
 ```
 
 </Hike>

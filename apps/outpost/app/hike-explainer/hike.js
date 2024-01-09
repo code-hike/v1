@@ -11,17 +11,13 @@ export function ExplainerLayout({ hike }) {
     return {
       left: <Code codeblock={left} title="MDX file" />,
       right: <Code codeblock={right} title="JSX output" />,
-      caption: step.children,
-      messages:
-        step.slots?.messages?.map((message) => ({
-          className: message.query,
-          children: message.children,
-        })) || [],
+      children: step.children.filter((c) => c.type !== "placeholder"),
+      className: step.query,
     }
   })
   return (
     <div data-ch-theme={config.themeName}>
-      <Slideshow steps={slides} />
+      <Slideshow steps={slides} children={hike.children} />
     </div>
   )
 }
@@ -35,19 +31,31 @@ function Code({ codeblock, title }) {
       <CodeContent
         codeblock={addLineAnnotations(codeblock)}
         config={config}
-        components={{
-          Mark: ({ children, inline }) =>
-            inline ? (
-              <span data-focus>{children}</span>
-            ) : (
-              <div data-focus>{children}</div>
-            ),
-          Line: ({ children }) => <div data-line>{children}</div>,
-        }}
-        className="p-4 !bg-transparent"
+        components={{ Focus, Line, Mark }}
+        className="py-4 !bg-transparent"
       />
     </div>
   )
+}
+
+function Focus({ children, inline }) {
+  return inline ? (
+    <span data-focus>{children}</span>
+  ) : (
+    <div data-focus>{children}</div>
+  )
+}
+
+function Line({ children }) {
+  return (
+    <div data-line className="px-4">
+      {children}
+    </div>
+  )
+}
+
+function Mark({ children }) {
+  return <div data-mark>{children}</div>
 }
 
 function addLineAnnotations(codeblock) {
