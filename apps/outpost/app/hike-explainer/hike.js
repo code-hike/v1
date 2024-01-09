@@ -5,7 +5,7 @@ import { Slideshow } from "./hike.client"
 const config = { theme, themeName: theme.name, annotationPrefix: "!" }
 
 export function ExplainerLayout({ hike }) {
-  const { steps } = hike.slots
+  const { steps, footer } = hike.slots
   const slides = steps.map((step) => {
     const [left, right] = step.code
     return {
@@ -17,7 +17,7 @@ export function ExplainerLayout({ hike }) {
   })
   return (
     <div data-ch-theme={config.themeName}>
-      <Slideshow steps={slides} children={hike.children} />
+      <Slideshow steps={slides} children={hike.children} footer={footer} />
     </div>
   )
 }

@@ -2,44 +2,51 @@
 import React from "react"
 import { cn } from "../../lib/utils"
 import { Scroller, ScrollerStep } from "./scroller"
+import { ChevronsDown } from "lucide-react"
 
-export function Slideshow({ steps, children }) {
+export function Slideshow({ steps, children, footer }) {
   const [stepIndex, setStepIndex] = React.useState(0)
   const step = steps[stepIndex]
   const { left, right } = step
 
   return (
-    <div className="relative max-w-4xl mx-auto">
-      <div className="snap-start min-w-full relative h-[300px] prose prose-invert flex flex-col items-center justify-center">
-        {children}
+    <article className="max-w-4xl mx-auto mb-[100vh]">
+      <div className="relative mb-24">
+        <div className="snap-start min-w-full relative h-[300px] prose prose-invert flex flex-col items-center justify-center">
+          {children}
+        </div>
+        <div className="flex flex-row gap-2 top-10 sticky ">
+          {left}
+          {right}
+        </div>
+        <Scroller onStepChange={setStepIndex} triggerPosition="400px">
+          <div className="-mt-[500px]">
+            {steps.map((s, i) => (
+              <ScrollerStep
+                key={i}
+                index={i}
+                data-selected={i === stepIndex ? "true" : "false"}
+                className="snap-start z-10 relative h-[500px] scroll-mt-10 pointer-events-none "
+              >
+                <Message className={s.className}>{s.children}</Message>
+              </ScrollerStep>
+            ))}
+          </div>
+        </Scroller>
       </div>
-      <div className="flex flex-row gap-2 top-10 h-0 sticky">
-        {left}
-        {right}
-      </div>
-      <Scroller onStepChange={setStepIndex} triggerPosition="400px">
-        {steps.map((s, i) => (
-          <ScrollerStep
-            key={i}
-            index={i}
-            data-selected={i === stepIndex ? "true" : "false"}
-            className="snap-start z-10 relative h-[500px] scroll-mt-10 pointer-events-none "
-          >
-            <Message className={s.className}>{s.children}</Message>
-          </ScrollerStep>
-        ))}
-      </Scroller>
-    </div>
+      {footer.map((f, i) => (
+        <section
+          key={i}
+          className="p-24 snap-start h-[500px] scroll-mt-10 prose prose-invert min-w-full"
+        >
+          {f.children}
+        </section>
+      ))}
+    </article>
   )
 }
 
 function Message({ children, className }) {
-  const [show, setShow] = React.useState(false)
-
-  React.useEffect(() => {
-    setShow(true)
-  }, [])
-
   return (
     <div
       className={cn(

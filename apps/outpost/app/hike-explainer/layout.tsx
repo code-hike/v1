@@ -14,10 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className="dark bg-zinc-900 mb-[100vh] snap-mandatory snap-y"
-    >
+    <html lang="en" className="dark bg-zinc-900  snap-mandatory snap-y">
       <body className={inter.className}>{children}</body>
     </html>
   )

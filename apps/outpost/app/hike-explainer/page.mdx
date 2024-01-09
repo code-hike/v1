@@ -236,4 +236,28 @@ Code blocks are also processed, and passed to the component as `code` sections.
 // !from ./snipets/02.code.jsx
 ```
 
+## !footer
+
+## Notes
+
+- You will be able to copy-paste common layouts from the Code Hike website (_a la_ [shadcn/ui](https://ui.shadcn.com/)) and customize them to your needs.
+- Code Hike will also provide components and utilities, the building blocks for your layouts.
+- The layout component can be a React Server Component (that runs at build-time), this gives us a lot of flexibility to manipulate the content data before rendering it.
+- It will be possible to use it without React Server Components. Code Hike will pre-process the content data before passing it to the layout component (for example, syntax highlighting code blocks). But this loses some flexibility.
+
+## !footer
+
+## Feedback
+
+This is a work in progress, and I'd love to hear your feedback. The most useful feedback right now is giving me more use cases so I can build more proofs of concept that will help define:
+
+- the shape of the content data object
+- the building blocks provided by Code Hike
+- the reference layouts
+- the markdown API
+
+So, **what kind of layouts would you like to be able to create with this API?** You can [open a discussion in this repo](https://github.com/code-hike/v1/discussions), any feedback is welcome.
+
+Follow [@pomber](https://twitter.com/pomber) for updates. Send me a DM if you are interested in early access.
+
 </Hike>
