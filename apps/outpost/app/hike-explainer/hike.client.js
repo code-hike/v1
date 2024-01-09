@@ -36,7 +36,7 @@ export function Slideshow({ steps, children, footer }) {
       {footer.map((f, i) => (
         <section
           key={i}
-          className="p-24 snap-start h-[500px] scroll-mt-10 prose prose-invert min-w-full"
+          className="px-24 py-14 snap-start h-[500px] scroll-mt-10 prose prose-invert min-w-full"
         >
           {f.children}
         </section>
