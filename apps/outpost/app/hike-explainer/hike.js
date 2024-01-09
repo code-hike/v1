@@ -24,8 +24,8 @@ export function ExplainerLayout({ hike }) {
 
 function Code({ codeblock, title }) {
   return (
-    <div className="rounded flex-1 min-w-0 bg-sky-950 overflow-hidden h-[500px]">
-      <div className="text-sm text-center bg-sky-800 text-white py-1 px-4 font-mono">
+    <div className="rounded flex-1 min-w-0 bg-zinc-950 overflow-hidden h-[500px] border border-zinc-500/50 shadow">
+      <div className="text-sm text-center bg-zinc-700 text-white py-1 px-4 font-mono">
         {title}
       </div>
       <CodeContent

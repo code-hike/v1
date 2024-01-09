@@ -17,7 +17,7 @@ section[data-selected="false"] {
 }
 
 [data-line]:has([data-mark]) {
-  background-color: #88f4;
+  background-color: #115e5999;
 }
 
 .prose code {

@@ -49,7 +49,7 @@ function Message({ children, className }) {
   return (
     <div
       className={cn(
-        `absolute pointer-events-auto bg-sky-800 p-4 rounded shadow-md prose prose-invert leading-normal opacity-90`,
+        `absolute pointer-events-auto bg-sky-900/90 p-4 rounded shadow-md prose prose-invert leading-normal`,
         className,
       )}
     >
