@@ -19,3 +19,7 @@ section[data-selected="false"] {
 [data-line]:has([data-mark]) {
   background-color: #88f4;
 }
+
+.prose code {
+  font-size: 1em !important;
+}

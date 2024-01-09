@@ -31,7 +31,7 @@ Scroll down
 
 ## ! top-48 inset-x-0 mx-auto w-72
 
-Code Hike v1.0 will introduce a `<Hike/>` component that enables the definition of content with a complex structure in plain markdown.
+Code Hike v1.0 will introduce a <code style={{color: "rgb(255, 203, 107)"}}>{`<Hike/>`}</code> component that enables the definition of content with a complex structure in plain markdown.
 
 ```mdx
 {/* !Focus(1,5:9) */}
@@ -59,7 +59,7 @@ The processed content is then passed as props to a custom React component that y
 
 ## ! top-72 right-24 w-60
 
-Any plain content inside `<Hike/>` will be passed inside the `children` prop.
+Any plain content inside <code style={{color: "rgb(255, 203, 107)"}}>{`<Hike/>`}</code> will be passed inside the <code style={{color: "rgb(240, 113, 120)"}}>children</code> prop.
 
 ```mdx
 {/* !Mark(8) */}
@@ -75,7 +75,7 @@ Any plain content inside `<Hike/>` will be passed inside the `children` prop.
 
 ## ! top-52 left-48 w-72
 
-Any header that starts with `!` defines a new section. The word after `!` will be the name of the section, in this case `steps`.
+Any header that starts with <code style={{color: "rgb(255, 203, 107)"}}>!</code> defines a new section. The word after <code style={{color: "rgb(255, 203, 107)"}}>!</code> will be the name of the section, in this case <code style={{color: "rgb(255, 203, 107)"}}>steps</code>.
 
 ```mdx
 {/* !Focus(7[1:9],11[1:9]) */}
@@ -137,9 +137,9 @@ Sections are passed to the layout component as arrays grouped by name.
 
 ## ! top-48 left-48 w-72
 
-The rest of the header becomes the `query` property.
+The rest of the header becomes the <code style={{color: "rgb(240, 113, 120)"}}>query</code> property.
 
-The content of the section is passed in the `children` property.
+The content of the section is passed in the <code style={{color: "rgb(240, 113, 120)"}}>children</code> property.
 
 ```mdx
 {/* !Mark(7:10) */}
@@ -174,7 +174,7 @@ The content of the section is passed in the `children` property.
 
 You can nest sections using **deeper headers**.
 
-Here `### !steps one and a half` will be inside `## !steps one 1`.
+Here, <code style={{color: "rgb(255, 203, 107)"}}>### !steps one and a half</code> will be inside <code style={{color: "rgb(255, 203, 107)"}}>## !steps one 1</code>.
 
 ```mdx
 {/* !Mark(9:12) */}
@@ -222,7 +222,7 @@ You can have sections with different names too.
 
 ## ! top-56 left-48 w-60
 
-Code blocks are also processed, and passed to the component as `code` sections.
+Code blocks are also processed, and passed to the component as <code style={{color: "rgb(240, 113, 120)"}}>code</code> sections.
 
 ```mdx
 {/* !Mark(5:7) */}
