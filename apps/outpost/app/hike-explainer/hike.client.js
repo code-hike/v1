@@ -2,7 +2,6 @@
 import React from "react"
 import { cn } from "../../lib/utils"
 import { Scroller, ScrollerStep } from "./scroller"
-import { ChevronsDown } from "lucide-react"
 
 export function Slideshow({ steps, children, footer }) {
   const [stepIndex, setStepIndex] = React.useState(0)

@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark bg-zinc-900  snap-mandatory snap-y">
-      <body className={inter.className}>{children}</body>
+      <body className={"min-w-[900px] " + inter.className}>{children}</body>
     </html>
   )
 }
