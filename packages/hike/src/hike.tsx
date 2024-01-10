@@ -47,6 +47,7 @@ type CodeBlock = {
   lang: string
   meta: string
   annotations: Annotation[]
+  parentPath?: string
 }
 
 export type Step = {
@@ -90,5 +91,6 @@ function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
     meta: props.meta,
     lang: props.lang,
     annotations: props.annotations,
+    parentPath: props.parentPath,
   }
 }

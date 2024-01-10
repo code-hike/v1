@@ -3,8 +3,7 @@ import "mdast-util-mdx-jsx"
 import { BlockContent, DefinitionContent, Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
-import { splitAnnotationsAndCode } from "./extract-annotations.js"
-import { getArrayAttribute, getLiteralAttribute } from "./estree.js"
+import { getLiteralAttribute } from "./estree.js"
 
 type Config = {}
 
@@ -65,7 +64,7 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
   let parent = root
 
   children.forEach((child) => {
-    if (child.type === "code") {
+    if (child.type === "code" && !child.meta?.includes("!ch-exclude")) {
       parent.slots.push({
         slotName: "code",
         parent,
@@ -92,31 +91,6 @@ function treeToSteps(children: (BlockContent | DefinitionContent)[]): Step {
 
       return
     }
-
-    // is codeblock (old)
-    // const codeSlot = parseCodeSlot(child)
-    // if (codeSlot) {
-    //   parent.slots.push({
-    //     slotName: codeSlot,
-    //     parent,
-    //     slots: [],
-    //     children: [child],
-    //     depth: parent.depth + 1,
-    //   })
-    //   parent.children.push({
-    //     type: "mdxJsxFlowElement",
-    //     name: "placeholder",
-    //     attributes: [
-    //       {
-    //         type: "mdxJsxAttribute",
-    //         name: "name",
-    //         value: codeSlot,
-    //       },
-    //     ],
-    //     children: [],
-    //   })
-    //   return
-    // }
 
     const { slotName, query, depth, close } = parseHeading(child)
 
@@ -180,11 +154,7 @@ async function slotToTree(
 
   if (slot.slotName === "code") {
     const codeblock = slot as CodeBlockStep
-    const { code, annotations } = await splitAnnotationsAndCode(
-      codeblock.code,
-      codeblock.lang || "txt",
-      { annotationPrefix: "!", mdxPath },
-    )
+
     elements.push({
       type: "mdxJsxFlowElement",
       name: "slot",
@@ -207,13 +177,13 @@ async function slotToTree(
         },
         {
           type: "mdxJsxAttribute",
-          name: "code",
-          value: getLiteralAttribute(code),
+          name: "parentPath",
+          value: mdxPath,
         },
         {
           type: "mdxJsxAttribute",
-          name: "annotations",
-          value: getArrayAttribute(annotations),
+          name: "code",
+          value: getLiteralAttribute(codeblock.code),
         },
       ],
       children: [],

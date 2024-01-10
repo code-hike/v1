@@ -16,9 +16,11 @@ export async function CodeContent({
   config: any
   components: MDXComponents
 }) {
-  const { lang, meta, value, annotations = [] } = codeblock
+  const { lang, meta, value, annotations = [], parentPath } = codeblock
   const tokens = await tokenize(value, lang || "txt", annotations, {
     theme: config.theme,
+    mdxPath: parentPath,
+    lines: components.Line ? true : false,
     ...config,
   })
   return (

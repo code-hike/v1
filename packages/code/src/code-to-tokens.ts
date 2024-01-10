@@ -19,14 +19,14 @@ export async function tokenize(
 ) {
   const { theme } = config
 
-  // const { code: c, annotations: a } = await splitAnnotationsAndCode(
-  //   codeWithoutAnnotations,
-  //   lang,
-  //   config,
-  // )
+  const { code: c, annotations: a } = await splitAnnotationsAndCode(
+    codeWithoutAnnotations,
+    lang,
+    config,
+  )
 
-  const { lines } = await highlight(codeWithoutAnnotations, lang, theme, {
-    annotations: [...annotations],
+  const { lines } = await highlight(c, lang, theme, {
+    annotations: [...annotations, ...a],
     scopes: true,
   })
   const tokens = joinLines(lines)

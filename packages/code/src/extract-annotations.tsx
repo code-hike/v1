@@ -1,24 +1,21 @@
 import { Annotation, extractAnnotations } from "@code-hike/lighter"
-// import { twoslasher, TwoSlashReturn } from "@typescript/twoslash"
-import { FinalConfig } from "./types"
-
-const extractors: AnnotationsExtractor[] = [
-  // extractTwoSlashAnnotations,
-  extractLineAnnotations,
-  extractCommentAnnotations,
-]
 
 type AnnotationsExtractor = (
   code: string,
   lang: string,
-  config: FinalConfig,
+  config: any,
 ) => Promise<{ code: string; annotations: Annotation[] }>
 
 export async function splitAnnotationsAndCode(
   code: string,
   lang: string,
-  config: FinalConfig,
+  config: any,
 ) {
+  let extractors: AnnotationsExtractor[] = [extractCommentAnnotations]
+  if (config.lines) {
+    extractors.push(extractLineAnnotations)
+  }
+
   let annotations: Annotation[] = []
   let codeWithoutAnnotations = code
   for (const extractor of extractors) {
@@ -28,6 +25,23 @@ export async function splitAnnotationsAndCode(
       config,
     )
     annotations = [...annotations, ...newAnnotations]
+    codeWithoutAnnotations = newCode
+  }
+
+  // import external code if needed and re-run annotations extraction
+  const fromAnnotations = annotations.filter((a) => a.name === "from")
+  if (fromAnnotations.length === 1) {
+    const fromData = fromAnnotations[0].query?.trim()
+    const [codepath, range] = fromData?.split(/\s+/) || []
+    const externalFileContent = await readFile(codepath, config.mdxPath, range)
+
+    const { code: newCode, annotations: newAnnotations } =
+      await splitAnnotationsAndCode(externalFileContent, lang, config)
+
+    annotations = [
+      ...annotations.filter((a) => a.name !== "from" && a.name !== "Line"),
+      ...newAnnotations,
+    ]
     codeWithoutAnnotations = newCode
   }
 
@@ -63,7 +77,13 @@ async function extractCommentAnnotations(
     }
   }
 
-  return extractAnnotations(code, lang, extractor)
+  const { code: codeWithoutComments, annotations } = await extractAnnotations(
+    // TODO hack until we fix out of range annotations in lighter
+    code + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    lang,
+    extractor,
+  )
+  return { code: codeWithoutComments.trim(), annotations }
 }
 
 async function extractLineAnnotations(code: string) {
@@ -133,3 +153,67 @@ async function extractLineAnnotations(code: string) {
 //     ],
 //   }
 // }
+
+async function readFile(
+  externalCodePath: string,
+  mdxFilePath: string,
+  range: string | undefined,
+) {
+  const annotationContent = "from " + mdxFilePath + " " + (range || "")
+
+  let fs, path
+
+  try {
+    fs = (await import("fs")).default
+    path = (await import("path")).default
+    if (!fs || !fs.readFileSync || !path || !path.resolve) {
+      throw new Error("fs or path not found")
+    }
+  } catch (e: any) {
+    e.message = `Code Hike couldn't resolve this annotation:
+${annotationContent}
+Looks like node "fs" and "path" modules are not available.`
+    throw e
+  }
+
+  // if we don't know the path of the mdx file:
+  if (mdxFilePath == null) {
+    throw new Error(
+      `Code Hike couldn't resolve this annotation:
+  ${annotationContent}
+  Someone is calling the mdx compile function without setting the path.
+  Open an issue on CodeHike's repo for help.`,
+    )
+  }
+
+  const dir = path.dirname(mdxFilePath)
+  const absoluteCodepath = path.resolve(dir, externalCodePath)
+
+  let content: string
+  try {
+    content = fs.readFileSync(absoluteCodepath, "utf8")
+  } catch (e: any) {
+    e.message = `Code Hike couldn't resolve this annotation:
+${annotationContent}
+${absoluteCodepath} doesn't exist.`
+    throw e
+  }
+
+  if (range) {
+    const [start, end] = range.split(":")
+    const startLine = parseInt(start)
+    const endLine = parseInt(end)
+    if (isNaN(startLine) || isNaN(endLine)) {
+      throw new Error(
+        `Code Hike couldn't resolve this annotation:
+${annotationContent}
+The range is not valid. Should be something like:
+ ${externalCodePath} 2:5`,
+      )
+    }
+    const lines = content.split("\n")
+    content = lines.slice(startLine - 1, endLine).join("\n")
+  }
+
+  return content
+}
