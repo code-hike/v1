@@ -19,29 +19,8 @@ function _createMdxContent(props) {
           role="code"
           lang="js"
           meta="my meta"
-          code={'console.log("hello world")\nconsole.log("bye world")'}
-          annotations={[
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "2",
-              ranges: [
-                {
-                  fromLineNumber: 2,
-                  toLineNumber: 2,
-                },
-              ],
-            },
-          ]}
+          parentPath="C:\p\dev\v1\packages\hike\test\data\code.0.mdx"
+          code={'console.log("hello world")\r\nconsole.log("bye world")'}
         />
       </_components.slot>
       <_components.slot name="code" query>
@@ -49,29 +28,8 @@ function _createMdxContent(props) {
           role="code"
           lang="jsonc"
           meta="THE CUSTOMER OBJECT"
-          code={""}
-          annotations={[
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Mark",
-              query: "",
-              ranges: [
-                {
-                  fromLineNumber: 2,
-                  toLineNumber: 2,
-                },
-              ],
-            },
-          ]}
+          parentPath="C:\p\dev\v1\packages\hike\test\data\code.0.mdx"
+          code={"// !Mark(2)"}
         />
       </_components.slot>
     </Hike>

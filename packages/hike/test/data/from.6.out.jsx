@@ -19,59 +19,8 @@ function _createMdxContent(props) {
           role="code"
           lang="js"
           meta="my meta"
-          code={"x = 3\nx = 4\nx = 5"}
-          annotations={[
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "from",
-              query: "./z.js 3:5",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "2",
-              ranges: [
-                {
-                  fromLineNumber: 2,
-                  toLineNumber: 2,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "3",
-              ranges: [
-                {
-                  fromLineNumber: 3,
-                  toLineNumber: 3,
-                },
-              ],
-            },
-          ]}
+          parentPath="C:\p\dev\v1\packages\hike\test\data\from.0.mdx"
+          code={"// !from ./z.js 3:5"}
         />
       </_components.slot>
       <_components.slot name="code" query>
@@ -79,49 +28,8 @@ function _createMdxContent(props) {
           role="code"
           lang="py"
           meta="python meta"
-          code={"print(1)\nprint(2)"}
-          annotations={[
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "from",
-              query: "./z.py",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-            {
-              name: "Line",
-              query: "2",
-              ranges: [
-                {
-                  fromLineNumber: 2,
-                  toLineNumber: 2,
-                },
-              ],
-            },
-          ]}
+          parentPath="C:\p\dev\v1\packages\hike\test\data\from.0.mdx"
+          code={"# !from ./z.py"}
         />
       </_components.slot>
     </Hike>

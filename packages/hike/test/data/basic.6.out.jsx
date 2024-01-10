@@ -25,19 +25,8 @@ function _createMdxContent(props) {
           role="code"
           lang="js"
           meta
+          parentPath="C:\p\dev\v1\packages\hike\test\data\basic.0.mdx"
           code={"const a = 1"}
-          annotations={[
-            {
-              name: "Line",
-              query: "1",
-              ranges: [
-                {
-                  fromLineNumber: 1,
-                  toLineNumber: 1,
-                },
-              ],
-            },
-          ]}
         />
       </_components.slot>
       <_components.slot name="foo" query="">

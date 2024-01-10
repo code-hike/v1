@@ -24,8 +24,8 @@ function StaticHike({ children }: { children: React.ReactNode }) {
 
 function slotToStaticJSX(slot: Step): React.ReactNode[] {
   return slot.children.flatMap((child: any) => {
-    if (child.type === "placeholder") {
-      const name = child.props.name
+    if (child.type === React.Fragment && child.key) {
+      const name = child.key
       if (name === "code") {
         return slot.code!.map((code, i) => (
           <pre key={i}>
@@ -78,7 +78,10 @@ export function getStepsFromChildren(
 
   return {
     query,
-    children: React.Children.toArray((children as any).props.children),
+    children: React.Children.toArray((children as any).props.children).map(
+      (e: any) =>
+        e.type === "placeholder" ? <React.Fragment key={e.props.name} /> : e,
+    ),
     slots,
     code,
   }

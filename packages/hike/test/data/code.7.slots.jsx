@@ -3,68 +3,24 @@
     <p>
       Hello world!
     </p>,
-    <placeholder
-      name="code"
-    />,
-    <placeholder
-      name="code"
-    />,
+    <React.Fragment />,
+    <React.Fragment />,
   ],
   "code": [
     {
-      "annotations": [
-        {
-          "name": "Line",
-          "query": "1",
-          "ranges": [
-            {
-              "fromLineNumber": 1,
-              "toLineNumber": 1,
-            },
-          ],
-        },
-        {
-          "name": "Line",
-          "query": "2",
-          "ranges": [
-            {
-              "fromLineNumber": 2,
-              "toLineNumber": 2,
-            },
-          ],
-        },
-      ],
+      "annotations": undefined,
       "lang": "js",
       "meta": "my meta",
+      "parentPath": "C:\p\dev\v1\packages\hike\test\data\code.0.mdx",
       "value": "console.log("hello world")
 console.log("bye world")",
     },
     {
-      "annotations": [
-        {
-          "name": "Line",
-          "query": "1",
-          "ranges": [
-            {
-              "fromLineNumber": 1,
-              "toLineNumber": 1,
-            },
-          ],
-        },
-        {
-          "name": "Mark",
-          "query": "",
-          "ranges": [
-            {
-              "fromLineNumber": 2,
-              "toLineNumber": 2,
-            },
-          ],
-        },
-      ],
+      "annotations": undefined,
       "lang": "jsonc",
       "meta": "THE CUSTOMER OBJECT",
-      "value": "",
+      "parentPath": "C:\p\dev\v1\packages\hike\test\data\code.0.mdx",
+      "value": "// !Mark(2)",
     },
   ],
   "query": "",

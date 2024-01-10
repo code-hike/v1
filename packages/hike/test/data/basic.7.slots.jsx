@@ -7,32 +7,18 @@
       </strong>
       !
     </p>,
-    <placeholder
-      name="code"
-    />,
+    <React.Fragment />,
     <p>
       More
     </p>,
-    <placeholder
-      name="foo"
-    />,
+    <React.Fragment />,
   ],
   "code": [
     {
-      "annotations": [
-        {
-          "name": "Line",
-          "query": "1",
-          "ranges": [
-            {
-              "fromLineNumber": 1,
-              "toLineNumber": 1,
-            },
-          ],
-        },
-      ],
+      "annotations": undefined,
       "lang": "js",
       "meta": true,
+      "parentPath": "C:\p\dev\v1\packages\hike\test\data\basic.0.mdx",
       "value": "const a = 1",
     },
   ],

@@ -292,208 +292,24 @@
                           },
                           {
                             "type": "JSXAttribute",
+                            "name": {
+                              "type": "JSXIdentifier",
+                              "name": "parentPath"
+                            },
+                            "value": {
+                              "type": "Literal",
+                              "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\code.0.mdx"
+                            }
+                          },
+                          {
+                            "type": "JSXAttribute",
                             "name": { "type": "JSXIdentifier", "name": "code" },
                             "value": {
                               "type": "JSXExpressionContainer",
                               "expression": {
                                 "type": "Literal",
-                                "value": "console.log(\"hello world\")\nconsole.log(\"bye world\")",
-                                "raw": "\"console.log(\\\"hello world\\\")\\nconsole.log(\\\"bye world\\\")\""
-                              }
-                            }
-                          },
-                          {
-                            "type": "JSXAttribute",
-                            "name": {
-                              "type": "JSXIdentifier",
-                              "name": "annotations"
-                            },
-                            "value": {
-                              "type": "JSXExpressionContainer",
-                              "expression": {
-                                "type": "ArrayExpression",
-                                "elements": [
-                                  {
-                                    "type": "ObjectExpression",
-                                    "properties": [
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "name"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "Line",
-                                          "raw": "\"Line\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "query"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "1",
-                                          "raw": "\"1\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "ranges"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "ArrayExpression",
-                                          "elements": [
-                                            {
-                                              "type": "ObjectExpression",
-                                              "properties": [
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "fromLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
-                                                  }
-                                                },
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "toLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "ObjectExpression",
-                                    "properties": [
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "name"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "Line",
-                                          "raw": "\"Line\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "query"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "2",
-                                          "raw": "\"2\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "ranges"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "ArrayExpression",
-                                          "elements": [
-                                            {
-                                              "type": "ObjectExpression",
-                                              "properties": [
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "fromLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 2,
-                                                    "raw": "2"
-                                                  }
-                                                },
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "toLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 2,
-                                                    "raw": "2"
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
+                                "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
+                                "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
                               }
                             }
                           }
@@ -579,208 +395,24 @@
                           },
                           {
                             "type": "JSXAttribute",
+                            "name": {
+                              "type": "JSXIdentifier",
+                              "name": "parentPath"
+                            },
+                            "value": {
+                              "type": "Literal",
+                              "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\code.0.mdx"
+                            }
+                          },
+                          {
+                            "type": "JSXAttribute",
                             "name": { "type": "JSXIdentifier", "name": "code" },
                             "value": {
                               "type": "JSXExpressionContainer",
                               "expression": {
                                 "type": "Literal",
-                                "value": "",
-                                "raw": "\"\""
-                              }
-                            }
-                          },
-                          {
-                            "type": "JSXAttribute",
-                            "name": {
-                              "type": "JSXIdentifier",
-                              "name": "annotations"
-                            },
-                            "value": {
-                              "type": "JSXExpressionContainer",
-                              "expression": {
-                                "type": "ArrayExpression",
-                                "elements": [
-                                  {
-                                    "type": "ObjectExpression",
-                                    "properties": [
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "name"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "Line",
-                                          "raw": "\"Line\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "query"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "1",
-                                          "raw": "\"1\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "ranges"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "ArrayExpression",
-                                          "elements": [
-                                            {
-                                              "type": "ObjectExpression",
-                                              "properties": [
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "fromLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
-                                                  }
-                                                },
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "toLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 1,
-                                                    "raw": "1"
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "ObjectExpression",
-                                    "properties": [
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "name"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "Mark",
-                                          "raw": "\"Mark\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "query"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "",
-                                          "raw": "\"\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "ranges"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "ArrayExpression",
-                                          "elements": [
-                                            {
-                                              "type": "ObjectExpression",
-                                              "properties": [
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "fromLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 2,
-                                                    "raw": "2"
-                                                  }
-                                                },
-                                                {
-                                                  "type": "Property",
-                                                  "method": false,
-                                                  "shorthand": false,
-                                                  "computed": false,
-                                                  "key": {
-                                                    "type": "Literal",
-                                                    "value": "toLineNumber"
-                                                  },
-                                                  "kind": "init",
-                                                  "value": {
-                                                    "type": "Literal",
-                                                    "value": 2,
-                                                    "raw": "2"
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
+                                "value": "// !Mark(2)",
+                                "raw": "\"// !Mark(2)\""
                               }
                             }
                           }
