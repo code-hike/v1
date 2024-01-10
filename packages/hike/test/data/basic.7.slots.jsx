@@ -22,19 +22,16 @@
       "value": "const a = 1",
     },
   ],
+  "foo": [
+    {
+      "children": [
+        <p>
+          bar
+        </p>,
+      ],
+      "code": [],
+      "query": "",
+    },
+  ],
   "query": "",
-  "slots": {
-    "foo": [
-      {
-        "children": [
-          <p>
-            bar
-          </p>,
-        ],
-        "code": [],
-        "query": "",
-        "slots": {},
-      },
-    ],
-  },
 }

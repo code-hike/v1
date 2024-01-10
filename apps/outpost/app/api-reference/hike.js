@@ -10,9 +10,9 @@ export async function HikeLayout({ hike }) {
 }
 
 function addCode(slot, parentCodeBlocks = []) {
-  const { slots } = slot
+  const { query, children, code, ...slots } = slot
 
-  const hasCode = slot.code && slot.code.length
+  const hasCode = code && code.length
 
   const newSlots = {}
 
@@ -61,7 +61,8 @@ function addCode(slot, parentCodeBlocks = []) {
   })
 
   return {
-    ...slot,
+    query,
+    children,
     codeElement: (
       <Code
         codeblocks={codeblocks}
@@ -69,7 +70,7 @@ function addCode(slot, parentCodeBlocks = []) {
         components={{ Mark }}
       />
     ),
-    slots: newSlots,
+    ...newSlots,
   }
 }
 

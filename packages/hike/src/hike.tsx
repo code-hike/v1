@@ -7,7 +7,7 @@ export function Hike({
   ...rest
 }: {
   children: React.ReactNode
-  as?: ComponentType<{ hike: Step }>
+  as?: ComponentType<{ hike: HikeSection<string> }>
   [key: string]: any
 }) {
   if (!as) {
@@ -22,18 +22,19 @@ function StaticHike({ children }: { children: React.ReactNode }) {
   return slotToStaticJSX(hike)
 }
 
-function slotToStaticJSX(slot: Step): React.ReactNode[] {
-  return slot.children.flatMap((child: any) => {
+function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
+  return section.children.flatMap((child: any) => {
     if (child.type === React.Fragment && child.key) {
       const name = child.key
       if (name === "code") {
-        return slot.code!.map((code, i) => (
+        return section.code!.map((code, i) => (
           <pre key={i}>
             <code className={code.lang}>{code.value}</code>
           </pre>
         ))
       }
-      const childSlot = slot.slots[name].shift()
+      const sections = section[name]!
+      const childSlot = sections.shift()
       if (!childSlot) {
         throw new Error(`Missing slot ${name}`)
       }
@@ -50,19 +51,20 @@ type CodeBlock = {
   parentPath?: string
 }
 
-export type Step = {
-  query: string
+export type HikeSection<T extends string = "steps"> = {
+  [key in T]?: HikeSection<T>[]
+} & {
   children: React.ReactNode[]
-  slots: { [key: string]: Step[] }
+  query: string
   code?: CodeBlock[]
 }
 
 export function getStepsFromChildren(
   kids: React.ReactNode,
   query: string = "",
-): Step {
+): HikeSection<string> {
   const [children, ...slotElements] = React.Children.toArray(kids)
-  const slots: { [key: string]: Step[] } = {}
+  const slots: { [key: string]: HikeSection<string>[] } = {}
   const code: CodeBlock[] = []
 
   slotElements.forEach((slotElement: any) => {
@@ -82,9 +84,9 @@ export function getStepsFromChildren(
       (e: any) =>
         e.type === "placeholder" ? <React.Fragment key={e.props.name} /> : e,
     ),
-    slots,
+    ...slots,
     code,
-  }
+  } as any
 }
 
 function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {

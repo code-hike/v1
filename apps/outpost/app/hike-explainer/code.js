@@ -4,7 +4,6 @@ import theme from "../../theme.mjs"
 const config = { theme, themeName: theme.name, annotationPrefix: "!" }
 
 export function Code({ codeblock, title }) {
-  console.log({ codeblock })
   return (
     <div className="rounded flex-1 min-w-0 bg-zinc-950 overflow-hidden h-[500px] border border-zinc-500/50 shadow">
       <div className="text-sm text-center bg-zinc-700 text-white py-1 px-4 font-mono">

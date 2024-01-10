@@ -24,5 +24,4 @@ console.log("bye world")",
     },
   ],
   "query": "",
-  "slots": {},
 }

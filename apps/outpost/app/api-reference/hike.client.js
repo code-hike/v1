@@ -3,7 +3,7 @@ import React from "react"
 import { ChevronRight } from "lucide-react"
 
 export function Hike({ codehike }) {
-  const { slots, children } = codehike
+  const { children, query, codeElement, ...slots } = codehike
   const main = slots["main"][0]
   const extra = slots["extra"][0]
   const returns = slots["returns"] && slots["returns"][0]
@@ -15,12 +15,12 @@ export function Hike({ codehike }) {
       <div className="flex-1">
         <Main
           query={main.query}
-          steps={main.slots.steps}
+          steps={main.steps}
           setCode={(code) =>
             code ? setCode(code) : setCode(codehike.codeElement)
           }
         />
-        <Extra query={extra.query} steps={extra.slots.steps} />
+        <Extra query={extra.query} steps={extra.steps} />
         {returns && (
           <div>
             <h3 className="mt-8 border-b border-zinc-700">Returns</h3>
@@ -77,7 +77,7 @@ function ExtraAttribute({ step, setStep }) {
       </h4>
       <div className={collapsed ? "hidden" : ""}>
         {step["children"]}
-        <SubSteps steps={step.slots.steps} setStep={setStep} />
+        <SubSteps steps={step.steps} setStep={setStep} />
       </div>
     </div>
   )
@@ -102,7 +102,7 @@ function Step({ step, setCode }) {
         <span className="ml-2 text-sm text-slate-400">{type}</span>
       </h4>
       {step["children"]}
-      <SubSteps steps={step.slots.steps} setCode={setCode} />
+      <SubSteps steps={step.steps} setCode={setCode} />
     </div>
   )
 }
