@@ -27,6 +27,6 @@ export type CodeBlock = {
   lang: string
   meta: string
   value: string
-  annotations: Annotation[]
+  annotations?: Annotation[]
   parentPath?: string
 }

@@ -1,6 +1,6 @@
-import { Hike, HikeSection } from "@code-hike/hike"
+import { Hike, HikeSection, CodeBlock } from "@code-hike/hike"
 import { Code, CodeContent } from "@code-hike/code"
 
 export { Hike, Code, CodeContent }
 
-export type { HikeSection }
+export type { HikeSection, CodeBlock }

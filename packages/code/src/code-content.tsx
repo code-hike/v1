@@ -8,14 +8,14 @@ let annotationWarning = new Set()
 
 export async function CodeContent({
   codeblock,
-  components,
+  components = {},
   config,
   ...props
 }: {
   codeblock: CodeBlock
   config: any
-  components: MDXComponents
-}) {
+  components?: MDXComponents
+} & React.HTMLAttributes<HTMLPreElement>) {
   const { lang, meta, value, annotations = [], parentPath } = codeblock
   const tokens = await tokenize(value, lang || "txt", annotations, {
     theme: config.theme,

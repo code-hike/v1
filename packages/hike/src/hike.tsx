@@ -43,11 +43,10 @@ function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
     return child
   })
 }
-type CodeBlock = {
+export type CodeBlock = {
   value: string
   lang: string
   meta: string
-  annotations: Annotation[]
   parentPath?: string
 }
 
@@ -95,7 +94,6 @@ function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
     value: props.code,
     meta: props.meta,
     lang: props.lang,
-    annotations: props.annotations,
     parentPath: props.parentPath,
   }
 }

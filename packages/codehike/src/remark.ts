@@ -10,7 +10,7 @@ type Options = {}
 export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
   return async (root, file) => {
     let tree = (await transformAllHikes(root, config, file)) as any
-    tree = await codeTransform(tree, config as any)
+    // tree = await codeTransform(tree, config as any)
     return tree as any
   }
 }
