@@ -153,7 +153,7 @@ async function parseCodeBlock(
 // find all the annotation names in the tokens tree
 function getAnnotationNames(codeblocks: CodeBlock[]): string[] {
   const names = new Set<string>()
-  codeblocks.forEach(({ annotations }) => {
+  codeblocks.forEach(({ annotations = [] }) => {
     annotations.forEach((annotation) => {
       names.add(annotation.name)
     })
