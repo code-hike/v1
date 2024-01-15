@@ -12,6 +12,7 @@
   },
   "exports": {
     ".": "./dist/code.js",
+    "./tokenizer": "./dist/tokenizer.js",
     "./mdx": "./dist/remark.js"
   },
   "files": [

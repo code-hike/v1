@@ -13,7 +13,7 @@ export async function splitAnnotationsAndCode(
 ) {
   let extractors: AnnotationsExtractor[] = [extractCommentAnnotations]
   if (config.lines) {
-    extractors.push(extractLineAnnotations)
+    extractors.unshift(extractLineAnnotations)
   }
 
   let annotations: Annotation[] = []

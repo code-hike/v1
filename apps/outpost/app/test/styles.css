@@ -1,0 +1,7 @@
+[data-line] {
+  @apply border-l-4 border-transparent;
+}
+
+.mark [data-line] {
+  @apply bg-zinc-700 border-l-4 border-blue-300;
+}
