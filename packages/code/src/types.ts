@@ -24,8 +24,8 @@ export type FinalConfig = {
 }
 
 export type CodeBlock = {
-  lang: string
-  meta: string
+  lang?: string
+  meta?: string
   value: string
   annotations?: Annotation[]
   parentPath?: string

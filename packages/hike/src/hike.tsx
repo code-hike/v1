@@ -46,7 +46,7 @@ function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
 export type CodeBlock = {
   value: string
   lang: string
-  meta: string
+  meta?: string
   parentPath?: string
 }
 

@@ -17,7 +17,7 @@ const names: Record<string, string> = {
 export function CodeSwitcher({
   options,
 }: {
-  options: { meta: string; lang: string; children: React.ReactNode }[]
+  options: { meta?: string; lang: string; children: React.ReactNode }[]
 }) {
   const [option, setOption] = React.useState(options[0])
 

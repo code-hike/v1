@@ -35,7 +35,7 @@ function CodeGroup({ codeblocks }: { codeblocks: CodeBlock[] }) {
 function groupByMeta(codeblocks: CodeBlock[]) {
   const groups: Record<string, CodeBlock[]> = {}
   for (const codeblock of codeblocks) {
-    const meta = codeblock.meta
+    const meta = codeblock.meta || ""
     if (!groups[meta]) groups[meta] = []
     groups[meta].push(codeblock)
   }

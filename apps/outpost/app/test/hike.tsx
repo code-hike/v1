@@ -1,20 +1,24 @@
-import { HikeSection } from "codehike"
+import { CodeBlock, HikeSection } from "codehike"
 import { Code } from "./code"
 import "./styles.css"
+import { z } from "../../lib/z"
+
+const HikeSchema = z.hike({
+  sections: z.sections({
+    steps: z.sections({
+      preface: z.optional(z.section({})),
+      code: z.optional(z.codeblock()),
+    }),
+  }),
+  quiz: z.section({
+    questions: z.sections({
+      options: z.sections({}),
+    }),
+  }),
+})
 
 export function TestHike({ hike }: { hike: HikeSection }) {
-  const { code = [] } = hike
-
-  return (
-    <div>
-      {code.map((codeblock, i) => (
-        <Code
-          key={i}
-          codeblock={codeblock}
-          className="bg-zinc-800 m-2 py-2 text-sm leading-5"
-          theme="github-dark"
-        />
-      ))}
-    </div>
-  )
+  const data = HikeSchema.parse(hike)
+  // const { sections, quiz } = data
+  return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
