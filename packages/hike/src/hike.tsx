@@ -1,5 +1,5 @@
 import React, { ComponentType } from "react"
-import type { Annotation } from "@code-hike/lighter"
+import { DebugHike } from "./debug-hike.js"
 
 export function Hike({
   children,
@@ -10,10 +10,11 @@ export function Hike({
   as?: ComponentType<{ hike: HikeSection<string> }>
   [key: string]: any
 }) {
-  if (!as) {
-    return <StaticHike children={children} />
-  }
   const hike = getStepsFromChildren(children)
+
+  if (!as || rest.debug) {
+    return <DebugHike hike={hike} />
+  }
   return React.createElement(as, { hike, ...rest })
 }
 

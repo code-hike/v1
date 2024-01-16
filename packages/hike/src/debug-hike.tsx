@@ -2,11 +2,12 @@
 
 import React from "react"
 
-export function TestHike({ hike }: { hike: any }) {
+export function DebugHike({ hike }: { hike: any }) {
   const tree = React.useMemo(() => hikeToTree(hike, "", "hike"), [hike])
   const [selected, setSelected] = React.useState<any>(tree)
   return (
     <div
+      className="not-prose"
       style={{
         border: "1px solid #67e8f9",
         borderRadius: 6,
@@ -116,6 +117,7 @@ function Node({ node, setSelected, selected, level = 1 }: any) {
             setSelected={setSelected}
             selected={selected}
             level={level + 1}
+            key={i}
           />
         ))}
       </div>
@@ -144,8 +146,8 @@ function hikeToTree(section: any, path: string, name: string) {
           <pre>{query}</pre>
         </Property>
         <Property name="children">{children}</Property>
-        {kids.map((kid) => (
-          <Property name={kid.name}>
+        {kids.map((kid, i) => (
+          <Property name={kid.name} key={i}>
             <pre>{`[${kid.children.length} items]`}</pre>
           </Property>
         ))}
@@ -173,8 +175,8 @@ function sectionToTree(section: any, path: string, name: string) {
       <>
         <Property name="query">{query}</Property>
         <Property name="children">{children}</Property>
-        {kids.map((kid) => (
-          <Property name={kid.name}>
+        {kids.map((kid, i) => (
+          <Property name={kid.name} key={i}>
             <pre>{`[${kid.children.length} items]`}</pre>
           </Property>
         ))}
@@ -215,7 +217,7 @@ function codeToChildren(codeblocks: any, path: string) {
       content: (
         <>
           {codeblocks.map((code: any, i: number) => (
-            <Property name={`[${i}]`}>
+            <Property name={`[${i}]`} key={i}>
               <pre>{`${code.lang} ${
                 typeof code.meta === "string" ? code.meta : ""
               }`}</pre>
@@ -238,7 +240,10 @@ function listToTree(list: any[], path: string, name: string) {
     content: (
       <>
         {list.map((item, i) => (
-          <Property name={`[${i}]`}>{`!${name} ${item.query}`}</Property>
+          <Property
+            name={`[${i}]`}
+            key={i}
+          >{`!${name} ${item.query}`}</Property>
         ))}
       </>
     ),
