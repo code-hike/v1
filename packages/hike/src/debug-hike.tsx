@@ -32,7 +32,7 @@ export function DebugHike({ hike }: { hike: any }) {
       >
         <code>{`<Hike />`}</code> debug view
       </div>
-      <div style={{ display: "flex", overflow: "hidden" }}>
+      <div style={{ display: "flex", overflow: "hidden", flex: 1 }}>
         <div style={{ flex: 1, minWidth: 0, padding: 0, overflowY: "auto" }}>
           <Node
             node={hikeToTree(hike, "", "hike")}
@@ -48,6 +48,7 @@ export function DebugHike({ hike }: { hike: any }) {
             backgroundColor: "white",
             color: "#082f49",
             overflowY: "auto",
+            minHeight: "100%",
           }}
         >
           <Property name="path">{selected.path}</Property>
@@ -102,10 +103,10 @@ function Node({ node, setSelected, selected, level = 1 }: any) {
             : hover
               ? "#0c4a6e"
               : "transparent",
-          // ellipsis
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
           overflow: "hidden",
+          color: "white",
         }}
       >
         {name}
