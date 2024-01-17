@@ -1,7 +1,11 @@
 import { tokenize } from "codehike"
 import React from "react"
 
-export async function Code({ codeblock, className, theme = "min-dark" }) {
+export async function Code({
+  codeblock,
+  className = "",
+  theme = "github-dark",
+}) {
   const tokens = await tokenize(codeblock.value, codeblock.lang, theme, {
     parentPath: codeblock.parentPath,
     lines: true,
