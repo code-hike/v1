@@ -11,7 +11,7 @@ export function moveChildrenToHikeProp(node: any) {
   })
 
   const hikeAttribute = node.openingElement.attributes.find(
-    (a: any) => a.name.name === "hike",
+    (a: any) => a.name.name === "__hike",
   )
   visit(hikeAttribute, function (node: any) {
     if (node?.type === "Property" && node?.key?.value === "children") {
@@ -29,4 +29,5 @@ export function moveChildrenToHikeProp(node: any) {
   })
 
   node.children = []
+  hikeAttribute.name.name = "hike"
 }

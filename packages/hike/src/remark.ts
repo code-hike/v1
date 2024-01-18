@@ -44,6 +44,13 @@ async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
   node.children = children
   node.attributes.push(...attributes)
 
+  const asAttribute = node.attributes.find((a: any) => a.name === "as") as any
+  const debug = node.attributes.find((a: any) => a.name === "debug")
+  node.attributes = node.attributes.filter((a: any) => a.name !== "as")
+  if (asAttribute && !debug) {
+    node.name = asAttribute?.value?.value || "Hike"
+  }
+
   return node
 }
 
@@ -51,7 +58,9 @@ export function transformAllRecmaHikes(tree: any, config?: Config) {
   visit(tree, (node: any) => {
     if (
       node?.type === "JSXElement" &&
-      node?.openingElement?.name?.name === "Hike"
+      node?.openingElement?.attributes?.some(
+        (a: any) => a?.name?.name === "__hike",
+      )
     ) {
       transformRecmaHike(node)
       return SKIP

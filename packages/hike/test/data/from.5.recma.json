@@ -79,7 +79,7 @@
                 "attributes": [
                   {
                     "type": "JSXAttribute",
-                    "name": { "type": "JSXIdentifier", "name": "hike" },
+                    "name": { "type": "JSXIdentifier", "name": "__hike" },
                     "value": {
                       "type": "JSXExpressionContainer",
                       "expression": {

@@ -20,7 +20,7 @@ export function treeToAttribute(root: HydratedSection) {
     attributes: [
       {
         type: "mdxJsxAttribute",
-        name: "hike",
+        name: "__hike",
         value: getObjectAttribute(serializableTree),
       } as MdxJsxAttribute,
     ],

@@ -61,7 +61,7 @@
         },
         {
           "type": "mdxJsxAttribute",
-          "name": "hike",
+          "name": "__hike",
           "value": {
             "type": "mdxJsxAttributeValueExpression",
             "value": "",

@@ -2,62 +2,19 @@
 import { Hike } from "../../src/Hike"
 function _createMdxContent(props) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    strong: "strong",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { Foo } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
   return (
-    <Hike
+    <Foo
       hike={{
         query: "",
-        children: [
-          <_components.p>
-            {"Hello "}
-            <_components.strong>{"world"}</_components.strong>
-            {"!"}
-          </_components.p>,
-          <_components.slot name="code" />,
-          <_components.p>{"More"}</_components.p>,
-          <_components.slot name="foo" />,
-        ],
-        code: [
-          {
-            value: "const a = 1\r\nconst b = 1",
-            lang: "js",
-            meta: null,
-          },
-        ],
-        foo: [
-          {
-            query: "",
-            children: [
-              <_components.p>{"bar"}</_components.p>,
-              <_components.slot name="lorem" />,
-              <_components.slot name="lorem" />,
-              <_components.slot name="dolor" />,
-              <_components.p>{"bar 2"}</_components.p>,
-            ],
-            lorem: [
-              {
-                query: "ipsum",
-                children: [<_components.p>{"lorem"}</_components.p>],
-              },
-              {
-                query: "ipsum",
-                children: [<_components.p>{"lorem 2"}</_components.p>],
-              },
-            ],
-            dolor: [
-              {
-                query: "sit amet",
-                children: [<_components.p>{"dolor"}</_components.p>],
-              },
-            ],
-          },
-        ],
+        children: [<_components.p>{"hey"}</_components.p>],
       }}
-    ></Hike>
+    ></Foo>
   )
 }
 export default function MDXContent(props = {}) {
@@ -68,5 +25,14 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
+  )
+}
+function _missingMdxReference(id, component) {
+  throw new Error(
+    "Expected " +
+      (component ? "component" : "object") +
+      " `" +
+      id +
+      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

@@ -32,73 +32,33 @@
     {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
-      "attributes": [],
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "as",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "Foo",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": { "type": "Identifier", "name": "Foo" }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
       "children": [
         {
           "type": "paragraph",
-          "children": [
-            { "type": "text", "value": "Hello " },
-            {
-              "type": "strong",
-              "children": [{ "type": "text", "value": "world" }]
-            },
-            { "type": "text", "value": "!" }
-          ]
-        },
-        {
-          "type": "code",
-          "lang": "js",
-          "meta": null,
-          "value": "const a = 1\r\nconst b = 1"
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "More" }]
-        },
-        {
-          "type": "heading",
-          "depth": 2,
-          "children": [{ "type": "text", "value": "!foo" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bar" }]
-        },
-        {
-          "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!lorem ipsum" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "lorem" }]
-        },
-        {
-          "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!lorem ipsum" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "lorem 2" }]
-        },
-        {
-          "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!dolor sit amet" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "dolor" }]
-        },
-        {
-          "type": "heading",
-          "depth": 2,
-          "children": [{ "type": "text", "value": "/" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bar 2" }]
+          "children": [{ "type": "text", "value": "hey" }]
         }
       ],
       "data": { "_mdxExplicitJsx": true }
