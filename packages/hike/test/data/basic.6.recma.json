@@ -1,0 +1,1033 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "imported": { "type": "Identifier", "name": "Hike" },
+          "local": { "type": "Identifier", "name": "Hike" }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../../src/Hike",
+        "raw": "\"../../src/Hike\""
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "async": false,
+      "id": { "type": "Identifier", "name": "_createMdxContent" },
+      "params": [{ "type": "Identifier", "name": "props" }],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "VariableDeclaration",
+            "kind": "const",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": { "type": "Identifier", "name": "_components" },
+                "init": {
+                  "type": "ObjectExpression",
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "kind": "init",
+                      "key": { "type": "Identifier", "name": "p" },
+                      "value": { "type": "Literal", "value": "p" },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false
+                    },
+                    {
+                      "type": "Property",
+                      "kind": "init",
+                      "key": { "type": "Identifier", "name": "slot" },
+                      "value": { "type": "Literal", "value": "slot" },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false
+                    },
+                    {
+                      "type": "Property",
+                      "kind": "init",
+                      "key": { "type": "Identifier", "name": "strong" },
+                      "value": { "type": "Literal", "value": "strong" },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false
+                    },
+                    {
+                      "type": "SpreadElement",
+                      "argument": {
+                        "type": "MemberExpression",
+                        "object": { "type": "Identifier", "name": "props" },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "components"
+                        },
+                        "computed": false,
+                        "optional": false
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "JSXElement",
+              "openingElement": {
+                "type": "JSXOpeningElement",
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "name": { "type": "JSXIdentifier", "name": "hike" },
+                    "value": {
+                      "type": "JSXExpressionContainer",
+                      "expression": {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "query" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "",
+                              "raw": "\"\""
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "children" },
+                            "kind": "init",
+                            "value": {
+                              "type": "ArrayExpression",
+                              "elements": [
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    },
+                                    "selfClosing": false
+                                  },
+                                  "closingElement": {
+                                    "type": "JSXClosingElement",
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "JSXExpressionContainer",
+                                      "expression": {
+                                        "type": "Literal",
+                                        "value": "Hello "
+                                      }
+                                    },
+                                    {
+                                      "type": "JSXElement",
+                                      "openingElement": {
+                                        "type": "JSXOpeningElement",
+                                        "attributes": [],
+                                        "name": {
+                                          "type": "JSXMemberExpression",
+                                          "object": {
+                                            "type": "JSXIdentifier",
+                                            "name": "_components"
+                                          },
+                                          "property": {
+                                            "type": "JSXIdentifier",
+                                            "name": "strong"
+                                          }
+                                        },
+                                        "selfClosing": false
+                                      },
+                                      "closingElement": {
+                                        "type": "JSXClosingElement",
+                                        "name": {
+                                          "type": "JSXMemberExpression",
+                                          "object": {
+                                            "type": "JSXIdentifier",
+                                            "name": "_components"
+                                          },
+                                          "property": {
+                                            "type": "JSXIdentifier",
+                                            "name": "strong"
+                                          }
+                                        }
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "JSXExpressionContainer",
+                                          "expression": {
+                                            "type": "Literal",
+                                            "value": "world"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "JSXExpressionContainer",
+                                      "expression": {
+                                        "type": "Literal",
+                                        "value": "!"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [
+                                      {
+                                        "type": "JSXAttribute",
+                                        "name": {
+                                          "type": "JSXIdentifier",
+                                          "name": "name"
+                                        },
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "code"
+                                        }
+                                      }
+                                    ],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "slot"
+                                      }
+                                    },
+                                    "selfClosing": true
+                                  },
+                                  "closingElement": null,
+                                  "children": []
+                                },
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    },
+                                    "selfClosing": false
+                                  },
+                                  "closingElement": {
+                                    "type": "JSXClosingElement",
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "JSXExpressionContainer",
+                                      "expression": {
+                                        "type": "Literal",
+                                        "value": "More"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [
+                                      {
+                                        "type": "JSXAttribute",
+                                        "name": {
+                                          "type": "JSXIdentifier",
+                                          "name": "name"
+                                        },
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "foo"
+                                        }
+                                      }
+                                    ],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "slot"
+                                      }
+                                    },
+                                    "selfClosing": true
+                                  },
+                                  "closingElement": null,
+                                  "children": []
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "code" },
+                            "kind": "init",
+                            "value": {
+                              "type": "ArrayExpression",
+                              "elements": [
+                                {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "value"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "const a = 1\r\nconst b = 1",
+                                        "raw": "\"const a = 1\\r\\nconst b = 1\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "lang"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "js",
+                                        "raw": "\"js\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "meta"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": null,
+                                        "raw": "null"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "foo" },
+                            "kind": "init",
+                            "value": {
+                              "type": "ArrayExpression",
+                              "elements": [
+                                {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "query"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "",
+                                        "raw": "\"\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "children"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ArrayExpression",
+                                        "elements": [
+                                          {
+                                            "type": "JSXElement",
+                                            "openingElement": {
+                                              "type": "JSXOpeningElement",
+                                              "attributes": [],
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "p"
+                                                }
+                                              },
+                                              "selfClosing": false
+                                            },
+                                            "closingElement": {
+                                              "type": "JSXClosingElement",
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "p"
+                                                }
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "JSXExpressionContainer",
+                                                "expression": {
+                                                  "type": "Literal",
+                                                  "value": "bar"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "JSXElement",
+                                            "openingElement": {
+                                              "type": "JSXOpeningElement",
+                                              "attributes": [
+                                                {
+                                                  "type": "JSXAttribute",
+                                                  "name": {
+                                                    "type": "JSXIdentifier",
+                                                    "name": "name"
+                                                  },
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": "lorem"
+                                                  }
+                                                }
+                                              ],
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "slot"
+                                                }
+                                              },
+                                              "selfClosing": true
+                                            },
+                                            "closingElement": null,
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "JSXElement",
+                                            "openingElement": {
+                                              "type": "JSXOpeningElement",
+                                              "attributes": [
+                                                {
+                                                  "type": "JSXAttribute",
+                                                  "name": {
+                                                    "type": "JSXIdentifier",
+                                                    "name": "name"
+                                                  },
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": "lorem"
+                                                  }
+                                                }
+                                              ],
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "slot"
+                                                }
+                                              },
+                                              "selfClosing": true
+                                            },
+                                            "closingElement": null,
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "JSXElement",
+                                            "openingElement": {
+                                              "type": "JSXOpeningElement",
+                                              "attributes": [
+                                                {
+                                                  "type": "JSXAttribute",
+                                                  "name": {
+                                                    "type": "JSXIdentifier",
+                                                    "name": "name"
+                                                  },
+                                                  "value": {
+                                                    "type": "Literal",
+                                                    "value": "dolor"
+                                                  }
+                                                }
+                                              ],
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "slot"
+                                                }
+                                              },
+                                              "selfClosing": true
+                                            },
+                                            "closingElement": null,
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "JSXElement",
+                                            "openingElement": {
+                                              "type": "JSXOpeningElement",
+                                              "attributes": [],
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "p"
+                                                }
+                                              },
+                                              "selfClosing": false
+                                            },
+                                            "closingElement": {
+                                              "type": "JSXClosingElement",
+                                              "name": {
+                                                "type": "JSXMemberExpression",
+                                                "object": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "_components"
+                                                },
+                                                "property": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "p"
+                                                }
+                                              }
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "JSXExpressionContainer",
+                                                "expression": {
+                                                  "type": "Literal",
+                                                  "value": "bar 2"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "lorem"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ArrayExpression",
+                                        "elements": [
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "query"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "ipsum",
+                                                  "raw": "\"ipsum\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "children"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "ArrayExpression",
+                                                  "elements": [
+                                                    {
+                                                      "type": "JSXElement",
+                                                      "openingElement": {
+                                                        "type": "JSXOpeningElement",
+                                                        "attributes": [],
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        },
+                                                        "selfClosing": false
+                                                      },
+                                                      "closingElement": {
+                                                        "type": "JSXClosingElement",
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        }
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "type": "JSXExpressionContainer",
+                                                          "expression": {
+                                                            "type": "Literal",
+                                                            "value": "lorem"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "query"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "ipsum",
+                                                  "raw": "\"ipsum\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "children"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "ArrayExpression",
+                                                  "elements": [
+                                                    {
+                                                      "type": "JSXElement",
+                                                      "openingElement": {
+                                                        "type": "JSXOpeningElement",
+                                                        "attributes": [],
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        },
+                                                        "selfClosing": false
+                                                      },
+                                                      "closingElement": {
+                                                        "type": "JSXClosingElement",
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        }
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "type": "JSXExpressionContainer",
+                                                          "expression": {
+                                                            "type": "Literal",
+                                                            "value": "lorem 2"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "dolor"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ArrayExpression",
+                                        "elements": [
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "query"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "sit amet",
+                                                  "raw": "\"sit amet\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "children"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "ArrayExpression",
+                                                  "elements": [
+                                                    {
+                                                      "type": "JSXElement",
+                                                      "openingElement": {
+                                                        "type": "JSXOpeningElement",
+                                                        "attributes": [],
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        },
+                                                        "selfClosing": false
+                                                      },
+                                                      "closingElement": {
+                                                        "type": "JSXClosingElement",
+                                                        "name": {
+                                                          "type": "JSXMemberExpression",
+                                                          "object": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "_components"
+                                                          },
+                                                          "property": {
+                                                            "type": "JSXIdentifier",
+                                                            "name": "p"
+                                                          }
+                                                        }
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "type": "JSXExpressionContainer",
+                                                          "expression": {
+                                                            "type": "Literal",
+                                                            "value": "dolor"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "name": { "type": "JSXIdentifier", "name": "Hike" },
+                "selfClosing": false
+              },
+              "closingElement": {
+                "type": "JSXClosingElement",
+                "name": { "type": "JSXIdentifier", "name": "Hike" }
+              },
+              "children": [],
+              "data": { "_mdxExplicitJsx": true }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": { "type": "Identifier", "name": "MDXContent" },
+        "params": [
+          {
+            "type": "AssignmentPattern",
+            "left": { "type": "Identifier", "name": "props" },
+            "right": { "type": "ObjectExpression", "properties": [] }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "kind": "const",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "ObjectPattern",
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "key": { "type": "Identifier", "name": "wrapper" },
+                        "value": { "type": "Identifier", "name": "MDXLayout" },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false
+                      }
+                    ]
+                  },
+                  "init": {
+                    "type": "LogicalExpression",
+                    "operator": "||",
+                    "left": {
+                      "type": "MemberExpression",
+                      "object": { "type": "Identifier", "name": "props" },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "components"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "right": { "type": "ObjectExpression", "properties": [] }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "ConditionalExpression",
+                "test": { "type": "Identifier", "name": "MDXLayout" },
+                "consequent": {
+                  "type": "JSXElement",
+                  "openingElement": {
+                    "type": "JSXOpeningElement",
+                    "name": { "type": "JSXIdentifier", "name": "MDXLayout" },
+                    "attributes": [
+                      {
+                        "type": "JSXSpreadAttribute",
+                        "argument": { "type": "Identifier", "name": "props" }
+                      }
+                    ],
+                    "selfClosing": false
+                  },
+                  "closingElement": {
+                    "type": "JSXClosingElement",
+                    "name": { "type": "JSXIdentifier", "name": "MDXLayout" }
+                  },
+                  "children": [
+                    {
+                      "type": "JSXElement",
+                      "openingElement": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "JSXIdentifier",
+                          "name": "_createMdxContent"
+                        },
+                        "attributes": [
+                          {
+                            "type": "JSXSpreadAttribute",
+                            "argument": {
+                              "type": "Identifier",
+                              "name": "props"
+                            }
+                          }
+                        ],
+                        "selfClosing": true
+                      },
+                      "closingElement": null,
+                      "children": []
+                    }
+                  ]
+                },
+                "alternate": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "_createMdxContent"
+                  },
+                  "arguments": [{ "type": "Identifier", "name": "props" }],
+                  "optional": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "comments": [
+    {
+      "type": "Block",
+      "value": "@jsxRuntime automatic @jsxImportSource react",
+      "data": { "_mdxIsPragmaComment": true }
+    }
+  ]
+}

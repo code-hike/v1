@@ -1,5 +1,5 @@
 import nextMDX from "@next/mdx"
-import { remarkCodeHike } from "codehike/mdx"
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
 import theme from "./theme.mjs"
 // const theme = "material-default"
@@ -13,7 +13,7 @@ const withMDX = nextMDX({
       // remark,
     ],
     rehypePlugins: [],
-    // recmaPlugins: [recma],
+    recmaPlugins: [[recmaCodeHike, {}]],
     jsx: true,
   },
 })

@@ -32,13 +32,324 @@
     {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
-      "attributes": [],
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "hike",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "query" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "children" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "code" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ArrayExpression",
+                            "elements": [
+                              {
+                                "type": "ObjectExpression",
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "value"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "const a = 1\r\nconst b = 1",
+                                      "raw": "\"const a = 1\\r\\nconst b = 1\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "lang"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "js",
+                                      "raw": "\"js\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "meta"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": null,
+                                      "raw": "null"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "foo" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ArrayExpression",
+                            "elements": [
+                              {
+                                "type": "ObjectExpression",
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "query"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "",
+                                      "raw": "\"\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "children"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "foo",
+                                      "raw": "\"foo\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "lorem"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ArrayExpression",
+                                      "elements": [
+                                        {
+                                          "type": "ObjectExpression",
+                                          "properties": [
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "query"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "ipsum",
+                                                "raw": "\"ipsum\""
+                                              }
+                                            },
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "children"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "foo.lorem",
+                                                "raw": "\"foo.lorem\""
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "ObjectExpression",
+                                          "properties": [
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "query"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "ipsum",
+                                                "raw": "\"ipsum\""
+                                              }
+                                            },
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "children"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "foo.lorem",
+                                                "raw": "\"foo.lorem\""
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "dolor"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ArrayExpression",
+                                      "elements": [
+                                        {
+                                          "type": "ObjectExpression",
+                                          "properties": [
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "query"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "sit amet",
+                                                "raw": "\"sit amet\""
+                                              }
+                                            },
+                                            {
+                                              "type": "Property",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false,
+                                              "key": {
+                                                "type": "Literal",
+                                                "value": "children"
+                                              },
+                                              "kind": "init",
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "foo.dolor",
+                                                "raw": "\"foo.dolor\""
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
       "children": [
         {
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "role", "value": "children" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "" }
           ],
           "children": [
             {
@@ -54,7 +365,7 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "placeholder",
+              "name": "slot",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
               ],
@@ -66,7 +377,7 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "placeholder",
+              "name": "slot",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "name", "value": "foo" }
               ],
@@ -78,49 +389,40 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
-            { "type": "mdxJsxAttribute", "name": "query" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "foo" }
           ],
           "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "bar" }]
+            },
             {
               "type": "mdxJsxFlowElement",
               "name": "slot",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
-                { "type": "mdxJsxAttribute", "name": "lang", "value": "js" },
-                { "type": "mdxJsxAttribute", "name": "meta", "value": null },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "parentPath",
-                  "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\basic.0.mdx"
-                },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "code",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": "const a = 1",
-                              "raw": "\"const a = 1\""
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
+                { "type": "mdxJsxAttribute", "name": "name", "value": "lorem" }
               ],
               "children": []
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "lorem" }
+              ],
+              "children": []
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "dolor" }
+              ],
+              "children": []
+            },
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "bar 2" }]
             }
           ]
         },
@@ -128,26 +430,38 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "name", "value": "foo" },
-            { "type": "mdxJsxAttribute", "name": "query", "value": "" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "foo.lorem" }
           ],
           "children": [
             {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "role",
-                  "value": "children"
-                }
-              ],
-              "children": [
-                {
-                  "type": "paragraph",
-                  "children": [{ "type": "text", "value": "bar" }]
-                }
-              ]
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "lorem" }]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "foo.lorem" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "lorem 2" }]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "foo.dolor" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "dolor" }]
             }
           ]
         }

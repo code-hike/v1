@@ -33,6 +33,19 @@ export function getArrayAttribute(value: any[]): any {
   }
 }
 
+export function getObjectAttribute(value: any): any {
+  return {
+    type: "mdxJsxAttributeValueExpression",
+    value: "",
+    data: program([
+      {
+        type: "ExpressionStatement",
+        expression: serialize(value),
+      },
+    ]),
+  }
+}
+
 function program(body: any[]): any {
   return {
     estree: {
@@ -45,6 +58,15 @@ function program(body: any[]): any {
 }
 
 function serialize(value: any): any {
+  // is null
+  if (value === null) {
+    return {
+      type: "Literal",
+      value: null,
+      raw: "null",
+    }
+  }
+
   // is array
   if (Array.isArray(value)) {
     return {

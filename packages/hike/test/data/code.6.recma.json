@@ -79,6 +79,18 @@
                 "attributes": [
                   {
                     "type": "JSXAttribute",
+                    "name": { "type": "JSXIdentifier", "name": "foo" },
+                    "value": {
+                      "type": "JSXExpressionContainer",
+                      "expression": {
+                        "type": "Literal",
+                        "value": "bar",
+                        "raw": "\"bar\""
+                      }
+                    }
+                  },
+                  {
+                    "type": "JSXAttribute",
                     "name": { "type": "JSXIdentifier", "name": "hike" },
                     "value": {
                       "type": "JSXExpressionContainer",
@@ -106,9 +118,117 @@
                             "key": { "type": "Literal", "value": "children" },
                             "kind": "init",
                             "value": {
-                              "type": "Literal",
-                              "value": "",
-                              "raw": "\"\""
+                              "type": "ArrayExpression",
+                              "elements": [
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    },
+                                    "selfClosing": false
+                                  },
+                                  "closingElement": {
+                                    "type": "JSXClosingElement",
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "p"
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "JSXExpressionContainer",
+                                      "expression": {
+                                        "type": "Literal",
+                                        "value": "Hello world!"
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [
+                                      {
+                                        "type": "JSXAttribute",
+                                        "name": {
+                                          "type": "JSXIdentifier",
+                                          "name": "name"
+                                        },
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "code"
+                                        }
+                                      }
+                                    ],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "slot"
+                                      }
+                                    },
+                                    "selfClosing": true
+                                  },
+                                  "closingElement": null,
+                                  "children": []
+                                },
+                                {
+                                  "type": "JSXElement",
+                                  "openingElement": {
+                                    "type": "JSXOpeningElement",
+                                    "attributes": [
+                                      {
+                                        "type": "JSXAttribute",
+                                        "name": {
+                                          "type": "JSXIdentifier",
+                                          "name": "name"
+                                        },
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "code"
+                                        }
+                                      }
+                                    ],
+                                    "name": {
+                                      "type": "JSXMemberExpression",
+                                      "object": {
+                                        "type": "JSXIdentifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "JSXIdentifier",
+                                        "name": "slot"
+                                      }
+                                    },
+                                    "selfClosing": true
+                                  },
+                                  "closingElement": null,
+                                  "children": []
+                                }
+                              ]
                             }
                           },
                           {
@@ -136,8 +256,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "// !from ./z.js 3:5",
-                                        "raw": "\"// !from ./z.js 3:5\""
+                                        "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
+                                        "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
                                       }
                                     },
                                     {
@@ -189,8 +309,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "# !from ./z.py",
-                                        "raw": "\"# !from ./z.py\""
+                                        "value": "// !Mark(2)",
+                                        "raw": "\"// !Mark(2)\""
                                       }
                                     },
                                     {
@@ -205,8 +325,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "py",
-                                        "raw": "\"py\""
+                                        "value": "jsonc",
+                                        "raw": "\"jsonc\""
                                       }
                                     },
                                     {
@@ -221,8 +341,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "python meta",
-                                        "raw": "\"python meta\""
+                                        "value": "THE CUSTOMER OBJECT",
+                                        "raw": "\"THE CUSTOMER OBJECT\""
                                       }
                                     }
                                   ]
@@ -242,130 +362,7 @@
                 "type": "JSXClosingElement",
                 "name": { "type": "JSXIdentifier", "name": "Hike" }
               },
-              "children": [
-                {
-                  "type": "JSXElement",
-                  "openingElement": {
-                    "type": "JSXOpeningElement",
-                    "attributes": [
-                      {
-                        "type": "JSXAttribute",
-                        "name": { "type": "JSXIdentifier", "name": "path" },
-                        "value": { "type": "Literal", "value": "" }
-                      }
-                    ],
-                    "name": {
-                      "type": "JSXMemberExpression",
-                      "object": {
-                        "type": "JSXIdentifier",
-                        "name": "_components"
-                      },
-                      "property": { "type": "JSXIdentifier", "name": "slot" }
-                    },
-                    "selfClosing": false
-                  },
-                  "closingElement": {
-                    "type": "JSXClosingElement",
-                    "name": {
-                      "type": "JSXMemberExpression",
-                      "object": {
-                        "type": "JSXIdentifier",
-                        "name": "_components"
-                      },
-                      "property": { "type": "JSXIdentifier", "name": "slot" }
-                    }
-                  },
-                  "children": [
-                    {
-                      "type": "JSXElement",
-                      "openingElement": {
-                        "type": "JSXOpeningElement",
-                        "attributes": [],
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": { "type": "JSXIdentifier", "name": "p" }
-                        },
-                        "selfClosing": false
-                      },
-                      "closingElement": {
-                        "type": "JSXClosingElement",
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": { "type": "JSXIdentifier", "name": "p" }
-                        }
-                      },
-                      "children": [
-                        {
-                          "type": "JSXExpressionContainer",
-                          "expression": { "type": "Literal", "value": "Hello!" }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "JSXElement",
-                      "openingElement": {
-                        "type": "JSXOpeningElement",
-                        "attributes": [
-                          {
-                            "type": "JSXAttribute",
-                            "name": { "type": "JSXIdentifier", "name": "name" },
-                            "value": { "type": "Literal", "value": "code" }
-                          }
-                        ],
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        },
-                        "selfClosing": true
-                      },
-                      "closingElement": null,
-                      "children": []
-                    },
-                    {
-                      "type": "JSXElement",
-                      "openingElement": {
-                        "type": "JSXOpeningElement",
-                        "attributes": [
-                          {
-                            "type": "JSXAttribute",
-                            "name": { "type": "JSXIdentifier", "name": "name" },
-                            "value": { "type": "Literal", "value": "code" }
-                          }
-                        ],
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        },
-                        "selfClosing": true
-                      },
-                      "closingElement": null,
-                      "children": []
-                    }
-                  ]
-                }
-              ],
+              "children": [],
               "data": { "_mdxExplicitJsx": true }
             }
           }

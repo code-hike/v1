@@ -32,13 +32,184 @@
     {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
-      "attributes": [],
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "hike",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "query" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "children" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "code" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ArrayExpression",
+                            "elements": [
+                              {
+                                "type": "ObjectExpression",
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "value"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "// !from ./z.js 3:5",
+                                      "raw": "\"// !from ./z.js 3:5\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "lang"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "js",
+                                      "raw": "\"js\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "meta"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "my meta",
+                                      "raw": "\"my meta\""
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "ObjectExpression",
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "value"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "# !from ./z.py",
+                                      "raw": "\"# !from ./z.py\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "lang"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "py",
+                                      "raw": "\"py\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "meta"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "python meta",
+                                      "raw": "\"python meta\""
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
       "children": [
         {
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "role", "value": "children" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "" }
           ],
           "children": [
             {
@@ -47,7 +218,7 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "placeholder",
+              "name": "slot",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
               ],
@@ -55,117 +226,9 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "placeholder",
+              "name": "slot",
               "attributes": [
                 { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
-            { "type": "mdxJsxAttribute", "name": "query" }
-          ],
-          "children": [
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
-                { "type": "mdxJsxAttribute", "name": "lang", "value": "js" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "meta",
-                  "value": "my meta"
-                },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "parentPath",
-                  "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\from.0.mdx"
-                },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "code",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": "// !from ./z.js 3:5",
-                              "raw": "\"// !from ./z.js 3:5\""
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
-            { "type": "mdxJsxAttribute", "name": "query" }
-          ],
-          "children": [
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "role", "value": "code" },
-                { "type": "mdxJsxAttribute", "name": "lang", "value": "py" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "meta",
-                  "value": "python meta"
-                },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "parentPath",
-                  "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\from.0.mdx"
-                },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "code",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": "# !from ./z.py",
-                              "raw": "\"# !from ./z.py\""
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
               ],
               "children": []
             }

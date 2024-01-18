@@ -45,7 +45,12 @@
             { "type": "text", "value": "!" }
           ]
         },
-        { "type": "code", "lang": "js", "meta": null, "value": "const a = 1" },
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": null,
+          "value": "const a = 1\r\nconst b = 1"
+        },
         {
           "type": "paragraph",
           "children": [{ "type": "text", "value": "More" }]
@@ -58,6 +63,42 @@
         {
           "type": "paragraph",
           "children": [{ "type": "text", "value": "bar" }]
+        },
+        {
+          "type": "heading",
+          "depth": 3,
+          "children": [{ "type": "text", "value": "!lorem ipsum" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "lorem" }]
+        },
+        {
+          "type": "heading",
+          "depth": 3,
+          "children": [{ "type": "text", "value": "!lorem ipsum" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "lorem 2" }]
+        },
+        {
+          "type": "heading",
+          "depth": 3,
+          "children": [{ "type": "text", "value": "!dolor sit amet" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "dolor" }]
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [{ "type": "text", "value": "/" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "bar 2" }]
         }
       ],
       "data": { "_mdxExplicitJsx": true }

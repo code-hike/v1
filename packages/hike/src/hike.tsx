@@ -2,16 +2,14 @@ import React, { ComponentType } from "react"
 import { DebugHike } from "./debug-hike.js"
 
 export function Hike({
-  children,
   as,
+  hike,
   ...rest
 }: {
   children: React.ReactNode
   as?: ComponentType<{ hike: HikeSection<string> }>
   [key: string]: any
 }) {
-  const hike = getStepsFromChildren(children)
-
   if (!as || rest.debug) {
     return <DebugHike hike={hike} />
   }

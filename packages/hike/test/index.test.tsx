@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest"
-import { transformAllHikes } from "../src/remark"
+import { transformAllHikes, transformAllRecmaHikes } from "../src/remark"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import path from "node:path"
@@ -19,17 +19,13 @@ testNames.forEach((name) => {
       await testCompilation(name, mdx, mdxPath)
     })
     test(`static render`, async () => {
-      const { default: MDXContent } = await import(`./data/${name}.6.out.jsx`)
+      const { default: MDXContent } = await import(`./data/${name}.7.out.jsx`)
       await testRender(MDXContent, name)
     })
   })
 })
 
 async function testRender(MDXContent: any, name: string) {
-  const { children } = MDXContent().props
-  const slots = getStepsFromChildren(children)
-  expect(slots).toMatchFileSnapshot(`./data/${name}.7.slots.jsx`)
-
   const html = await prettier.format(renderToStaticMarkup(<MDXContent />), {
     parser: "html",
   })
@@ -51,19 +47,30 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
         [(n) => logRemark(n), { name: name + ".3.remark" }],
       ],
       rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],
-      recmaPlugins: [[(n) => logRemark(n), { name: name + ".5.recma" }]],
+      recmaPlugins: [
+        [(n) => logRemark(n), { name: name + ".5.recma" }],
+        [hikeRecma, {}],
+        [(n) => logRemark(n), { name: name + ".6.recma" }],
+      ],
     },
   )
   const out = await prettier.format(String(result), {
     semi: false,
     parser: "babel",
   })
-  await expect(out).toMatchFileSnapshot(`./data/${name}.6.out.jsx`)
+  await expect(out).toMatchFileSnapshot(`./data/${name}.7.out.jsx`)
 }
 
 const hikeRemark = (config) => {
   return async (tree, file) => {
     tree = (await transformAllHikes(tree, config, file)) as any
+    return tree as any
+  }
+}
+
+const hikeRecma = (config) => {
+  return async (tree, file) => {
+    tree = transformAllRecmaHikes(tree, config) as any
     return tree as any
   }
 }
