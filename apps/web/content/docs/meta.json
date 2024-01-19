@@ -1,0 +1,11 @@
+{
+  "title": "Docs",
+  "pages": [
+    "index",
+    "---Guides---",
+    "...guides",
+    "---API---",
+    "...api",
+    "---Components---"
+  ]
+}
