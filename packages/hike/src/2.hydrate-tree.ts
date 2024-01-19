@@ -17,14 +17,14 @@ export type CodeBlock = {
   parentPath?: string
 }
 
-export function hydrateTree(tree: HikeTree, prefix: string) {
+export function hydrateTree(tree: HikeTree, mdxPath?: string) {
   const { sections, children, code } = tree
   const path: string[] = []
   return {
     path,
     query: "",
     name: "",
-    sections: sections.map((section) => hydrateSection(section, path, prefix)),
+    sections: sections.map((section) => hydrateSection(section, path, mdxPath)),
     children: children,
     code: code.map((code) => parseCode(code)),
   }
@@ -33,7 +33,7 @@ export function hydrateTree(tree: HikeTree, prefix: string) {
 function hydrateSection(
   section: RemarkSection,
   parentPath: string[],
-  prefix: string,
+  mdxPath?: string,
 ): HydratedSection {
   const { name, query, sections, children, code } = section
   const path = [...parentPath, name]
@@ -41,16 +41,17 @@ function hydrateSection(
     path,
     name,
     query,
-    sections: sections.map((section) => hydrateSection(section, path, prefix)),
+    sections: sections.map((section) => hydrateSection(section, path, mdxPath)),
     children: children,
-    code: code.map((code) => parseCode(code)),
+    code: code.map((code) => parseCode(code, mdxPath)),
   }
 }
 
-function parseCode(code: Code) {
+function parseCode(code: Code, mdxPath?: string) {
   return {
     value: code.value,
     lang: code.lang,
     meta: code.meta,
+    parentPath: mdxPath,
   }
 }

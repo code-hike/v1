@@ -38,7 +38,7 @@ export async function transformAllHikes(
 async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
   const prefix = "!"
   const tree = listToTree(node, prefix)
-  const hydratedTree = hydrateTree(tree, prefix)
+  const hydratedTree = hydrateTree(tree, mdxPath)
   const { children, attributes } = treeToAttribute(hydratedTree)
 
   node.children = children
