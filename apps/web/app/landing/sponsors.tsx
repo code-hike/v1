@@ -8,7 +8,15 @@ import Image from "next/image"
 import Link from "next/link"
 import sponsorData from "./sponsors.json"
 
-export function TopSponsors({ title = "Top Sponsors", scale = 1 }) {
+export function TopSponsors({
+  title = "Top Sponsors",
+  scale = 1,
+  className,
+}: {
+  title?: string
+  scale?: number
+  className?: string
+}) {
   // const sponsors = JSON.parse(
   //   await fs.readFile("./sponsors/sponsors.json", "utf-8"),
   // )
@@ -17,9 +25,9 @@ export function TopSponsors({ title = "Top Sponsors", scale = 1 }) {
   // const middle = sponsors.slice(4, 20)
   // const bottom = sponsors.slice(20)
   return (
-    <section className="">
+    <section className={className}>
       <h3 className="text-center pb-4 text-primary/60 text-md">{title}</h3>
-      <div className="flex gap-4 pb-8 justify-center invert dark:invert-0">
+      <div className="flex gap-4 justify-center invert dark:invert-0">
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
           href="https://github.blog/2023-04-12-github-accelerator-our-first-cohort-and-whats-next/"
@@ -60,20 +68,19 @@ export function TopSponsors({ title = "Top Sponsors", scale = 1 }) {
 }
 
 export async function AllSponsors({ className }: { className?: string }) {
-  const sponsors = sponsorData.filter(
-    (s: any) => !["drivly", "uidotdev", "github", "facebook"].includes(s.name),
-  )
+  const sponsors = sponsorData
 
   return (
     <section className={className}>
-      <TopSponsors title="Sponsors" scale={1.1} />
+      <h3 className="text-center pb-8 text-primary/60 text-lg">Sponsors</h3>
+      {/* <TopSponsors title="Sponsors" scale={1.1} /> */}
       <Row sponsors={sponsors.slice(0, 10)} size={66} />
       <Row sponsors={sponsors.slice(10, 20)} size={66} />
       <Row sponsors={sponsors.slice(20, 35)} size={42} />
       <Row sponsors={sponsors.slice(35, 50)} size={42} />
       <Row sponsors={sponsors.slice(50, 70)} size={32} />
       <Row sponsors={sponsors.slice(70, 90)} size={32} />
-      {/* <Row sponsors={sponsors.slice(90, 110)} size={32} /> */}
+      <Row sponsors={sponsors.slice(90, 110)} size={32} />
 
       <Link
         href="https://github.com/sponsors/code-hike"
