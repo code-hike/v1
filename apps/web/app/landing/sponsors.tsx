@@ -17,13 +17,6 @@ export function TopSponsors({
   scale?: number
   className?: string
 }) {
-  // const sponsors = JSON.parse(
-  //   await fs.readFile("./sponsors/sponsors.json", "utf-8"),
-  // )
-
-  // const top = sponsors.slice(0, 4)
-  // const middle = sponsors.slice(4, 20)
-  // const bottom = sponsors.slice(20)
   return (
     <section className={className}>
       <h3 className="text-center pb-4 text-primary/60 text-md">{title}</h3>
@@ -34,8 +27,20 @@ export function TopSponsors({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image src={GHLogo} alt="GitHub" height={36 * scale} />
-          <Image src={GHText} alt="GitHub" height={36 * scale} />
+          <Image
+            src={GHLogo}
+            alt="GitHub logo"
+            height={36 * scale}
+            placeholder="empty"
+            priority={true}
+          />
+          <Image
+            src={GHText}
+            alt="GitHub"
+            height={36 * scale}
+            placeholder="empty"
+            priority={true}
+          />
         </a>
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
@@ -43,7 +48,13 @@ export function TopSponsors({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image src={MetaLogo} alt="Meta" height={36 * scale} />
+          <Image
+            src={MetaLogo}
+            alt="Meta logo"
+            height={36 * scale}
+            placeholder="empty"
+            priority={true}
+          />
         </a>
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
@@ -51,7 +62,13 @@ export function TopSponsors({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image src={UidevLogo} alt="ui.dev" height={28 * scale} />
+          <Image
+            src={UidevLogo}
+            alt="ui.dev logo"
+            height={28 * scale}
+            placeholder="empty"
+            priority={true}
+          />
           <span className="text-2xl text-white">ui.dev</span>
         </a>
         <a
@@ -60,7 +77,13 @@ export function TopSponsors({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image src={DrivlyLogo} alt="Drivly" height={48 * scale} />
+          <Image
+            src={DrivlyLogo}
+            alt="Drivly logo"
+            height={48 * scale}
+            placeholder="empty"
+            priority={true}
+          />
         </a>
       </div>
     </section>
@@ -83,7 +106,7 @@ export async function AllSponsors({ className }: { className?: string }) {
       <Row sponsors={sponsors.slice(90, 110)} size={32} />
 
       <Link
-        href="https://github.com/sponsors/code-hike"
+        href="https://github.com/sponsors/code-hike?metadata_source=landing"
         className="block border text-primary border-primary/50 rounded p-2 w-48 mx-auto mt-8 text-center hover:border-primary transition-colors"
       >
         Sponsor Code Hike
@@ -102,12 +125,13 @@ function Row({ sponsors, size }: { sponsors: any[]; size: number }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
+          <Image
             className="rounded grayscale-[80%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-150 cursor-pointer"
             src={`https://github.com/${s.name}.png`}
             alt={s.name}
             height={size}
             width={size}
+            placeholder="empty"
           />
         </a>
       ))}
@@ -128,6 +152,7 @@ export function PoweredBy({ className }: { className?: string }) {
         href="https://vercel.com?utm_source=codehike&utm_campaign=oss"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Vercel"
         className="grayscale-[50%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all"
       >
         <svg
@@ -147,6 +172,7 @@ export function PoweredBy({ className }: { className?: string }) {
         href="https://www.gitpod.io/"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Gitpod"
         className="grayscale-[80%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all"
       >
         <Gitpod />
@@ -156,6 +182,7 @@ export function PoweredBy({ className }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         style={{ marginBottom: -2 }}
+        aria-label="BrowserStack"
         className="grayscale-[80%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all"
       >
         <BrowserStack />

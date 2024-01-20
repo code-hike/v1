@@ -7,6 +7,16 @@ const withMDX = createNextDocsMDX({
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 }
 
 export default withMDX(config)
