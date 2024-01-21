@@ -96,6 +96,9 @@ importers:
       '@types/mdx':
         specifier: ^2.0.10
         version: 2.0.10
+      codehike:
+        specifier: workspace:*
+        version: link:../../packages/codehike
       lucide-react:
         specifier: ^0.303.0
         version: 0.303.0(react@18.2.0)

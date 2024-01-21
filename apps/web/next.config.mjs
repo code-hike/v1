@@ -1,7 +1,12 @@
 import createNextDocsMDX from "next-docs-mdx/config"
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
 const withMDX = createNextDocsMDX({
-  mdxOptions: {},
+  mdxOptions: {
+    remarkPlugins: [remarkCodeHike],
+    recmaPlugins: [recmaCodeHike],
+    jsx: true,
+  },
 })
 
 /** @type {import('next').NextConfig} */
