@@ -18,7 +18,7 @@ export default async function Page({
 
   return (
     <DocsPage toc={page.data.exports.toc}>
-      <DocsBody>
+      <DocsBody className="min-h-screen">
         <h1>{page.data.title}</h1>
         <MDX />
       </DocsBody>

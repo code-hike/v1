@@ -4,34 +4,37 @@ import { blog } from "../source"
 export default function BlogIndex() {
   const pages = blog.getPages()
 
-  const sortedPages = pages.sort((a, b) => {
-    return b.data.date.getTime() - a.data.date.getTime()
-  })
+  const month = getMonths()
 
   return (
-    <main className="">
-      {/* <div className="absolute inset-0 right-[50vw] flex justify-center items-center -z-10 bg-pink-900">
-        <h1>Blog</h1>
-      </div> */}
-      <div className="max-w-md mx-auto my-12">
-        <h1 className="p-4 text-3xl mb-16 font-bold">Code Hike's Blog</h1>
-        {sortedPages.map(({ url, data }) => (
-          <Link
-            href={url}
-            key={url}
-            className="mb-8 block hover:bg-primary/10 p-4 rounded-md"
-          >
-            <h3 className="text-sm text-zinc-600 dark:text-zinc-400">
-              {data.date.toDateString().slice(4)}
-            </h3>
-            <h2 className="text-xl font-bold">{data.title}</h2>
-            <p className="text-zinc-600 dark:text-zinc-400">
-              {data.description}
-            </p>
-          </Link>
-        ))}
-      </div>
+    <main className="max-w-md mx-auto my-12 min-h-screen">
+      {month.map((m) => (
+        <MonthGroup key={m.month + m.year} month={m} />
+      ))}
     </main>
+  )
+}
+
+export function MonthGroup({ month }: { month: Month }) {
+  const date = new Date(month.year, month.month, 1)
+  return (
+    <div className="mb-12">
+      <h2 className="text-sm text-primary/60 mb-4 px-4 uppercase">
+        {date.toLocaleString("default", { month: "long" })} {month.year}
+      </h2>
+      {month.pages.map((page) => (
+        <Link
+          href={page.url}
+          key={page.url}
+          className="block hover:bg-primary/10 p-4 rounded-md"
+        >
+          <h2 className="text-xl font-bold">{page.data.title}</h2>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            {page.data.description}
+          </p>
+        </Link>
+      ))}
+    </div>
   )
 }
 
@@ -40,4 +43,51 @@ export function generateMetadata() {
     title: "Blog | Code Hike",
     description: "Code Hike's blog",
   }
+}
+
+type Month = {
+  month: number
+  year: number
+  pages: ReturnType<typeof blog.getPages>
+}
+
+function getMonths(): Month[] {
+  const pages = blog.getPages()
+  const months: ReturnType<typeof getMonths> = []
+
+  pages.forEach((page) => {
+    const date = page.data.date
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    const existingMonth = months.find(
+      (m) => m.month === month && m.year === year,
+    )
+    if (existingMonth) {
+      existingMonth.pages.push(page)
+    } else {
+      months.push({
+        month,
+        year,
+        pages: [page],
+      })
+    }
+  })
+
+  // Sort months
+  months.sort((a, b) => {
+    if (a.year !== b.year) {
+      return b.year - a.year
+    }
+    return b.month - a.month
+  })
+
+  // Sort pages in each month
+  months.forEach((month) => {
+    month.pages.sort((a, b) => {
+      return b.data.date.getTime() - a.data.date.getTime()
+    })
+  })
+
+  return months
 }
