@@ -4,7 +4,7 @@
 
 /* hide search */
 [aria-label="Open Search"] {
-  /* display: none; */
+  display: none;
 }
 
 [aria-label="Open Search"] + button {

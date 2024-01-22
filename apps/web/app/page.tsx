@@ -31,7 +31,7 @@ export default function HomePage() {
 
       <TopSponsors className="mb-24" />
 
-      <div className="w-full h-96 bg-primary/10 flex justify-center items-center rounded-lg mb-16 text-primary/60">
+      <div className="w-full h-96 bg-primary/10 flex justify-center items-center md:rounded-lg  mb-16 text-primary/60">
         Code Hike Visualization
       </div>
 
