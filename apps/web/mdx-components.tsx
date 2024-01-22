@@ -15,7 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             annotationPrefix: "!",
             mdxPath: props.codeblock.parentPath,
           }}
-          className="px-4 py-2 !bg-zinc-800/50 leading-normal overflow-auto w-full whitespace-pre-wrap"
+          className="px-4 py-2 !bg-zinc-900 leading-normal overflow-auto w-full whitespace-pre-wrap"
         />
       )
     },

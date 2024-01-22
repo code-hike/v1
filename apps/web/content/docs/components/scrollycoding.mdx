@@ -5,12 +5,15 @@ description: Scroll based code walkthroughs
 
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import Preview from "../../components/scrollycoding/source.mdx"
+import { PreviewContainer } from "../../../ui/preview-container"
 
 Scroll-based code walkthroughs.
 
 <Tabs items={["Preview", "MDX", "Code"]}>
 <Tab value="Preview">
+<PreviewContainer>
   <Preview />
+</PreviewContainer>
 </Tab>
 <Tab value="MDX">
 
