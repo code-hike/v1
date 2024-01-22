@@ -12,7 +12,7 @@ export function NavBar() {
         </span>
       }
       enableSidebar={pathname === "/docs" || pathname.startsWith("/docs/")}
-      collapsibleSidebar={false}
+      collapsibleSidebar={true}
       links={[
         {
           href: "https://twitter.com/codehike_",
@@ -43,7 +43,7 @@ export function NavBar() {
       ]}
     >
       <span className="text-sm bg-yellow-200 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-200 rounded-lg px-2">
-        v1: under development
+        under development
       </span>
     </Nav>
   )

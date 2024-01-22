@@ -291,6 +291,18 @@
                                         "value": "my meta",
                                         "raw": "\"my meta\""
                                       }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "parentPath"
+                                      },
+                                      "kind": "init",
+                                      "value": { "type": "Literal" }
                                     }
                                   ]
                                 },
@@ -344,6 +356,18 @@
                                         "value": "THE CUSTOMER OBJECT",
                                         "raw": "\"THE CUSTOMER OBJECT\""
                                       }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "parentPath"
+                                      },
+                                      "kind": "init",
+                                      "value": { "type": "Literal" }
                                     }
                                   ]
                                 }

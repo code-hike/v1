@@ -3,24 +3,27 @@ title: Scrollycoding
 description: Scroll based code walkthroughs
 ---
 
-import { Hike } from "codehike"
+import { Tab, Tabs } from "next-docs-ui/components/tabs"
+import Preview from "../../components/scrollycoding/source.mdx"
 
-## Target Audience
+Scroll-based code walkthroughs.
 
-The most common use cases for Code Hike are technical docs or blogs. But it could be used for any content that's written in Markdown.
+<Tabs items={["Preview", "MDX", "Code"]}>
+<Tab value="Preview">
+  <Preview />
+</Tab>
+<Tab value="MDX">
 
-The code components can also be used standalone.
-
-<Hike>
-
-Hello
-
-```js foo.js
-
+```mdx
+{/* !from  ../../components/scrollycoding/source.mdx */}
 ```
 
-</Hike>
+</Tab>
+<Tab value="Code">
 
-## Do I need React?
+```tsx
+// !from  ../../components/scrollycoding/scrollycoding.tsx
+```
 
-Yes.
+</Tab>
+</Tabs>

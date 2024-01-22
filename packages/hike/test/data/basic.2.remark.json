@@ -30,6 +30,12 @@
       }
     },
     {
+      "type": "code",
+      "lang": "js",
+      "meta": null,
+      "value": "console.log(\"hello\")\r\nconsole.log(\"hello\")"
+    },
+    {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
       "attributes": [

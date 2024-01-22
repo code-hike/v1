@@ -143,7 +143,7 @@ importers:
         specifier: 3.3.7
         version: 3.3.7
       typescript:
-        specifier: 5.3.3
+        specifier: ^5
         version: 5.3.3
 
   packages/code:

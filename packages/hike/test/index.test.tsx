@@ -1,5 +1,9 @@
 import { expect, test, describe } from "vitest"
-import { transformAllHikes, transformAllRecmaHikes } from "../src/remark"
+import {
+  transformAllHikes,
+  transformAllRecmaHikes,
+  transformAllCode,
+} from "../src/remark"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import path from "node:path"
@@ -64,6 +68,7 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
 const hikeRemark = (config) => {
   return async (tree, file) => {
     tree = (await transformAllHikes(tree, config, file)) as any
+    tree = transformAllCode(tree, config, file) as any
     return tree as any
   }
 }

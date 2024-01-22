@@ -2,8 +2,6 @@ import Link from "next/link"
 import { blog } from "../source"
 
 export default function BlogIndex() {
-  const pages = blog.getPages()
-
   const month = getMonths()
 
   return (
@@ -15,7 +13,7 @@ export default function BlogIndex() {
   )
 }
 
-export function MonthGroup({ month }: { month: Month }) {
+function MonthGroup({ month }: { month: Month }) {
   const date = new Date(month.year, month.month, 1)
   return (
     <div className="mb-12">

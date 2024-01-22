@@ -134,6 +134,18 @@
                                       "value": "my meta",
                                       "raw": "\"my meta\""
                                     }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "parentPath"
+                                    },
+                                    "kind": "init",
+                                    "value": { "type": "Literal" }
                                   }
                                 ]
                               },
@@ -187,6 +199,18 @@
                                       "value": "python meta",
                                       "raw": "\"python meta\""
                                     }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "parentPath"
+                                    },
+                                    "kind": "init",
+                                    "value": { "type": "Literal" }
                                   }
                                 ]
                               }

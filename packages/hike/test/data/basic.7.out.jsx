@@ -6,15 +6,27 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Foo } = _components
+    { Code, Foo } = _components
+  if (!Code) _missingMdxReference("Code", true)
   if (!Foo) _missingMdxReference("Foo", true)
   return (
-    <Foo
-      hike={{
-        query: "",
-        children: [<_components.p>{"hey"}</_components.p>],
-      }}
-    ></Foo>
+    <>
+      <Code
+        codeblock={{
+          value: 'console.log("hello")\r\nconsole.log("hello")',
+          lang: "js",
+          meta: null,
+          parentPath: "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\basic.0.mdx",
+        }}
+      />
+      {"\n"}
+      <Foo
+        hike={{
+          query: "",
+          children: [<_components.p>{"hey"}</_components.p>],
+        }}
+      ></Foo>
+    </>
   )
 }
 export default function MDXContent(props = {}) {

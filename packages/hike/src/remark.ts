@@ -4,13 +4,49 @@ import { Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { listToTree } from "./1.remark-list-to-tree.js"
-import { hydrateTree } from "./2.hydrate-tree.js"
+import { hydrateTree, parseCode } from "./2.hydrate-tree.js"
 import { treeToAttribute } from "./3.remark-tree-to-attribute.js"
 
 import { SKIP, visit } from "estree-util-visit"
 import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
+import { getObjectAttribute } from "./estree.js"
 
 type Config = {}
+
+export function transformAllCode(
+  node: Root | Content,
+  config?: Config,
+  file?: any,
+) {
+  const mdxPath = file?.history
+    ? file.history[file.history.length - 1]
+    : undefined
+
+  if (node.type === "code") {
+    const codeblock = parseCode(node, mdxPath)
+    return {
+      type: "mdxJsxFlowElement",
+      name: "Code",
+      attributes: [
+        {
+          type: "mdxJsxAttribute",
+          name: "codeblock",
+          value: getObjectAttribute(codeblock),
+        },
+      ],
+      children: [],
+    }
+  }
+
+  if ("children" in node && node.children.length > 0) {
+    // @ts-ignore
+    node.children = node.children.map((child) =>
+      transformAllCode(child, config, file),
+    )
+  }
+
+  return node
+}
 
 export async function transformAllHikes(
   node: Root | Content,

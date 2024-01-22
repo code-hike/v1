@@ -17,7 +17,10 @@ export default async function Page({
   const MDX = page.data.exports.default
 
   return (
-    <DocsPage toc={page.data.exports.toc}>
+    <DocsPage
+      tableOfContent={{ enabled: false }}
+      // toc={page.data.exports.toc}
+    >
       <DocsBody className="min-h-screen">
         <h1>{page.data.title}</h1>
         <MDX />

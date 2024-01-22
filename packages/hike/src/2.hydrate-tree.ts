@@ -47,7 +47,7 @@ function hydrateSection(
   }
 }
 
-function parseCode(code: Code, mdxPath?: string) {
+export function parseCode(code: Code, mdxPath?: string) {
   return {
     value: code.value,
     lang: code.lang,
