@@ -15,7 +15,7 @@ export function Scrollycoding({ hike }: { hike: any }) {
           </Step>
         ))}
       </div>
-      <div className="w-[40vw] bg-zinc-900">
+      <div className="w-[40vw] max-w-xl bg-zinc-900">
         <ScrollySticker className="top-16 sticky" stickers={stickers} />
       </div>
     </ScrollyRoot>

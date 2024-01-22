@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* hide search */
+[aria-label="Open Search"] {
+  /* display: none; */
+}
+
+[aria-label="Open Search"] + button {
+  display: none;
+  /* outline: red 1px solid; */
+}
