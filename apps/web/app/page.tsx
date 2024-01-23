@@ -15,18 +15,12 @@ export default function HomePage() {
       </h2>
 
       <div className="flex w-full justify-center gap-4 pb-16">
-        <Link
-          href="docs"
-          className="border text-primary border-primary/50 rounded p-2 w-32 text-center hover:border-primary transition-colors"
-        >
+        <ButtonLink href="docs" className="w-32">
           Docs
-        </Link>
-        <Link
-          href="play"
-          className="border text-primary border-primary/50 rounded p-2 w-32 text-center hover:border-primary transition-colors"
-        >
+        </ButtonLink>
+        <ButtonLink href="play" className="w-32">
           Playground
-        </Link>
+        </ButtonLink>
       </div>
 
       <TopSponsors className="mb-24" />
@@ -35,9 +29,40 @@ export default function HomePage() {
         Code Hike Visualization
       </div>
 
+      <div className="w-full mb-16">
+        <ButtonLink
+          href="docs/components/scrollycoding"
+          className="mx-auto w-36 block"
+        >
+          See it in action
+        </ButtonLink>
+      </div>
+
       <AllSponsors className="mb-24" />
 
       <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
     </main>
+  )
+}
+
+function ButtonLink({
+  href,
+  children,
+  className,
+}: {
+  className?: string
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <Link
+      href={href}
+      className={
+        "border border-primary/50 rounded p-2 text-center hover:border-primary transition-colors " +
+        className
+      }
+    >
+      {children}
+    </Link>
   )
 }

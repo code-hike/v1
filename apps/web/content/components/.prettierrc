@@ -8,6 +8,13 @@
         "printWidth": 42,
         "semi": false
       }
+    },
+    {
+      "files": ["*.tsx"],
+      "options": {
+        "printWidth": 60,
+        "semi": false
+      }
     }
   ]
 }

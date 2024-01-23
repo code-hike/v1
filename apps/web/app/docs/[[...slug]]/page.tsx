@@ -1,5 +1,6 @@
 import { docs } from "@/app/source"
 import type { Metadata } from "next"
+import { Callout } from "next-docs-ui/components/callout"
 import { RollButton } from "next-docs-ui/components/roll-button"
 import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
@@ -25,6 +26,11 @@ export default async function Page({
       <DocsBody className="min-h-screen">
         <RollButton />
         <h1>{page.data.title}</h1>
+        <Callout title="Unstable API" type="warn">
+          This version of Code Hike is under development. Proceed at your own
+          risk.
+        </Callout>
+
         <MDX />
       </DocsBody>
     </DocsPage>

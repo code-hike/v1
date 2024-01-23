@@ -3,6 +3,55 @@ title: Getting Started
 description: Getting started with Code Hike
 ---
 
-```js
-// TO DO
+import { Step, Steps } from "next-docs-ui/components/steps"
+
+## Installation
+
+<Steps>
+<Step>
+
+### Meta Framework
+
+To take full advantage of Code Hike, it's best to use it from a meta-framework supporting React Server Components. At the moment, this means [Next.js with App Router](https://nextjs.org/docs/app).
+
+If you are building a documentation site, I recommend [Fuma Docs](https://github.com/fuma-nama/next-docs), which is what this site is built with.
+
+</Step>
+
+<Step>
+
+### MDX
+
+Make sure to have MDX set up. If you are using Next.js, you can follow [this guide](https://nextjs.org/docs/app/building-your-application/configuring/mdx).
+
+</Step>
+
+<Step>
+
+### Install Code Hike
+
+```bash
+npm install codehike@alpha
 ```
+
+</Step>
+
+<Step>
+
+### Add MDX plugins
+
+This depends on your MDX setup. You need to add these two plugins and set `jsx` to `true`:
+
+```js next.config.mjs
+// next.config.mjs
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
+
+const mdxOptions = {
+  remarkPlugins: [remarkCodeHike],
+  recmaPlugins: [recmaCodeHike],
+  jsx: true,
+}
+```
+
+</Step>
+</Steps>
