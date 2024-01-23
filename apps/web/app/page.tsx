@@ -37,7 +37,7 @@ export default function HomePage() {
 
       <AllSponsors className="mb-24" />
 
-      <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full" />
+      <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
     </main>
   )
 }
