@@ -25,11 +25,8 @@ export default function HomePage() {
 
       <TopSponsors className="mb-24" />
 
-      <div className="w-full h-96 bg-primary/10 flex justify-center items-center md:rounded-lg  mb-16 text-primary/60">
-        Code Hike Visualization
-      </div>
-
-      <div className="w-full mb-16">
+      <div className="w-full h-96 bg-primary/10 flex flex-col justify-evenly items-center md:rounded-lg  mb-16 text-primary/60">
+        TODO: Code Hike Visualization
         <ButtonLink
           href="docs/components/scrollycoding"
           className="mx-auto w-36 block"
