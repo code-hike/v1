@@ -1,0 +1,57 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Hike } from \"../../src/Hike\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Hike" },
+                  "local": { "type": "Identifier", "name": "Hike" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/Hike",
+                "raw": "\"../../src/Hike\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Hike",
+      "attributes": [],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "Hello!" }]
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": "my meta",
+          "value": "// !from ./z.js 3:5"
+        },
+        {
+          "type": "code",
+          "lang": "py",
+          "meta": "python meta",
+          "value": "# !from ./z.py"
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    }
+  ]
+}

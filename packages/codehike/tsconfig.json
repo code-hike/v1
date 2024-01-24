@@ -9,7 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
-    // try NodeNext to enforce importing with file extension
     "moduleResolution": "NodeNext",
     "noUnusedLocals": false,
     "noUnusedParameters": false,

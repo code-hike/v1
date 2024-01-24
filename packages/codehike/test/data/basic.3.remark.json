@@ -1,0 +1,190 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "mdxjsEsm",
+      "value": "import { Hike } from \"../../src/Hike\"",
+      "data": {
+        "estree": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ImportDeclaration",
+              "specifiers": [
+                {
+                  "type": "ImportSpecifier",
+                  "imported": { "type": "Identifier", "name": "Hike" },
+                  "local": { "type": "Identifier", "name": "Hike" }
+                }
+              ],
+              "source": {
+                "type": "Literal",
+                "value": "../../src/Hike",
+                "raw": "\"../../src/Hike\""
+              }
+            }
+          ],
+          "sourceType": "module",
+          "comments": []
+        }
+      }
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Code",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "codeblock",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "value" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "console.log(\"hello\")\r\nconsole.log(\"hello\")",
+                            "raw": "\"console.log(\\\"hello\\\")\\r\\nconsole.log(\\\"hello\\\")\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "lang" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "js",
+                            "raw": "\"js\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "meta" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": null,
+                            "raw": "null"
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "parentPath" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\basic.0.mdx",
+                            "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\hike\\\\test\\\\data\\\\basic.0.mdx\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "Foo",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "__hike",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "query" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "children" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": [
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "hey" }]
+            }
+          ]
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    }
+  ]
+}
