@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react"
 
 import React from "react"
 
-export function Property({ property }: { property: HikeSection }) {
+export function Property({ property }: { property: any }) {
   const [name, ...rest] = property.query.split(" ")
   const type = rest.join(" ")
 
@@ -20,7 +20,7 @@ export function Property({ property }: { property: HikeSection }) {
   )
 }
 
-export function ExtraProperty({ property }: { property: HikeSection }) {
+export function ExtraProperty({ property }: { property: any }) {
   const [collapsed, setCollapsed] = React.useState(true)
   const [name, ...rest] = property.query.split(" ")
   const type = rest.join(" ")

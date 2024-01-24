@@ -17,8 +17,7 @@ type Options = {}
 export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
   return async (root, file) => {
     let tree = (await transformAllHikes(root, config, file)) as any
-    // tree = await codeTransform(tree, config as any)
-    tree = await transformAllCode(tree, config as any, file)
+    tree = transformAllCode(tree, config as any, file)
     return tree as any
   }
 }
@@ -72,9 +71,7 @@ export async function transformAllHikes(
   config?: Config,
   file?: any,
 ) {
-  const mdxPath = file?.history
-    ? file.history[file.history.length - 1]
-    : undefined
+  const mdxPath = file?.history ? file.history[file.history.length - 1] : null
 
   if (node.type === "mdxJsxFlowElement" && node.name === "Hike") {
     return await transformRemarkHike(node, mdxPath)

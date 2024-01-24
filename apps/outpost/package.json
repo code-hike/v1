@@ -28,6 +28,7 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
+    "estree-util-to-js": "^2.0.0",
     "@code-hike/lighter": "0.9.0",
     "@types/node": "^20",
     "@types/react": "^18",

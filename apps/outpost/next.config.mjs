@@ -1,5 +1,6 @@
 import nextMDX from "@next/mdx"
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
+import { toJs, jsx } from "estree-util-to-js"
 
 import theme from "./theme.mjs"
 // const theme = "material-default"
@@ -13,7 +14,10 @@ const withMDX = nextMDX({
       // remark,
     ],
     rehypePlugins: [],
-    recmaPlugins: [[recmaCodeHike, {}]],
+    recmaPlugins: [
+      recmaCodeHike,
+      // logRecma
+    ],
     jsx: true,
   },
 })
@@ -26,3 +30,12 @@ const nextConfig = {
 }
 
 export default withMDX(nextConfig)
+
+function logRecma() {
+  return (tree, file) => {
+    const output = toJs(tree, { handlers: jsx })
+    console.log(`\n~~~${file?.history.join(">")}`)
+    console.log(output.value.trim())
+    console.log(`~~~\n`)
+  }
+}

@@ -26,7 +26,7 @@ export function hydrateTree(tree: HikeTree, mdxPath?: string) {
     name: "",
     sections: sections.map((section) => hydrateSection(section, path, mdxPath)),
     children: children,
-    code: code.map((code) => parseCode(code)),
+    code: code.map((code) => parseCode(code, mdxPath)),
   }
 }
 
@@ -49,7 +49,7 @@ function hydrateSection(
 
 export function parseCode(code: Code, mdxPath?: string) {
   return {
-    value: code.value,
+    value: code.value || "",
     lang: code.lang,
     meta: code.meta,
     parentPath: mdxPath,

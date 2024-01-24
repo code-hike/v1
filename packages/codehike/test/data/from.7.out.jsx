@@ -20,13 +20,15 @@ function _createMdxContent(props) {
             value: "// !from ./z.js 3:5",
             lang: "js",
             meta: "my meta",
-            parentPath: undefined,
+            parentPath:
+              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
           },
           {
             value: "# !from ./z.py",
             lang: "py",
             meta: "python meta",
-            parentPath: undefined,
+            parentPath:
+              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
           },
         ],
       }}

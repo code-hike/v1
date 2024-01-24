@@ -290,7 +290,11 @@
                                         "value": "parentPath"
                                       },
                                       "kind": "init",
-                                      "value": { "type": "Literal" }
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+                                        "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
+                                      }
                                     }
                                   ]
                                 },
@@ -355,7 +359,11 @@
                                         "value": "parentPath"
                                       },
                                       "kind": "init",
-                                      "value": { "type": "Literal" }
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+                                        "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
+                                      }
                                     }
                                   ]
                                 }

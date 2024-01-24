@@ -31,92 +31,9 @@
     },
     {
       "type": "mdxJsxFlowElement",
-      "name": "Code",
+      "name": "Hike",
       "attributes": [
-        {
-          "type": "mdxJsxAttribute",
-          "name": "codeblock",
-          "value": {
-            "type": "mdxJsxAttributeValueExpression",
-            "value": "",
-            "data": {
-              "estree": {
-                "type": "Program",
-                "body": [
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": {
-                      "type": "ObjectExpression",
-                      "properties": [
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "value" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "console.log(\"hello\")\r\nconsole.log(\"hello\")",
-                            "raw": "\"console.log(\\\"hello\\\")\\r\\nconsole.log(\\\"hello\\\")\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "lang" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "js",
-                            "raw": "\"js\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "meta" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": null,
-                            "raw": "null"
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "parentPath" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "C:\\p\\dev\\v1\\packages\\hike\\test\\data\\basic.0.mdx",
-                            "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\hike\\\\test\\\\data\\\\basic.0.mdx\""
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "sourceType": "module",
-                "comments": []
-              }
-            }
-          }
-        }
-      ],
-      "children": []
-    },
-    {
-      "type": "mdxJsxFlowElement",
-      "name": "Foo",
-      "attributes": [
+        { "type": "mdxJsxAttribute", "name": "debug", "value": null },
         {
           "type": "mdxJsxAttribute",
           "name": "__hike",

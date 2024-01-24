@@ -21,13 +21,15 @@ function _createMdxContent(props) {
             value: 'console.log("hello world")\r\nconsole.log("bye world")',
             lang: "js",
             meta: "my meta",
-            parentPath: undefined,
+            parentPath:
+              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
           },
           {
             value: "// !Mark(2)",
             lang: "jsonc",
             meta: "THE CUSTOMER OBJECT",
-            parentPath: undefined,
+            parentPath:
+              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
           },
         ],
       }}
