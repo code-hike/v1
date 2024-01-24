@@ -1,7 +1,9 @@
 "use client"
 import React from "react"
 
-const StepIndexContext = React.createContext<number>(0)
+const StepIndexContext = React.createContext<
+  [number, React.Dispatch<React.SetStateAction<number>>]
+>([0, () => {}])
 
 export function ScrollyRoot({
   className,
@@ -13,7 +15,7 @@ export function ScrollyRoot({
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   return (
     <Scroller onStepChange={setSelectedIndex} triggerPosition="40%">
-      <StepIndexContext.Provider value={selectedIndex}>
+      <StepIndexContext.Provider value={[selectedIndex, setSelectedIndex]}>
         <div className={className} data-ch-selected-index={selectedIndex}>
           {children}
         </div>
@@ -31,11 +33,12 @@ export function ScrollyStep({
   className?: string
   stepIndex: number
 }) {
-  const selectedIndex = React.useContext(StepIndexContext)
+  const [selectedIndex, setSelectedIndex] = React.useContext(StepIndexContext)
   return (
     <ScrollerStep
       key={stepIndex}
       index={stepIndex}
+      onClick={() => setSelectedIndex(stepIndex)}
       className={className}
       data-ch-selected={selectedIndex === stepIndex ? true : undefined}
     >
@@ -51,7 +54,7 @@ export function ScrollySticker({
   stickers: React.ReactNode[]
   className?: string
 }) {
-  const selectedIndex = React.useContext(StepIndexContext)
+  const [selectedIndex] = React.useContext(StepIndexContext)
   return <div className={className}>{stickers[selectedIndex]}</div>
 }
 
