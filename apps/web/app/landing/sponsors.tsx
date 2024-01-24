@@ -1,4 +1,3 @@
-import fs from "fs/promises"
 import GHLogo from "./logo.github.png"
 import GHText from "./text.github.png"
 import MetaLogo from "./logo.meta.png"
@@ -98,7 +97,7 @@ export async function AllSponsors({ className }: { className?: string }) {
       <h3 className="text-center pb-8 text-primary/60 text-lg">Sponsors</h3>
       <Row sponsors={sponsors.slice(0, 20)} size={66} className="" />
       <Row sponsors={sponsors.slice(20, 52)} size={38} />
-      <Row sponsors={sponsors.slice(52, 106)} size={32} />
+      <Row sponsors={sponsors.slice(52, 112)} size={30} />
       <Link
         href="https://github.com/sponsors/code-hike?metadata_source=landing"
         className="block border text-primary border-primary/50 rounded p-2 w-48 mx-auto mt-8 text-center hover:border-primary transition-colors"
