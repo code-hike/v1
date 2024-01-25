@@ -1,0 +1,91 @@
+import { Hike } from "codehike"
+import { APIReference } from "./api-reference"
+
+## Characters
+
+This object represents a character from the Lord of the Rings universe. Use it to explore their backgrounds, affiliations, and key events in their lives.
+
+## The Character object
+
+<Hike as={APIReference}>
+
+```jsonc THE CHARACTER OBJECT
+{
+  "id": "char_Ar4g0rnK1ng",
+  "object": "character",
+  "race": "Human",
+  "birth": "Third Age 2931",
+  "realm": "Gondor",
+  "title": "King of Gondor",
+  "affiliation": "Fellowship of the Ring",
+  "weapon": "Andúril",
+  "description": "Aragorn son of Arathorn",
+  "email": "aragorn@minastirith.gon",
+  "quest": "Destroy the One Ring",
+  "skills": {
+    "strength": 90,
+    "wisdom": 85,
+    "leadership": 95,
+    "bravery": 100,
+    "lore": 70
+  },
+  "allies": [
+    "Gandalf",
+    "Frodo Baggins",
+    "Legolas",
+    "Gimli"
+  ],
+  "enemies": ["Sauron", "Saruman"],
+  "status": "Alive"
+}
+```
+
+## !main Attributes
+
+### ! id string
+
+Unique identifier for the character.
+
+### ! description string
+
+A brief description of the character, including their background and key characteristics.
+
+### ! skills object
+
+The character’s skills and abilities.
+
+#### ! skills.strength number
+
+The character’s strength, measured on a scale of 0–100.
+
+#### ! skills.wisdom number
+
+The character’s wisdom, measured on a scale of 0–100.
+
+### ! email string
+
+The character’s contact address in the fictional universe.
+
+## !extra More attributes
+
+### ! object string
+
+String representing the object’s type. Characters of the same race share similar attributes.
+
+### ! title string
+
+Official title or position held by the character in their realm.
+
+### ! affiliation string
+
+Key groups or alliances the character is associated with.
+
+### ! weapon string
+
+The character's preferred weapon or item of significance.
+
+### ! quest string
+
+The main quest or objective associated with the character.
+
+</Hike>
