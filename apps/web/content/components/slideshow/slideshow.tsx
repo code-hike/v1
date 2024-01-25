@@ -6,7 +6,7 @@ export function Slideshow({ hike }: { hike: any }) {
     <div>
       <Code codeblock={step.code[0]} />
       <Controls length={hike.steps.length} />
-      {step.children}
+      <div className="h-28">{step.children}</div>
     </div>
   ))
 
