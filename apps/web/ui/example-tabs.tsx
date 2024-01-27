@@ -1,7 +1,7 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CodeBlock, CodeContent } from "codehike"
-import { Copy } from "lucide-react"
 import { CopyButton } from "./copy-button"
+import { DependencyTerminal } from "./dependency-terminal"
 
 export function ExampleTabs({ hike }: any) {
   const mdx = hike.code.filter((code: any) => code.lang === "mdx")[0]
@@ -50,6 +50,9 @@ function MDX({ codeblock }: { codeblock: CodeBlock }) {
 
 function Code({ codeblocks }: { codeblocks: CodeBlock[] }) {
   const c = codeblocks[0]
+  if (c.meta === "dependencies") {
+    return <DependencyTerminal codeblock={c} />
+  }
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
