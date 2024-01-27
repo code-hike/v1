@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.0.3",
     "@types/mdx": "^2.0.10",
     "codehike": "workspace:*",
     "lucide-react": "^0.303.0",
