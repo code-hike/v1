@@ -3,30 +3,24 @@ title: Scrollycoding
 description: Scroll based code walkthroughs
 ---
 
-import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import Preview from "../../components/scrollycoding/source.mdx"
-import { PreviewContainer } from "../../../ui/preview-container"
+import { ExampleTabs } from "../../../ui/example-tabs"
+import { Hike } from "codehike"
 
 Scroll-based code walkthroughs.
 
-<Tabs items={["Preview", "MDX", "Code"]}>
-<Tab value="Preview">
-<PreviewContainer>
-  <Preview />
-</PreviewContainer>
-</Tab>
-<Tab value="MDX">
+<Hike as={ExampleTabs}>
 
-```mdx
+```mdx content.mdx
 {/* !from  ../../components/scrollycoding/source.mdx */}
 ```
 
-</Tab>
-<Tab value="Code">
-
-```tsx
+```tsx scrollycoding.tsx
 // !from  ../../components/scrollycoding/scrollycoding.tsx
 ```
 
-</Tab>
-</Tabs>
+## !preview
+
+<Preview />
+
+</Hike>

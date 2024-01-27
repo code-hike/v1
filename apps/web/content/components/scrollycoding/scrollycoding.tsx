@@ -22,7 +22,7 @@ export function Scrollycoding({ hike }: { hike: any }) {
 
   return (
     <ScrollyRoot className="flex gap-4">
-      <div className="flex-1 mt-32 mb-[90vh] prose prose-invert">
+      <div className="flex-1 mt-32 mb-[90vh] ml-2 prose prose-invert">
         {content}
       </div>
       <div className="w-[40vw] max-w-xl bg-zinc-900">

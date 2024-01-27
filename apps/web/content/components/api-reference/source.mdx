@@ -12,14 +12,12 @@ This object represents a character from the Lord of the Rings universe. Use it t
 ```jsonc THE CHARACTER OBJECT
 {
   "id": "char_Ar4g0rnK1ng",
-  "object": "character",
+  "status": "Alive",
   "race": "Human",
   "birth": "Third Age 2931",
   "realm": "Gondor",
   "title": "King of Gondor",
-  "affiliation": "Fellowship of the Ring",
   "weapon": "Andúril",
-  "description": "Aragorn son of Arathorn",
   "email": "aragorn@minastirith.gon",
   "quest": "Destroy the One Ring",
   "skills": {
@@ -35,8 +33,7 @@ This object represents a character from the Lord of the Rings universe. Use it t
     "Legolas",
     "Gimli"
   ],
-  "enemies": ["Sauron", "Saruman"],
-  "status": "Alive"
+  "enemies": ["Sauron", "Saruman"]
 }
 ```
 
@@ -46,9 +43,9 @@ This object represents a character from the Lord of the Rings universe. Use it t
 
 Unique identifier for the character.
 
-### ! description string
+### ! status enum
 
-A brief description of the character, including their background and key characteristics.
+The character’s current status. Can be Alive, Deceased, or Unknown.
 
 ### ! skills object
 

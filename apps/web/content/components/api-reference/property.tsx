@@ -38,7 +38,7 @@ export function ExtraProperty({
         className="cursor-pointer"
       >
         <div
-          className={`inline-block font-mono mr-1 -ml-5 transform ${
+          className={`inline-block font-mono mr-1 -ml-3 transform ${
             collapsed ? "" : "rotate-90"
           } transition-transform`}
         >

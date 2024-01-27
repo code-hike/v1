@@ -3,30 +3,28 @@ title: Slideshow
 description: Slideshow example
 ---
 
-import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import Preview from "../../components/slideshow/source.mdx"
-import { PreviewContainer } from "../../../ui/preview-container"
+import { ExampleTabs } from "../../../ui/example-tabs"
+import { Hike } from "codehike"
 
 A component that allows you to display a series steps in a slideshow-like fashion. Similar to a carousel.
 
-<Tabs items={["Preview", "MDX", "Code"]}>
-<Tab value="Preview">
-<PreviewContainer>
-  <Preview />
-</PreviewContainer>
-</Tab>
-<Tab value="MDX">
+<Hike as={ExampleTabs}>
 
-```mdx
+```mdx content.mdx
 {/* !from  ../../components/slideshow/source.mdx */}
 ```
 
-</Tab>
-<Tab value="Code">
-
-```tsx
+```tsx slideshow.tsx
 // !from  ../../components/slideshow/slideshow.tsx
 ```
 
-</Tab>
-</Tabs>
+```tsx slides.tsx
+// !from  ../../components/slideshow/slides.tsx
+```
+
+## !preview
+
+<Preview />
+
+</Hike>

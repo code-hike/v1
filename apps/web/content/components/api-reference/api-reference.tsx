@@ -70,10 +70,18 @@ export async function APIReference({
 }
 function Code({ codeblock }: { codeblock: CodeBlock }) {
   return (
-    <CodeContent
-      codeblock={codeblock}
-      config={{ theme: "github-dark" }}
-      className="min-h-[40rem]"
-    />
+    <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
+      <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
+        <span>{codeblock.meta}</span>
+      </div>
+      <CodeContent
+        codeblock={codeblock}
+        config={{
+          theme: "github-dark",
+          annotationPrefix: "!",
+        }}
+        className="p-2 overflow-auto"
+      />
+    </div>
   )
 }

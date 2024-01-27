@@ -27,7 +27,7 @@ export function Controls({ length }: { length: number }) {
     React.useContext(StepIndexContext)
 
   return (
-    <div className="flex justify-center mt-8 items-center">
+    <div className="flex justify-center py-4 items-center">
       <button
         className="mr-4"
         onClick={() =>
