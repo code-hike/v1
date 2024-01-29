@@ -1,6 +1,8 @@
 import { Card, Cards } from "next-docs-ui/mdx/card"
 import Link from "next/link"
 import { AllSponsors, PoweredBy, TopSponsors } from "./landing/sponsors"
+import { cn } from "../lib/utils"
+import { Boxes } from "./landing/boxes"
 
 export default function HomePage() {
   return (
@@ -25,15 +27,7 @@ export default function HomePage() {
 
       <TopSponsors className="mb-24" />
 
-      <div className="w-full h-96 bg-primary/10 flex flex-col justify-evenly items-center md:rounded-lg  mb-16 text-primary/60">
-        TODO: Code Hike Visualization
-        <ButtonLink
-          href="docs/components/scrollycoding"
-          className="mx-auto w-36 block"
-        >
-          See it in action
-        </ButtonLink>
-      </div>
+      <Boxes className="mb-24" />
 
       <AllSponsors className="mb-24" />
 
