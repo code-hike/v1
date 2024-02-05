@@ -50,7 +50,7 @@ type Month = {
 }
 
 function getMonths(): Month[] {
-  const pages = blog.getPages()
+  const pages = blog.getPages().filter((page) => page.data.draft !== true)
   const months: ReturnType<typeof getMonths> = []
 
   pages.forEach((page) => {

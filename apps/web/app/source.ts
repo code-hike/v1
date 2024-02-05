@@ -17,6 +17,7 @@ export const blog = loader({
       frontmatter: defaultSchemas.frontmatter.extend({
         authors: z.array(z.string()).default([]),
         date: z.date().default(new Date()),
+        draft: z.boolean().default(false),
       }),
     },
   }),
