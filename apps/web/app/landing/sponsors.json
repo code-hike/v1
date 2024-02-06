@@ -29,11 +29,11 @@
   },
   {
     "name": "kickstartDS",
-    "amount": 696
+    "amount": 725
   },
   {
     "name": "brianespinosa",
-    "amount": 622
+    "amount": 651
   },
   {
     "name": "scvnc",
@@ -92,16 +92,16 @@
     "amount": 216
   },
   {
+    "name": "glenngillen",
+    "amount": 207
+  },
+  {
     "name": "stefanjudis",
     "amount": 207
   },
   {
     "name": "discordjs",
     "amount": 200
-  },
-  {
-    "name": "glenngillen",
-    "amount": 198
   },
   {
     "name": "mrboen94",
@@ -129,7 +129,7 @@
   },
   {
     "name": "kiliman",
-    "amount": 165
+    "amount": 174
   },
   {
     "name": "codeSTACKr",
@@ -192,6 +192,10 @@
     "amount": 99
   },
   {
+    "name": "ryanwaits",
+    "amount": 97
+  },
+  {
     "name": "ZTMLuisRamirez",
     "amount": 95
   },
@@ -214,10 +218,6 @@
   {
     "name": "grikomsn",
     "amount": 81
-  },
-  {
-    "name": "ryanwaits",
-    "amount": 72
   },
   {
     "name": "zaphod72",

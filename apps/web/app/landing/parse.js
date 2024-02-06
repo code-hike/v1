@@ -4,7 +4,7 @@ const ocTotals = require("./oc-sponsors.js")
 const ghTotals = require("./gh-sponsors.js")
 const others = {
   // from paypal
-  matthiaszepper: 94.3 + 108.71 + 47
+  matthiaszepper: 94.3 + 108.71 + 47,
 }
 
 const totals = { ...ocTotals, ...ghTotals, ...others }
