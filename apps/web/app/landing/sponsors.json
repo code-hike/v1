@@ -20,16 +20,16 @@
     "amount": 2277
   },
   {
+    "name": "speakeasy-api",
+    "amount": 1151
+  },
+  {
     "name": "drivly",
     "amount": 1094
   },
   {
-    "name": "speakeasy-api",
-    "amount": 852
-  },
-  {
     "name": "kickstartDS",
-    "amount": 725
+    "amount": 696
   },
   {
     "name": "brianespinosa",
@@ -68,19 +68,19 @@
     "amount": 250
   },
   {
-    "name": "molebox",
-    "amount": 243
-  },
-  {
     "name": "lostintangent",
     "amount": 243
   },
   {
-    "name": "traviscooper",
-    "amount": 225
+    "name": "molebox",
+    "amount": 243
   },
   {
     "name": "davo",
+    "amount": 225
+  },
+  {
+    "name": "traviscooper",
     "amount": 225
   },
   {
@@ -108,11 +108,11 @@
     "amount": 190
   },
   {
-    "name": "ouiliame",
+    "name": "cabljac",
     "amount": 189
   },
   {
-    "name": "cabljac",
+    "name": "ouiliame",
     "amount": 189
   },
   {
@@ -129,7 +129,7 @@
   },
   {
     "name": "kiliman",
-    "amount": 174
+    "amount": 165
   },
   {
     "name": "codeSTACKr",
@@ -212,15 +212,11 @@
     "amount": 86
   },
   {
-    "name": "c0d3t3k",
-    "amount": 81
-  },
-  {
     "name": "grikomsn",
     "amount": 81
   },
   {
-    "name": "zaphod72",
+    "name": "c0d3t3k",
     "amount": 72
   },
   {
@@ -229,6 +225,10 @@
   },
   {
     "name": "panphora",
+    "amount": 72
+  },
+  {
+    "name": "zaphod72",
     "amount": 72
   },
   {
@@ -264,19 +264,15 @@
     "amount": 50
   },
   {
+    "name": "DanielFGray",
+    "amount": 45
+  },
+  {
     "name": "kliukovkin",
     "amount": 45
   },
   {
-    "name": "Salakar",
-    "amount": 45
-  },
-  {
     "name": "osiux",
-    "amount": 45
-  },
-  {
-    "name": "DanielFGray",
     "amount": 45
   },
   {
@@ -292,20 +288,20 @@
     "amount": 36
   },
   {
-    "name": "JulesBlm",
-    "amount": 35
+    "name": "Salakar",
+    "amount": 36
   },
   {
     "name": "Corei13",
     "amount": 35
   },
   {
-    "name": "swyxio",
-    "amount": 30
+    "name": "JulesBlm",
+    "amount": 35
   },
   {
-    "name": "luxonauta",
-    "amount": 27
+    "name": "swyxio",
+    "amount": 30
   },
   {
     "name": "akhilkurnool",
@@ -316,15 +312,19 @@
     "amount": 27
   },
   {
+    "name": "ianaya89",
+    "amount": 27
+  },
+  {
+    "name": "luxonauta",
+    "amount": 27
+  },
+  {
     "name": "nksaraf",
     "amount": 27
   },
   {
     "name": "sastan",
-    "amount": 27
-  },
-  {
-    "name": "ianaya89",
     "amount": 27
   },
   {
@@ -352,15 +352,15 @@
     "amount": 20
   },
   {
-    "name": "rtktpeng",
-    "amount": 19
-  },
-  {
     "name": "IGassmann",
     "amount": 19
   },
   {
     "name": "Kliton",
+    "amount": 19
+  },
+  {
+    "name": "rtktpeng",
     "amount": 19
   },
   {
@@ -380,7 +380,27 @@
     "amount": 10
   },
   {
+    "name": "berber1016",
+    "amount": 9
+  },
+  {
+    "name": "BnGyA",
+    "amount": 9
+  },
+  {
+    "name": "csenio",
+    "amount": 9
+  },
+  {
     "name": "donghhan",
+    "amount": 9
+  },
+  {
+    "name": "K3ARN3Y",
+    "amount": 9
+  },
+  {
+    "name": "ManishPoduval",
     "amount": 9
   },
   {
@@ -392,23 +412,11 @@
     "amount": 9
   },
   {
-    "name": "K3ARN3Y",
-    "amount": 9
-  },
-  {
-    "name": "berber1016",
-    "amount": 9
-  },
-  {
     "name": "NLKNguyen",
     "amount": 9
   },
   {
     "name": "wzard",
-    "amount": 9
-  },
-  {
-    "name": "ManishPoduval",
     "amount": 9
   },
   {
@@ -420,16 +428,16 @@
     "amount": 9
   },
   {
-    "name": "BnGyA",
-    "amount": 9
-  },
-  {
     "name": "achan-godaddy",
     "amount": 7
   },
   {
     "name": "samedskulj",
     "amount": 6
+  },
+  {
+    "name": "BenEmdon",
+    "amount": 5
   },
   {
     "name": "iancleary",
@@ -440,19 +448,11 @@
     "amount": 5
   },
   {
-    "name": "BenEmdon",
-    "amount": 5
-  },
-  {
     "name": "albseb511",
     "amount": 4
   },
   {
-    "name": "csenio",
-    "amount": 4
-  },
-  {
-    "name": "vprtwn",
+    "name": "danielcompton",
     "amount": 3
   },
   {
@@ -460,7 +460,7 @@
     "amount": 3
   },
   {
-    "name": "danielcompton",
+    "name": "vprtwn",
     "amount": 3
   },
   {
@@ -472,11 +472,11 @@
     "amount": 2
   },
   {
-    "name": "xabierlameiro",
+    "name": "nullaf",
     "amount": 1
   },
   {
-    "name": "nullaf",
+    "name": "xabierlameiro",
     "amount": 1
   }
 ]

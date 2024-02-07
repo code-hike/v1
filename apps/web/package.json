@@ -5,7 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "start": "next start",
+    "update-sponsors": "node app/landing/sponsors/update.js"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.3",
@@ -16,6 +17,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "codehike": "workspace:*",
+    "dotenv": "^16.4.1",
     "lucide-react": "^0.303.0",
     "next": "14.1.0",
     "next-docs-mdx": "7.1.2",
