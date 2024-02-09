@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.2
+
+### Minor Changes
+
+- Steps with multiple elements
+
 ## 1.0.0-alpha.1
 
 ### Patch Changes
@@ -11,4 +17,3 @@
 ### Major Changes
 
 - Init codehike
-  s
