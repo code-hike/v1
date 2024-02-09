@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.3
+
+### Patch Changes
+
+- Make className optional
+
 ## 1.0.0-alpha.2
 
 ### Minor Changes

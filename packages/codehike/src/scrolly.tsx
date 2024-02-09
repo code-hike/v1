@@ -21,7 +21,7 @@ export function Steps({
   steps,
   triggerPosition = "40%",
 }: {
-  className: string
+  className?: string
   children: React.ReactNode
   steps: any[]
   triggerPosition?: TriggerPosition
