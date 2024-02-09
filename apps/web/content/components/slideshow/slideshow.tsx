@@ -2,16 +2,18 @@ import { CodeContent, CodeBlock } from "codehike"
 import { Slides, Controls } from "./slides"
 
 export function Slideshow({ hike }: { hike: any }) {
-  const slides = hike.steps.map((step: any) => (
-    <div>
-      <Controls length={hike.steps.length} />
-      <Code codeblock={step.code[0]} />
-      <Controls length={hike.steps.length} />
-      <div className="h-40 px-6">{step.children}</div>
-    </div>
-  ))
-
-  return <Slides slides={slides} />
+  return (
+    <Slides
+      slides={hike.steps.map((step: any) => (
+        <div>
+          <Controls length={hike.steps.length} />
+          <Code codeblock={step.code[0]} />
+          <Controls length={hike.steps.length} />
+          <div className="h-40 px-6">{step.children}</div>
+        </div>
+      ))}
+    />
+  )
 }
 
 function Code({ codeblock }: { codeblock: CodeBlock }) {

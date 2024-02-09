@@ -1,25 +1,45 @@
 "use client"
 import React from "react"
 
-const StepIndexContext = React.createContext<
-  [number, React.Dispatch<React.SetStateAction<number>>]
->([0, () => {}])
+const StepsContext = React.createContext<{
+  steps: any[]
+  selectedIndex: number
+  selectIndex: (stepIndex: number) => void
+}>({
+  steps: [],
+  selectedIndex: 0,
+  selectIndex: () => {},
+})
 
-export function ScrollyRoot({
+export function useSteps() {
+  return React.useContext(StepsContext)
+}
+
+export function Steps({
   className,
   children,
+  steps,
+  triggerPosition = "40%",
 }: {
   className: string
   children: React.ReactNode
+  steps: any[]
+  triggerPosition?: TriggerPosition
 }) {
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [selectedIndex, selectIndex] = React.useState(0)
   return (
-    <Scroller onStepChange={setSelectedIndex} triggerPosition="40%">
-      <StepIndexContext.Provider value={[selectedIndex, setSelectedIndex]}>
+    <Scroller onStepChange={selectIndex} triggerPosition={triggerPosition}>
+      <StepsContext.Provider
+        value={{
+          steps,
+          selectedIndex,
+          selectIndex,
+        }}
+      >
         <div className={className} data-ch-selected-index={selectedIndex}>
           {children}
         </div>
-      </StepIndexContext.Provider>
+      </StepsContext.Provider>
     </Scroller>
   )
 }
@@ -33,12 +53,12 @@ export function ScrollyStep({
   className?: string
   stepIndex: number
 }) {
-  const [selectedIndex, setSelectedIndex] = React.useContext(StepIndexContext)
+  const { selectedIndex, selectIndex } = React.useContext(StepsContext)
   return (
     <ScrollerStep
       key={stepIndex}
       index={stepIndex}
-      onClick={() => setSelectedIndex(stepIndex)}
+      onClick={() => selectIndex(stepIndex)}
       className={className}
       data-ch-selected={selectedIndex === stepIndex ? true : undefined}
     >
@@ -47,15 +67,10 @@ export function ScrollyStep({
   )
 }
 
-export function ScrollySticker({
-  stickers,
-  className,
-}: {
-  stickers: React.ReactNode[]
-  className?: string
-}) {
-  const [selectedIndex] = React.useContext(StepIndexContext)
-  return <div className={className}>{stickers[selectedIndex]}</div>
+export function Step({ element }: { element: string }) {
+  const { steps, selectedIndex } = React.useContext(StepsContext)
+  const selectedStep = steps[selectedIndex]
+  return selectedStep[element] as React.ReactNode
 }
 
 const ObserverContext = React.createContext<IntersectionObserver | undefined>(
