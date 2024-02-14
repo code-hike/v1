@@ -17,6 +17,333 @@
       }
     },
     {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "async": false,
+        "id": { "type": "Identifier", "name": "getHike" },
+        "params": [{ "type": "Identifier", "name": "props" }],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "kind": "const",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": { "type": "Identifier", "name": "_components" },
+                  "init": {
+                    "type": "ObjectExpression",
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "key": { "type": "Identifier", "name": "p" },
+                        "value": { "type": "Literal", "value": "p" },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false
+                      },
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "key": { "type": "Identifier", "name": "slot" },
+                        "value": { "type": "Literal", "value": "slot" },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false
+                      },
+                      {
+                        "type": "SpreadElement",
+                        "argument": {
+                          "type": "MemberExpression",
+                          "object": { "type": "Identifier", "name": "props" },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "components"
+                          },
+                          "computed": false,
+                          "optional": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "ObjectExpression",
+                "properties": [
+                  {
+                    "type": "Property",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": { "type": "Literal", "value": "query" },
+                    "kind": "init",
+                    "value": { "type": "Literal", "value": "", "raw": "\"\"" }
+                  },
+                  {
+                    "type": "Property",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": { "type": "Literal", "value": "children" },
+                    "kind": "init",
+                    "value": {
+                      "type": "ArrayExpression",
+                      "elements": [
+                        {
+                          "type": "JSXElement",
+                          "openingElement": {
+                            "type": "JSXOpeningElement",
+                            "attributes": [],
+                            "name": {
+                              "type": "JSXMemberExpression",
+                              "object": {
+                                "type": "JSXIdentifier",
+                                "name": "_components"
+                              },
+                              "property": {
+                                "type": "JSXIdentifier",
+                                "name": "p"
+                              }
+                            },
+                            "selfClosing": false
+                          },
+                          "closingElement": {
+                            "type": "JSXClosingElement",
+                            "name": {
+                              "type": "JSXMemberExpression",
+                              "object": {
+                                "type": "JSXIdentifier",
+                                "name": "_components"
+                              },
+                              "property": {
+                                "type": "JSXIdentifier",
+                                "name": "p"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "type": "JSXExpressionContainer",
+                              "expression": {
+                                "type": "Literal",
+                                "value": "Hello!"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "JSXElement",
+                          "openingElement": {
+                            "type": "JSXOpeningElement",
+                            "attributes": [
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "name"
+                                },
+                                "value": { "type": "Literal", "value": "code" }
+                              }
+                            ],
+                            "name": {
+                              "type": "JSXMemberExpression",
+                              "object": {
+                                "type": "JSXIdentifier",
+                                "name": "_components"
+                              },
+                              "property": {
+                                "type": "JSXIdentifier",
+                                "name": "slot"
+                              }
+                            },
+                            "selfClosing": true
+                          },
+                          "closingElement": null,
+                          "children": []
+                        },
+                        {
+                          "type": "JSXElement",
+                          "openingElement": {
+                            "type": "JSXOpeningElement",
+                            "attributes": [
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "name"
+                                },
+                                "value": { "type": "Literal", "value": "code" }
+                              }
+                            ],
+                            "name": {
+                              "type": "JSXMemberExpression",
+                              "object": {
+                                "type": "JSXIdentifier",
+                                "name": "_components"
+                              },
+                              "property": {
+                                "type": "JSXIdentifier",
+                                "name": "slot"
+                              }
+                            },
+                            "selfClosing": true
+                          },
+                          "closingElement": null,
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": { "type": "Literal", "value": "code" },
+                    "kind": "init",
+                    "value": {
+                      "type": "ArrayExpression",
+                      "elements": [
+                        {
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "// !from ./z.js 3:5",
+                                "raw": "\"// !from ./z.js 3:5\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "js",
+                                "raw": "\"js\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "my meta",
+                                "raw": "\"my meta\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Literal",
+                                "value": "parentPath"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+                                "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "# !from ./z.py",
+                                "raw": "\"# !from ./z.py\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "py",
+                                "raw": "\"py\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "python meta",
+                                "raw": "\"python meta\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Literal",
+                                "value": "parentPath"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+                                "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
       "type": "FunctionDeclaration",
       "async": false,
       "id": { "type": "Identifier", "name": "_createMdxContent" },
@@ -83,294 +410,12 @@
                     "value": {
                       "type": "JSXExpressionContainer",
                       "expression": {
-                        "type": "ObjectExpression",
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "method": false,
-                            "shorthand": false,
-                            "computed": false,
-                            "key": { "type": "Literal", "value": "query" },
-                            "kind": "init",
-                            "value": {
-                              "type": "Literal",
-                              "value": "",
-                              "raw": "\"\""
-                            }
-                          },
-                          {
-                            "type": "Property",
-                            "method": false,
-                            "shorthand": false,
-                            "computed": false,
-                            "key": { "type": "Literal", "value": "children" },
-                            "kind": "init",
-                            "value": {
-                              "type": "ArrayExpression",
-                              "elements": [
-                                {
-                                  "type": "JSXElement",
-                                  "openingElement": {
-                                    "type": "JSXOpeningElement",
-                                    "attributes": [],
-                                    "name": {
-                                      "type": "JSXMemberExpression",
-                                      "object": {
-                                        "type": "JSXIdentifier",
-                                        "name": "_components"
-                                      },
-                                      "property": {
-                                        "type": "JSXIdentifier",
-                                        "name": "p"
-                                      }
-                                    },
-                                    "selfClosing": false
-                                  },
-                                  "closingElement": {
-                                    "type": "JSXClosingElement",
-                                    "name": {
-                                      "type": "JSXMemberExpression",
-                                      "object": {
-                                        "type": "JSXIdentifier",
-                                        "name": "_components"
-                                      },
-                                      "property": {
-                                        "type": "JSXIdentifier",
-                                        "name": "p"
-                                      }
-                                    }
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "JSXExpressionContainer",
-                                      "expression": {
-                                        "type": "Literal",
-                                        "value": "Hello!"
-                                      }
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "JSXElement",
-                                  "openingElement": {
-                                    "type": "JSXOpeningElement",
-                                    "attributes": [
-                                      {
-                                        "type": "JSXAttribute",
-                                        "name": {
-                                          "type": "JSXIdentifier",
-                                          "name": "name"
-                                        },
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "code"
-                                        }
-                                      }
-                                    ],
-                                    "name": {
-                                      "type": "JSXMemberExpression",
-                                      "object": {
-                                        "type": "JSXIdentifier",
-                                        "name": "_components"
-                                      },
-                                      "property": {
-                                        "type": "JSXIdentifier",
-                                        "name": "slot"
-                                      }
-                                    },
-                                    "selfClosing": true
-                                  },
-                                  "closingElement": null,
-                                  "children": []
-                                },
-                                {
-                                  "type": "JSXElement",
-                                  "openingElement": {
-                                    "type": "JSXOpeningElement",
-                                    "attributes": [
-                                      {
-                                        "type": "JSXAttribute",
-                                        "name": {
-                                          "type": "JSXIdentifier",
-                                          "name": "name"
-                                        },
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "code"
-                                        }
-                                      }
-                                    ],
-                                    "name": {
-                                      "type": "JSXMemberExpression",
-                                      "object": {
-                                        "type": "JSXIdentifier",
-                                        "name": "_components"
-                                      },
-                                      "property": {
-                                        "type": "JSXIdentifier",
-                                        "name": "slot"
-                                      }
-                                    },
-                                    "selfClosing": true
-                                  },
-                                  "closingElement": null,
-                                  "children": []
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "Property",
-                            "method": false,
-                            "shorthand": false,
-                            "computed": false,
-                            "key": { "type": "Literal", "value": "code" },
-                            "kind": "init",
-                            "value": {
-                              "type": "ArrayExpression",
-                              "elements": [
-                                {
-                                  "type": "ObjectExpression",
-                                  "properties": [
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "value"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "// !from ./z.js 3:5",
-                                        "raw": "\"// !from ./z.js 3:5\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "lang"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "js",
-                                        "raw": "\"js\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "meta"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "my meta",
-                                        "raw": "\"my meta\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "parentPath"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-                                        "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
-                                      }
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "ObjectExpression",
-                                  "properties": [
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "value"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "# !from ./z.py",
-                                        "raw": "\"# !from ./z.py\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "lang"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "py",
-                                        "raw": "\"py\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "meta"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "python meta",
-                                        "raw": "\"python meta\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "parentPath"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-                                        "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
-                                      }
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        ]
+                        "type": "CallExpression",
+                        "callee": { "type": "Identifier", "name": "getHike" },
+                        "arguments": [
+                          { "type": "Identifier", "name": "props" }
+                        ],
+                        "optional": false
                       }
                     }
                   }

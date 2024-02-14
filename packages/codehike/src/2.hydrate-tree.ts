@@ -1,4 +1,4 @@
-import { Code } from "mdast"
+import { Code, Image } from "mdast"
 import { HikeTree, JSXChild, RemarkSection } from "./1.remark-list-to-tree.js"
 
 export type HydratedSection = {
@@ -8,6 +8,10 @@ export type HydratedSection = {
   sections: HydratedSection[]
   children: JSXChild[]
   code: CodeBlock[]
+  images: {
+    key: string
+    value: Image
+  }[]
 }
 
 export type CodeBlock = {
@@ -18,7 +22,7 @@ export type CodeBlock = {
 }
 
 export function hydrateTree(tree: HikeTree, mdxPath?: string) {
-  const { sections, children, code } = tree
+  const { sections, children, code, images } = tree
   const path: string[] = []
   return {
     path,
@@ -27,6 +31,7 @@ export function hydrateTree(tree: HikeTree, mdxPath?: string) {
     sections: sections.map((section) => hydrateSection(section, path, mdxPath)),
     children: children,
     code: code.map((code) => parseCode(code, mdxPath)),
+    images,
   }
 }
 
@@ -35,7 +40,7 @@ function hydrateSection(
   parentPath: string[],
   mdxPath?: string,
 ): HydratedSection {
-  const { name, query, sections, children, code } = section
+  const { name, query, sections, children, code, images } = section
   const path = [...parentPath, name]
   return {
     path,
@@ -44,6 +49,7 @@ function hydrateSection(
     sections: sections.map((section) => hydrateSection(section, path, mdxPath)),
     children: children,
     code: code.map((code) => parseCode(code, mdxPath)),
+    images,
   }
 }
 

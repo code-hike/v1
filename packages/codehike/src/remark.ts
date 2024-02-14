@@ -4,21 +4,38 @@ import "mdast-util-mdx-jsx"
 import { Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
-import { listToTree } from "./1.remark-list-to-tree.js"
+import { isHikeHeading, listToTree } from "./1.remark-list-to-tree.js"
 import { hydrateTree, parseCode } from "./2.hydrate-tree.js"
 import { treeToAttribute } from "./3.remark-tree-to-attribute.js"
 
 import { SKIP, visit } from "estree-util-visit"
 import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
+import { addHikeExport } from "./5.recma-export-hike.js"
 import { getObjectAttribute } from "./estree.js"
 
 type Options = {}
 
 export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
   return async (root, file) => {
-    let tree = (await transformAllHikes(root, config, file)) as any
-    tree = transformAllCode(tree, config as any, file)
-    return tree as any
+    let tree = root
+    // if we find any hikeable heading outside of <Hike>s,
+    // let's wrap everything in a <Hike>
+    if (root.children.some((node) => isHikeHeading(node, "!"))) {
+      tree.children = [
+        {
+          type: "mdxJsxFlowElement",
+          name: "Hike",
+          attributes: [],
+          // todo what is different between RootContent and (BlockContent | DefinitionContent)
+          children: tree.children as any,
+        },
+      ]
+    }
+
+    tree = (await transformAllHikes(root, config, file)) as any
+
+    tree = transformAllCode(tree, config as any, file) as any
+    return tree
   }
 }
 
@@ -118,6 +135,8 @@ export function transformAllRecmaHikes(tree: any, config?: Config) {
       return SKIP
     }
   })
+
+  addHikeExport(tree)
 
   return tree
 }

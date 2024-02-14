@@ -2,67 +2,36 @@
   "type": "root",
   "children": [
     {
-      "type": "mdxjsEsm",
-      "value": "import { Hike } from \"../../src/Hike\"",
-      "data": {
-        "estree": {
-          "type": "Program",
-          "body": [
-            {
-              "type": "ImportDeclaration",
-              "specifiers": [
-                {
-                  "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "Hike" },
-                  "local": { "type": "Identifier", "name": "Hike" }
-                }
-              ],
-              "source": {
-                "type": "Literal",
-                "value": "../../src/Hike",
-                "raw": "\"../../src/Hike\""
-              }
-            }
-          ],
-          "sourceType": "module",
-          "comments": []
-        }
-      }
+      "type": "paragraph",
+      "children": [{ "type": "text", "value": "This is something\r\nMore" }]
     },
     {
-      "type": "mdxJsxFlowElement",
-      "name": "Hike",
-      "attributes": [
-        {
-          "type": "mdxJsxAttribute",
-          "name": "as",
-          "value": {
-            "type": "mdxJsxAttributeValueExpression",
-            "value": "Foo",
-            "data": {
-              "estree": {
-                "type": "Program",
-                "body": [
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": { "type": "Identifier", "name": "Foo" }
-                  }
-                ],
-                "sourceType": "module",
-                "comments": []
-              }
-            }
-          }
-        },
-        { "type": "mdxJsxAttribute", "name": "debug", "value": null }
-      ],
+      "type": "heading",
+      "depth": 1,
+      "children": [{ "type": "text", "value": "!hero 3333" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "foo" }]
+    },
+    {
+      "type": "paragraph",
       "children": [
         {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "hey" }]
+          "type": "image",
+          "title": "Some title",
+          "url": "http://www.google.com",
+          "alt": "!screenshot foo"
         }
-      ],
-      "data": { "_mdxExplicitJsx": true }
-    }
+      ]
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "/" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "more" }] }
   ]
 }

@@ -39,7 +39,7 @@ type SerializableTree = Sections & {
 }
 
 function serializeTree(node: HydratedSection): SerializableTree {
-  const { path, query, code, sections } = node
+  const { path, query, code, sections, images } = node
   const result: any = {
     query,
     children: path.join("."),
@@ -47,6 +47,13 @@ function serializeTree(node: HydratedSection): SerializableTree {
 
   if (code?.length) {
     result.code = code
+  }
+
+  if (images?.length) {
+    images.forEach((image) => {
+      const { alt, title, url } = image.value
+      result[image.key] = { alt, title, url }
+    })
   }
 
   sections.forEach((section) => {

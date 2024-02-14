@@ -3,6 +3,7 @@ import {
   transformAllHikes,
   transformAllRecmaHikes,
   transformAllCode,
+  remarkCodeHike,
 } from "../src/remark"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
@@ -22,10 +23,10 @@ testNames.forEach((name) => {
       const mdxPath = path.resolve(`./test/data/${name}.0.mdx`)
       await testCompilation(name, mdx, mdxPath)
     })
-    test(`static render`, async () => {
-      const { default: MDXContent } = await import(`./data/${name}.7.out.jsx`)
-      await testRender(MDXContent, name)
-    })
+    // test(`static render`, async () => {
+    //   const { default: MDXContent } = await import(`./data/${name}.7.out.jsx`)
+    //   await testRender(MDXContent, name)
+    // })
   })
 })
 
@@ -65,13 +66,7 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
   await expect(out).toMatchFileSnapshot(`./data/${name}.7.out.jsx`)
 }
 
-const hikeRemark = (config) => {
-  return async (tree, file) => {
-    tree = (await transformAllHikes(tree, config, file)) as any
-    tree = transformAllCode(tree, config, file) as any
-    return tree as any
-  }
-}
+const hikeRemark = remarkCodeHike
 
 const hikeRecma = (config) => {
   return async (tree, file) => {

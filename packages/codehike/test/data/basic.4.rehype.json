@@ -2,39 +2,9 @@
   "type": "root",
   "children": [
     {
-      "type": "mdxjsEsm",
-      "value": "import { Hike } from \"../../src/Hike\"",
-      "data": {
-        "estree": {
-          "type": "Program",
-          "body": [
-            {
-              "type": "ImportDeclaration",
-              "specifiers": [
-                {
-                  "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "Hike" },
-                  "local": { "type": "Identifier", "name": "Hike" }
-                }
-              ],
-              "source": {
-                "type": "Literal",
-                "value": "../../src/Hike",
-                "raw": "\"../../src/Hike\""
-              }
-            }
-          ],
-          "sourceType": "module",
-          "comments": []
-        }
-      }
-    },
-    { "type": "text", "value": "\n" },
-    {
       "type": "mdxJsxFlowElement",
       "name": "Hike",
       "attributes": [
-        { "type": "mdxJsxAttribute", "name": "debug", "value": null },
         {
           "type": "mdxJsxAttribute",
           "name": "__hike",
@@ -75,6 +45,120 @@
                             "value": "",
                             "raw": "\"\""
                           }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "hero" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ArrayExpression",
+                            "elements": [
+                              {
+                                "type": "ObjectExpression",
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "query"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "3333",
+                                      "raw": "\"3333\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "children"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "Literal",
+                                      "value": "hero",
+                                      "raw": "\"hero\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "screenshot"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "alt"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "foo",
+                                            "raw": "\"foo\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "title"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "Some title",
+                                            "raw": "\"Some title\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "url"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "http://www.google.com",
+                                            "raw": "\"http://www.google.com\""
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         }
                       ]
                     }
@@ -87,7 +171,6 @@
           }
         }
       ],
-      "data": { "_mdxExplicitJsx": true },
       "children": [
         {
           "type": "mdxJsxFlowElement",
@@ -100,7 +183,56 @@
               "type": "element",
               "tagName": "p",
               "properties": {},
-              "children": [{ "type": "text", "value": "hey" }]
+              "children": [
+                { "type": "text", "value": "This is something\r\nMore" }
+              ]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "hero" }
+              ],
+              "children": []
+            },
+            {
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [{ "type": "text", "value": "more" }]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "hero" }
+          ],
+          "children": [
+            {
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [{ "type": "text", "value": "foo" }]
+            },
+            {
+              "type": "element",
+              "tagName": "h2",
+              "properties": {},
+              "children": [{ "type": "text", "value": "foo" }]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "name",
+                  "value": "screenshot"
+                }
+              ],
+              "children": []
             }
           ]
         }

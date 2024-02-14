@@ -1,4 +1,4 @@
-import { BlockContent, Code, DefinitionContent, Heading } from "mdast"
+import { BlockContent, Code, DefinitionContent, Heading, Image } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 
 export type JSXChild = BlockContent | DefinitionContent
@@ -9,6 +9,10 @@ export type HikeTree = {
   parent?: null
   children: JSXChild[]
   code: Code[]
+  images: {
+    key: string
+    value: Image
+  }[]
 }
 
 export type RemarkSection = {
@@ -19,12 +23,22 @@ export type RemarkSection = {
   parent: RemarkSection | HikeTree
   children: JSXChild[]
   code: Code[]
+  images: {
+    key: string
+    value: Image
+  }[]
 }
 
 export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
   const { children } = hikeElement
 
-  const root: HikeTree = { depth: 0, sections: [], children: [], code: [] }
+  const root: HikeTree = {
+    depth: 0,
+    sections: [],
+    children: [],
+    code: [],
+    images: [],
+  }
   let parent: RemarkSection["parent"] = root
 
   children.forEach((child) => {
@@ -46,6 +60,7 @@ export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
         sections: [],
         children: [],
         code: [],
+        images: [],
       }
 
       parent.sections.push(section)
@@ -60,6 +75,30 @@ export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
     } else if (child.type === "code" && !child.meta?.includes("!ch-exclude")) {
       parent.children.push(placeholder("code"))
       parent.code.push(child)
+    } else if (
+      // ![!name query](image.png)
+      child.type === "paragraph" &&
+      child.children.length === 1 &&
+      child.children[0].type === "image" &&
+      child.children[0].alt?.startsWith("!")
+    ) {
+      const img = child.children[0]
+      const name = img.alt?.trim().slice(1).split(/\s+/)[0] || ""
+      const alt = img.alt
+        ?.trim()
+        .slice(name.length + 1)
+        .trim()
+
+      img.url
+      const key = name || "image"
+      parent.images.push({
+        key,
+        value: {
+          ...img,
+          alt,
+        },
+      })
+      parent.children.push(placeholder(key))
     } else {
       parent.children.push(child)
     }
@@ -81,6 +120,14 @@ function placeholder(name: string) {
     ],
     children: [],
   } as JSXChild
+}
+
+export function isHikeHeading(child: any, prefix: string) {
+  return (
+    child.type === "heading" &&
+    child.children[0]?.type === "text" &&
+    child.children[0]?.value?.trim().startsWith(prefix)
+  )
 }
 
 function parseHeading(heading: Heading, prefix: string) {
