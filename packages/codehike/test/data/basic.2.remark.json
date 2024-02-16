@@ -6,71 +6,10 @@
       "children": [{ "type": "text", "value": "This is something\r\nMore" }]
     },
     {
-      "type": "mdxJsxFlowElement",
-      "name": "Foo",
-      "attributes": [
-        {
-          "type": "mdxJsxAttribute",
-          "name": "x",
-          "value": {
-            "type": "mdxJsxAttributeValueExpression",
-            "value": "2",
-            "data": {
-              "estree": {
-                "type": "Program",
-                "body": [
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": { "type": "Literal", "value": 2, "raw": "2" }
-                  }
-                ],
-                "sourceType": "module",
-                "comments": []
-              }
-            }
-          }
-        }
-      ],
-      "children": [],
-      "data": { "_mdxExplicitJsx": true }
-    },
-    {
       "type": "heading",
       "depth": 1,
       "children": [{ "type": "text", "value": "!hero 3333" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
-    {
-      "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!foo first" }]
-    },
-    {
-      "type": "paragraph",
-      "children": [
-        {
-          "type": "image",
-          "title": "Some title",
-          "url": "http://www.google.com",
-          "alt": "!screenshot foo"
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "/" }]
-    },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "more" }] },
-    {
-      "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!foo second" }]
-    },
-    {
-      "type": "paragraph",
-      "children": [{ "type": "text", "value": "hey two" }]
-    },
-    { "type": "heading", "depth": 2, "children": [] }
+    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] }
   ]
 }

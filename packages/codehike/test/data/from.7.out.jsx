@@ -1,6 +1,6 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 import { Hike } from "../../src/Hike"
-export function getHike(props) {
+export function getHike(props = {}) {
   const _components = {
     p: "p",
     slot: "slot",

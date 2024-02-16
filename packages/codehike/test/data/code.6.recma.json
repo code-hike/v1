@@ -22,7 +22,13 @@
         "type": "FunctionDeclaration",
         "async": false,
         "id": { "type": "Identifier", "name": "getHike" },
-        "params": [{ "type": "Identifier", "name": "props" }],
+        "params": [
+          {
+            "type": "AssignmentPattern",
+            "left": { "type": "Identifier", "name": "props" },
+            "right": { "type": "ObjectExpression", "properties": [] }
+          }
+        ],
         "body": {
           "type": "BlockStatement",
           "body": [
