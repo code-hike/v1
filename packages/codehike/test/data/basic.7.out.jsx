@@ -15,9 +15,14 @@ export function getHike(props = {}) {
     hero: {
       children: [
         <_components.p>{"foo"}</_components.p>,
+        <_components.slot name="foo" />,
+        <_components.slot name="quote" index={0} />,
+        <_components.slot name="quote" index={1} />,
         <_components.p>{"main"}</_components.p>,
       ],
       query: "3333",
+      foo: "bar",
+      quote: ["ho", "2"],
     },
   }
 }

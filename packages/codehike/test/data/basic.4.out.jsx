@@ -15,6 +15,8 @@ function _createMdxContent(props) {
         hero: {
           children: "hero",
           query: "3333",
+          foo: "bar",
+          quote: ["ho", "2"],
         },
       }}
     >
@@ -24,6 +26,9 @@ function _createMdxContent(props) {
       </_components.slot>
       <_components.slot path="hero">
         <_components.p>{"foo"}</_components.p>
+        <_components.slot name="foo" />
+        <_components.slot name="quote" index={0} />
+        <_components.slot name="quote" index={1} />
         <_components.p>{"main"}</_components.p>
       </_components.slot>
     </Hike>

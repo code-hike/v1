@@ -46,7 +46,12 @@ function getSerializableNode(section: HikeSection, path: string) {
       return
     }
 
-    const { name, index, multi, type, ...childNode } = child
+    let { name, index, multi, type, ...childNode } = child
+
+    if (child.type === "quote") {
+      childNode = child.value as any
+    }
+
     if (multi) {
       node[name] = node[name] || []
       node[name].push(childNode)

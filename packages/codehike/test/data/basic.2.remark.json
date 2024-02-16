@@ -8,6 +8,24 @@
       "children": [{ "type": "text", "value": "!hero 3333" }]
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
+    {
+      "type": "blockquote",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "!foo bar\r\n!! ho" }]
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "!! 2" }]
+        }
+      ]
+    },
     { "type": "paragraph", "children": [{ "type": "text", "value": "main" }] }
   ]
 }

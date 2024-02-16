@@ -144,6 +144,29 @@ export function listToSection(
         title: img.title || "",
         url: img.url,
       })
+    } else if (
+      // > !foo bar
+      child.type === "blockquote" &&
+      child.children.length === 1 &&
+      child.children[0].type === "paragraph" &&
+      child.children[0].children[0]?.type === "text" &&
+      child.children[0].children[0]?.value?.trim().startsWith("!")
+    ) {
+      const values = child.children[0].children[0].value.split(/\r?\n/)
+      values.forEach((value) => {
+        const { name = "quote", multi, query } = parseName(value)
+        parent.children.push({
+          type: "quote",
+          name,
+          multi,
+          index: multi
+            ? parent.children.filter(
+                (c) => c.type != "content" && c.name === name,
+              ).length
+            : undefined,
+          value: query,
+        })
+      })
     } else {
       parent.children.push({
         type: "content",
