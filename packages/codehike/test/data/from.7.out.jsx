@@ -10,8 +10,8 @@ export function getHike(props) {
     query: "",
     children: [
       <_components.p>{"Hello!"}</_components.p>,
-      <_components.slot name="code" />,
-      <_components.slot name="code" />,
+      <_components.slot name="code" index={0} />,
+      <_components.slot name="code" index={1} />,
     ],
     code: [
       {

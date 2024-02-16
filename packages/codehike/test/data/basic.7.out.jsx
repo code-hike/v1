@@ -6,28 +6,43 @@ export function getHike(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike } = _components
+    { Foo, Hike } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
   if (!Hike) _missingMdxReference("Hike", true)
   return {
     query: "",
     children: [
       <_components.p>{"This is something\r\nMore"}</_components.p>,
-      <_components.slot name="hero" />,
-      <_components.p>{"more"}</_components.p>,
+      <Foo x={2} />,
+      <_components.slot name="hero" index={0} />,
     ],
     hero: [
       {
         query: "3333",
         children: [
           <_components.p>{"foo"}</_components.p>,
-          <_components.h2>{"foo"}</_components.h2>,
-          <_components.slot name="screenshot" />,
+          <_components.slot name="foo" index={0} />,
+          <_components.p>{"more"}</_components.p>,
+          <_components.slot name="foo" index={1} />,
         ],
-        screenshot: {
-          alt: "foo",
-          title: "Some title",
-          url: "http://www.google.com",
-        },
+        foo: [
+          {
+            query: "first",
+            children: [<_components.slot name="screenshot" />],
+            screenshot: {
+              alt: "foo",
+              title: "Some title",
+              url: "http://www.google.com",
+            },
+          },
+          {
+            query: "second",
+            children: [
+              <_components.p>{"hey two"}</_components.p>,
+              <_components.h2 />,
+            ],
+          },
+        ],
       },
     ],
   }
@@ -39,7 +54,8 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike } = _components
+    { Foo, Hike } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
   if (!Hike) _missingMdxReference("Hike", true)
   return <Hike hike={getHike(props)}></Hike>
 }

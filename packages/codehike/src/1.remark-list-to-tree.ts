@@ -63,8 +63,8 @@ export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
         images: [],
       }
 
+      parent.children.push(placeholder(name, parent.sections.length))
       parent.sections.push(section)
-      parent.children.push(placeholder(name))
       parent = section
     } else if (
       child.type === "heading" &&
@@ -73,7 +73,7 @@ export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
     ) {
       parent = parent.parent || parent
     } else if (child.type === "code" && !child.meta?.includes("!ch-exclude")) {
-      parent.children.push(placeholder("code"))
+      parent.children.push(placeholder("code", parent.code.length))
       parent.code.push(child)
     } else if (
       // ![!name query](image.png)
@@ -107,17 +107,46 @@ export function listToTree(hikeElement: MdxJsxFlowElement, prefix = "!") {
   return root
 }
 
-function placeholder(name: string) {
+function placeholder(name: string, index?: number) {
+  const attributes: MdxJsxFlowElement["attributes"] = [
+    {
+      type: "mdxJsxAttribute",
+      name: "name",
+      value: name,
+    },
+  ]
+  if (index != null) {
+    attributes.push({
+      type: "mdxJsxAttribute",
+      name: "index",
+      value: {
+        type: "mdxJsxAttributeValueExpression",
+        value: index.toString(),
+        data: {
+          estree: {
+            type: "Program",
+            body: [
+              {
+                type: "ExpressionStatement",
+                expression: {
+                  type: "Literal",
+                  value: index,
+                  raw: index.toString(),
+                },
+              },
+            ],
+            sourceType: "module",
+            comments: [],
+          },
+        },
+      },
+    })
+  }
+
   return {
     type: "mdxJsxFlowElement",
     name: "slot",
-    attributes: [
-      {
-        type: "mdxJsxAttribute",
-        name: "name",
-        value: name,
-      },
-    ],
+    attributes,
     children: [],
   } as JSXChild
 }

@@ -150,6 +150,21 @@
                                   "name": "name"
                                 },
                                 "value": { "type": "Literal", "value": "code" }
+                              },
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "index"
+                                },
+                                "value": {
+                                  "type": "JSXExpressionContainer",
+                                  "expression": {
+                                    "type": "Literal",
+                                    "value": 0,
+                                    "raw": "0"
+                                  }
+                                }
                               }
                             ],
                             "name": {
@@ -180,6 +195,21 @@
                                   "name": "name"
                                 },
                                 "value": { "type": "Literal", "value": "code" }
+                              },
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "index"
+                                },
+                                "value": {
+                                  "type": "JSXExpressionContainer",
+                                  "expression": {
+                                    "type": "Literal",
+                                    "value": 1,
+                                    "raw": "1"
+                                  }
+                                }
                               }
                             ],
                             "name": {

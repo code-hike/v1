@@ -277,7 +277,32 @@
               "type": "mdxJsxFlowElement",
               "name": "slot",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
+                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "index",
+                  "value": {
+                    "type": "mdxJsxAttributeValueExpression",
+                    "value": "0",
+                    "data": {
+                      "estree": {
+                        "type": "Program",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "Literal",
+                              "value": 0,
+                              "raw": "0"
+                            }
+                          }
+                        ],
+                        "sourceType": "module",
+                        "comments": []
+                      }
+                    }
+                  }
+                }
               ],
               "children": []
             },
@@ -285,7 +310,32 @@
               "type": "mdxJsxFlowElement",
               "name": "slot",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" }
+                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "index",
+                  "value": {
+                    "type": "mdxJsxAttributeValueExpression",
+                    "value": "1",
+                    "data": {
+                      "estree": {
+                        "type": "Program",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "Literal",
+                              "value": 1,
+                              "raw": "1"
+                            }
+                          }
+                        ],
+                        "sourceType": "module",
+                        "comments": []
+                      }
+                    }
+                  }
+                }
               ],
               "children": []
             }
