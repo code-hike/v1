@@ -78,19 +78,6 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "query" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "",
-                            "raw": "\"\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
                           "key": { "type": "Literal", "value": "children" },
                           "kind": "init",
                           "value": {
@@ -104,150 +91,12 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "code" },
+                          "key": { "type": "Literal", "value": "query" },
                           "kind": "init",
                           "value": {
-                            "type": "ArrayExpression",
-                            "elements": [
-                              {
-                                "type": "ObjectExpression",
-                                "properties": [
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "value"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
-                                      "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "lang"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "js",
-                                      "raw": "\"js\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "meta"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "my meta",
-                                      "raw": "\"my meta\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "parentPath"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
-                                      "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\code.0.mdx\""
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "ObjectExpression",
-                                "properties": [
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "value"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "// !Mark(2)",
-                                      "raw": "\"// !Mark(2)\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "lang"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "jsonc",
-                                      "raw": "\"jsonc\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "meta"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "THE CUSTOMER OBJECT",
-                                      "raw": "\"THE CUSTOMER OBJECT\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "parentPath"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
-                                      "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\code.0.mdx\""
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
                           }
                         }
                       ]
@@ -275,15 +124,14 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "slot",
+              "name": "Code",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
                 {
                   "type": "mdxJsxAttribute",
-                  "name": "index",
+                  "name": "codeblock",
                   "value": {
                     "type": "mdxJsxAttributeValueExpression",
-                    "value": "0",
+                    "value": "",
                     "data": {
                       "estree": {
                         "type": "Program",
@@ -291,9 +139,67 @@
                           {
                             "type": "ExpressionStatement",
                             "expression": {
-                              "type": "Literal",
-                              "value": 0,
-                              "raw": "0"
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "value"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
+                                    "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": { "type": "Literal", "value": "lang" },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "js",
+                                    "raw": "\"js\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": { "type": "Literal", "value": "meta" },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "my meta",
+                                    "raw": "\"my meta\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "parentPath"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
+                                    "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\code.0.mdx\""
+                                  }
+                                }
+                              ]
                             }
                           }
                         ],
@@ -308,15 +214,14 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "slot",
+              "name": "Code",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
                 {
                   "type": "mdxJsxAttribute",
-                  "name": "index",
+                  "name": "codeblock",
                   "value": {
                     "type": "mdxJsxAttributeValueExpression",
-                    "value": "1",
+                    "value": "",
                     "data": {
                       "estree": {
                         "type": "Program",
@@ -324,9 +229,67 @@
                           {
                             "type": "ExpressionStatement",
                             "expression": {
-                              "type": "Literal",
-                              "value": 1,
-                              "raw": "1"
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "value"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "// !Mark(2)",
+                                    "raw": "\"// !Mark(2)\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": { "type": "Literal", "value": "lang" },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "jsonc",
+                                    "raw": "\"jsonc\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": { "type": "Literal", "value": "meta" },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "THE CUSTOMER OBJECT",
+                                    "raw": "\"THE CUSTOMER OBJECT\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "parentPath"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
+                                    "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\code.0.mdx\""
+                                  }
+                                }
+                              ]
                             }
                           }
                         ],

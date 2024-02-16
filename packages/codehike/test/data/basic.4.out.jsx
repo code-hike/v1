@@ -1,26 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-export function getHike(props = {}) {
-  const _components = {
-      p: "p",
-      slot: "slot",
-      ...props.components,
-    },
-    { Hike } = _components
-  return {
-    children: [
-      <_components.p>{"lorem"}</_components.p>,
-      <_components.slot name="hero" />,
-    ],
-    query: "",
-    hero: {
-      children: [
-        <_components.p>{"foo"}</_components.p>,
-        <_components.p>{"main"}</_components.p>,
-      ],
-      query: "3333",
-    },
-  }
-}
 function _createMdxContent(props) {
   const _components = {
       p: "p",
@@ -29,7 +7,27 @@ function _createMdxContent(props) {
     },
     { Hike } = _components
   if (!Hike) _missingMdxReference("Hike", true)
-  return <Hike hike={getHike(props)}></Hike>
+  return (
+    <Hike
+      __hike={{
+        children: "",
+        query: "",
+        hero: {
+          children: "hero",
+          query: "3333",
+        },
+      }}
+    >
+      <_components.slot path="">
+        <_components.p>{"lorem"}</_components.p>
+        <_components.slot name="hero" />
+      </_components.slot>
+      <_components.slot path="hero">
+        <_components.p>{"foo"}</_components.p>
+        <_components.p>{"main"}</_components.p>
+      </_components.slot>
+    </Hike>
+  )
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

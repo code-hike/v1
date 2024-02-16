@@ -4,14 +4,17 @@ import "mdast-util-mdx-jsx"
 import { Root, Content } from "mdast"
 
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
-import { isHikeHeading, listToTree } from "./1.remark-list-to-tree.js"
-import { hydrateTree, parseCode } from "./2.hydrate-tree.js"
-import { treeToAttribute } from "./3.remark-tree-to-attribute.js"
 
 import { SKIP, visit } from "estree-util-visit"
 import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
 import { addHikeExport } from "./5.recma-export-hike.js"
 import { getObjectAttribute } from "./estree.js"
+import {
+  listToSection,
+  isHikeHeading,
+  parseCode,
+} from "./1.remark-list-to-section.js"
+import { sectionToAttribute } from "./2.remark-section-to-attribute.js"
 
 type Options = {}
 
@@ -20,7 +23,7 @@ export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
     let tree = root
     // if we find any hikeable heading outside of <Hike>s,
     // let's wrap everything in a <Hike>
-    if (root.children.some((node) => isHikeHeading(node, "!"))) {
+    if (root.children.some(isHikeHeading)) {
       tree.children = [
         {
           type: "mdxJsxFlowElement",
@@ -105,10 +108,8 @@ export async function transformAllHikes(
 }
 
 async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
-  const prefix = "!"
-  const tree = listToTree(node, prefix)
-  const hydratedTree = hydrateTree(tree, mdxPath)
-  const { children, attributes } = treeToAttribute(hydratedTree)
+  const section = listToSection(node, mdxPath)
+  const { children, attributes } = sectionToAttribute(section)
 
   node.children = children
   node.attributes.push(...attributes)

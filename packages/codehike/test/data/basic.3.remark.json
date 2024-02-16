@@ -25,7 +25,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "query" },
+                          "key": { "type": "Literal", "value": "children" },
                           "kind": "init",
                           "value": {
                             "type": "Literal",
@@ -38,7 +38,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "children" },
+                          "key": { "type": "Literal", "value": "query" },
                           "kind": "init",
                           "value": {
                             "type": "Literal",
@@ -54,44 +54,36 @@
                           "key": { "type": "Literal", "value": "hero" },
                           "kind": "init",
                           "value": {
-                            "type": "ArrayExpression",
-                            "elements": [
+                            "type": "ObjectExpression",
+                            "properties": [
                               {
-                                "type": "ObjectExpression",
-                                "properties": [
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "query"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "3333",
-                                      "raw": "\"3333\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "children"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "hero",
-                                      "raw": "\"hero\""
-                                    }
-                                  }
-                                ]
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Literal",
+                                  "value": "children"
+                                },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "hero",
+                                  "raw": "\"hero\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "query" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "3333",
+                                  "raw": "\"3333\""
+                                }
                               }
                             ]
                           }
@@ -117,40 +109,13 @@
           "children": [
             {
               "type": "paragraph",
-              "children": [
-                { "type": "text", "value": "This is something\r\nMore" }
-              ]
+              "children": [{ "type": "text", "value": "lorem" }]
             },
             {
               "type": "mdxJsxFlowElement",
               "name": "slot",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "hero" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "index",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "0",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": 0,
-                              "raw": "0"
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
+                { "type": "mdxJsxAttribute", "name": "name", "value": "hero" }
               ],
               "children": []
             }
@@ -166,6 +131,10 @@
             {
               "type": "paragraph",
               "children": [{ "type": "text", "value": "foo" }]
+            },
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "main" }]
             }
           ]
         }

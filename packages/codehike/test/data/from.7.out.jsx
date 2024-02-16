@@ -2,41 +2,45 @@
 import { Hike } from "../../src/Hike"
 export function getHike(props = {}) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { Code } = _components
+  if (!Code) _missingMdxReference("Code", true)
   return {
-    query: "",
     children: [
       <_components.p>{"Hello!"}</_components.p>,
-      <_components.slot name="code" index={0} />,
-      <_components.slot name="code" index={1} />,
+      <Code
+        codeblock={{
+          value: "// !from ./z.js 3:5",
+          lang: "js",
+          meta: "my meta",
+          parentPath:
+            "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+        }}
+      />,
+      <Code
+        codeblock={{
+          value: "# !from ./z.py",
+          lang: "py",
+          meta: "python meta",
+          parentPath:
+            "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
+        }}
+      />,
     ],
-    code: [
-      {
-        value: "// !from ./z.js 3:5",
-        lang: "js",
-        meta: "my meta",
-        parentPath:
-          "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-      },
-      {
-        value: "# !from ./z.py",
-        lang: "py",
-        meta: "python meta",
-        parentPath:
-          "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-      },
-    ],
+    query: "",
   }
 }
 function _createMdxContent(props) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { Code } = _components
+  if (!Code) _missingMdxReference("Code", true)
   return <Hike hike={getHike(props)}></Hike>
 }
 export default function MDXContent(props = {}) {
@@ -47,5 +51,14 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
+  )
+}
+function _missingMdxReference(id, component) {
+  throw new Error(
+    "Expected " +
+      (component ? "component" : "object") +
+      " `" +
+      id +
+      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

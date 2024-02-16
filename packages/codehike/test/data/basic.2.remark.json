@@ -1,15 +1,13 @@
 {
   "type": "root",
   "children": [
-    {
-      "type": "paragraph",
-      "children": [{ "type": "text", "value": "This is something\r\nMore" }]
-    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "lorem" }] },
     {
       "type": "heading",
       "depth": 1,
       "children": [{ "type": "text", "value": "!hero 3333" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] }
+    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "main" }] }
   ]
 }

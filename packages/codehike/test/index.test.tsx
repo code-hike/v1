@@ -64,6 +64,23 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
     parser: "babel",
   })
   await expect(out).toMatchFileSnapshot(`./data/${name}.7.out.jsx`)
+
+  const r = await compile(
+    {
+      value: mdx,
+      history: [mdxPath],
+    },
+    {
+      jsx: true,
+      // baseUrl: import.meta.url,
+      remarkPlugins: [[hikeRemark, {}]],
+    },
+  )
+  const out2 = await prettier.format(String(r), {
+    semi: false,
+    parser: "babel",
+  })
+  await expect(out2).toMatchFileSnapshot(`./data/${name}.4.out.jsx`)
 }
 
 const hikeRemark = remarkCodeHike
@@ -88,6 +105,21 @@ function logRemark({ name }: { name: string }) {
       },
     )
     expect(out).toMatchFileSnapshot(`./data/${name}.json`)
+  }
+}
+
+function logJSX({ name }: { name: string }) {
+  return async function transformer(tree: any) {
+    const out = await prettier.format(
+      JSON.stringify(tree, (key, value) =>
+        ignoreProperties.includes(key) ? undefined : value,
+      ),
+      {
+        semi: false,
+        parser: "babel",
+      },
+    )
+    expect(out).toMatchFileSnapshot(`./data/${name}.jsx`)
   }
 }
 
