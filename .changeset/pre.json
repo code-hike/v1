@@ -7,6 +7,7 @@
     "codehike": "0.9.9"
   },
   "changesets": [
+    "blue-cameras-serve",
     "cold-doors-occur",
     "dirty-onions-nail",
     "gentle-pots-mix",

@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.5
+
+### Minor Changes
+
+- New hike syntax
+
 ## 1.0.0-alpha.4
 
 ### Patch Changes
