@@ -7,7 +7,7 @@ import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 
 import { SKIP, visit } from "estree-util-visit"
 import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
-import { addHikeExport } from "./5.recma-export-hike.js"
+import { addBlocksExport } from "./5.recma-export-hike.js"
 import { getObjectAttribute } from "./estree.js"
 import {
   listToSection,
@@ -137,7 +137,7 @@ export function transformAllRecmaHikes(tree: any, config?: Config) {
     }
   })
 
-  addHikeExport(tree)
+  addBlocksExport(tree)
 
   return tree
 }

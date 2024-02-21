@@ -1,6 +1,7 @@
 # Logs
 todo.md
 now.md
+roadmap.md
 logs
 *.log
 npm-debug.log*

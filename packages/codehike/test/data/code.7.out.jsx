@@ -1,6 +1,6 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 import { Hike } from "../../src/Hike"
-export function getHike(props = {}) {
+export function getBlocks(props = {}) {
   const _components = {
       p: "p",
       slot: "slot",
@@ -41,7 +41,7 @@ function _createMdxContent(props) {
     },
     { Code } = _components
   if (!Code) _missingMdxReference("Code", true)
-  return <Hike foo={"bar"} hike={getHike(props)}></Hike>
+  return <Hike foo={"bar"} hike={getBlocks(props)}></Hike>
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

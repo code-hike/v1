@@ -93,30 +93,39 @@
                                 "key": { "type": "Literal", "value": "foo" },
                                 "kind": "init",
                                 "value": {
-                                  "type": "Literal",
-                                  "value": "bar",
-                                  "raw": "\"bar\""
-                                }
-                              },
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "quote" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "ArrayExpression",
-                                  "elements": [
+                                  "type": "ObjectExpression",
+                                  "properties": [
                                     {
-                                      "type": "Literal",
-                                      "value": "ho",
-                                      "raw": "\"ho\""
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "children"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "hero.foo",
+                                        "raw": "\"hero.foo\""
+                                      }
                                     },
                                     {
-                                      "type": "Literal",
-                                      "value": "2",
-                                      "raw": "\"2\""
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "query"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "baz",
+                                        "raw": "\"baz\""
+                                      }
                                     }
                                   ]
                                 }
@@ -154,6 +163,10 @@
                 { "type": "mdxJsxAttribute", "name": "name", "value": "hero" }
               ],
               "children": []
+            },
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "foo" }]
             }
           ]
         },
@@ -164,10 +177,6 @@
             { "type": "mdxJsxAttribute", "name": "path", "value": "hero" }
           ],
           "children": [
-            {
-              "type": "paragraph",
-              "children": [{ "type": "text", "value": "foo" }]
-            },
             {
               "type": "mdxJsxFlowElement",
               "name": "slot",
@@ -180,71 +189,35 @@
               "type": "mdxJsxFlowElement",
               "name": "slot",
               "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "quote" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "index",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "0",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": 0,
-                              "raw": "0"
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
+                { "type": "mdxJsxAttribute", "name": "name", "value": "foo" }
               ],
               "children": []
-            },
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "quote" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "index",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "1",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": 1,
-                              "raw": "1"
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
-              ],
-              "children": []
-            },
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "hero.foo" }
+          ],
+          "children": [
             {
               "type": "paragraph",
-              "children": [{ "type": "text", "value": "main" }]
+              "children": [{ "type": "text", "value": "bax" }]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "hero.foo" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "3" }]
             }
           ]
         }

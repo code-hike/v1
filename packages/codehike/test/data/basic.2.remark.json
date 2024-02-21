@@ -7,25 +7,23 @@
       "depth": 1,
       "children": [{ "type": "text", "value": "!hero 3333" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
     {
-      "type": "blockquote",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "!foo bar\r\n!! ho" }]
-        }
-      ]
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "!foo bar" }]
     },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] },
     {
-      "type": "blockquote",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "!! 2" }]
-        }
-      ]
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "!foo baz" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "main" }] }
+    { "type": "paragraph", "children": [{ "type": "text", "value": "3" }] },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [{ "type": "text", "value": "/" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] }
   ]
 }

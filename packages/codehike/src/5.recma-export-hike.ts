@@ -1,7 +1,7 @@
 import { SKIP, visit } from "estree-util-visit"
 import { Node } from "mdast"
 
-export function addHikeExport(program: any) {
+export function addBlocksExport(program: any) {
   // remove default funcion
   // node.body = node.body.filter(
   //   (node: any) => node?.type !== "ExportDefaultDeclaration",
@@ -31,23 +31,23 @@ export function addHikeExport(program: any) {
     return
   }
 
-  // creatae getHike function
-  const getHike = {
+  // creatae getBlocks function
+  const getBlocks = {
     type: "ExportNamedDeclaration",
     declaration: {
       ...JSON.parse(JSON.stringify(_createMdxContent)),
-      id: { type: "Identifier", name: "getHike" },
+      id: { type: "Identifier", name: "getBlocks" },
     },
     specifiers: [],
     source: null,
   }
 
   // insert before _createMdxContent
-  body.splice(body.indexOf(_createMdxContent), 0, getHike)
+  body.splice(body.indexOf(_createMdxContent), 0, getBlocks)
 
-  // change getHike return to hike object
+  // change getBlocks return to hike object
   const [returnStatement] = find(
-    getHike,
+    getBlocks,
     (node) => node.type === "ReturnStatement",
   )
   const [hikeAttribute] = find(
@@ -57,21 +57,21 @@ export function addHikeExport(program: any) {
   const hikeObject = hikeAttribute.value.expression
   returnStatement.argument = hikeObject
 
-  // change _createMdxContent attribute to getHike()
+  // change _createMdxContent attribute to getBlocks()
   const [_createMdxHikeAttribute] = find(
     _createMdxContentReturn,
     (node) => node.type === "JSXAttribute" && node?.name?.name === "hike",
   )
   _createMdxHikeAttribute.value.expression = {
     type: "CallExpression",
-    callee: { type: "Identifier", name: "getHike" },
+    callee: { type: "Identifier", name: "getBlocks" },
     arguments: [{ type: "Identifier", name: "props" }],
     optional: false,
   }
 
   // remove `if (!Hike) _missingMdxReference("Hike", true)`
   const [missingMdxReference, parent] = find(
-    getHike,
+    getBlocks,
     (node) =>
       node.type === "IfStatement" &&
       node.test?.type === "UnaryExpression" &&
@@ -84,8 +84,8 @@ export function addHikeExport(program: any) {
     )
   }
 
-  // add default props: getHike(props = {})
-  getHike.declaration.params = [
+  // add default props: getBlocks(props = {})
+  getBlocks.declaration.params = [
     {
       type: "AssignmentPattern",
       left: { type: "Identifier", name: "props" },

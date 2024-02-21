@@ -21,7 +21,7 @@
       "declaration": {
         "type": "FunctionDeclaration",
         "async": false,
-        "id": { "type": "Identifier", "name": "getHike" },
+        "id": { "type": "Identifier", "name": "getBlocks" },
         "params": [
           {
             "type": "AssignmentPattern",
@@ -502,7 +502,7 @@
                       "type": "JSXExpressionContainer",
                       "expression": {
                         "type": "CallExpression",
-                        "callee": { "type": "Identifier", "name": "getHike" },
+                        "callee": { "type": "Identifier", "name": "getBlocks" },
                         "arguments": [
                           { "type": "Identifier", "name": "props" }
                         ],
