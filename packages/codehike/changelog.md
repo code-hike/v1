@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.6
+
+### Patch Changes
+
+- Rename getHike to getBlocks
+
 ## 1.0.0-alpha.5
 
 ### Minor Changes
