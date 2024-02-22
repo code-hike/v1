@@ -145,16 +145,14 @@ export function listToSection(
         url: img.url,
       })
     } else if (
-      // > !foo bar
-      child.type === "blockquote" &&
-      child.children.length === 1 &&
-      child.children[0].type === "paragraph" &&
-      child.children[0].children[0]?.type === "text" &&
-      child.children[0].children[0]?.value?.trim().startsWith("!")
+      // !foo bar
+      child.type === "paragraph" &&
+      child.children[0]?.type === "text" &&
+      child.children[0]?.value?.trim().startsWith("!")
     ) {
-      const values = child.children[0].children[0].value.split(/\r?\n/)
+      const values = child.children[0].value.split(/\r?\n/)
       values.forEach((value) => {
-        const { name = "quote", multi, query } = parseName(value)
+        const { name = "value", multi, query } = parseName(value)
         parent.children.push({
           type: "quote",
           name,

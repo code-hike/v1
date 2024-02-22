@@ -15,14 +15,28 @@ export function getBlocks(props = {}) {
     query: "",
     hero: {
       children: [
-        <_components.slot name="foo" />,
-        <_components.slot name="foo" />,
+        <_components.slot name="foo" index={0} />,
+        <_components.slot name="foo" index={1} />,
       ],
       query: "3333",
-      foo: {
-        children: [<_components.p>{"bax"}</_components.p>],
-        query: "baz",
-      },
+      foo: [
+        {
+          children: [<_components.p>{"bax"}</_components.p>],
+          query: "bar",
+        },
+        {
+          children: [
+            <_components.p>{"3"}</_components.p>,
+            <_components.slot name="hey" />,
+            <_components.slot name="one" index={0} />,
+            <_components.slot name="one" index={1} />,
+            <_components.p>{"asdasdf"}</_components.p>,
+          ],
+          query: "baz",
+          hey: "11 11",
+          one: ["333", "444"],
+        },
+      ],
     },
   }
 }

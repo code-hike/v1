@@ -10,15 +10,25 @@
     {
       "type": "heading",
       "depth": 2,
-      "children": [{ "type": "text", "value": "!foo bar" }]
+      "children": [{ "type": "text", "value": "!!foo bar" }]
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] },
     {
       "type": "heading",
       "depth": 2,
-      "children": [{ "type": "text", "value": "!foo baz" }]
+      "children": [{ "type": "text", "value": "!!foo baz" }]
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "3" }] },
+    {
+      "type": "paragraph",
+      "children": [
+        { "type": "text", "value": "!hey 11 11\r\n!!one 333\r\n!!one 444" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "children": [{ "type": "text", "value": "asdasdf" }]
+    },
     {
       "type": "heading",
       "depth": 1,
