@@ -7,7 +7,7 @@ export function Slideshow({ hike }: { hike: any }) {
       slides={hike.steps.map((step: any) => (
         <div>
           <Controls length={hike.steps.length} />
-          <Code codeblock={step.code[0]} />
+          <Code codeblock={step.code} />
           <Controls length={hike.steps.length} />
           <div className="h-40 px-6">{step.children}</div>
         </div>

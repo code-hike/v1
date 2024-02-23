@@ -11,10 +11,10 @@ The `<Hike>` component lets you add more structure to your markdown content. Spl
 
 <Hike as={HikeGuide}>
 
-## ! Hike
+## !! Hike
 
 {/* prettier-ignore */}
-```mdx You write this content
+```mdx !! You write this content
 {/* !Color[10:15] #7EE787 */}
 import { Layout } from "./layout"
 
@@ -24,18 +24,18 @@ import { Layout } from "./layout"
 
 zero
 
-## !steps one 1
+## !!steps one 1
 
 uno
 
-## !steps two 2
+## !!steps two 2
 
 dos
 
 </Hike>
 ```
 
-```jsx CodeHike generates this JSX
+```jsx !! CodeHike generates this JSX
 function MDXContent() {
   return (
     // !Color[6:11] #7EE787
@@ -62,10 +62,10 @@ function MDXContent() {
 
 This is a `note` with _markdown_.
 
-## ! Sections
+## !! Sections
 
-## ! Nesting
+## !! Nesting
 
-## ! Code
+## !! Code
 
 </Hike>

@@ -6,8 +6,6 @@ import { Root, Content } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 
 import { SKIP, visit } from "estree-util-visit"
-import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
-import { addBlocksExport } from "./5.recma-export-hike.js"
 import { getObjectAttribute } from "./estree.js"
 import {
   listToSection,
@@ -15,10 +13,23 @@ import {
   parseCode,
 } from "./1.remark-list-to-section.js"
 import { sectionToAttribute } from "./2.remark-section-to-attribute.js"
+import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
+import { addBlocksExport } from "./5.recma-export-hike.js"
 
-type Options = {}
+/**
+ * Code Hike configuration object
+ * @see [configuration documentation](https://codehike.org/docs)
+ */
+export type CodeHikeConfig = {
+  components?: {
+    code?: string
+    image?: string
+  }
+}
 
-export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
+export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
+  config,
+) => {
   return async (root, file) => {
     let tree = root
     // if we find any hikeable heading outside of <Hike>s,
@@ -37,23 +48,25 @@ export const remarkCodeHike: Plugin<[Options?], Root, Root> = (config) => {
 
     tree = (await transformAllHikes(root, config, file)) as any
 
-    tree = transformAllCode(tree, config as any, file) as any
+    if (config?.components?.code) {
+      tree = transformAllCode(tree, config, file) as any
+    }
     return tree
   }
 }
 
-export const recmaCodeHike: Plugin<[Options?], Root, Root> = (config) => {
+export const recmaCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
+  config,
+) => {
   return async (root, file) => {
     let tree = transformAllRecmaHikes(root, config as any) as any
     return tree as any
   }
 }
 
-type Config = {}
-
-export function transformAllCode(
+export async function transformAllCode(
   node: Root | Content,
-  config?: Config,
+  config: CodeHikeConfig,
   file?: any,
 ) {
   const mdxPath = file?.history
@@ -61,10 +74,10 @@ export function transformAllCode(
     : undefined
 
   if (node.type === "code") {
-    const codeblock = parseCode(node, mdxPath)
+    const codeblock = await parseCode(node, mdxPath)
     return {
       type: "mdxJsxFlowElement",
-      name: "Code",
+      name: config?.components?.code || "Code",
       attributes: [
         {
           type: "mdxJsxAttribute",
@@ -78,8 +91,8 @@ export function transformAllCode(
 
   if ("children" in node && node.children.length > 0) {
     // @ts-ignore
-    node.children = node.children.map((child) =>
-      transformAllCode(child, config, file),
+    node.children = await Promise.all(
+      node.children.map((child) => transformAllCode(child, config, file)),
     )
   }
 
@@ -88,7 +101,7 @@ export function transformAllCode(
 
 export async function transformAllHikes(
   node: Root | Content,
-  config?: Config,
+  config?: CodeHikeConfig,
   file?: any,
 ) {
   const mdxPath = file?.history ? file.history[file.history.length - 1] : null
@@ -124,7 +137,7 @@ async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
   return node
 }
 
-export function transformAllRecmaHikes(tree: any, config?: Config) {
+export function transformAllRecmaHikes(tree: any, config?: CodeHikeConfig) {
   visit(tree, (node: any) => {
     if (
       node?.type === "JSXElement" &&

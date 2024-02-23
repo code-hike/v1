@@ -46,7 +46,6 @@ export type CodeBlock = {
   value: string
   lang: string
   meta?: string
-  parentPath?: string
 }
 
 export type HikeSection<T extends string = "steps"> = {
@@ -93,6 +92,5 @@ function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
     value: props.code,
     meta: props.meta,
     lang: props.lang,
-    parentPath: props.parentPath,
   }
 }

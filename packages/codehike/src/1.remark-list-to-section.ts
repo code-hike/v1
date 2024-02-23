@@ -33,7 +33,6 @@ interface HikeCode extends HikeNodeBase {
   value: string
   lang?: string | null | undefined
   meta?: string | null | undefined
-  parentPath?: string
 }
 
 interface HikeImage extends HikeNodeBase {
@@ -216,8 +215,6 @@ function parseHeading(heading: Heading) {
 }
 
 async function parseCodeValue(code: Code, mdxPath?: string) {
-  // TODO should do this for standalone code too
-  console.log("code", code)
   if (code.value?.startsWith("!from ")) {
     const fromData = code.value.slice(6).trim()
     const [codepath, range] = fromData?.split(/\s+/) || []
@@ -227,11 +224,10 @@ async function parseCodeValue(code: Code, mdxPath?: string) {
   return code.value
 }
 
-export function parseCode(code: Code, mdxPath?: string) {
+export async function parseCode(code: Code, mdxPath?: string) {
   return {
-    value: code.value || "",
+    value: await parseCodeValue(code, mdxPath),
     lang: code.lang,
     meta: code.meta,
-    parentPath: mdxPath,
   }
 }

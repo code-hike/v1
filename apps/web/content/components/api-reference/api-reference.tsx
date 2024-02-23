@@ -8,27 +8,35 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "./collapsible"
-import { z } from "../../../ui/z"
 
-const HikeSchema = z.hike({
-  main: z.section({
-    steps: z.sections({
-      steps: z.optional(z.sections({})),
-    }),
-  }),
-  extra: z.section({
-    steps: z.sections({}),
-  }),
-  returns: z.optional(z.section({})),
-  code: z.codeblock(),
-})
+type Blocks = {
+  code: CodeBlock
+  main: {
+    query: string
+    steps: PropertyBlock[]
+  }
+  extra: {
+    query: string
+    steps: PropertyBlock[]
+  }
+  returns: {
+    query: string
+    children: React.ReactNode
+  }
+}
+
+type PropertyBlock = {
+  query: string
+  children: React.ReactNode
+  steps?: PropertyBlock[]
+}
 
 export async function APIReference({
   hike,
 }: {
-  hike: HikeSection
+  hike: Blocks
 }) {
-  const data = HikeSchema.parse(hike)
+  const data = hike
 
   const { main, extra, returns, code } = data
 

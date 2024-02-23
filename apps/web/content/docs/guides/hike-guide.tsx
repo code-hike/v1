@@ -6,8 +6,8 @@ export function HikeGuide({ hike }: any) {
   const first = steps[0]
   return (
     <div className="flex gap-2">
-      <Code codeblock={first.code[0]} note={first.note[0].children} />
-      <Code codeblock={first.code[1]} note={first.note[0].children} />
+      <Code codeblock={first.code[0]} note={first.note.children} />
+      <Code codeblock={first.code[1]} note={first.note.children} />
       <div className="flex flex-col w-32">
         {steps.map((step: any, i: number) => {
           const inactive =

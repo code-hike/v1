@@ -5,7 +5,8 @@ export function getBlocks(props = {}) {
       slot: "slot",
       ...props.components,
     },
-    { Hike } = _components
+    { Hike, MyCode } = _components
+  if (!MyCode) _missingMdxReference("MyCode", true)
   return {
     children: [
       <_components.p>{"lorem"}</_components.p>,
@@ -23,16 +24,15 @@ export function getBlocks(props = {}) {
         {
           children: [
             <_components.p>{"bax"}</_components.p>,
-            <_components.slot name="code" index={0} />,
+            <MyCode
+              codeblock={{
+                value: "x = 3\r\nx = 4\r\nx = 5\r",
+                lang: "js",
+                meta: "foo.js",
+              }}
+            />,
           ],
           query: "bar",
-          code: [
-            {
-              value: "x = 3\r\nx = 4\r\nx = 5\r",
-              lang: "js",
-              meta: "foo.js",
-            },
-          ],
         },
         {
           children: [
@@ -56,8 +56,9 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike } = _components
+    { Hike, MyCode } = _components
   if (!Hike) _missingMdxReference("Hike", true)
+  if (!MyCode) _missingMdxReference("MyCode", true)
   return <Hike hike={getBlocks(props)}></Hike>
 }
 export default function MDXContent(props = {}) {

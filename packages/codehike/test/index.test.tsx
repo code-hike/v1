@@ -37,6 +37,12 @@ async function testRender(MDXContent: any, name: string) {
   expect(html).toMatchFileSnapshot(`./data/${name}.8.static.html`)
 }
 
+const chConfig = {
+  components: {
+    code: "MyCode",
+  },
+}
+
 async function testCompilation(name: string, mdx: string, mdxPath: string) {
   const result = await compile(
     {
@@ -48,13 +54,13 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
       // baseUrl: import.meta.url,
       remarkPlugins: [
         [logRemark, { name: name + ".2.remark" }],
-        [hikeRemark, {}],
+        [hikeRemark, chConfig],
         [(n) => logRemark(n), { name: name + ".3.remark" }],
       ],
       rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],
       recmaPlugins: [
         [(n) => logRemark(n), { name: name + ".5.recma" }],
-        [hikeRecma, {}],
+        [hikeRecma, chConfig],
         [(n) => logRemark(n), { name: name + ".6.recma" }],
       ],
     },
@@ -73,7 +79,7 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
     {
       jsx: true,
       // baseUrl: import.meta.url,
-      remarkPlugins: [[hikeRemark, {}]],
+      remarkPlugins: [[hikeRemark, chConfig]],
     },
   )
   const out2 = await prettier.format(String(r), {

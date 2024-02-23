@@ -1,10 +1,22 @@
 import createNextDocsMDX from "next-docs-mdx/config"
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
+/** @type {import('codehike/mdx').CodeHikeConfig} */
+const chConfig = {
+  components: {
+    code: "Code",
+    image: "Image",
+    table: "Table",
+  },
+  // syntaxHighlight: {
+  //   theme: "github-dark",
+  // },
+}
+
 const withMDX = createNextDocsMDX({
   mdxOptions: {
-    remarkPlugins: [remarkCodeHike],
-    recmaPlugins: [recmaCodeHike],
+    remarkPlugins: [[remarkCodeHike, chConfig]],
+    recmaPlugins: [[recmaCodeHike, chConfig]],
     jsx: true,
   },
 })

@@ -16,7 +16,7 @@
     {
       "type": "code",
       "lang": "js",
-      "meta": "!! foo.js",
+      "meta": "foo.js",
       "value": "!from z.js 3:5"
     },
     {

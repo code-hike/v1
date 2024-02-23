@@ -103,7 +103,7 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "Code",
+              "name": "MyCode",
               "attributes": [
                 {
                   "type": "mdxJsxAttribute",
@@ -161,22 +161,6 @@
                                     "value": "my meta",
                                     "raw": "\"my meta\""
                                   }
-                                },
-                                {
-                                  "type": "Property",
-                                  "method": false,
-                                  "shorthand": false,
-                                  "computed": false,
-                                  "key": {
-                                    "type": "Literal",
-                                    "value": "parentPath"
-                                  },
-                                  "kind": "init",
-                                  "value": {
-                                    "type": "Literal",
-                                    "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-                                    "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
-                                  }
                                 }
                               ]
                             }
@@ -193,7 +177,7 @@
             },
             {
               "type": "mdxJsxFlowElement",
-              "name": "Code",
+              "name": "MyCode",
               "attributes": [
                 {
                   "type": "mdxJsxAttribute",
@@ -250,22 +234,6 @@
                                     "type": "Literal",
                                     "value": "python meta",
                                     "raw": "\"python meta\""
-                                  }
-                                },
-                                {
-                                  "type": "Property",
-                                  "method": false,
-                                  "shorthand": false,
-                                  "computed": false,
-                                  "key": {
-                                    "type": "Literal",
-                                    "value": "parentPath"
-                                  },
-                                  "kind": "init",
-                                  "value": {
-                                    "type": "Literal",
-                                    "value": "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\from.0.mdx",
-                                    "raw": "\"C:\\\\p\\\\dev\\\\v1\\\\packages\\\\codehike\\\\test\\\\data\\\\from.0.mdx\""
                                   }
                                 }
                               ]

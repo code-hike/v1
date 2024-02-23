@@ -6,7 +6,7 @@ import { DependencyTerminal } from "./dependency-terminal"
 export function ExampleTabs({ hike }: any) {
   const mdx = hike.code.filter((code: any) => code.lang === "mdx")[0]
   const code = hike.code.filter((code: any) => code.lang !== "mdx")
-  const preview = hike.preview[0]
+  const preview = hike.preview
 
   return (
     <Tabs items={["Preview", "MDX", "Code"]}>

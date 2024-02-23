@@ -6,8 +6,8 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Code } = _components
-  if (!Code) _missingMdxReference("Code", true)
+    { MyCode } = _components
+  if (!MyCode) _missingMdxReference("MyCode", true)
   return (
     <Hike
       foo={"bar"}
@@ -18,22 +18,18 @@ function _createMdxContent(props) {
     >
       <_components.slot path="">
         <_components.p>{"Hello world!"}</_components.p>
-        <Code
+        <MyCode
           codeblock={{
             value: 'console.log("hello world")\r\nconsole.log("bye world")',
             lang: "js",
             meta: "my meta",
-            parentPath:
-              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
           }}
         />
-        <Code
+        <MyCode
           codeblock={{
             value: "// !Mark(2)",
             lang: "jsonc",
             meta: "THE CUSTOMER OBJECT",
-            parentPath:
-              "C:\\p\\dev\\v1\\packages\\codehike\\test\\data\\code.0.mdx",
           }}
         />
       </_components.slot>

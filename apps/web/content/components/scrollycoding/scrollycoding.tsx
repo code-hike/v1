@@ -3,7 +3,7 @@ import { CodeContent, CodeBlock } from "codehike"
 
 export function Scrollycoding({ hike }: { hike: any }) {
   const steps = hike.steps.map((step: any) => ({
-    sticker: <Code codeblock={step.code[0]} />,
+    sticker: <Code codeblock={step.code} />,
   }))
 
   return (
