@@ -2,8 +2,6 @@
   "private": true,
   "scripts": {
     "build": "turbo build --filter=codehike...",
-    "build:outpost": "turbo build --filter=outpost...",
-    "outpost": "turbo dev --filter=outpost --filter=codehike... ",
     "web": "turbo dev --filter=web --filter=codehike... ",
     "test": "turbo test",
     "clean": "turbo clean && rm -rf node_modules",
