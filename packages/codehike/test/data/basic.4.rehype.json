@@ -129,6 +129,75 @@
                                             "value": "bar",
                                             "raw": "\"bar\""
                                           }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "code"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "ArrayExpression",
+                                            "elements": [
+                                              {
+                                                "type": "ObjectExpression",
+                                                "properties": [
+                                                  {
+                                                    "type": "Property",
+                                                    "method": false,
+                                                    "shorthand": false,
+                                                    "computed": false,
+                                                    "key": {
+                                                      "type": "Literal",
+                                                      "value": "value"
+                                                    },
+                                                    "kind": "init",
+                                                    "value": {
+                                                      "type": "Literal",
+                                                      "value": "x = 3\r\nx = 4\r\nx = 5\r",
+                                                      "raw": "\"x = 3\\r\\nx = 4\\r\\nx = 5\\r\""
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "Property",
+                                                    "method": false,
+                                                    "shorthand": false,
+                                                    "computed": false,
+                                                    "key": {
+                                                      "type": "Literal",
+                                                      "value": "lang"
+                                                    },
+                                                    "kind": "init",
+                                                    "value": {
+                                                      "type": "Literal",
+                                                      "value": "js",
+                                                      "raw": "\"js\""
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "Property",
+                                                    "method": false,
+                                                    "shorthand": false,
+                                                    "computed": false,
+                                                    "key": {
+                                                      "type": "Literal",
+                                                      "value": "meta"
+                                                    },
+                                                    "kind": "init",
+                                                    "value": {
+                                                      "type": "Literal",
+                                                      "value": "foo.js",
+                                                      "raw": "\"foo.js\""
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
                                         }
                                       ]
                                     },
@@ -345,6 +414,39 @@
               "tagName": "p",
               "properties": {},
               "children": [{ "type": "text", "value": "bax" }]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
+                {
+                  "type": "mdxJsxAttribute",
+                  "name": "index",
+                  "value": {
+                    "type": "mdxJsxAttributeValueExpression",
+                    "value": "0",
+                    "data": {
+                      "estree": {
+                        "type": "Program",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "Literal",
+                              "value": 0,
+                              "raw": "0"
+                            }
+                          }
+                        ],
+                        "sourceType": "module",
+                        "comments": []
+                      }
+                    }
+                  }
+                }
+              ],
+              "children": []
             }
           ]
         },

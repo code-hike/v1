@@ -14,6 +14,12 @@
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] },
     {
+      "type": "code",
+      "lang": "js",
+      "meta": "!! foo.js",
+      "value": "!from z.js 3:5"
+    },
+    {
       "type": "heading",
       "depth": 2,
       "children": [{ "type": "text", "value": "!!foo baz" }]

@@ -108,7 +108,7 @@ export async function transformAllHikes(
 }
 
 async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
-  const section = listToSection(node, mdxPath)
+  const section = await listToSection(node, mdxPath)
   const { children, attributes } = sectionToAttribute(section)
 
   node.children = children

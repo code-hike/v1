@@ -154,9 +154,9 @@ async function extractLineAnnotations(code: string) {
 //   }
 // }
 
-async function readFile(
+export async function readFile(
   externalCodePath: string,
-  mdxFilePath: string,
+  mdxFilePath: string | undefined,
   range: string | undefined,
 ) {
   const annotationContent = "from " + mdxFilePath + " " + (range || "")

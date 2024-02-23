@@ -21,8 +21,18 @@ export function getBlocks(props = {}) {
       query: "3333",
       foo: [
         {
-          children: [<_components.p>{"bax"}</_components.p>],
+          children: [
+            <_components.p>{"bax"}</_components.p>,
+            <_components.slot name="code" index={0} />,
+          ],
           query: "bar",
+          code: [
+            {
+              value: "x = 3\r\nx = 4\r\nx = 5\r",
+              lang: "js",
+              meta: "foo.js",
+            },
+          ],
         },
         {
           children: [

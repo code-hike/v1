@@ -224,6 +224,75 @@
                                               "value": "bar",
                                               "raw": "\"bar\""
                                             }
+                                          },
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "code"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "ArrayExpression",
+                                              "elements": [
+                                                {
+                                                  "type": "ObjectExpression",
+                                                  "properties": [
+                                                    {
+                                                      "type": "Property",
+                                                      "method": false,
+                                                      "shorthand": false,
+                                                      "computed": false,
+                                                      "key": {
+                                                        "type": "Literal",
+                                                        "value": "value"
+                                                      },
+                                                      "kind": "init",
+                                                      "value": {
+                                                        "type": "Literal",
+                                                        "value": "x = 3\r\nx = 4\r\nx = 5\r",
+                                                        "raw": "\"x = 3\\r\\nx = 4\\r\\nx = 5\\r\""
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "Property",
+                                                      "method": false,
+                                                      "shorthand": false,
+                                                      "computed": false,
+                                                      "key": {
+                                                        "type": "Literal",
+                                                        "value": "lang"
+                                                      },
+                                                      "kind": "init",
+                                                      "value": {
+                                                        "type": "Literal",
+                                                        "value": "js",
+                                                        "raw": "\"js\""
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "Property",
+                                                      "method": false,
+                                                      "shorthand": false,
+                                                      "computed": false,
+                                                      "key": {
+                                                        "type": "Literal",
+                                                        "value": "meta"
+                                                      },
+                                                      "kind": "init",
+                                                      "value": {
+                                                        "type": "Literal",
+                                                        "value": "foo.js",
+                                                        "raw": "\"foo.js\""
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
                                           }
                                         ]
                                       },
@@ -637,6 +706,48 @@
                           "expression": { "type": "Literal", "value": "bax" }
                         }
                       ]
+                    },
+                    {
+                      "type": "JSXElement",
+                      "openingElement": {
+                        "type": "JSXOpeningElement",
+                        "attributes": [
+                          {
+                            "type": "JSXAttribute",
+                            "name": { "type": "JSXIdentifier", "name": "name" },
+                            "value": { "type": "Literal", "value": "code" }
+                          },
+                          {
+                            "type": "JSXAttribute",
+                            "name": {
+                              "type": "JSXIdentifier",
+                              "name": "index"
+                            },
+                            "value": {
+                              "type": "JSXExpressionContainer",
+                              "expression": {
+                                "type": "Literal",
+                                "value": 0,
+                                "raw": "0"
+                              }
+                            }
+                          }
+                        ],
+                        "name": {
+                          "type": "JSXMemberExpression",
+                          "object": {
+                            "type": "JSXIdentifier",
+                            "name": "_components"
+                          },
+                          "property": {
+                            "type": "JSXIdentifier",
+                            "name": "slot"
+                          }
+                        },
+                        "selfClosing": true
+                      },
+                      "closingElement": null,
+                      "children": []
                     }
                   ]
                 },

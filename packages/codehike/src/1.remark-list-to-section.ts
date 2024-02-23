@@ -1,5 +1,6 @@
 import { BlockContent, Code, DefinitionContent, Heading, Image } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
+import { readFile } from "./code/extract-annotations.js"
 
 export type JSXChild = BlockContent | DefinitionContent
 
@@ -52,10 +53,10 @@ export interface HikeContent {
   value: JSXChild
 }
 
-export function listToSection(
+export async function listToSection(
   hikeElement: MdxJsxFlowElement,
   mdxPath?: string,
-): HikeSection {
+): Promise<HikeSection> {
   const { children } = hikeElement
 
   const root: HikeSection = {
@@ -69,7 +70,7 @@ export function listToSection(
   }
   let parent: HikeSection = root
 
-  children.forEach((child) => {
+  for (const child of children) {
     if (
       child.type === "heading" &&
       child.children[0]?.type === "text" &&
@@ -107,6 +108,7 @@ export function listToSection(
       }
     } else if (child.type === "code" && child.meta?.trim().startsWith("!")) {
       const { name = "code", multi, query } = parseName(child.meta || "")
+      const value = await parseCodeValue(child, mdxPath)
       parent.children.push({
         type: "code",
         name,
@@ -116,10 +118,10 @@ export function listToSection(
               (c) => c.type != "content" && c.name === name,
             ).length
           : undefined,
-        value: child.value,
+        value,
         lang: child.lang,
         meta: query,
-        parentPath: mdxPath,
+        // parentPath: mdxPath,
       })
     } else if (
       // ![!name query](image.png)
@@ -171,7 +173,7 @@ export function listToSection(
         value: child,
       })
     }
-  })
+  }
 
   return root
 }
@@ -211,6 +213,18 @@ function parseHeading(heading: Heading) {
     query,
     multi,
   }
+}
+
+async function parseCodeValue(code: Code, mdxPath?: string) {
+  // TODO should do this for standalone code too
+  console.log("code", code)
+  if (code.value?.startsWith("!from ")) {
+    const fromData = code.value.slice(6).trim()
+    const [codepath, range] = fromData?.split(/\s+/) || []
+    const value = await readFile(codepath, mdxPath, range)
+    return value
+  }
+  return code.value
 }
 
 export function parseCode(code: Code, mdxPath?: string) {
