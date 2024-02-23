@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.7
+
+### Patch Changes
+
+- From annotation in remark
+
 ## 1.0.0-alpha.6
 
 ### Patch Changes

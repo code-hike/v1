@@ -2,7 +2,6 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "outpost": "0.1.0",
     "web": "0.1.0",
     "codehike": "0.9.9"
   },
@@ -13,6 +12,7 @@
     "gentle-pots-mix",
     "hungry-pugs-chew",
     "modern-eagles-give",
-    "sweet-eggs-mix"
+    "sweet-eggs-mix",
+    "wet-lemons-thank"
   ]
 }
