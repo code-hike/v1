@@ -10,14 +10,20 @@
     {
       "type": "heading",
       "depth": 2,
-      "children": [{ "type": "text", "value": "!!foo bar" }]
+      "children": [{ "type": "text", "value": "!!foo" }]
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] },
+    { "type": "code", "lang": "js", "meta": "!", "value": "!from z.js 3:5" },
     {
-      "type": "code",
-      "lang": "js",
-      "meta": "foo.js",
-      "value": "!from z.js 3:5"
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "image",
+          "title": null,
+          "url": "http://example.com/foo",
+          "alt": "!foo bar"
+        }
+      ]
     },
     {
       "type": "heading",

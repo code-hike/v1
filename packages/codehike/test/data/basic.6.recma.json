@@ -74,45 +74,12 @@
                         "method": false,
                         "shorthand": true,
                         "computed": false
-                      },
-                      {
-                        "type": "Property",
-                        "kind": "init",
-                        "key": { "type": "Identifier", "name": "MyCode" },
-                        "value": { "type": "Identifier", "name": "MyCode" },
-                        "method": false,
-                        "shorthand": true,
-                        "computed": false
                       }
                     ]
                   },
                   "init": { "type": "Identifier", "name": "_components" }
                 }
               ]
-            },
-            {
-              "type": "IfStatement",
-              "test": {
-                "type": "UnaryExpression",
-                "operator": "!",
-                "prefix": true,
-                "argument": { "type": "Identifier", "name": "MyCode" }
-              },
-              "consequent": {
-                "type": "ExpressionStatement",
-                "expression": {
-                  "type": "CallExpression",
-                  "callee": {
-                    "type": "Identifier",
-                    "name": "_missingMdxReference"
-                  },
-                  "arguments": [
-                    { "type": "Literal", "value": "MyCode" },
-                    { "type": "Literal", "value": true }
-                  ],
-                  "optional": false
-                }
-              }
             },
             {
               "type": "ReturnStatement",
@@ -516,69 +483,57 @@
                                                 "type": "JSXAttribute",
                                                 "name": {
                                                   "type": "JSXIdentifier",
-                                                  "name": "codeblock"
+                                                  "name": "name"
                                                 },
                                                 "value": {
-                                                  "type": "JSXExpressionContainer",
-                                                  "expression": {
-                                                    "type": "ObjectExpression",
-                                                    "properties": [
-                                                      {
-                                                        "type": "Property",
-                                                        "method": false,
-                                                        "shorthand": false,
-                                                        "computed": false,
-                                                        "key": {
-                                                          "type": "Literal",
-                                                          "value": "value"
-                                                        },
-                                                        "kind": "init",
-                                                        "value": {
-                                                          "type": "Literal",
-                                                          "value": "x = 3\r\nx = 4\r\nx = 5\r",
-                                                          "raw": "\"x = 3\\r\\nx = 4\\r\\nx = 5\\r\""
-                                                        }
-                                                      },
-                                                      {
-                                                        "type": "Property",
-                                                        "method": false,
-                                                        "shorthand": false,
-                                                        "computed": false,
-                                                        "key": {
-                                                          "type": "Literal",
-                                                          "value": "lang"
-                                                        },
-                                                        "kind": "init",
-                                                        "value": {
-                                                          "type": "Literal",
-                                                          "value": "js",
-                                                          "raw": "\"js\""
-                                                        }
-                                                      },
-                                                      {
-                                                        "type": "Property",
-                                                        "method": false,
-                                                        "shorthand": false,
-                                                        "computed": false,
-                                                        "key": {
-                                                          "type": "Literal",
-                                                          "value": "meta"
-                                                        },
-                                                        "kind": "init",
-                                                        "value": {
-                                                          "type": "Literal",
-                                                          "value": "foo.js",
-                                                          "raw": "\"foo.js\""
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
+                                                  "type": "Literal",
+                                                  "value": "code"
                                                 }
                                               }
                                             ],
                                             "name": {
-                                              "type": "JSXIdentifier",
-                                              "name": "MyCode"
+                                              "type": "JSXMemberExpression",
+                                              "object": {
+                                                "type": "JSXIdentifier",
+                                                "name": "_components"
+                                              },
+                                              "property": {
+                                                "type": "JSXIdentifier",
+                                                "name": "slot"
+                                              }
+                                            },
+                                            "selfClosing": true
+                                          },
+                                          "closingElement": null,
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "JSXElement",
+                                          "openingElement": {
+                                            "type": "JSXOpeningElement",
+                                            "attributes": [
+                                              {
+                                                "type": "JSXAttribute",
+                                                "name": {
+                                                  "type": "JSXIdentifier",
+                                                  "name": "name"
+                                                },
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "foo"
+                                                }
+                                              }
+                                            ],
+                                            "name": {
+                                              "type": "JSXMemberExpression",
+                                              "object": {
+                                                "type": "JSXIdentifier",
+                                                "name": "_components"
+                                              },
+                                              "property": {
+                                                "type": "JSXIdentifier",
+                                                "name": "slot"
+                                              }
                                             },
                                             "selfClosing": true
                                           },
@@ -600,8 +555,8 @@
                                     "kind": "init",
                                     "value": {
                                       "type": "Literal",
-                                      "value": "bar",
-                                      "raw": "\"bar\""
+                                      "value": "",
+                                      "raw": "\"\""
                                     }
                                   },
                                   {
@@ -629,8 +584,136 @@
                                           "kind": "init",
                                           "value": {
                                             "type": "Literal",
-                                            "value": "## !!foo bar",
-                                            "raw": "\"## !!foo bar\""
+                                            "value": "## !!foo",
+                                            "raw": "\"## !!foo\""
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "code"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "value"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "x = 3\r\nx = 4\r\nx = 5\r",
+                                            "raw": "\"x = 3\\r\\nx = 4\\r\\nx = 5\\r\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "lang"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "js",
+                                            "raw": "\"js\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "meta"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "",
+                                            "raw": "\"\""
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "foo"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "alt"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "bar",
+                                            "raw": "\"bar\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "title"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "",
+                                            "raw": "\"\""
+                                          }
+                                        },
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "url"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "http://example.com/foo",
+                                            "raw": "\"http://example.com/foo\""
                                           }
                                         }
                                       ]
@@ -1042,15 +1125,6 @@
                       "method": false,
                       "shorthand": true,
                       "computed": false
-                    },
-                    {
-                      "type": "Property",
-                      "kind": "init",
-                      "key": { "type": "Identifier", "name": "MyCode" },
-                      "value": { "type": "Identifier", "name": "MyCode" },
-                      "method": false,
-                      "shorthand": true,
-                      "computed": false
                     }
                   ]
                 },
@@ -1076,30 +1150,6 @@
                 },
                 "arguments": [
                   { "type": "Literal", "value": "Hike" },
-                  { "type": "Literal", "value": true }
-                ],
-                "optional": false
-              }
-            }
-          },
-          {
-            "type": "IfStatement",
-            "test": {
-              "type": "UnaryExpression",
-              "operator": "!",
-              "prefix": true,
-              "argument": { "type": "Identifier", "name": "MyCode" }
-            },
-            "consequent": {
-              "type": "ExpressionStatement",
-              "expression": {
-                "type": "CallExpression",
-                "callee": {
-                  "type": "Identifier",
-                  "name": "_missingMdxReference"
-                },
-                "arguments": [
-                  { "type": "Literal", "value": "MyCode" },
                   { "type": "Literal", "value": true }
                 ],
                 "optional": false

@@ -1,6 +1,6 @@
 {
   "name": "codehike",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
@@ -13,6 +13,7 @@
   "exports": {
     "./mdx": "./dist/remark.js",
     "./scrolly": "./dist/scrolly.js",
+    "./schema": "./dist/schema.js",
     ".": "./dist/components.js"
   },
   "files": [
@@ -43,7 +44,8 @@
     "react-dom": "18.3.0-canary-c5b937576-20231219",
     "typescript": "^5.3.3",
     "unified": "^11.0.4",
-    "vitest": "^1.1.1"
+    "vitest": "^1.1.1",
+    "zod": "^3.22.4"
   },
   "publishConfig": {
     "access": "public"

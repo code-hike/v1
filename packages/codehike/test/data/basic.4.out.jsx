@@ -5,9 +5,8 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike, MyCode } = _components
+    { Hike } = _components
   if (!Hike) _missingMdxReference("Hike", true)
-  if (!MyCode) _missingMdxReference("MyCode", true)
   return (
     <Hike
       __hike={{
@@ -25,9 +24,19 @@ function _createMdxContent(props) {
           foo: [
             {
               children: "hero.foo",
-              query: "bar",
+              query: "",
               _data: {
-                header: "## !!foo bar",
+                header: "## !!foo",
+              },
+              code: {
+                value: "x = 3\r\nx = 4\r\nx = 5\r",
+                lang: "js",
+                meta: "",
+              },
+              foo: {
+                alt: "bar",
+                title: "",
+                url: "http://example.com/foo",
               },
             },
             {
@@ -54,13 +63,8 @@ function _createMdxContent(props) {
       </_components.slot>
       <_components.slot path="hero.foo">
         <_components.p>{"bax"}</_components.p>
-        <MyCode
-          codeblock={{
-            value: "x = 3\r\nx = 4\r\nx = 5\r",
-            lang: "js",
-            meta: "foo.js",
-          }}
-        />
+        <_components.slot name="code" />
+        <_components.slot name="foo" />
       </_components.slot>
       <_components.slot path="hero.foo">
         <_components.p>{"3"}</_components.p>

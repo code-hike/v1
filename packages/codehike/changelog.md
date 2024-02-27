@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.8
+
+### Patch Changes
+
+- Add schemas
+
 ## 1.0.0-alpha.7
 
 ### Patch Changes
