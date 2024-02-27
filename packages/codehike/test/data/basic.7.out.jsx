@@ -14,12 +14,18 @@ export function getBlocks(props = {}) {
       <_components.p>{"foo"}</_components.p>,
     ],
     query: "",
+    _data: {
+      header: "",
+    },
     hero: {
       children: [
         <_components.slot name="foo" index={0} />,
         <_components.slot name="foo" index={1} />,
       ],
       query: "3333",
+      _data: {
+        header: "# !hero 3333",
+      },
       foo: [
         {
           children: [
@@ -33,6 +39,9 @@ export function getBlocks(props = {}) {
             />,
           ],
           query: "bar",
+          _data: {
+            header: "## !!foo bar",
+          },
         },
         {
           children: [
@@ -43,6 +52,9 @@ export function getBlocks(props = {}) {
             <_components.p>{"asdasdf"}</_components.p>,
           ],
           query: "baz",
+          _data: {
+            header: "## !!foo baz",
+          },
           hey: "11 11",
           one: ["333", "444"],
         },

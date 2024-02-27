@@ -260,6 +260,32 @@
                     "method": false,
                     "shorthand": false,
                     "computed": false,
+                    "key": { "type": "Literal", "value": "_data" },
+                    "kind": "init",
+                    "value": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "header" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
                     "key": { "type": "Literal", "value": "hero" },
                     "kind": "init",
                     "value": {
@@ -385,6 +411,32 @@
                             "type": "Literal",
                             "value": "3333",
                             "raw": "\"3333\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "_data" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "header" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "# !hero 3333",
+                                  "raw": "\"# !hero 3333\""
+                                }
+                              }
+                            ]
                           }
                         },
                         {
@@ -550,6 +602,38 @@
                                       "type": "Literal",
                                       "value": "bar",
                                       "raw": "\"bar\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "_data"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "header"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "## !!foo bar",
+                                            "raw": "\"## !!foo bar\""
+                                          }
+                                        }
+                                      ]
                                     }
                                   }
                                 ]
@@ -800,6 +884,38 @@
                                       "type": "Literal",
                                       "value": "baz",
                                       "raw": "\"baz\""
+                                    }
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Literal",
+                                      "value": "_data"
+                                    },
+                                    "kind": "init",
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Literal",
+                                            "value": "header"
+                                          },
+                                          "kind": "init",
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "## !!foo baz",
+                                            "raw": "\"## !!foo baz\""
+                                          }
+                                        }
+                                      ]
                                     }
                                   },
                                   {

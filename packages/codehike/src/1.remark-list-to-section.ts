@@ -21,6 +21,9 @@ interface HikeNodeBase {
 }
 
 export interface HikeSection extends HikeNodeBase {
+  _data: {
+    header: string
+  }
   type: "section"
   query: string
   depth: number
@@ -60,6 +63,9 @@ export async function listToSection(
 
   const root: HikeSection = {
     type: "section",
+    _data: {
+      header: "",
+    },
     name: "",
     depth: 0,
     query: "",
@@ -82,6 +88,9 @@ export async function listToSection(
       const { name, query, multi } = parseHeading(child)
       const section: HikeSection = {
         type: "section",
+        _data: {
+          header: "#".repeat(child.depth) + " " + child.children[0].value,
+        },
         parent,
         depth: child.depth,
         name,

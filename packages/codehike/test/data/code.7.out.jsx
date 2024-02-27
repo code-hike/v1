@@ -27,6 +27,9 @@ export function getBlocks(props = {}) {
       />,
     ],
     query: "",
+    _data: {
+      header: "",
+    },
   }
 }
 function _createMdxContent(props) {

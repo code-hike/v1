@@ -14,6 +14,9 @@ function _createMdxContent(props) {
       __hike={{
         children: "",
         query: "",
+        _data: {
+          header: "",
+        },
       }}
     >
       <_components.slot path="">

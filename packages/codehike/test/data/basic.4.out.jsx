@@ -13,17 +13,29 @@ function _createMdxContent(props) {
       __hike={{
         children: "",
         query: "",
+        _data: {
+          header: "",
+        },
         hero: {
           children: "hero",
           query: "3333",
+          _data: {
+            header: "# !hero 3333",
+          },
           foo: [
             {
               children: "hero.foo",
               query: "bar",
+              _data: {
+                header: "## !!foo bar",
+              },
             },
             {
               children: "hero.foo",
               query: "baz",
+              _data: {
+                header: "## !!foo baz",
+              },
               hey: "11 11",
               one: ["333", "444"],
             },

@@ -28,6 +28,7 @@ function getSerializableNode(section: HikeSection, path: string) {
   const node: any = {
     children: newPath,
     query: section.query,
+    _data: section._data,
   }
 
   section.children.forEach((child) => {
