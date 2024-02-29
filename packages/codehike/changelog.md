@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.10
+
+### Patch Changes
+
+- Fix parse type
+
 ## 1.0.0-alpha.9
 
 ### Patch Changes
