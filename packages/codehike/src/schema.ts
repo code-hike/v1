@@ -17,10 +17,30 @@ export const Image = z.object({
   title: z.string(),
 })
 
-export function parse<Output>(Schema: z.ZodType<Output>, content: any): Output {
+export function parse<Output>(content: any, Schema: z.ZodType<Output>): Output {
   const result = Schema.safeParse(content)
   if (result.success) {
     return result.data
   }
-  throw result.error
+
+  const error = result.error.errors[0]
+
+  let p = error.path.slice()
+  let block = content
+  let location = ""
+  while (p.length) {
+    const key = p.shift()!
+    block = block[key]
+    if (block?._data?.header) {
+      location += `\n${block._data.header}`
+    }
+  }
+
+  const { path, code, message, ...rest } = error
+  const name = path[path.length - 1]
+
+  throw new Error(`at ${location || "root"}
+Error for \`${name}\`: ${message}
+${JSON.stringify(rest, null, 2)}
+  `)
 }
