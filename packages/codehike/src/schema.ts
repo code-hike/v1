@@ -12,7 +12,7 @@ export const Code = z.object({
 })
 
 export const Image = z.object({
-  src: z.string(),
+  url: z.string(),
   alt: z.string(),
   title: z.string(),
 })

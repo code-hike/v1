@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.11
+
+### Patch Changes
+
+- Fix Image schema
+
 ## 1.0.0-alpha.10
 
 ### Patch Changes
