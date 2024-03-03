@@ -1,15 +1,35 @@
-import { CodeBlock, CodeContent, tokenize } from "codehike"
-import { cn } from "../../../lib/utils"
+import { CodeBlock, CodeContent } from "codehike"
+import { cn } from "@/lib/utils"
+import { z } from "zod"
+
+import { Block, Code as CodeSchema, parse } from "codehike/schema"
+
+const Content = Block.extend({
+  blocks: z
+    .tuple([
+      Block.extend({
+        code: z.array(CodeSchema),
+        note: Block.optional(),
+      }),
+    ])
+    .rest(
+      Block.extend({
+        code: z.array(CodeSchema).optional(),
+        note: Block.optional(),
+      }),
+    ),
+})
 
 export function HikeGuide({ hike }: any) {
-  const { steps } = hike
-  const first = steps[0]
+  const content = parse(hike, Content)
+  const { blocks } = content
+  const first = blocks[0]
   return (
     <div className="flex gap-2">
-      <Code codeblock={first.code[0]} note={first.note.children} />
-      <Code codeblock={first.code[1]} note={first.note.children} />
+      <Code codeblock={first.code[0]} note={first.note?.children} />
+      <Code codeblock={first.code[1]} note={first.note?.children} />
       <div className="flex flex-col w-32">
-        {steps.map((step: any, i: number) => {
+        {blocks.map((step: any, i: number) => {
           const inactive =
             "text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground/80"
           const active = "bg-primary/10 font-medium text-primary"
@@ -21,7 +41,7 @@ export function HikeGuide({ hike }: any) {
                 i === 0 ? active : inactive,
               )}
             >
-              {step.query}
+              {step.title}
             </span>
           )
         })}

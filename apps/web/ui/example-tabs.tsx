@@ -1,12 +1,22 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
-import { CodeBlock, CodeContent } from "codehike"
+import { CodeContent } from "codehike"
 import { CopyButton } from "./copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
+import { Block, Code as CodeBlock, parse } from "codehike/schema"
+import { z } from "zod"
+
+const TabsSchema = Block.extend({
+  code: z.array(CodeBlock),
+  preview: Block,
+})
+
+type TabsContent = z.infer<typeof TabsSchema>
 
 export function ExampleTabs({ hike }: any) {
-  const mdx = hike.code.filter((code: any) => code.lang === "mdx")[0]
-  const code = hike.code.filter((code: any) => code.lang !== "mdx")
-  const preview = hike.preview
+  const content = parse(hike, TabsSchema)
+  const mdx = content.code.filter((code: any) => code.lang === "mdx")[0]
+  const code = content.code.filter((code: any) => code.lang !== "mdx")
+  const preview = content.preview
 
   return (
     <Tabs items={["Preview", "MDX", "Code"]}>
@@ -15,7 +25,7 @@ export function ExampleTabs({ hike }: any) {
         className="bg-blue-500/30 mt-0 p-6 bg-[url(/dark-grid.svg)]"
       >
         <div
-          className={`border border-primary/50 bg-zinc-950 rounded ${preview.query}`}
+          className={`border border-primary/50 bg-zinc-950 rounded ${preview.title}`}
         >
           {preview.children}
         </div>
@@ -32,7 +42,7 @@ export function ExampleTabs({ hike }: any) {
   )
 }
 
-function MDX({ codeblock }: { codeblock: CodeBlock }) {
+function MDX({ codeblock }: { codeblock: TabsContent["code"][0] }) {
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
@@ -48,7 +58,7 @@ function MDX({ codeblock }: { codeblock: CodeBlock }) {
   )
 }
 
-function Code({ codeblocks }: { codeblocks: CodeBlock[] }) {
+function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
   const c = codeblocks[0]
   if (c.meta === "dependencies") {
     return <DependencyTerminal codeblock={c} />

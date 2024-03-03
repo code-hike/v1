@@ -13,7 +13,7 @@ function _createMdxContent(props) {
       foo={"bar"}
       __hike={{
         children: "",
-        query: "",
+        title: "",
         _data: {
           header: "",
         },

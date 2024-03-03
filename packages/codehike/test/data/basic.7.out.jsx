@@ -12,7 +12,7 @@ export function getBlocks(props = {}) {
       <_components.slot name="hero" />,
       <_components.p>{"foo"}</_components.p>,
     ],
-    query: "",
+    title: "",
     _data: {
       header: "",
     },
@@ -21,7 +21,7 @@ export function getBlocks(props = {}) {
         <_components.slot name="foo" index={0} />,
         <_components.slot name="foo" index={1} />,
       ],
-      query: "3333",
+      title: "3333",
       _data: {
         header: "# !hero 3333",
       },
@@ -32,7 +32,7 @@ export function getBlocks(props = {}) {
             <_components.slot name="code" />,
             <_components.slot name="foo" />,
           ],
-          query: "",
+          title: "",
           _data: {
             header: "## !!foo",
           },
@@ -55,7 +55,7 @@ export function getBlocks(props = {}) {
             <_components.slot name="one" index={1} />,
             <_components.p>{"asdasdf"}</_components.p>,
           ],
-          query: "baz",
+          title: "baz",
           _data: {
             header: "## !!foo baz",
           },

@@ -25,7 +25,7 @@ export interface HikeSection extends HikeNodeBase {
     header: string
   }
   type: "section"
-  query: string
+  title: string
   depth: number
   parent: HikeSection | null
   children: HikeNode[]
@@ -55,6 +55,11 @@ export interface HikeContent {
   value: JSXChild
 }
 
+const DEFAULT_BLOCKS_NAME = "blocks"
+const DEFAULT_CODE_NAME = "code"
+const DEFAULT_IMAGES_NAME = "image"
+const DEFAULT_VALUE_NAME = "value"
+
 export async function listToSection(
   hikeElement: MdxJsxFlowElement,
   mdxPath?: string,
@@ -68,7 +73,7 @@ export async function listToSection(
     },
     name: "",
     depth: 0,
-    query: "",
+    title: "",
     parent: null,
     children: [],
     multi: false,
@@ -85,7 +90,7 @@ export async function listToSection(
         parent = parent.parent
       }
 
-      const { name, query, multi } = parseHeading(child)
+      const { name, title, multi } = parseHeading(child)
       const section: HikeSection = {
         type: "section",
         _data: {
@@ -94,7 +99,7 @@ export async function listToSection(
         parent,
         depth: child.depth,
         name,
-        query,
+        title,
         multi,
         index: !multi
           ? undefined
@@ -115,7 +120,11 @@ export async function listToSection(
         parent = parent.parent
       }
     } else if (child.type === "code" && child.meta?.trim().startsWith("!")) {
-      const { name = "code", multi, query } = parseName(child.meta || "")
+      const {
+        name = DEFAULT_CODE_NAME,
+        multi,
+        title,
+      } = parseName(child.meta || "")
       const value = await parseCodeValue(child, mdxPath)
       parent.children.push({
         type: "code",
@@ -128,18 +137,22 @@ export async function listToSection(
           : undefined,
         value,
         lang: child.lang,
-        meta: query,
+        meta: title,
         // parentPath: mdxPath,
       })
     } else if (
-      // ![!name query](image.png)
+      // ![!name title](image.png)
       child.type === "paragraph" &&
       child.children.length === 1 &&
       child.children[0].type === "image" &&
       child.children[0].alt?.startsWith("!")
     ) {
       const img = child.children[0]
-      const { name = "image", query, multi } = parseName(img.alt || "")
+      const {
+        name = DEFAULT_IMAGES_NAME,
+        title,
+        multi,
+      } = parseName(img.alt || "")
 
       parent.children.push({
         type: "image",
@@ -150,7 +163,7 @@ export async function listToSection(
               (c) => c.type != "content" && c.name === name,
             ).length
           : undefined,
-        alt: query,
+        alt: title,
         title: img.title || "",
         url: img.url,
       })
@@ -162,7 +175,7 @@ export async function listToSection(
     ) {
       const values = child.children[0].value.split(/\r?\n/)
       values.forEach((value) => {
-        const { name = "value", multi, query } = parseName(value)
+        const { name = DEFAULT_VALUE_NAME, multi, title } = parseName(value)
         parent.children.push({
           type: "quote",
           name,
@@ -172,7 +185,7 @@ export async function listToSection(
                 (c) => c.type != "content" && c.name === name,
               ).length
             : undefined,
-          value: query,
+          value: title,
         })
       })
     } else {
@@ -198,10 +211,10 @@ function parseName(value: string) {
   const multi = value.startsWith("!!")
   const content = multi ? value.slice(2) : value.slice(1)
   const name = content?.split(/\s+/)[0]
-  const query = content?.slice(name.length).trim()
+  const title = content?.slice(name.length).trim()
   return {
     name: name || undefined,
-    query,
+    title,
     multi,
   }
 }
@@ -215,10 +228,10 @@ function parseHeading(heading: Heading) {
   const multi = value.startsWith("!!")
   const content = multi ? value.slice(2) : value.slice(1)
   const name = content?.split(/\s+/)[0]
-  const query = content?.slice(name.length).trim()
+  const title = content?.slice(name.length).trim()
   return {
-    name: name || "steps",
-    query,
+    name: name || DEFAULT_BLOCKS_NAME,
+    title,
     multi,
   }
 }

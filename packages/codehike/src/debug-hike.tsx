@@ -127,7 +127,7 @@ function Node({ node, setSelected, selected, level = 1 }: any) {
 }
 
 function hikeToTree(section: any, path: string, name: string) {
-  const { query, children, code = [], ...rest } = section
+  const { title, children, code = [], ...rest } = section
 
   const nodePath = path ? path + "." + name : name
 
@@ -143,8 +143,8 @@ function hikeToTree(section: any, path: string, name: string) {
     children: kids,
     content: (
       <>
-        <Property name="query">
-          <pre>{query}</pre>
+        <Property name="title">
+          <pre>{title}</pre>
         </Property>
         <Property name="children">{children}</Property>
         {kids.map((kid, i) => (
@@ -158,7 +158,7 @@ function hikeToTree(section: any, path: string, name: string) {
 }
 
 function sectionToTree(section: any, path: string, name: string) {
-  const { query, children, code = [], ...rest } = section
+  const { title, children, code = [], ...rest } = section
 
   const nodePath = path
 
@@ -174,7 +174,7 @@ function sectionToTree(section: any, path: string, name: string) {
     children: kids,
     content: (
       <>
-        <Property name="query">{query}</Property>
+        <Property name="title">{title}</Property>
         <Property name="children">{children}</Property>
         {kids.map((kid, i) => (
           <Property name={kid.name} key={i}>
@@ -236,7 +236,7 @@ function listToTree(list: any[], path: string, name: string) {
     path: nodePath,
     name: name,
     children: list.map((item: any, i: number) =>
-      sectionToTree(item, `${nodePath}[${i}]`, `${i}: ${item.query}`),
+      sectionToTree(item, `${nodePath}[${i}]`, `${i}: ${item.title}`),
     ),
     content: (
       <>
@@ -244,7 +244,7 @@ function listToTree(list: any[], path: string, name: string) {
           <Property
             name={`[${i}]`}
             key={i}
-          >{`!${name} ${item.query}`}</Property>
+          >{`!${name} ${item.title}`}</Property>
         ))}
       </>
     ),

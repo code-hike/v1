@@ -30,7 +30,7 @@ function ScrollableContent({ steps }: { steps: any[] }) {
             " px-5 py-2 mb-24 rounded bg-zinc-900"
           }
         >
-          <h2 className="mt-4 text-xl">{step.query}</h2>
+          <h2 className="mt-4 text-xl">{step.title}</h2>
           <div>{step.children}</div>
         </ScrollyStep>
       ))}

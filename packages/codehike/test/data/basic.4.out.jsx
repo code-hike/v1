@@ -11,20 +11,20 @@ function _createMdxContent(props) {
     <Hike
       __hike={{
         children: "",
-        query: "",
+        title: "",
         _data: {
           header: "",
         },
         hero: {
           children: "hero",
-          query: "3333",
+          title: "3333",
           _data: {
             header: "# !hero 3333",
           },
           foo: [
             {
               children: "hero.foo",
-              query: "",
+              title: "",
               _data: {
                 header: "## !!foo",
               },
@@ -41,7 +41,7 @@ function _createMdxContent(props) {
             },
             {
               children: "hero.foo",
-              query: "baz",
+              title: "baz",
               _data: {
                 header: "## !!foo baz",
               },

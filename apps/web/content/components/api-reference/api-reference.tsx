@@ -1,44 +1,42 @@
-import {
-  CodeBlock,
-  CodeContent,
-  HikeSection,
-} from "codehike"
+import { CodeContent, HikeSection } from "codehike"
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
 } from "./collapsible"
+import {
+  Block,
+  Code as CodeBlock,
+  parse,
+} from "codehike/schema"
+import { z } from "zod"
 
-type Blocks = {
-  code: CodeBlock
-  main: {
-    query: string
-    steps: PropertyBlock[]
-  }
-  extra: {
-    query: string
-    steps: PropertyBlock[]
-  }
-  returns: {
-    query: string
-    children: React.ReactNode
-  }
-}
+const PropertyBlockSchema = Block.extend({
+  blocks: z.array(Block).optional(),
+})
 
-type PropertyBlock = {
-  query: string
-  children: React.ReactNode
-  steps?: PropertyBlock[]
-}
+const ContentSchema = Block.extend({
+  code: CodeBlock,
+  main: Block.extend({
+    blocks: z.array(PropertyBlockSchema),
+  }),
+  extra: Block.extend({
+    blocks: z.array(PropertyBlockSchema),
+  }),
+  returns: Block.optional(),
+})
+
+type Content = z.infer<typeof ContentSchema>
 
 export async function APIReference({
   hike,
 }: {
-  hike: Blocks
+  hike: unknown
 }) {
-  const data = hike
-
-  const { main, extra, returns, code } = data
+  const { main, extra, returns, code } = parse(
+    hike,
+    ContentSchema,
+  )
 
   return (
     <div className="relative flex flex-row gap-12 mb-24">
@@ -46,18 +44,18 @@ export async function APIReference({
         {/* Main Properties */}
         <section>
           <h3 className="mt-8 border-b border-zinc-700">
-            {main.query}
+            {main.title}
           </h3>
-          {main.steps.map((property, i) => (
+          {main.blocks.map((property, i) => (
             <Property property={property} key={i} />
           ))}
         </section>
         {/* Extra Properties */}
         <section>
           <h3 className="mt-8 border-b border-zinc-700">
-            {extra.query}
+            {extra.title}
           </h3>
-          {extra.steps.map((property, i) => (
+          {extra.blocks.map((property, i) => (
             <CollapsibleProperty
               property={property}
               key={i}
@@ -84,7 +82,7 @@ export async function APIReference({
 }
 
 function Property({ property }: { property: any }) {
-  const [name, ...rest] = property.query.split(" ")
+  const [name, ...rest] = property.title.split(" ")
   const type = rest.join(" ")
 
   return (
@@ -96,7 +94,7 @@ function Property({ property }: { property: any }) {
         </span>
       </h4>
       {property.children}
-      <ChildProperties properties={property.steps} />
+      <ChildProperties properties={property.blocks} />
     </div>
   )
 }
@@ -106,7 +104,7 @@ function CollapsibleProperty({
 }: {
   property: any
 }) {
-  const [name, ...rest] = property.query.split(" ")
+  const [name, ...rest] = property.title.split(" ")
   const type = rest.join(" ")
 
   return (
@@ -128,7 +126,7 @@ function CollapsibleProperty({
 
       <CollapsibleContent>
         {property.children}
-        <ChildProperties properties={property.steps} />
+        <ChildProperties properties={property.blocks} />
       </CollapsibleContent>
     </Collapsible>
   )
@@ -159,7 +157,11 @@ function ChildProperties({
   )
 }
 
-function Code({ codeblock }: { codeblock: CodeBlock }) {
+function Code({
+  codeblock,
+}: {
+  codeblock: Content["code"]
+}) {
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">

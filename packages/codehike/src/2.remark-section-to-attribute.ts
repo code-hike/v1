@@ -27,7 +27,7 @@ function getSerializableNode(section: HikeSection, path: string) {
   const newPath = path ? [path, section.name].join(".") : section.name
   const node: any = {
     children: newPath,
-    query: section.query,
+    title: section.title,
     _data: section._data,
   }
 

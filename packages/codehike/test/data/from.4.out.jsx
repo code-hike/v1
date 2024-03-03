@@ -12,7 +12,7 @@ function _createMdxContent(props) {
     <Hike
       __hike={{
         children: "",
-        query: "",
+        title: "",
         _data: {
           header: "",
         },

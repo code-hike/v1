@@ -92,7 +92,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "query" },
+                          "key": { "type": "Literal", "value": "title" },
                           "kind": "init",
                           "value": {
                             "type": "Literal",

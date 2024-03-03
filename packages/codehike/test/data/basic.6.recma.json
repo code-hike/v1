@@ -218,7 +218,7 @@
                     "method": false,
                     "shorthand": false,
                     "computed": false,
-                    "key": { "type": "Literal", "value": "query" },
+                    "key": { "type": "Literal", "value": "title" },
                     "kind": "init",
                     "value": { "type": "Literal", "value": "", "raw": "\"\"" }
                   },
@@ -372,7 +372,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "query" },
+                          "key": { "type": "Literal", "value": "title" },
                           "kind": "init",
                           "value": {
                             "type": "Literal",
@@ -550,7 +550,7 @@
                                     "computed": false,
                                     "key": {
                                       "type": "Literal",
-                                      "value": "query"
+                                      "value": "title"
                                     },
                                     "kind": "init",
                                     "value": {
@@ -960,7 +960,7 @@
                                     "computed": false,
                                     "key": {
                                       "type": "Literal",
-                                      "value": "query"
+                                      "value": "title"
                                     },
                                     "kind": "init",
                                     "value": {

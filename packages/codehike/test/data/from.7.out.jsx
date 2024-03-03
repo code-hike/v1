@@ -26,7 +26,7 @@ export function getBlocks(props = {}) {
         }}
       />,
     ],
-    query: "",
+    title: "",
     _data: {
       header: "",
     },
