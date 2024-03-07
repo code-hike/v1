@@ -2,7 +2,17 @@ import { Annotation, Theme } from "@code-hike/lighter"
 
 export type FinalToken = [string, string?, React.CSSProperties?]
 export type Whitespace = string
-export type Group = [[string, string?, { inline: true }?], AnyToken[]]
+export type Group = [
+  [
+    string, // annotation name
+    string?, // query
+    (
+      | { inline: true }
+      | { inline: false; fromLineNumber: number; toLineNumber: number }
+    )?,
+  ],
+  AnyToken[],
+]
 export type AnyToken = FinalToken | Group | Whitespace
 
 export function isFinalToken(token: AnyToken): token is FinalToken {

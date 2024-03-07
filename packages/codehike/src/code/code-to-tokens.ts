@@ -45,7 +45,15 @@ function joinLines(lines: Lines): AnyToken[] {
   lines.forEach((lineOrGroup) => {
     if ("lines" in lineOrGroup) {
       joinedTokens.push([
-        [lineOrGroup.annotationName, lineOrGroup.annotationQuery],
+        [
+          lineOrGroup.annotationName,
+          lineOrGroup.annotationQuery,
+          {
+            inline: false,
+            fromLineNumber: lineOrGroup.fromLineNumber,
+            toLineNumber: lineOrGroup.toLineNumber,
+          },
+        ],
         joinLines(lineOrGroup.lines),
       ])
     } else {

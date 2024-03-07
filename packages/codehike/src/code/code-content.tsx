@@ -50,11 +50,11 @@ function TokenComponent({
   components: MDXComponents
 }) {
   if (isGroup(token)) {
-    const [[name, query, { inline } = { inline: false }], tokens] = token
+    const [[name, query, data], tokens] = token
     if (components[name]) {
       return React.createElement(components[name] as any, {
         query,
-        inline,
+        data: data || {},
         children: tokens.map((token, i) => (
           <TokenComponent token={token} key={i} components={components} />
         )),

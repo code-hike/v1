@@ -6,6 +6,6 @@ Your sponsorship not only helps keep the project running but also supports the i
 
 Sponsorship perks:
 
-- **$299/month or more**: I'll join your company's Slack channel for direct feedbacks and better feature requests.
+- **$299/month or more**: I'll join your company's Slack channel for direct feedbacks and feature requests.
 - **$499/month or more**: You get a spot on our Top Sponsors (limited to 6 spots).
 - **$999/month or more**: You get up to 1 hour a month of personalized support (two 30-minute calls).
