@@ -1,0 +1,22 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "Hello world" }]
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        { "type": "text", "value": "Shouldn't add any code hike stuff." }
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "meta": null,
+      "value": "// !Foo\nconsole.log(1)"
+    }
+  ]
+}

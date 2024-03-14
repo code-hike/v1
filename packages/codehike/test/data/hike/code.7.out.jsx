@@ -1,5 +1,37 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 import { Hike } from "../../src/Hike"
+export function getBlocks(props = {}) {
+  const _components = {
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { MyCode } = _components
+  if (!MyCode) _missingMdxReference("MyCode", true)
+  return {
+    children: [
+      <_components.p>{"Hello world!"}</_components.p>,
+      <MyCode
+        codeblock={{
+          value: 'console.log("hello world")\nconsole.log("bye world")',
+          lang: "js",
+          meta: "my meta",
+        }}
+      />,
+      <MyCode
+        codeblock={{
+          value: "// !Mark(2)",
+          lang: "jsonc",
+          meta: "THE CUSTOMER OBJECT",
+        }}
+      />,
+    ],
+    title: "",
+    _data: {
+      header: "",
+    },
+  }
+}
 function _createMdxContent(props) {
   const _components = {
       p: "p",
@@ -8,36 +40,7 @@ function _createMdxContent(props) {
     },
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
-  return (
-    <Hike
-      foo={"bar"}
-      __hike={{
-        children: "",
-        title: "",
-        _data: {
-          header: "",
-        },
-      }}
-    >
-      <_components.slot path="">
-        <_components.p>{"Hello world!"}</_components.p>
-        <MyCode
-          codeblock={{
-            value: 'console.log("hello world")\r\nconsole.log("bye world")',
-            lang: "js",
-            meta: "my meta",
-          }}
-        />
-        <MyCode
-          codeblock={{
-            value: "// !Mark(2)",
-            lang: "jsonc",
-            meta: "THE CUSTOMER OBJECT",
-          }}
-        />
-      </_components.slot>
-    </Hike>
-  )
+  return <Hike foo={"bar"} hike={getBlocks(props)}></Hike>
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

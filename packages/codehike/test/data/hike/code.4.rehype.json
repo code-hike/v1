@@ -36,6 +36,31 @@
       "attributes": [
         {
           "type": "mdxJsxAttribute",
+          "name": "foo",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "\"bar\"",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "Literal",
+                      "value": "bar",
+                      "raw": "\"bar\""
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        },
+        {
+          "type": "mdxJsxAttribute",
           "name": "__hike",
           "value": {
             "type": "mdxJsxAttributeValueExpression",
@@ -125,7 +150,7 @@
               "type": "element",
               "tagName": "p",
               "properties": {},
-              "children": [{ "type": "text", "value": "Hello!" }]
+              "children": [{ "type": "text", "value": "Hello world!" }]
             },
             {
               "type": "mdxJsxFlowElement",
@@ -158,8 +183,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "// !from ./z.js 3:5",
-                                    "raw": "\"// !from ./z.js 3:5\""
+                                    "value": "console.log(\"hello world\")\nconsole.log(\"bye world\")",
+                                    "raw": "\"console.log(\\\"hello world\\\")\\nconsole.log(\\\"bye world\\\")\""
                                   }
                                 },
                                 {
@@ -232,8 +257,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "# !from ./z.py",
-                                    "raw": "\"# !from ./z.py\""
+                                    "value": "// !Mark(2)",
+                                    "raw": "\"// !Mark(2)\""
                                   }
                                 },
                                 {
@@ -245,8 +270,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "py",
-                                    "raw": "\"py\""
+                                    "value": "jsonc",
+                                    "raw": "\"jsonc\""
                                   }
                                 },
                                 {
@@ -258,8 +283,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "python meta",
-                                    "raw": "\"python meta\""
+                                    "value": "THE CUSTOMER OBJECT",
+                                    "raw": "\"THE CUSTOMER OBJECT\""
                                   }
                                 }
                               ]

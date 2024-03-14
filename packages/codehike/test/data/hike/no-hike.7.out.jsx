@@ -1,41 +1,26 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import { Hike } from "../../src/Hike"
 function _createMdxContent(props) {
   const _components = {
+      h2: "h2",
       p: "p",
-      slot: "slot",
       ...props.components,
     },
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
   return (
-    <Hike
-      __hike={{
-        children: "",
-        title: "",
-        _data: {
-          header: "",
-        },
-      }}
-    >
-      <_components.slot path="">
-        <_components.p>{"Hello!"}</_components.p>
-        <MyCode
-          codeblock={{
-            value: "// !from ./z.js 3:5",
-            lang: "js",
-            meta: "my meta",
-          }}
-        />
-        <MyCode
-          codeblock={{
-            value: "# !from ./z.py",
-            lang: "py",
-            meta: "python meta",
-          }}
-        />
-      </_components.slot>
-    </Hike>
+    <>
+      <_components.h2>{"Hello world"}</_components.h2>
+      {"\n"}
+      <_components.p>{"Shouldn't add any code hike stuff."}</_components.p>
+      {"\n"}
+      <MyCode
+        codeblock={{
+          value: "// !Foo\nconsole.log(1)",
+          lang: "js",
+          meta: null,
+        }}
+      />
+    </>
   )
 }
 export default function MDXContent(props = {}) {

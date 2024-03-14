@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Mark",
+    "query": "bar",
+    "ranges": [
+      {
+        "lineNumber": 1,
+        "fromColumn": 4,
+        "toColumn": 5
+      }
+    ]
+  },
+  {
+    "name": "collapse",
+    "query": "",
+    "ranges": [
+      {
+        "fromLineNumber": 2,
+        "toLineNumber": 4
+      }
+    ]
+  }
+]

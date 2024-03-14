@@ -1,0 +1,320 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "FunctionDeclaration",
+      "async": false,
+      "id": { "type": "Identifier", "name": "_createMdxContent" },
+      "params": [{ "type": "Identifier", "name": "props" }],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "VariableDeclaration",
+            "kind": "const",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "ObjectPattern",
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "kind": "init",
+                      "key": { "type": "Identifier", "name": "MyCode" },
+                      "value": { "type": "Identifier", "name": "MyCode" },
+                      "method": false,
+                      "shorthand": true,
+                      "computed": false
+                    }
+                  ]
+                },
+                "init": {
+                  "type": "LogicalExpression",
+                  "operator": "||",
+                  "left": {
+                    "type": "MemberExpression",
+                    "object": { "type": "Identifier", "name": "props" },
+                    "property": { "type": "Identifier", "name": "components" },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "right": { "type": "ObjectExpression", "properties": [] }
+                }
+              }
+            ]
+          },
+          {
+            "type": "IfStatement",
+            "test": {
+              "type": "UnaryExpression",
+              "operator": "!",
+              "prefix": true,
+              "argument": { "type": "Identifier", "name": "MyCode" }
+            },
+            "consequent": {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "_missingMdxReference"
+                },
+                "arguments": [
+                  { "type": "Literal", "value": "MyCode" },
+                  { "type": "Literal", "value": true }
+                ],
+                "optional": false
+              }
+            }
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "JSXElement",
+              "openingElement": {
+                "type": "JSXOpeningElement",
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "name": { "type": "JSXIdentifier", "name": "codeblock" },
+                    "value": {
+                      "type": "JSXExpressionContainer",
+                      "expression": {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "value" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "// !Mark[4:5] bar\nconsole.log(1)\n// !collapse(1:3)\nfunction x() {\n  return 3\n}",
+                              "raw": "\"// !Mark[4:5] bar\\nconsole.log(1)\\n// !collapse(1:3)\\nfunction x() {\\n  return 3\\n}\""
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "lang" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "js",
+                              "raw": "\"js\""
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "meta" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "foo.js",
+                              "raw": "\"foo.js\""
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "name": { "type": "JSXIdentifier", "name": "MyCode" },
+                "selfClosing": true
+              },
+              "closingElement": null,
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": { "type": "Identifier", "name": "MDXContent" },
+        "params": [
+          {
+            "type": "AssignmentPattern",
+            "left": { "type": "Identifier", "name": "props" },
+            "right": { "type": "ObjectExpression", "properties": [] }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "kind": "const",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "ObjectPattern",
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "key": { "type": "Identifier", "name": "wrapper" },
+                        "value": { "type": "Identifier", "name": "MDXLayout" },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false
+                      }
+                    ]
+                  },
+                  "init": {
+                    "type": "LogicalExpression",
+                    "operator": "||",
+                    "left": {
+                      "type": "MemberExpression",
+                      "object": { "type": "Identifier", "name": "props" },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "components"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "right": { "type": "ObjectExpression", "properties": [] }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "ConditionalExpression",
+                "test": { "type": "Identifier", "name": "MDXLayout" },
+                "consequent": {
+                  "type": "JSXElement",
+                  "openingElement": {
+                    "type": "JSXOpeningElement",
+                    "name": { "type": "JSXIdentifier", "name": "MDXLayout" },
+                    "attributes": [
+                      {
+                        "type": "JSXSpreadAttribute",
+                        "argument": { "type": "Identifier", "name": "props" }
+                      }
+                    ],
+                    "selfClosing": false
+                  },
+                  "closingElement": {
+                    "type": "JSXClosingElement",
+                    "name": { "type": "JSXIdentifier", "name": "MDXLayout" }
+                  },
+                  "children": [
+                    {
+                      "type": "JSXElement",
+                      "openingElement": {
+                        "type": "JSXOpeningElement",
+                        "name": {
+                          "type": "JSXIdentifier",
+                          "name": "_createMdxContent"
+                        },
+                        "attributes": [
+                          {
+                            "type": "JSXSpreadAttribute",
+                            "argument": {
+                              "type": "Identifier",
+                              "name": "props"
+                            }
+                          }
+                        ],
+                        "selfClosing": true
+                      },
+                      "closingElement": null,
+                      "children": []
+                    }
+                  ]
+                },
+                "alternate": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "_createMdxContent"
+                  },
+                  "arguments": [{ "type": "Identifier", "name": "props" }],
+                  "optional": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "id": { "type": "Identifier", "name": "_missingMdxReference" },
+      "generator": false,
+      "async": false,
+      "params": [
+        { "type": "Identifier", "name": "id" },
+        { "type": "Identifier", "name": "component" }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "ThrowStatement",
+            "argument": {
+              "type": "NewExpression",
+              "callee": { "type": "Identifier", "name": "Error" },
+              "arguments": [
+                {
+                  "type": "BinaryExpression",
+                  "left": {
+                    "type": "BinaryExpression",
+                    "left": {
+                      "type": "BinaryExpression",
+                      "left": {
+                        "type": "BinaryExpression",
+                        "left": { "type": "Literal", "value": "Expected " },
+                        "operator": "+",
+                        "right": {
+                          "type": "ConditionalExpression",
+                          "test": { "type": "Identifier", "name": "component" },
+                          "consequent": {
+                            "type": "Literal",
+                            "value": "component"
+                          },
+                          "alternate": { "type": "Literal", "value": "object" }
+                        }
+                      },
+                      "operator": "+",
+                      "right": { "type": "Literal", "value": " `" }
+                    },
+                    "operator": "+",
+                    "right": { "type": "Identifier", "name": "id" }
+                  },
+                  "operator": "+",
+                  "right": {
+                    "type": "Literal",
+                    "value": "` to be defined: you likely forgot to import, pass, or provide it."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sourceType": "module",
+  "comments": [
+    {
+      "type": "Block",
+      "value": "@jsxRuntime automatic @jsxImportSource react",
+      "data": { "_mdxIsPragmaComment": true }
+    }
+  ]
+}
