@@ -1,10 +1,13 @@
 import { AnnotationComponents } from "./annotation-components.js"
-import {
-  InlineAnnotation,
-  InternalToken,
-  LineContent,
-  TokenGroup,
-} from "./common.js"
+import { InlineAnnotation, InternalToken } from "./common.js"
+
+type TokenGroup = {
+  annotation: InlineAnnotation
+  content: LineContent
+  range: [number, number]
+}
+
+type LineContent = (InternalToken | TokenGroup)[]
 
 export function RenderLineContent({
   lineContent,
@@ -56,7 +59,7 @@ function AnnotatedTokens({
 export function toLineContent(
   tokens: InternalToken[],
   annotations: InlineAnnotation[],
-) {
+): LineContent {
   let content = tokens as LineContent
   for (let i = annotations.length - 1; i >= 0; i--) {
     const annotation = annotations[i]
@@ -101,7 +104,7 @@ function applyInlineAnnotation(
 // split any group or content that spans across the given column number
 function splitContent(lineContent: LineContent, n: number): LineContent {
   const index = lineContent.findIndex(
-    (token) => token.range[0] <= n && n <= token.range[1],
+    (token) => token.range[0] < n && n <= token.range[1],
   )
   if (index === -1) {
     return lineContent
@@ -135,7 +138,6 @@ function splitContent(lineContent: LineContent, n: number): LineContent {
     ]
   }
 
-  console.log({ item, n })
   // split token
   return [
     ...lineContent.slice(0, index),

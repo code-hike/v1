@@ -5,7 +5,7 @@ import fs from "node:fs/promises"
 import path from "node:path"
 import * as prettier from "prettier"
 
-const dataPath = "./test/data/code"
+const dataPath = "./test/data/hike"
 const testNames = await getTestNames(dataPath)
 
 testNames.forEach((name) => {

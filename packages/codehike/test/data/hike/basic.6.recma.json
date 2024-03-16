@@ -92,8 +92,8 @@
                             "kind": "init",
                             "value": {
                               "type": "Literal",
-                              "value": "console.log(1)\n// !Mark[2:4] m1\nfunction x() {\n  // !Mark[3:4] m2\n  return 4\n}",
-                              "raw": "\"console.log(1)\\n// !Mark[2:4] m1\\nfunction x() {\\n  // !Mark[3:4] m2\\n  return 4\\n}\""
+                              "value": "console.log(1)\n// !Mark m1\nfunction x() {\n  // !Mark[3:4] m2\n  return 4\n}",
+                              "raw": "\"console.log(1)\\n// !Mark m1\\nfunction x() {\\n  // !Mark[3:4] m2\\n  return 4\\n}\""
                             }
                           },
                           {

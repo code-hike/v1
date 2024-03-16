@@ -24,13 +24,6 @@ export type InlineAnnotation = [
 
 export type Annotation = BlockAnnotation | InlineAnnotation
 
-export type TokenGroup = {
-  annotation: InlineAnnotation
-  content: LineContent
-  range: [number, number]
-}
-
-export type LineContent = (InternalToken | TokenGroup)[]
 export function isBlockAnnotation(
   annotation: Annotation,
 ): annotation is BlockAnnotation {

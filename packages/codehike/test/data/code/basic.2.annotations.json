@@ -4,9 +4,8 @@
     "query": "m1",
     "ranges": [
       {
-        "lineNumber": 2,
-        "fromColumn": 2,
-        "toColumn": 4
+        "fromLineNumber": 2,
+        "toLineNumber": 2
       }
     ]
   },
