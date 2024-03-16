@@ -14,7 +14,6 @@
       "children": [{ "type": "text", "value": "!!foo" }]
     },
     { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] },
-    { "type": "code", "lang": "js", "meta": "!", "value": "!from z.js 3:5" },
     {
       "type": "paragraph",
       "children": [
