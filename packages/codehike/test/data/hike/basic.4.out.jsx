@@ -6,7 +6,7 @@ function _createMdxContent(props) {
     <MyCode
       codeblock={{
         value:
-          "// !Mark[4:5] bar\nconsole.log(1)\n// !collapse(1:3)\nfunction x() {\n  return 3\n}",
+          "console.log(1)\n// !Mark[2:4] m1\nfunction x() {\n  // !Mark[3:4] m2\n  return 4\n}",
         lang: "js",
         meta: "foo.js",
       }}

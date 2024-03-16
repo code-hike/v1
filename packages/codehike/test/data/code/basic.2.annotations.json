@@ -1,22 +1,23 @@
 [
   {
     "name": "Mark",
-    "query": "bar",
+    "query": "m1",
     "ranges": [
       {
-        "lineNumber": 1,
-        "fromColumn": 4,
-        "toColumn": 5
+        "lineNumber": 2,
+        "fromColumn": 2,
+        "toColumn": 4
       }
     ]
   },
   {
-    "name": "collapse",
-    "query": "",
+    "name": "Mark",
+    "query": "m2",
     "ranges": [
       {
-        "fromLineNumber": 2,
-        "toLineNumber": 4
+        "lineNumber": 3,
+        "fromColumn": 3,
+        "toColumn": 4
       }
     ]
   }

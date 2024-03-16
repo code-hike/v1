@@ -5,7 +5,10 @@ import { fromMarkdown } from "mdast-util-from-markdown"
 import { Code } from "mdast"
 import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
-import { CodeContent } from "../src/code/code-content"
+import {
+  CodeRender,
+  Annotation as NewAnnotation,
+} from "../src/code/code-render"
 import { tokenize } from "../src/code/code-to-tokens"
 import { splitAnnotationsAndCode } from "../src/code/extract-annotations"
 
@@ -53,25 +56,32 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
     }),
   ).toMatchFileSnapshot(`./data/code/${name}.2.annotations.json`)
 
-  const html = await prettier.format(
-    await rscToHTML(
-      // @ts-ignore
-      <CodeContent
-        codeblock={{
-          lang: lang!,
-          meta: meta!,
-          value: code,
-          annotations,
-        }}
-        config={{ theme: "github-dark" }}
-        components={{
-          Mark,
-        }}
-      />,
-    ),
-    { parser: "html" },
+  const html = await rscToHTML(
+    // @ts-ignore
+    <CodeRender
+      tokens={tokens as any}
+      annotations={compatAnnotations(annotations)}
+      components={{ Mark, Token }}
+    />,
   )
   expect(html).toMatchFileSnapshot(`./data/code/${name}.3.static.html`)
+}
+
+function compatAnnotations(annotations: any[]): NewAnnotation[] {
+  const newAnnotations: NewAnnotation[] = []
+  for (const a of annotations) {
+    const { name, query, ranges } = a
+    for (const r of ranges) {
+      if (r.lineNumber) {
+        const { lineNumber, fromColumn, toColumn } = r
+        newAnnotations.push([name, lineNumber, [fromColumn, toColumn], query])
+      } else {
+        const { fromLineNumber, toLineNumber } = r
+        newAnnotations.push([name, [fromLineNumber, toLineNumber], query])
+      }
+    }
+  }
+  return newAnnotations
 }
 
 async function rscToHTML(children: any) {
@@ -79,7 +89,8 @@ async function rscToHTML(children: any) {
   await stream.allReady
   const response = new Response(stream)
   const html = await response.text()
-  return html
+
+  return html.replace(new RegExp("<!-- -->", "g"), "")
 }
 
 async function getTestNames(dirname: string) {
@@ -88,6 +99,16 @@ async function getTestNames(dirname: string) {
   return mdxFileNames.map((f) => f.replace(".0.mdx", ""))
 }
 
-function Mark({ children }) {
-  return <mark>{children}</mark>
+function Mark({
+  children,
+  query,
+}: {
+  children: React.ReactNode
+  query?: string
+}) {
+  return <mark className={query}>{children}</mark>
+}
+
+function Token({ value }: { value: string }) {
+  return value
 }

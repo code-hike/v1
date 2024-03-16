@@ -76,3 +76,27 @@ export function Line({ children, query }: any) {
     </div>
   )
 }
+
+function CollapseLine({ lineNumber }: { lineNumber: number }) {
+  const { isHeader, isCollapsed, setCollapsed } = useCollapse(lineNumber)
+}
+
+function BaseLine({
+  children,
+  lineNumber,
+  icon,
+}: {
+  children: any
+  lineNumber: number
+  icon: React.ReactNode
+}) {
+  return (
+    <div data-line="true" className="px-2">
+      <span className="pr-1 inline-block w-[2ch] box-content !opacity-50 text-right select-none">
+        {lineNumber}
+      </span>
+      <span className="w-8 inline-block">{icon}</span>
+      {children}
+    </div>
+  )
+}
