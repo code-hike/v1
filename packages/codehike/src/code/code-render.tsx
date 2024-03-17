@@ -1,4 +1,9 @@
-import { AnnotationComponents } from "./render/annotation-components.js"
+import React from "react"
+import {
+  AnnotationComponents,
+  BlockComponent,
+  LineComponent,
+} from "./render/annotation-components.js"
 import {
   Annotation,
   BlockAnnotation,
@@ -54,10 +59,12 @@ function RenderLines({
   linesOrGroups,
   components,
   inlineAnnotations,
+  annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
   components: AnnotationComponents
   inlineAnnotations: InlineAnnotation[]
+  annotationStack?: BlockAnnotation[]
 }) {
   return linesOrGroups.map((group) => {
     if (isGroup(group)) {
@@ -67,6 +74,7 @@ function RenderLines({
           group={group}
           components={components}
           inlineAnnotations={inlineAnnotations}
+          annotationStack={annotationStack}
         />
       )
     }
@@ -77,13 +85,34 @@ function RenderLines({
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    return (
-      <RenderLineContent
-        key={lineNumber}
-        lineContent={lineContent}
-        components={components}
-      />
+    // find the first annotation that has a Line component or "Line"
+    const annotation = annotationStack.find(
+      ([name]) => components[(name + "Line") as keyof AnnotationComponents],
     )
+
+    let Line = components.Line as LineComponent | undefined
+    let query = ""
+    if (annotation) {
+      let [name, range] = annotation
+      query = annotation[2] || ""
+      Line = components[
+        (name + "Line") as keyof AnnotationComponents
+      ] as LineComponent
+    }
+
+    const children = (
+      <RenderLineContent lineContent={lineContent} components={components} />
+    )
+
+    if (!Line) {
+      return children
+    } else {
+      return (
+        <Line lineNumber={lineNumber} key={lineNumber} query={query}>
+          {children}
+        </Line>
+      )
+    }
   })
 }
 
@@ -91,21 +120,23 @@ function AnnotatedLines({
   group,
   components,
   inlineAnnotations,
+  annotationStack,
 }: {
   group: LineGroup
   components: AnnotationComponents
   inlineAnnotations: InlineAnnotation[]
+  annotationStack: BlockAnnotation[]
 }) {
   const { annotation, lines } = group
   const [name, range, query] = annotation
-  const Component = components[name]
+  const Component = components[name] as BlockComponent
   if (!Component) {
-    console.log("Missing annotation component", name)
     return (
       <RenderLines
         linesOrGroups={lines}
         components={components}
         inlineAnnotations={inlineAnnotations}
+        annotationStack={[annotation, ...annotationStack]}
       />
     )
   }
@@ -115,6 +146,7 @@ function AnnotatedLines({
         linesOrGroups={lines}
         components={components}
         inlineAnnotations={inlineAnnotations}
+        annotationStack={[annotation, ...annotationStack]}
       />
     </Component>
   )

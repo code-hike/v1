@@ -5,12 +5,15 @@ import { fromMarkdown } from "mdast-util-from-markdown"
 import { Code } from "mdast"
 import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
-import {
-  CodeRender,
-  Annotation as NewAnnotation,
-} from "../src/code/code-render"
+import { CodeRender } from "../src/code/code-render"
 import { tokenize } from "../src/code/code-to-tokens"
 import { splitAnnotationsAndCode } from "../src/code/extract-annotations"
+import { Annotation as NewAnnotation } from "../src/code/render/common"
+import {
+  AnnotationComponents,
+  LineComponent,
+  TokenComponent,
+} from "../src/code/render/annotation-components"
 
 const dataPath = "./test/data/code"
 const testNames = await getTestNames(dataPath)
@@ -61,7 +64,12 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
     <CodeRender
       tokens={tokens as any}
       annotations={compatAnnotations(annotations)}
-      components={{ Mark, Token }}
+      components={{
+        // Mark,
+        Token,
+        MarkLine,
+        Line,
+      }}
     />,
   )
   expect(html).toMatchFileSnapshot(`./data/code/${name}.3.static.html`)
@@ -109,6 +117,25 @@ function Mark({
   return <mark className={query}>{children}</mark>
 }
 
-function Token({ value }: { value: string }) {
+/** @type {TokenComponent} */
+const Token: TokenComponent = ({ value, style }) => {
   return value
+}
+
+const MarkLine: LineComponent = ({ lineNumber, children, query }) => {
+  return (
+    <div className="bg-red-100">
+      <span>{lineNumber}</span>
+      <span className={query}>{children}</span>
+    </div>
+  )
+}
+
+const Line: LineComponent = ({ lineNumber, children, query }) => {
+  return (
+    <div>
+      <span>{lineNumber}</span>
+      <span>{children}</span>
+    </div>
+  )
 }

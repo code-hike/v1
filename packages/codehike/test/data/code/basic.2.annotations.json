@@ -5,18 +5,17 @@
     "ranges": [
       {
         "fromLineNumber": 2,
-        "toLineNumber": 2
+        "toLineNumber": 3
       }
     ]
   },
   {
-    "name": "Mark",
-    "query": "m2",
+    "name": "Foo",
+    "query": "",
     "ranges": [
       {
-        "lineNumber": 3,
-        "fromColumn": 3,
-        "toColumn": 4
+        "fromLineNumber": 3,
+        "toLineNumber": 3
       }
     ]
   }

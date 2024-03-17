@@ -10,13 +10,13 @@ export type InternalToken = {
 }
 
 export type BlockAnnotation = [
-  string, // annotation name
+  Capitalize<string>, // annotation name
   [number, number],
   string?, // query
 ]
 
 export type InlineAnnotation = [
-  string, // annotation name
+  Capitalize<string>, // annotation name
   number, // line number
   [number, number],
   string?, // query
