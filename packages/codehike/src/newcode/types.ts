@@ -5,32 +5,42 @@ export type Token = [string, Color?, React.CSSProperties?]
 export type Whitespace = string
 export type Tokens = (Token | Whitespace)[]
 
-export type BlockAnnotation = [
-  Capitalize<string>, // annotation name
-  [number, number],
-  string?, // query
-]
+export type BlockAnnotation = {
+  /** Annotation name (used to find the right AnnotationComponent) */
+  name: ComponentName
+  /** String metadata */
+  query: string
+  /** Line number where the annotation block starts */
+  fromLineNumber: number
+  /** Line number (inclusive) where the annotation block ends  */
+  toLineNumber: number
+}
 
-export type InlineAnnotation = [
-  Capitalize<string>, // annotation name
-  number, // line number
-  [number, number],
-  string?, // query
-]
+export type InlineAnnotation = {
+  /** Annotation name (used to find the right AnnotationComponent) */
+  name: ComponentName
+  /** String metadata */
+  query: string
+  /** Line number  */
+  lineNumber: number
+  /** Column number where the annotation starts */
+  fromColumn: number
+  /** Column number (inclusive) where the annotation ends */
+  toColumn: number
+}
 
 export type CodeAnnotation = BlockAnnotation | InlineAnnotation
 
 export function isBlockAnnotation(
   annotation: CodeAnnotation,
 ): annotation is BlockAnnotation {
-  const lineRange = annotation[1]
-  return Array.isArray(lineRange)
+  return !isInlineAnnotation(annotation)
 }
 
 export function isInlineAnnotation(
   annotation: CodeAnnotation,
 ): annotation is InlineAnnotation {
-  return !isBlockAnnotation(annotation)
+  return annotation.hasOwnProperty("lineNumber")
 }
 
 export function isWhitespace(token: Token | Whitespace): token is Whitespace {
@@ -77,27 +87,98 @@ export type CodeInfo = {
   themeName: string
 }
 
-export type BlockComponent = React.ComponentType<{
-  query?: string
+export type BlockAnnotationComponent = React.ComponentType<{
+  annotation: BlockAnnotation
   children: React.ReactNode
 }>
 
-export type TokenComponent = React.ComponentType<{
+type LineAnnotationProps = {
+  lineNumber: number
+  children: React.ReactNode
+}
+export type LineAnnotationComponent = React.ComponentType<
+  LineAnnotationProps & {
+    annotation: BlockAnnotation
+  }
+>
+
+export type InlineAnnotationComponent = React.ComponentType<{
+  annotation: InlineAnnotation
+  lineNumber: number
+  children: React.ReactNode
+}>
+
+type TokenAnnotationProps = {
+  lineNumber: number
   value: string
   style?: React.CSSProperties
-  query?: string
-}>
-
-export type LineComponent = React.ComponentType<{
-  lineNumber: number
-  query?: string
-  children: React.ReactNode
-}>
-
-export type AnnotationComponents = Record<
-  Capitalize<string>,
-  BlockComponent | TokenComponent | LineComponent
+}
+export type TokenAnnotationComponent = React.ComponentType<
+  TokenAnnotationProps & {
+    annotation: BlockAnnotation | InlineAnnotation
+  }
 >
+
+type CapitalLetter =
+  | "A"
+  | "B"
+  | "C"
+  | "D"
+  | "E"
+  | "F"
+  | "G"
+  | "H"
+  | "I"
+  | "J"
+  | "K"
+  | "L"
+  | "M"
+  | "N"
+  | "O"
+  | "P"
+  | "Q"
+  | "R"
+  | "S"
+  | "T"
+  | "U"
+  | "V"
+  | "W"
+  | "X"
+  | "Y"
+  | "Z"
+type ComponentName = `${CapitalLetter}${string}`
+
+export type BlockAnnotationComponents = Record<
+  `Block${ComponentName}`,
+  BlockAnnotationComponent
+>
+
+export type LineAnnotationComponents = Record<
+  `Line${ComponentName}`,
+  LineAnnotationComponent
+>
+
+export type TokenAnnotationComponents = Record<
+  `Token${ComponentName}`,
+  TokenAnnotationComponent
+>
+
+export type InlineAnnotationComponents = Record<
+  `Inline${ComponentName}`,
+  InlineAnnotationComponent
+>
+
+export type TokenComponent = React.ComponentType<TokenAnnotationProps>
+
+export type LineComponent = React.ComponentType<LineAnnotationProps>
+
+export type AnnotationComponents = BlockAnnotationComponents &
+  LineAnnotationComponents &
+  InlineAnnotationComponents &
+  TokenAnnotationComponents & {
+    Token?: TokenComponent
+    Line?: LineComponent
+  }
 
 export type InternalToken = {
   value: string

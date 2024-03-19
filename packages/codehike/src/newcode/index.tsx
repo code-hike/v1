@@ -4,9 +4,11 @@ import type {
   CodeInfo,
   CodeAnnotation,
   Theme,
-  LineComponent,
   TokenComponent,
-  BlockComponent,
+  LineComponent,
+  LineAnnotationComponent,
+  TokenAnnotationComponent,
+  BlockAnnotationComponent,
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
@@ -16,10 +18,12 @@ export {
   Token,
   CodeData,
   CodeInfo,
+  TokenComponent,
+  LineComponent,
   CodeAnnotation,
   Theme,
-  LineComponent,
-  TokenComponent,
-  BlockComponent,
+  LineAnnotationComponent,
+  TokenAnnotationComponent,
+  BlockAnnotationComponent,
 }
 export { highlight, CodeRender }

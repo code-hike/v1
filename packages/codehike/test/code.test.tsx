@@ -10,6 +10,7 @@ import {
   CodeRender,
   LineComponent,
   TokenComponent,
+  LineAnnotationComponent,
 } from "../src/newcode/index"
 
 const dataPath = "./test/data/code"
@@ -20,12 +21,12 @@ testNames.forEach((name) => {
     test(`compilation`, async () => {
       const mdx = await fs.readFile(`${dataPath}/${name}.0.mdx`, "utf-8")
       const mdxPath = `${dataPath}/${name}.0.mdx`
-      await testCompilation(name, mdx, mdxPath)
+      await testCompilation(name, mdx)
     })
   })
 })
 
-async function testCompilation(name: string, mdx: string, mdxPath: string) {
+async function testCompilation(name: string, mdx: string) {
   const { children } = fromMarkdown(mdx)
   const codeblocks = children.filter((n) => n.type === "code")
   const codeblock = codeblocks[0]
@@ -61,7 +62,7 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
       components={{
         // Mark,
         Token,
-        MarkLine,
+        LineMark,
         Line,
       }}
     />,
@@ -94,12 +95,16 @@ function Mark({
   return <mark className={query}>{children}</mark>
 }
 
-/** @type {TokenComponent} */
 const Token: TokenComponent = ({ value, style }) => {
   return value
 }
 
-const MarkLine: LineComponent = ({ lineNumber, children, query }) => {
+const LineMark: LineAnnotationComponent = ({
+  lineNumber,
+  children,
+  annotation,
+}) => {
+  const { query } = annotation
   return (
     <div className="bg-red-100">
       <span>{lineNumber}</span>
@@ -108,7 +113,7 @@ const MarkLine: LineComponent = ({ lineNumber, children, query }) => {
   )
 }
 
-const Line: LineComponent = ({ lineNumber, children, query }) => {
+const Line: LineComponent = ({ lineNumber, children }) => {
   return (
     <div>
       <span>{lineNumber}</span>

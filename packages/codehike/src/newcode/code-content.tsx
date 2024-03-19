@@ -2,12 +2,13 @@ import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationComponents,
   BlockAnnotation,
-  BlockComponent,
-  CodeAnnotation,
+  BlockAnnotationComponent,
+  BlockAnnotationComponents,
   CodeInfo,
   InlineAnnotation,
   InternalToken,
-  LineComponent,
+  LineAnnotationComponent,
+  LineAnnotationComponents,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
@@ -80,37 +81,43 @@ function RenderLines({
 
     const lineNumber = group.range[0]
     const lineAnnotations = inlineAnnotations.filter(
-      (annotation) => annotation[1] === lineNumber,
+      (annotation) => annotation.lineNumber === lineNumber,
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
     // find the first annotation that has a Line component or "Line"
     const annotation = annotationStack.find(
-      ([name]) => components[(name + "Line") as keyof AnnotationComponents],
+      ({ name }) =>
+        components[("Line" + name) as keyof LineAnnotationComponents],
     )
 
-    let Line = components.Line as LineComponent | undefined
-    let query = ""
+    let Line = components.Line
+
+    let children: React.ReactNode = (
+      <RenderLineContent
+        lineContent={lineContent}
+        components={components}
+        lineNumber={lineNumber}
+      />
+    )
+
     if (annotation) {
-      let [name, range] = annotation
-      query = annotation[2] || ""
-      Line = components[
-        (name + "Line") as keyof AnnotationComponents
-      ] as LineComponent
-    }
-
-    const children = (
-      <RenderLineContent lineContent={lineContent} components={components} />
-    )
-
-    if (!Line) {
-      return children
-    } else {
+      let { name } = annotation
+      const LineComponent =
+        components[("Line" + name) as keyof LineAnnotationComponents]
       return (
-        <Line lineNumber={lineNumber} key={lineNumber} query={query}>
+        <LineComponent lineNumber={lineNumber} annotation={annotation}>
+          {children}
+        </LineComponent>
+      )
+    } else if (Line) {
+      return (
+        <Line lineNumber={lineNumber} key={lineNumber}>
           {children}
         </Line>
       )
+    } else {
+      return children
     }
   })
 }
@@ -127,8 +134,9 @@ function AnnotatedLines({
   annotationStack: BlockAnnotation[]
 }) {
   const { annotation, lines } = group
-  const [name, range, query] = annotation
-  const Component = components[name] as BlockComponent
+  const { name } = annotation
+  const Component =
+    components[("Block" + name) as keyof BlockAnnotationComponents]
   if (!Component) {
     return (
       <RenderLines
@@ -140,7 +148,7 @@ function AnnotatedLines({
     )
   }
   return (
-    <Component query={query}>
+    <Component annotation={annotation}>
       <RenderLines
         linesOrGroups={lines}
         components={components}
@@ -206,7 +214,8 @@ function applyBlockAnnotation(
   lines: LinesOrGroups,
   annotation: BlockAnnotation,
 ): LinesOrGroups {
-  const [, range] = annotation
+  const { fromLineNumber, toLineNumber } = annotation
+  const range = [fromLineNumber, toLineNumber]
   let groups = splitGroups(lines, range[0])
   groups = splitGroups(groups, range[1] + 1)
   let before = [] as LinesOrGroups

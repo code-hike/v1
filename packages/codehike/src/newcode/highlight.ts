@@ -45,10 +45,21 @@ function compatAnnotations(annotations: any[]): CodeAnnotation[] {
     for (const r of ranges) {
       if (r.lineNumber) {
         const { lineNumber, fromColumn, toColumn } = r
-        newAnnotations.push([name, lineNumber, [fromColumn, toColumn], query])
+        newAnnotations.push({
+          name,
+          query,
+          lineNumber,
+          fromColumn,
+          toColumn,
+        })
       } else {
         const { fromLineNumber, toLineNumber } = r
-        newAnnotations.push([name, [fromLineNumber, toLineNumber], query])
+        newAnnotations.push({
+          name,
+          query,
+          fromLineNumber,
+          toLineNumber,
+        })
       }
     }
   }

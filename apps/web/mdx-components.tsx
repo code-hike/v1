@@ -1,7 +1,8 @@
 import type { MDXComponents } from "mdx/types"
 import defaultComponents from "next-docs-ui/mdx/default"
-import { CodeContent } from "codehike"
-import { Line, Collapse } from "@/ui/collapse"
+
+import { highlight, CodeRender } from "codehike/code"
+import { Line, BlockCollapse } from "@/ui/collapse"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -11,16 +12,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   }
 }
 
-function Code(props: { codeblock: any }) {
+async function Code(props: { codeblock: any }) {
+  const { codeblock } = props
+  const info = await highlight(codeblock, "github-dark")
   return (
-    <CodeContent
-      codeblock={props.codeblock}
-      config={{
-        theme: "github-dark",
-        annotationPrefix: "!",
-        mdxPath: props.codeblock.parentPath,
-      }}
-      components={{ Line, Collapse }}
+    <CodeRender
+      info={info}
+      components={{ Line, BlockCollapse }}
       className="py-2 !bg-zinc-900 leading-normal overflow-auto w-full whitespace-pre-wrap"
     />
   )

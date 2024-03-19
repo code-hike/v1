@@ -1,5 +1,6 @@
 "use client"
-import { ChevronDown, ChevronDownIcon } from "lucide-react"
+import { BlockAnnotationComponent, LineComponent } from "codehike/code"
+import { ChevronDownIcon } from "lucide-react"
 import { createContext, useContext, useState } from "react"
 
 const CollapseContext = createContext({
@@ -8,13 +9,13 @@ const CollapseContext = createContext({
   setCollapsed: (collapsed: boolean) => {},
 })
 
-export function Collapse({ children, query, data }: any) {
+export const BlockCollapse: BlockAnnotationComponent = ({
+  children,
+  annotation,
+}) => {
+  const { query, fromLineNumber } = annotation
   const [collapsed, setCollapsed] = useState(query === "collapsed")
-  const { inline, fromLineNumber, toLineNumber } = data
-  if (inline) {
-    console.log("Inline collapse not supported")
-    return children
-  }
+
   return (
     <CollapseContext.Provider
       value={{
@@ -41,8 +42,8 @@ function useCollapse(lineNumber: number) {
   }
 }
 
-export function Line({ children, query }: any) {
-  const { isHeader, isCollapsed, setCollapsed } = useCollapse(Number(query))
+export const Line: LineComponent = ({ children, lineNumber }) => {
+  const { isHeader, isCollapsed, setCollapsed } = useCollapse(lineNumber)
   if (isHeader) {
     return (
       <div
@@ -52,7 +53,7 @@ export function Line({ children, query }: any) {
         data-collapsed={isCollapsed}
       >
         <span className="pr-1 inline-block w-[2ch] box-content !opacity-50 text-right select-none">
-          {query}
+          {lineNumber}
         </span>
         <ChevronDownIcon
           className="inline-block mr-1 group-data-[collapsed=true]:-rotate-90 transition select-none opacity-50 group-data-[collapsed=true]:opacity-80 group-hover:!opacity-100"
@@ -69,7 +70,7 @@ export function Line({ children, query }: any) {
   return (
     <div data-line="true" className="px-2">
       <span className="pr-1 inline-block w-[2ch] box-content !opacity-50 text-right select-none">
-        {query}
+        {lineNumber}
       </span>
       <ChevronDownIcon className="inline-block mr-1 opacity-0" size={15} />
       {children}

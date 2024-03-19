@@ -1,9 +1,11 @@
 import {
   AnnotationComponents,
-  BlockComponent,
+  BlockAnnotationComponent,
   InlineAnnotation,
+  InlineAnnotationComponent,
+  InlineAnnotationComponents,
   InternalToken,
-  TokenComponent,
+  TokenAnnotationComponent,
 } from "./types.js"
 
 type TokenGroup = {
@@ -17,17 +19,27 @@ type LineContent = (InternalToken | TokenGroup)[]
 export function RenderLineContent({
   lineContent,
   components,
+  lineNumber,
 }: {
   lineContent: LineContent
   components: AnnotationComponents
+  lineNumber: number
 }) {
-  const TokenComp = (components.Token || TokenComponent) as TokenComponent
+  // TODO get Token from annotationStack
+  const TokenComp = components.Token || TokenComponent
   return lineContent.map((item, i) => {
     if (isGroup(item)) {
-      return <AnnotatedTokens group={item} components={components} key={i} />
+      return (
+        <AnnotatedTokens
+          group={item}
+          components={components}
+          key={i}
+          lineNumber={lineNumber}
+        />
+      )
     } else {
       return item.style ? (
-        <TokenComp {...item} key={i} />
+        <TokenComp {...item} key={i} lineNumber={lineNumber} />
       ) : (
         // whitespace
         item.value
@@ -41,22 +53,34 @@ function TokenComponent({ value, style }: InternalToken) {
 }
 
 function AnnotatedTokens({
+  lineNumber,
   group,
   components,
 }: {
+  lineNumber: number
   group: TokenGroup
   components: AnnotationComponents
 }) {
   const { annotation, content } = group
-  const [name, lineNumber, range, query] = annotation
-  const Component = components[name] as BlockComponent | undefined
+  const { name } = annotation
+  const Component =
+    components[("Inline" + name) as keyof InlineAnnotationComponents]
   if (!Component) {
-    console.log("Missing annotation component", name)
-    return <RenderLineContent lineContent={content} components={components} />
+    return (
+      <RenderLineContent
+        lineContent={content}
+        components={components}
+        lineNumber={lineNumber}
+      />
+    )
   }
   return (
-    <Component query={query}>
-      <RenderLineContent lineContent={content} components={components} />
+    <Component annotation={annotation} lineNumber={lineNumber}>
+      <RenderLineContent
+        lineContent={content}
+        components={components}
+        lineNumber={lineNumber}
+      />
     </Component>
   )
 }
@@ -77,7 +101,8 @@ function applyInlineAnnotation(
   lineContent: LineContent,
   annotation: InlineAnnotation,
 ): LineContent {
-  const [, , range] = annotation
+  const { fromColumn, toColumn } = annotation
+  const range = [fromColumn, toColumn]
   let content = splitContent(lineContent, range[0])
   content = splitContent(content, range[1] + 1)
 

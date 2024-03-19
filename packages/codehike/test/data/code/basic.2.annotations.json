@@ -1,4 +1,14 @@
 [
-  ["Mark", [2, 3], "m1"],
-  ["Foo", [3, 3], ""]
+  {
+    "name": "Mark",
+    "query": "m1",
+    "fromLineNumber": 2,
+    "toLineNumber": 3
+  },
+  {
+    "name": "Foo",
+    "query": "",
+    "fromLineNumber": 3,
+    "toLineNumber": 3
+  }
 ]
