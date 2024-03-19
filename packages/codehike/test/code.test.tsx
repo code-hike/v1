@@ -5,15 +5,12 @@ import { fromMarkdown } from "mdast-util-from-markdown"
 import { Code } from "mdast"
 import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
-import { CodeRender } from "../src/code/code-render"
-import { highlight } from "../src/newcode/index"
-import { splitAnnotationsAndCode } from "../src/code/extract-annotations"
-import { Annotation as NewAnnotation } from "../src/code/render/common"
 import {
-  AnnotationComponents,
+  highlight,
+  CodeRender,
   LineComponent,
   TokenComponent,
-} from "../src/code/render/annotation-components"
+} from "../src/newcode/index"
 
 const dataPath = "./test/data/code"
 const testNames = await getTestNames(dataPath)
@@ -60,8 +57,7 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
   const html = await rscToHTML(
     // @ts-ignore
     <CodeRender
-      tokens={info.tokens as any}
-      annotations={info.annotations}
+      info={info}
       components={{
         // Mark,
         Token,

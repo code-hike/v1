@@ -65,7 +65,7 @@ export type CodeInfo = {
   annotations: CodeAnnotation[]
 
   /** The list of highlighted tokens. Whitespace tokens include newline characters. */
-  tokens: Token[]
+  tokens: (Token | Whitespace)[]
 
   /** The normalized (for example: py becomes python) language used for highlighting. */
   lang: string
@@ -75,4 +75,32 @@ export type CodeInfo = {
 
   /** The name of the theme used for highlighting. */
   themeName: string
+}
+
+export type BlockComponent = React.ComponentType<{
+  query?: string
+  children: React.ReactNode
+}>
+
+export type TokenComponent = React.ComponentType<{
+  value: string
+  style?: React.CSSProperties
+  query?: string
+}>
+
+export type LineComponent = React.ComponentType<{
+  lineNumber: number
+  query?: string
+  children: React.ReactNode
+}>
+
+export type AnnotationComponents = Record<
+  Capitalize<string>,
+  BlockComponent | TokenComponent | LineComponent
+>
+
+export type InternalToken = {
+  value: string
+  style?: React.CSSProperties
+  range: [number, number]
 }

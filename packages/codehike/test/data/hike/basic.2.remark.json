@@ -34,7 +34,7 @@
     {
       "type": "paragraph",
       "children": [
-        { "type": "text", "value": "!hey 11 11\n!!one 333\n!!one 444" }
+        { "type": "text", "value": "!hey 11 11\r\n!!one 333\r\n!!one 444" }
       ]
     },
     {

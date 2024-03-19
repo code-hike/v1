@@ -4,32 +4,22 @@ import type {
   CodeInfo,
   CodeAnnotation,
   Theme,
+  LineComponent,
+  TokenComponent,
+  BlockComponent,
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
+import { CodeRender } from "./code-content.js"
 
-export { Token, CodeData, CodeInfo, CodeAnnotation, Theme }
-export { highlight }
-
-export type AnnotationComponents = {}
-
-export function CodeContent({
-  info,
-  components = {},
-  className,
-}: {
-  info: CodeInfo
-  components: AnnotationComponents
-  className?: string
-}) {
-  if (!info) return null
-  return (
-    <pre
-      data-theme={info.themeName}
-      data-lang={info.lang}
-      className={className}
-    >
-      {info.code}
-    </pre>
-  )
+export {
+  Token,
+  CodeData,
+  CodeInfo,
+  CodeAnnotation,
+  Theme,
+  LineComponent,
+  TokenComponent,
+  BlockComponent,
 }
+export { highlight, CodeRender }

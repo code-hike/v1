@@ -31,7 +31,7 @@ export async function highlight(
   return {
     ...data,
     code,
-    tokens: [],
+    tokens: joinedTokens,
     lang: lighterLang,
     annotations: compatAnnotations(annotations),
     themeName: theme,

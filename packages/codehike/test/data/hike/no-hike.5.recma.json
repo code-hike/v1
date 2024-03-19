@@ -209,8 +209,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "// !Foo\nconsole.log(1)",
-                                  "raw": "\"// !Foo\\nconsole.log(1)\""
+                                  "value": "// !Foo\r\nconsole.log(1)",
+                                  "raw": "\"// !Foo\\r\\nconsole.log(1)\""
                                 }
                               },
                               {

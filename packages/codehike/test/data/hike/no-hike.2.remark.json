@@ -16,7 +16,7 @@
       "type": "code",
       "lang": "js",
       "meta": null,
-      "value": "// !Foo\nconsole.log(1)"
+      "value": "// !Foo\r\nconsole.log(1)"
     }
   ]
 }

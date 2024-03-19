@@ -179,8 +179,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "console.log(\"hello world\")\nconsole.log(\"bye world\")",
-                                    "raw": "\"console.log(\\\"hello world\\\")\\nconsole.log(\\\"bye world\\\")\""
+                                    "value": "console.log(\"hello world\")\r\nconsole.log(\"bye world\")",
+                                    "raw": "\"console.log(\\\"hello world\\\")\\r\\nconsole.log(\\\"bye world\\\")\""
                                   }
                                 },
                                 {

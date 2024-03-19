@@ -15,7 +15,7 @@ function _createMdxContent(props) {
       {"\n"}
       <MyCode
         codeblock={{
-          value: "// !Foo\nconsole.log(1)",
+          value: "// !Foo\r\nconsole.log(1)",
           lang: "js",
           meta: null,
         }}
