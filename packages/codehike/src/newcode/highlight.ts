@@ -69,13 +69,15 @@ function compatAnnotations(annotations: any[]): CodeAnnotation[] {
 // group the Lines into one array
 function joinLines(lines: Lines): AnyToken[] {
   const joinedTokens: AnyToken[] = []
-  lines.forEach((lineOrGroup) => {
+  lines.forEach((lineOrGroup, i) => {
     if ("lines" in lineOrGroup) {
       throw new Error("Shouldnt be groups")
     } else {
       const tokens = joinTokens(lineOrGroup.tokens)
       joinedTokens.push(...tokens)
-      joinedTokens.push("\n")
+      if (i < lines.length - 1) {
+        joinedTokens.push("\n")
+      }
     }
   })
   return joinedTokens
