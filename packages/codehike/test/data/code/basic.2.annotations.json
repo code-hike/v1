@@ -1,22 +1,4 @@
 [
-  {
-    "name": "Mark",
-    "query": "m1",
-    "ranges": [
-      {
-        "fromLineNumber": 2,
-        "toLineNumber": 3
-      }
-    ]
-  },
-  {
-    "name": "Foo",
-    "query": "",
-    "ranges": [
-      {
-        "fromLineNumber": 3,
-        "toLineNumber": 3
-      }
-    ]
-  }
+  ["Mark", [2, 3], "m1"],
+  ["Foo", [3, 3], ""]
 ]

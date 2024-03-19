@@ -6,7 +6,7 @@ import { Code } from "mdast"
 import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
 import { CodeRender } from "../src/code/code-render"
-import { tokenize } from "../src/code/code-to-tokens"
+import { highlight } from "../src/newcode/index"
 import { splitAnnotationsAndCode } from "../src/code/extract-annotations"
 import { Annotation as NewAnnotation } from "../src/code/render/common"
 import {
@@ -36,25 +36,23 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
 
   const { lang, meta, value } = codeblock as Code
 
-  const config = {
-    theme: "github-dark",
-    themeName: "github-dark",
-    annotationPrefix: "!",
-  } as const
-
-  const { code, annotations } = await splitAnnotationsAndCode(
-    value,
-    lang!,
-    config,
+  const info = await highlight(
+    {
+      value,
+      lang: lang || "txt",
+      meta: meta || "",
+    },
+    "github-dark",
   )
 
-  const tokens = await tokenize(code, lang!, [], config)
   expect(
-    await prettier.format(JSON.stringify(tokens, null, 2), { parser: "json" }),
+    await prettier.format(JSON.stringify(info.tokens, null, 2), {
+      parser: "json",
+    }),
   ).toMatchFileSnapshot(`./data/code/${name}.1.tokens.json`)
 
   expect(
-    await prettier.format(JSON.stringify(annotations, null, 2), {
+    await prettier.format(JSON.stringify(info.annotations, null, 2), {
       parser: "json",
     }),
   ).toMatchFileSnapshot(`./data/code/${name}.2.annotations.json`)
@@ -62,8 +60,8 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
   const html = await rscToHTML(
     // @ts-ignore
     <CodeRender
-      tokens={tokens as any}
-      annotations={compatAnnotations(annotations)}
+      tokens={info.tokens as any}
+      annotations={info.annotations}
       components={{
         // Mark,
         Token,
@@ -73,23 +71,6 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
     />,
   )
   expect(html).toMatchFileSnapshot(`./data/code/${name}.3.static.html`)
-}
-
-function compatAnnotations(annotations: any[]): NewAnnotation[] {
-  const newAnnotations: NewAnnotation[] = []
-  for (const a of annotations) {
-    const { name, query, ranges } = a
-    for (const r of ranges) {
-      if (r.lineNumber) {
-        const { lineNumber, fromColumn, toColumn } = r
-        newAnnotations.push([name, lineNumber, [fromColumn, toColumn], query])
-      } else {
-        const { fromLineNumber, toLineNumber } = r
-        newAnnotations.push([name, [fromLineNumber, toLineNumber], query])
-      }
-    }
-  }
-  return newAnnotations
 }
 
 async function rscToHTML(children: any) {
