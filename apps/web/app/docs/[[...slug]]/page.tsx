@@ -4,6 +4,7 @@ import { Callout } from "next-docs-ui/components/callout"
 import { RollButton } from "next-docs-ui/components/roll-button"
 import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
+import { LayoutExample } from "./layout-example"
 
 export default async function Page({
   params,
@@ -16,7 +17,14 @@ export default async function Page({
     notFound()
   }
 
-  const MDX = page.data.exports.default
+  // @ts-ignore
+  const { default: MDX, getBlocks } = page.data.exports
+  const layout = page.data.layout
+
+  let children = <MDX />
+  if (layout === "LayoutExample") {
+    children = <LayoutExample getBlocks={getBlocks} />
+  }
 
   return (
     <DocsPage
@@ -31,7 +39,7 @@ export default async function Page({
           risk.
         </Callout>
 
-        <MDX />
+        {children}
       </DocsBody>
     </DocsPage>
   )

@@ -1,17 +1,22 @@
 ---
 title: API Reference
 description: API Reference
+layout: LayoutExample
 ---
 
 import Preview from "@/content/components/api-reference/source.mdx"
-import { ExampleTabs } from "@/ui/example-tabs"
-import { Hike } from "codehike"
+
+## !intro
 
 This example shows how to build an API reference page using Code Hike.
 
-<Hike as={ExampleTabs}>
+## !preview pt-6 px-6 prose prose-invert
 
-```mdx !! content.mdx
+<Preview />
+
+## /
+
+```mdx !mdx content.mdx
 !from ../../components/api-reference/source.mdx
 ```
 
@@ -26,9 +31,3 @@ This example shows how to build an API reference page using Code Hike.
 ```tsx !! collapsible.tsx
 !from  ../../components/api-reference/collapsible.tsx
 ```
-
-## !preview pt-6 px-6 prose prose-invert
-
-<Preview />
-
-</Hike>

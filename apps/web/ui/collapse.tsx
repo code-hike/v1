@@ -31,10 +31,7 @@ export const BlockCollapse: BlockAnnotationComponent = ({
 
 function useCollapse(lineNumber: number) {
   const { startLine, collapsed, setCollapsed } = useContext(CollapseContext)
-  console.log({
-    lineNumber,
-    startLine,
-  })
+
   return {
     isHeader: lineNumber === startLine,
     isCollapsed: collapsed,
@@ -47,8 +44,8 @@ export const Line: LineComponent = ({ children, lineNumber }) => {
   if (isHeader) {
     return (
       <div
-        data-line="true"
-        className="group px-2"
+        data-line={lineNumber}
+        className="group/c px-2"
         onClick={() => setCollapsed(!isCollapsed)}
         data-collapsed={isCollapsed}
       >
@@ -56,7 +53,7 @@ export const Line: LineComponent = ({ children, lineNumber }) => {
           {lineNumber}
         </span>
         <ChevronDownIcon
-          className="inline-block mr-1 group-data-[collapsed=true]:-rotate-90 transition select-none opacity-50 group-data-[collapsed=true]:opacity-80 group-hover:!opacity-100"
+          className="inline-block mr-1 group/c-data-[collapsed=true]:-rotate-90 transition select-none opacity-50 group/c-data-[collapsed=true]:opacity-80 group/c-hover:!opacity-100"
           size={15}
         />
 
@@ -68,7 +65,7 @@ export const Line: LineComponent = ({ children, lineNumber }) => {
     return null
   }
   return (
-    <div data-line="true" className="px-2">
+    <div data-line={lineNumber} className="px-2">
       <span className="pr-1 inline-block w-[2ch] box-content !opacity-50 text-right select-none">
         {lineNumber}
       </span>

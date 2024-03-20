@@ -33,7 +33,7 @@ export function CodeRender({
   className,
 }: {
   info: CodeInfo
-  components: AnnotationComponents
+  components?: AnnotationComponents
   className?: string
 }) {
   const { tokens, themeName, lang, annotations } = info
