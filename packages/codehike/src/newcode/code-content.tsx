@@ -37,6 +37,13 @@ export function CodeRender({
   className?: string
 }) {
   const { tokens, themeName, lang, annotations } = info
+
+  if (!tokens) {
+    throw new Error(
+      "Missing tokens in code block. Use the `highlight` function to generate the tokens.",
+    )
+  }
+
   const lines = toLines(tokens)
 
   const blockAnnotations = annotations.filter(isBlockAnnotation)

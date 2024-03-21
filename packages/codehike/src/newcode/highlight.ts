@@ -15,9 +15,14 @@ type AnyToken = Token | Whitespace
 export async function highlight(
   data: CodeData,
   theme: Theme,
+  config: { annotationPrefix?: string } = {},
 ): Promise<CodeInfo> {
   const { value, lang } = data
-  const { code, annotations } = await splitAnnotationsAndCode(value, lang)
+  const { code, annotations } = await splitAnnotationsAndCode(
+    value,
+    lang,
+    config.annotationPrefix || "!",
+  )
   const { lines, lang: lighterLang } = await lighter(code, lang, theme as any, {
     annotations: [],
     scopes: true,

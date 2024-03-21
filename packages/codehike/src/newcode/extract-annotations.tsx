@@ -1,29 +1,30 @@
 import { Annotation, extractAnnotations } from "@code-hike/lighter"
 
-type AnnotationsExtractor = (
+export async function splitAnnotationsAndCode(
   code: string,
   lang: string,
-) => Promise<{ code: string; annotations: Annotation[] }>
-
-export async function splitAnnotationsAndCode(code: string, lang: string) {
-  let extractors: AnnotationsExtractor[] = [extractCommentAnnotations]
-
+  annotationPrefix: string,
+) {
   let annotations: Annotation[] = []
   let codeWithoutAnnotations = code
-  for (const extractor of extractors) {
-    const { code: newCode, annotations: newAnnotations } = await extractor(
+
+  const { code: newCode, annotations: newAnnotations } =
+    await extractCommentAnnotations(
       codeWithoutAnnotations,
       lang,
+      annotationPrefix,
     )
-    annotations = [...annotations, ...newAnnotations]
-    codeWithoutAnnotations = newCode
-  }
+  annotations = [...annotations, ...newAnnotations]
+  codeWithoutAnnotations = newCode
 
   return { code: codeWithoutAnnotations, annotations }
 }
 
-async function extractCommentAnnotations(code: string, lang: string) {
-  const annotationPrefix = "!"
+async function extractCommentAnnotations(
+  code: string,
+  lang: string,
+  annotationPrefix = "!",
+) {
   const extractor = (comment: string) => {
     // const regex = /\s*(!?[\w-]+)?(\([^\)]*\)|\[[^\]]*\])?(.*)$/
     const regex = new RegExp(

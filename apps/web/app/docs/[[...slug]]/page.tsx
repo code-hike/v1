@@ -5,6 +5,7 @@ import { RollButton } from "next-docs-ui/components/roll-button"
 import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
 import { LayoutExample } from "./layout-example"
+import { CodeExample } from "./code-example"
 
 export default async function Page({
   params,
@@ -24,6 +25,8 @@ export default async function Page({
   let children = <MDX />
   if (layout === "LayoutExample") {
     children = <LayoutExample getBlocks={getBlocks} />
+  } else if (layout === "CodeExample") {
+    children = <CodeExample getBlocks={getBlocks} />
   }
 
   return (

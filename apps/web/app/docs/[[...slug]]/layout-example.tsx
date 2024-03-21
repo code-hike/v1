@@ -15,7 +15,12 @@ const Content = Block.extend({
 type LayoutContent = z.infer<typeof Content>
 
 export function LayoutExample({ getBlocks }: { getBlocks: any }) {
-  const content = parse(getBlocks(), Content)
+  const content = parse(
+    getBlocks({
+      Code: () => <div>Doo</div>,
+    }),
+    Content,
+  )
   const { intro, mdx, preview, code } = content
 
   return (
