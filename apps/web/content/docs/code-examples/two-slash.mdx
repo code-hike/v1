@@ -1,6 +1,37 @@
 ---
 title: Typescript TwoSlash
 description: Annotated typescript
+layout: CodeExample
 ---
 
-TwoSlash
+import Preview from "@/content/code-examples/mark/page"
+
+A `Mark` annotation to highlight lines
+
+<UsageAndPreview>
+
+```mdx page.md
+!from ../../../content/code-examples/mark/content.md
+```
+
+<Preview />
+
+</UsageAndPreview>
+
+To use this `Mark` annotation you need two functions, one for the highlighted line and one for lines that are not highlighted.
+
+Mark.tsx
+
+```tsx mark.tsx
+!from ../../../content/code-examples/mark/mark.tsx
+```
+
+Page.tsx
+
+```tsx page.tsx
+!from ../../../content/code-examples/mark/page.tsx
+```
+
+## ! foo
+
+foo

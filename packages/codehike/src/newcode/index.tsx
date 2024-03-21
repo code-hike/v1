@@ -6,7 +6,9 @@ import type {
   Theme,
   TokenComponent,
   LineComponent,
+  InlineAnnotation,
   LineAnnotationComponent,
+  InlineAnnotationComponent,
   TokenAnnotationComponent,
   BlockAnnotationComponent,
 } from "./types.js"
@@ -20,6 +22,8 @@ export {
   CodeInfo,
   TokenComponent,
   LineComponent,
+  InlineAnnotation,
+  InlineAnnotationComponent,
   CodeAnnotation,
   Theme,
   LineAnnotationComponent,

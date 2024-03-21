@@ -1,5 +1,6 @@
 import { CodeData, CodeRender, highlight } from "codehike/code"
 import { Block, Code as CodeSchema, parse } from "codehike/schema"
+import { Callout } from "next-docs-ui/components/callout"
 import React from "react"
 
 const Content = Block.extend({})
@@ -10,7 +11,15 @@ export function CodeExample({ getBlocks }: { getBlocks: any }) {
     Content,
   )
 
-  return <>{children}</>
+  return (
+    <>
+      <Callout title="Code Examples" type="info">
+        Use this examples as a reference. Use them as inspiration to create your
+        own components. Copy, paste, customize.
+      </Callout>
+      {children}
+    </>
+  )
 }
 
 function UsageAndPreview({ children }: { children: React.ReactNode }) {
