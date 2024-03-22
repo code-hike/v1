@@ -5,6 +5,10 @@ export type Token = [string, Color?, React.CSSProperties?]
 export type Whitespace = string
 export type Tokens = (Token | Whitespace)[]
 
+type Prettify<T> = {
+  [K in keyof T]: T[K]
+} & {}
+
 export type BlockAnnotation = {
   /** Annotation name (used to find the right AnnotationComponent) */
   name: ComponentName
@@ -14,6 +18,8 @@ export type BlockAnnotation = {
   fromLineNumber: number
   /** Line number (inclusive) where the annotation block ends  */
   toLineNumber: number
+  /** Optional data */
+  data?: any
 }
 
 export type InlineAnnotation = {
@@ -27,9 +33,11 @@ export type InlineAnnotation = {
   fromColumn: number
   /** Column number (inclusive) where the annotation ends */
   toColumn: number
+  /** Optional data */
+  data?: any
 }
 
-export type CodeAnnotation = BlockAnnotation | InlineAnnotation
+export type CodeAnnotation = Prettify<BlockAnnotation | InlineAnnotation>
 
 export function isBlockAnnotation(
   annotation: CodeAnnotation,

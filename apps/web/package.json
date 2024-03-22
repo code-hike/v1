@@ -28,6 +28,7 @@
     "sharp": "0.33.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
+    "twoslash": "^0.2.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {

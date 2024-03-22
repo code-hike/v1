@@ -1,0 +1,37 @@
+---
+title: Typescript Twoslash
+description: Annotated typescript
+layout: CodeExample
+---
+
+import Preview from "@/content/code-examples/twoslash/page"
+
+A `twoslash` annotation to highlight lines
+
+<UsageAndPreview>
+
+```mdx page.md
+!from ../../../content/code-examples/twoslash/content.md
+```
+
+<Preview />
+
+</UsageAndPreview>
+
+To use this `twoslash` annotation you need two functions, one for the highlighted line and one for lines that are not highlighted.
+
+twoslash.tsx
+
+```tsx twoslash.tsx
+!from ../../../content/code-examples/twoslash/twoslash.tsx
+```
+
+Page.tsx
+
+```tsx page.tsx
+!from ../../../content/code-examples/twoslash/page.tsx
+```
+
+## ! foo
+
+foo
