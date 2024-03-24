@@ -60,7 +60,7 @@ export function CodeContainer({
         ref={ref}
       >
         <CodeRender
-          className="m-0"
+          className="m-0 px-0"
           info={{
             ...info,
             annotations: [
@@ -72,7 +72,7 @@ export function CodeContainer({
               },
             ],
           }}
-          components={{ BlockFocus }}
+          components={{ LineFocus, Line }}
         />
       </div>
       <form
@@ -93,15 +93,25 @@ export function CodeContainer({
   )
 }
 
-export const BlockFocus: BlockAnnotationComponent = ({
+export const LineFocus: LineAnnotationComponent = ({
   children,
   annotation,
 }) => {
   return (
     <div
       data-focus={true}
-      className="px-2 border-l-2 border-blue-400 bg-blue-400/10"
+      className="opacity-50 data-[focus]:opacity-100 bg-zinc-500/30 px-2"
     >
+      {children}
+    </div>
+  )
+
+  // Line
+}
+
+export const Line: LineComponent = ({ children }) => {
+  return (
+    <div className="opacity-50 data-[focus]:opacity-100 transition-opacity px-2">
       {children}
     </div>
   )
