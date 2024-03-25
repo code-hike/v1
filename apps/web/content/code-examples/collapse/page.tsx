@@ -50,8 +50,8 @@ async function Code({
       className="m-0 px-0"
       info={info}
       components={{
-        BlockCollapse: Collapsible,
-        BlockCollapseTrigger: CollapsibleTrigger,
+        BlockCollapse,
+        LineCollapseTrigger,
         BlockCollapseContent: CollapsibleContent,
         Line,
       }}
@@ -59,26 +59,53 @@ async function Code({
   )
 }
 
-// function LineCollapseTrigger({
-//   Line,
-//   annotation,
-//   lineNumber,
-// }) {
-//   return (
-//     <Line icon={<ChevronDownIcon className="rotate" />} />
-//   )
-// }
+function BlockCollapse({
+  annotation,
+  children,
+}: {
+  annotation: any
+  children: React.ReactNode
+}) {
+  return (
+    <Collapsible
+      defaultOpen={annotation.query !== "collapsed"}
+    >
+      {children}
+    </Collapsible>
+  )
+}
+
+function LineCollapseTrigger({
+  annotation,
+  ...props
+}: any) {
+  const icon = (
+    <ChevronDownIcon
+      className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
+      size={15}
+    />
+  )
+  return (
+    <CollapsibleTrigger className="group">
+      <Line {...props} icon={icon} />
+    </CollapsibleTrigger>
+  )
+}
 
 function Line({
   children,
+  lineNumber,
   icon,
 }: {
   children: React.ReactNode
+  lineNumber: number
   icon?: React.ReactNode
 }) {
   return (
-    <div className="px-3">
-      {icon}
+    <div data-line={lineNumber}>
+      <span className="w-6 text-center inline-block">
+        {icon}
+      </span>
       {children}
     </div>
   )

@@ -45,7 +45,7 @@ export const Line: LineComponent = ({ children, lineNumber }) => {
     return (
       <div
         data-line={lineNumber}
-        className="group/c px-2"
+        className="group/collapse px-2"
         onClick={() => setCollapsed(!isCollapsed)}
         data-collapsed={isCollapsed}
       >
@@ -53,7 +53,7 @@ export const Line: LineComponent = ({ children, lineNumber }) => {
           {lineNumber}
         </span>
         <ChevronDownIcon
-          className="inline-block mr-1 group/c-data-[collapsed=true]:-rotate-90 transition select-none opacity-50 group/c-data-[collapsed=true]:opacity-80 group/c-hover:!opacity-100"
+          className="inline-block mr-1 group-data-[collapsed=true]:-rotate-90 transition select-none opacity-50 group/c-data-[collapsed=true]:opacity-80 group/c-hover:!opacity-100"
           size={15}
         />
 
