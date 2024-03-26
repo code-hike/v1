@@ -5,9 +5,8 @@
     "...guides",
     "---API---",
     "...api",
-    "---Code Examples---",
-    "...code-examples",
-    "---Layout Examples---",
-    "...components"
+    "---Examples---",
+    "code",
+    "layouts"
   ]
 }
