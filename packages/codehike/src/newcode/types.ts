@@ -190,7 +190,7 @@ export type AnnotationComponents = BlockAnnotationComponents &
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   info: CodeInfo
-  components: AnnotationComponents
+  components?: AnnotationComponents
 }
 export type PreComponent = React.ForwardRefExoticComponent<
   PreProps & React.RefAttributes<HTMLPreElement>

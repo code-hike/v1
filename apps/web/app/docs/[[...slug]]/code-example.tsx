@@ -28,7 +28,7 @@ function UsageAndPreview({ children }: { children: React.ReactNode }) {
     <div className="flex gap-2">
       <div className="min-w-0 flex-1">{usage}</div>
       <div className="min-w-0 rounded flex-1 bg-blue-400/50 bg-[url(/dark-grid.svg)] p-3">
-        <div className=" overflow-hidden">{preview}</div>
+        <div className="overflow-hidden">{preview}</div>
       </div>
     </div>
   )
