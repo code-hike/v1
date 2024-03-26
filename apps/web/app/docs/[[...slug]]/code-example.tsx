@@ -7,7 +7,9 @@ const Content = Block.extend({})
 
 export function CodeExample({ getBlocks }: { getBlocks: any }) {
   const { children } = parse(
-    getBlocks({ components: { UsageAndPreview, Code: UsageCode } }),
+    getBlocks({
+      components: { UsageAndPreview, Code: UsageCode, PreviewContainer },
+    }),
     Content,
   )
 
@@ -27,9 +29,17 @@ function UsageAndPreview({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex gap-2">
       <div className="min-w-0 flex-1">{usage}</div>
-      <div className="min-w-0 rounded flex-1 bg-blue-400/50 bg-[url(/dark-grid.svg)] p-3">
+      <PreviewContainer>
         <div className="overflow-hidden">{preview}</div>
-      </div>
+      </PreviewContainer>
+    </div>
+  )
+}
+
+function PreviewContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-w-0 rounded flex-1 bg-blue-400/50 bg-[url(/dark-grid.svg)] p-3">
+      {children}
     </div>
   )
 }

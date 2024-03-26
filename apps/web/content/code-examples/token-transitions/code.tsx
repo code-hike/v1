@@ -42,11 +42,6 @@ export class CodeClient extends React.Component<{
 
   componentDidMount() {
     // document.addEventListener("selectionchange", this.handleSelection)
-    // this.ref.current?.querySelector("[data-ch-focus]")?.scrollIntoView({
-    //   block: "center",
-    //   // block: "nearest",
-    //   behavior: "instant",
-    // })
   }
 
   componentWillUnmount() {
