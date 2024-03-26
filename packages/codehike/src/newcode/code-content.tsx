@@ -1,3 +1,4 @@
+import { forwardRef } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationComponents,
@@ -9,6 +10,7 @@ import {
   InternalToken,
   LineAnnotationComponent,
   LineAnnotationComponents,
+  PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
@@ -27,40 +29,40 @@ type LineTokens = {
 
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
-export function CodeRender({
-  info,
-  components = {},
-  className,
-}: {
-  info: CodeInfo
-  components?: AnnotationComponents
-  className?: string
-}) {
-  const { tokens, themeName, lang, annotations } = info
+export const CodeRender: PreComponent = forwardRef(
+  ({ info, components = {}, className, ...rest }, ref) => {
+    const { tokens, themeName, lang, annotations } = info
 
-  if (!tokens) {
-    throw new Error(
-      "Missing tokens in code block. Use the `highlight` function to generate the tokens.",
+    if (!tokens) {
+      throw new Error(
+        "Missing tokens in code block. Use the `highlight` function to generate the tokens.",
+      )
+    }
+
+    const lines = toLines(tokens)
+
+    const blockAnnotations = annotations.filter(isBlockAnnotation)
+    const inlineAnnotations = annotations.filter(isInlineAnnotation)
+
+    const groups = toLineGroups(lines, blockAnnotations)
+
+    return (
+      <pre
+        ref={ref}
+        data-theme={themeName}
+        data-lang={lang}
+        className={className}
+        {...rest}
+      >
+        <RenderLines
+          linesOrGroups={groups}
+          components={components}
+          inlineAnnotations={inlineAnnotations}
+        />
+      </pre>
     )
-  }
-
-  const lines = toLines(tokens)
-
-  const blockAnnotations = annotations.filter(isBlockAnnotation)
-  const inlineAnnotations = annotations.filter(isInlineAnnotation)
-
-  const groups = toLineGroups(lines, blockAnnotations)
-
-  return (
-    <pre data-theme={themeName} data-lang={lang} className={className}>
-      <RenderLines
-        linesOrGroups={groups}
-        components={components}
-        inlineAnnotations={inlineAnnotations}
-      />
-    </pre>
-  )
-}
+  },
+)
 
 function RenderLines({
   linesOrGroups,

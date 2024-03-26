@@ -188,6 +188,14 @@ export type AnnotationComponents = BlockAnnotationComponents &
     Line?: LineComponent
   }
 
+export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
+  info: CodeInfo
+  components: AnnotationComponents
+}
+export type PreComponent = React.ForwardRefExoticComponent<
+  PreProps & React.RefAttributes<HTMLPreElement>
+>
+
 export type InternalToken = {
   value: string
   style?: React.CSSProperties
