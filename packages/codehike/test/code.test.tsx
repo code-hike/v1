@@ -11,7 +11,7 @@ import {
   LineComponent,
   TokenComponent,
   LineAnnotationComponent,
-} from "../src/newcode/index"
+} from "../src/code/index"
 
 const dataPath = "./test/data/code"
 const testNames = await getTestNames(dataPath)
