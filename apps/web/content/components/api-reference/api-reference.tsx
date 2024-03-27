@@ -1,4 +1,4 @@
-import { CodeContent, HikeSection } from "codehike"
+import { HikeSection } from "codehike"
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -10,6 +10,7 @@ import {
   parse,
 } from "codehike/schema"
 import { z } from "zod"
+import { CodeRender, highlight } from "codehike/code"
 
 const PropertyBlockSchema = Block.extend({
   blocks: z.array(Block).optional(),
@@ -157,22 +158,19 @@ function ChildProperties({
   )
 }
 
-function Code({
+async function Code({
   codeblock,
 }: {
   codeblock: Content["code"]
 }) {
+  const info = await highlight(codeblock, "github-dark")
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
         <span>{codeblock.meta}</span>
       </div>
-      <CodeContent
-        codeblock={codeblock}
-        config={{
-          theme: "github-dark",
-          annotationPrefix: "!",
-        }}
+      <CodeRender
+        info={info}
         className="p-2 overflow-auto"
       />
     </div>

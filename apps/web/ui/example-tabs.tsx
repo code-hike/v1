@@ -1,9 +1,9 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
-import { CodeContent } from "codehike"
 import { CopyButton } from "./copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
 import { Block, Code as CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
+import { CodeRender, highlight } from "codehike/code"
 
 const TabsSchema = Block.extend({
   code: z.array(CodeBlock),
@@ -42,24 +42,22 @@ export function ExampleTabs({ hike }: any) {
   )
 }
 
-function MDX({ codeblock }: { codeblock: TabsContent["code"][0] }) {
+async function MDX({ codeblock }: { codeblock: TabsContent["code"][0] }) {
+  const info = await highlight(codeblock, "github-dark")
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
         <span>content.mdx</span>
         <CopyButton className="ml-auto" text={codeblock.value} />
       </div>
-      <CodeContent
-        codeblock={codeblock}
-        config={{ theme: "github-dark", annotationPrefix: "!" }}
-        className="m-0 whitespace-pre-wrap"
-      />
+      <CodeRender info={info} className="max-h-96 m-0" />
     </div>
   )
 }
 
-function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
+async function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
   const c = codeblocks[0]
+  const info = await highlight(c, "github-dark")
   if (c.meta === "dependencies") {
     return <DependencyTerminal codeblock={c} />
   }
@@ -69,11 +67,7 @@ function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <CodeContent
-        codeblock={c}
-        config={{ theme: "github-dark", annotationPrefix: "!" }}
-        className="max-h-96 m-0"
-      />
+      <CodeRender info={info} className="max-h-96 m-0" />
     </div>
   )
 }

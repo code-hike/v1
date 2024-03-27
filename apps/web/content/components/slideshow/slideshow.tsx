@@ -1,5 +1,6 @@
-import { CodeContent, CodeBlock } from "codehike"
+import { CodeBlock } from "codehike"
 import { Slides, Controls } from "./slides"
+import { CodeRender, highlight } from "codehike/code"
 
 export function Slideshow({ hike }: { hike: any }) {
   return (
@@ -16,11 +17,15 @@ export function Slideshow({ hike }: { hike: any }) {
   )
 }
 
-function Code({ codeblock }: { codeblock: CodeBlock }) {
+async function Code({
+  codeblock,
+}: {
+  codeblock: CodeBlock
+}) {
+  const info = await highlight(codeblock, "github-dark")
   return (
-    <CodeContent
-      codeblock={codeblock}
-      config={{ theme: "github-dark" }}
+    <CodeRender
+      info={info}
       className="min-h-[40rem] !bg-zinc-900 m-0 rounded-none"
     />
   )

@@ -45,7 +45,7 @@ function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
 export type CodeBlock = {
   value: string
   lang: string
-  meta?: string
+  meta: string
 }
 
 export type HikeSection<T extends string = "steps"> = {

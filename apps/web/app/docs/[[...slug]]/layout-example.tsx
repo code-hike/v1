@@ -1,7 +1,6 @@
 import { Block, Code as CodeSchema, parse } from "codehike/schema"
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "@/ui/copy-button"
-import { CodeContent } from "codehike"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
 import { CodeData, highlight, CodeRender } from "codehike/code"
@@ -61,8 +60,9 @@ async function MDXCode({ data }: { data: CodeData }) {
   return <CodeRender info={info} className="m-0 whitespace-pre-wrap" />
 }
 
-function Code({ codeblock }: { codeblock: CodeData }) {
+async function Code({ codeblock }: { codeblock: CodeData }) {
   const c = codeblock
+  const info = await highlight(codeblock, "github-dark")
   if (c.meta === "dependencies") {
     return <DependencyTerminal codeblock={c} />
   }
@@ -72,11 +72,7 @@ function Code({ codeblock }: { codeblock: CodeData }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <CodeContent
-        codeblock={c}
-        config={{ theme: "github-dark", annotationPrefix: "!" }}
-        className="max-h-96 m-0"
-      />
+      <CodeRender info={info} className="max-h-96 m-0" />
     </div>
   )
 }
