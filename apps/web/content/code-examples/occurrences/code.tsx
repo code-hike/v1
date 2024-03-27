@@ -42,9 +42,7 @@ export function CodeWithOccurrences({
     <CodeRender
       ref={ref}
       info={info}
-      components={{
-        Token,
-      }}
+      components={{ Token }}
     />
   )
 }
