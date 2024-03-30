@@ -8,8 +8,8 @@ export default function HomePage() {
   return (
     <main className="min-h-screen max-w-3xl mx-auto">
       <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white pt-28  max-w-2xl mx-auto">
-        Superpowered
-        <br /> Markdown
+        Content belongs
+        <br /> in Markdown
       </h1>
       <h2 className="mt-6 text-xl text-primary/80 text-center max-w-3xl mx-auto  pb-16">
         The authoring experience of Markdown meets the dynamic versatility of

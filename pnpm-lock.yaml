@@ -112,8 +112,8 @@ importers:
   packages/codehike:
     dependencies:
       '@code-hike/lighter':
-        specifier: 0.9.0
-        version: 0.9.0
+        specifier: 0.9.1
+        version: 0.9.1
       diff:
         specifier: ^5.1.0
         version: 5.1.0
@@ -384,8 +384,8 @@ packages:
       prettier: 2.8.8
     dev: true
 
-  /@code-hike/lighter@0.9.0:
-    resolution: {integrity: sha512-Ty8O6YdLcw32GDGqAQH+w/zVwcwYeTueiagX1BMuioy/fzzM0EjdPlv1Zi+M+om5UnRS1EdFtJRTz3vHtCCS7g==}
+  /@code-hike/lighter@0.9.1:
+    resolution: {integrity: sha512-AS7m3VOEBHdvfJ7plloOW/M35W+WmopdAHSuI2hGM2xbzFWp4DTEpzATiuepC6b+QSSetfmKMuE5aQy8+i5+SQ==}
     dependencies:
       ansi-sequence-parser: 1.1.1
     dev: false
