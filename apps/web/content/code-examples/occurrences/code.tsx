@@ -43,7 +43,11 @@ export function CodeWithOccurrences({
   )
 }
 
-const Token: TokenComponent = ({ value, ...props }) => {
+const Token: TokenComponent = ({
+  value,
+  lineNumber,
+  ...props
+}) => {
   return (
     <span
       {...props}
