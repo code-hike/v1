@@ -1,6 +1,6 @@
 import { Steps, ScrollyStep, Step } from "codehike/scrolly"
 import { CodeBlock } from "codehike"
-import { CodeRender, highlight } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
 
 export function Scrollycoding({ hike }: { hike: any }) {
   const steps = hike.steps.map((step: any) => ({
@@ -45,7 +45,5 @@ async function Code({
   codeblock: CodeBlock
 }) {
   const info = await highlight(codeblock, "github-dark")
-  return (
-    <CodeRender info={info} className="min-h-[40rem]" />
-  )
+  return <Pre info={info} className="min-h-[40rem]" />
 }

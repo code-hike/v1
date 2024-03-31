@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 import { z } from "zod"
 
 import { Block, Code as CodeSchema, parse } from "codehike/schema"
-import { CodeRender, highlight } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
 
 const Content = Block.extend({
   blocks: z
@@ -75,7 +75,7 @@ async function Code({
       <div className="items-center bg-zinc-800 p-2 pl-2 text-xs flex text-zinc-100">
         <span>{codeblock.meta}</span>
       </div>
-      <CodeRender
+      <Pre
         info={info}
         className="p-2 overflow-auto m-0"
         components={{ ...annotations }}

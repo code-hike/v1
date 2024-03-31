@@ -10,7 +10,7 @@ import {
   parse,
 } from "codehike/schema"
 import { z } from "zod"
-import { CodeRender, highlight } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
 
 const PropertyBlockSchema = Block.extend({
   blocks: z.array(Block).optional(),
@@ -169,10 +169,7 @@ async function Code({
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
         <span>{codeblock.meta}</span>
       </div>
-      <CodeRender
-        info={info}
-        className="p-2 overflow-auto"
-      />
+      <Pre info={info} className="p-2 overflow-auto" />
     </div>
   )
 }

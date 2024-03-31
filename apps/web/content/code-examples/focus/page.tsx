@@ -1,8 +1,4 @@
-import {
-  CodeData,
-  CodeRender,
-  highlight,
-} from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import Content from "./content.md"
 import { CodeContainer } from "./annotations"
 

@@ -8,7 +8,7 @@ import {
 } from "./animate-tokens"
 import {
   CodeInfo,
-  CodeRender,
+  Pre,
   TokenComponent,
 } from "codehike/code"
 
@@ -77,7 +77,7 @@ export class CodeClient extends React.Component<{
   render() {
     const { info, ...rest } = this.props
     return (
-      <CodeRender
+      <Pre
         ref={this.ref}
         info={info}
         style={{ position: "relative" }}

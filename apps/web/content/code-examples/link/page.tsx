@@ -1,8 +1,4 @@
-import {
-  CodeData,
-  CodeRender,
-  highlight,
-} from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import Content from "./content.md"
 import { InlineLink } from "./link"
 
@@ -16,7 +12,5 @@ async function Code({
   codeblock: CodeData
 }) {
   const info = await highlight(codeblock, "github-dark")
-  return (
-    <CodeRender info={info} components={{ InlineLink }} />
-  )
+  return <Pre info={info} components={{ InlineLink }} />
 }

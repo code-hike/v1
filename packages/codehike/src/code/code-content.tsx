@@ -29,7 +29,7 @@ type LineTokens = {
 
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
-export const CodeRender: PreComponent = forwardRef(
+export const Pre: PreComponent = forwardRef(
   ({ info, components = {}, className, ...rest }, ref) => {
     const { tokens, themeName, lang, annotations } = info
 

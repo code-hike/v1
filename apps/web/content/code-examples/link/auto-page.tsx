@@ -1,7 +1,7 @@
 import {
   CodeAnnotation,
   CodeData,
-  CodeRender,
+  Pre,
   InlineAnnotation,
   highlight,
 } from "codehike/code"
@@ -20,9 +20,7 @@ async function Code({
   const info = await highlight(codeblock, "github-dark")
   const annotations = getLinkAnnotations(info.code)
   info.annotations.push(...annotations)
-  return (
-    <CodeRender info={info} components={{ InlineLink }} />
-  )
+  return <Pre info={info} components={{ InlineLink }} />
 }
 
 const urlRegex = /https?:\/\/[\w\-_.~:/?#[\]@!$&*+,;=%]+/g

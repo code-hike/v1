@@ -1,4 +1,4 @@
-import { CodeData, CodeRender, highlight } from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import { Block, Code as CodeSchema, parse } from "codehike/schema"
 import { Callout } from "next-docs-ui/components/callout"
 import React from "react"
@@ -49,5 +49,5 @@ async function UsageCode({ codeblock }: { codeblock: CodeData }) {
     annotationPrefix: "!!",
   })
 
-  return <CodeRender className="m-0" info={info} />
+  return <Pre className="m-0" info={info} />
 }

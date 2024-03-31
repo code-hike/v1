@@ -3,7 +3,7 @@ import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "@/ui/copy-button"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
-import { CodeData, highlight, CodeRender } from "codehike/code"
+import { CodeData, highlight, Pre } from "codehike/code"
 
 const Content = Block.extend({
   intro: Block,
@@ -57,7 +57,7 @@ export function LayoutExample({ getBlocks }: { getBlocks: any }) {
 
 async function MDXCode({ data }: { data: CodeData }) {
   const info = await highlight(data, "github-dark")
-  return <CodeRender info={info} className="m-0 whitespace-pre-wrap" />
+  return <Pre info={info} className="m-0 whitespace-pre-wrap" />
 }
 
 async function Code({ codeblock }: { codeblock: CodeData }) {
@@ -72,7 +72,7 @@ async function Code({ codeblock }: { codeblock: CodeData }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <CodeRender info={info} className="max-h-96 m-0" />
+      <Pre info={info} className="max-h-96 m-0" />
     </div>
   )
 }

@@ -1,8 +1,4 @@
-import {
-  CodeData,
-  CodeRender,
-  highlight,
-} from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import Content from "./content.md"
 import { InlineFold } from "./annotations"
 
@@ -16,9 +12,9 @@ async function Code({
   codeblock: CodeData
 }) {
   const info = await highlight(codeblock, "github-dark")
-  console.log(info)
+
   return (
-    <CodeRender
+    <Pre
       className="m-0"
       info={info}
       components={{ InlineFold }}

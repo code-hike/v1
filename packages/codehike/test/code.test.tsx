@@ -7,7 +7,7 @@ import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
 import {
   highlight,
-  CodeRender,
+  Pre,
   LineComponent,
   TokenComponent,
   LineAnnotationComponent,
@@ -57,7 +57,7 @@ async function testCompilation(name: string, mdx: string) {
 
   const html = await rscToHTML(
     // @ts-ignore
-    <CodeRender
+    <Pre
       info={info}
       components={{
         // Mark,

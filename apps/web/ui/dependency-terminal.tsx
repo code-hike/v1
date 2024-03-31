@@ -2,11 +2,11 @@ import { CodeBlock } from "codehike"
 import { CopyButton } from "./copy-button"
 import { TerminalSquare } from "lucide-react"
 import { TabsContent, TabsList, TabsToggle } from "./tabs-toggle"
-import { CodeData, CodeRender, highlight } from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 
 async function Code({ codeblock }: { codeblock: CodeData }) {
   const info = await highlight(codeblock, "github-dark")
-  return <CodeRender info={info} className="max-h-96 m-0" />
+  return <Pre info={info} className="max-h-96 m-0" />
 }
 
 export function DependencyTerminal({ codeblock }: { codeblock: CodeBlock }) {

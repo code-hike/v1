@@ -2,7 +2,7 @@
 
 import {
   CodeInfo,
-  CodeRender,
+  Pre,
   TokenComponent,
 } from "codehike/code"
 import React from "react"
@@ -39,11 +39,7 @@ export function CodeWithOccurrences({
   }, [])
 
   return (
-    <CodeRender
-      ref={ref}
-      info={info}
-      components={{ Token }}
-    />
+    <Pre ref={ref} info={info} components={{ Token }} />
   )
 }
 

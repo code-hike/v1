@@ -3,7 +3,7 @@ import { CopyButton } from "./copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
 import { Block, Code as CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
-import { CodeRender, highlight } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
 
 const TabsSchema = Block.extend({
   code: z.array(CodeBlock),
@@ -50,7 +50,7 @@ async function MDX({ codeblock }: { codeblock: TabsContent["code"][0] }) {
         <span>content.mdx</span>
         <CopyButton className="ml-auto" text={codeblock.value} />
       </div>
-      <CodeRender info={info} className="max-h-96 m-0" />
+      <Pre info={info} className="max-h-96 m-0" />
     </div>
   )
 }
@@ -67,7 +67,7 @@ async function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <CodeRender info={info} className="max-h-96 m-0" />
+      <Pre info={info} className="max-h-96 m-0" />
     </div>
   )
 }

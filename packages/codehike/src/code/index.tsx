@@ -14,7 +14,7 @@ import type {
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
-import { CodeRender } from "./code-content.js"
+import { Pre } from "./code-content.js"
 
 export {
   Token,
@@ -30,4 +30,4 @@ export {
   TokenAnnotationComponent,
   BlockAnnotationComponent,
 }
-export { highlight, CodeRender }
+export { highlight, Pre }

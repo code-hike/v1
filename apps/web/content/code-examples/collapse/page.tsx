@@ -1,8 +1,4 @@
-import {
-  CodeData,
-  CodeRender,
-  highlight,
-} from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import Content from "./content.md"
 import {
   Collapsible,
@@ -46,7 +42,7 @@ async function Code({
   )
 
   return (
-    <CodeRender
+    <Pre
       className="m-0 px-0"
       info={info}
       components={{

@@ -1,7 +1,7 @@
 import {
   BlockAnnotationComponent,
   CodeData,
-  CodeRender,
+  Pre,
   InlineAnnotation,
   InlineAnnotationComponent,
   LineAnnotationComponent,
@@ -81,7 +81,7 @@ async function Code({
   })
 
   return (
-    <CodeRender
+    <Pre
       className="m-0"
       info={info}
       components={{ InlineHover: Hover, BlockQuery }}

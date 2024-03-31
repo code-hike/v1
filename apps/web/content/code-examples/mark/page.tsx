@@ -1,8 +1,4 @@
-import {
-  CodeData,
-  CodeRender,
-  highlight,
-} from "codehike/code"
+import { CodeData, Pre, highlight } from "codehike/code"
 import Content from "./content.md"
 import { LineMark, Line } from "./mark"
 
@@ -17,7 +13,7 @@ async function Code({
 }) {
   const info = await highlight(codeblock, "github-dark")
   return (
-    <CodeRender
+    <Pre
       className="m-0 px-0"
       info={info}
       components={{ LineMark, Line }}

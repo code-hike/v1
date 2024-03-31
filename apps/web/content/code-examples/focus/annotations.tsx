@@ -3,7 +3,7 @@
 import {
   BlockAnnotationComponent,
   CodeInfo,
-  CodeRender,
+  Pre,
   LineAnnotationComponent,
   LineComponent,
 } from "codehike/code"
@@ -59,7 +59,7 @@ export function CodeContainer({
         className="max-h-48 scroll-smooth border border-red-400 overflow-auto"
         ref={ref}
       >
-        <CodeRender
+        <Pre
           className="m-0 px-0"
           info={{
             ...info,
