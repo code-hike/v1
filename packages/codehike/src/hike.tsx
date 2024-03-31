@@ -1,5 +1,6 @@
 import React, { ComponentType } from "react"
 import { DebugHike } from "./debug-hike.js"
+import { RawCode } from "./code/types.js"
 
 export function Hike({
   as,
@@ -42,18 +43,13 @@ function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
     return child
   })
 }
-export type CodeBlock = {
-  value: string
-  lang: string
-  meta: string
-}
 
 export type HikeSection<T extends string = "steps"> = {
   [key in T]?: HikeSection<T>[]
 } & {
   children: React.ReactNode[]
   query: string
-  code?: CodeBlock[]
+  code?: RawCode[]
 }
 
 export function getStepsFromChildren(
@@ -62,7 +58,7 @@ export function getStepsFromChildren(
 ): HikeSection<string> {
   const [children, ...slotElements] = React.Children.toArray(kids)
   const slots: { [key: string]: HikeSection<string>[] } = {}
-  const code: CodeBlock[] = []
+  const code: RawCode[] = []
 
   slotElements.forEach((slotElement: any) => {
     const { name, query } = slotElement.props || {}
@@ -86,7 +82,7 @@ export function getStepsFromChildren(
   } as any
 }
 
-function getCodeBlockFromChildren(children: React.ReactNode): CodeBlock {
+function getCodeBlockFromChildren(children: React.ReactNode): RawCode {
   const { props } = React.Children.toArray(children)[0] as any
   return {
     value: props.code,

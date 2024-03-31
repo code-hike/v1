@@ -7,7 +7,7 @@ import {
   SnapshotElement,
 } from "./animate-tokens"
 import {
-  CodeInfo,
+  HighlightedCode,
   Pre,
   TokenComponent,
 } from "codehike/code"
@@ -15,7 +15,7 @@ import {
 export function CodeSwitcher({
   infos,
 }: {
-  infos: CodeInfo[]
+  infos: HighlightedCode[]
 }) {
   const [index, setIndex] = React.useState(0)
 
@@ -24,17 +24,17 @@ export function CodeSwitcher({
   return (
     <div className="h-full">
       <button onClick={next}>Next</button>
-      <CodeClient info={infos[index]} />
+      <CodeClient code={infos[index]} />
     </div>
   )
 }
 
 export class CodeClient extends React.Component<{
-  info: CodeInfo
+  info: HighlightedCode
 }> {
   ref: React.RefObject<HTMLPreElement>
 
-  constructor(props: { info: CodeInfo }) {
+  constructor(props: { info: HighlightedCode }) {
     super(props)
     this.ref = React.createRef<HTMLPreElement>()
     // this.handleSelection = this.handleSelection.bind(this)
@@ -79,7 +79,7 @@ export class CodeClient extends React.Component<{
     return (
       <Pre
         ref={this.ref}
-        info={info}
+        code={info}
         style={{ position: "relative" }}
         {...rest}
         components={{ Token }}

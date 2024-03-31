@@ -1,4 +1,4 @@
-import { CodeData, Pre, highlight } from "codehike/code"
+import { RawCode, Pre, highlight } from "codehike/code"
 // @ts-ignore
 import { getBlocks } from "./content.md"
 import {

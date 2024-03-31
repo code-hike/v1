@@ -1,6 +1,6 @@
 import {
   BlockAnnotationComponent,
-  CodeData,
+  RawCode,
   Pre,
   InlineAnnotation,
   InlineAnnotationComponent,
@@ -23,11 +23,7 @@ const twoslasher = createTwoslasher({
   },
 })
 
-async function Code({
-  codeblock,
-}: {
-  codeblock: CodeData
-}) {
+async function Code({ codeblock }: { codeblock: RawCode }) {
   const value = codeblock.value
   const result = twoslasher(
     // TODO fix https://github.com/twoslashes/twoslash/issues/30
@@ -83,7 +79,7 @@ async function Code({
   return (
     <Pre
       className="m-0"
-      info={info}
+      code={info}
       components={{ InlineHover: Hover, BlockQuery }}
     />
   )

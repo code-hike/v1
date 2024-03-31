@@ -17,7 +17,7 @@ async function Code(props: { codeblock: any }) {
   const info = await highlight(codeblock, "github-dark")
   return (
     <Pre
-      info={info}
+      code={info}
       components={{ Line, BlockCollapse }}
       className="py-2 !bg-zinc-900 leading-normal overflow-auto w-full whitespace-pre-wrap"
     />

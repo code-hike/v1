@@ -1,7 +1,7 @@
 import type {
   Token,
-  CodeData,
-  CodeInfo,
+  RawCode,
+  HighlightedCode,
   CodeAnnotation,
   Theme,
   TokenComponent,
@@ -14,12 +14,12 @@ import type {
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
-import { Pre } from "./code-content.js"
+import { Pre } from "./pre.js"
 
 export {
   Token,
-  CodeData,
-  CodeInfo,
+  RawCode,
+  HighlightedCode,
   TokenComponent,
   LineComponent,
   InlineAnnotation,

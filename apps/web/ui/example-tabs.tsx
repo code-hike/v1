@@ -1,7 +1,7 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "./copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
-import { Block, Code as CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock as CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
 import { Pre, highlight } from "codehike/code"
 
@@ -50,7 +50,7 @@ async function MDX({ codeblock }: { codeblock: TabsContent["code"][0] }) {
         <span>content.mdx</span>
         <CopyButton className="ml-auto" text={codeblock.value} />
       </div>
-      <Pre info={info} className="max-h-96 m-0" />
+      <Pre code={info} className="max-h-96 m-0" />
     </div>
   )
 }
@@ -67,7 +67,7 @@ async function Code({ codeblocks }: { codeblocks: TabsContent["code"] }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <Pre info={info} className="max-h-96 m-0" />
+      <Pre code={info} className="max-h-96 m-0" />
     </div>
   )
 }

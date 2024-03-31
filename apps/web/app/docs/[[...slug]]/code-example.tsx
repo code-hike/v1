@@ -1,5 +1,5 @@
-import { CodeData, Pre, highlight } from "codehike/code"
-import { Block, Code as CodeSchema, parse } from "codehike/schema"
+import { RawCode, Pre, highlight } from "codehike/code"
+import { Block, parse } from "codehike/schema"
 import { Callout } from "next-docs-ui/components/callout"
 import React from "react"
 
@@ -44,10 +44,10 @@ function PreviewContainer({ children }: { children: React.ReactNode }) {
   )
 }
 
-async function UsageCode({ codeblock }: { codeblock: CodeData }) {
+async function UsageCode({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark", {
     annotationPrefix: "!!",
   })
 
-  return <Pre className="m-0" info={info} />
+  return <Pre className="m-0" code={info} />
 }

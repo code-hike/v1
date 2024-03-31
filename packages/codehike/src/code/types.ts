@@ -58,7 +58,7 @@ export function isWhitespace(token: Token | Whitespace): token is Whitespace {
 /**
  * Represents the basic structure for code data.
  */
-export type CodeData = {
+export type RawCode = {
   /** This is the raw code. May include annotation comments. */
   value: string
 
@@ -72,7 +72,7 @@ export type CodeData = {
 /**
  * Represents detailed information about a piece of code, including its tokens and annotations.
  */
-export type CodeInfo = {
+export type HighlightedCode = {
   /** This is the raw code. May include annotation comments. */
   value: string
 
@@ -189,7 +189,7 @@ export type AnnotationComponents = BlockAnnotationComponents &
   }
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
-  info: CodeInfo
+  code: HighlightedCode
   components?: AnnotationComponents
 }
 export type PreComponent = React.ForwardRefExoticComponent<

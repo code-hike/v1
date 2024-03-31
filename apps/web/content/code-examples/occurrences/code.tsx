@@ -1,16 +1,16 @@
 "use client"
 
 import {
-  CodeInfo,
+  HighlightedCode,
   Pre,
   TokenComponent,
 } from "codehike/code"
 import React from "react"
 
 export function CodeWithOccurrences({
-  info,
+  code,
 }: {
-  info: CodeInfo
+  code: HighlightedCode
 }) {
   const ref = React.useRef<HTMLPreElement>(null)
   React.useEffect(() => {
@@ -39,7 +39,7 @@ export function CodeWithOccurrences({
   }, [])
 
   return (
-    <Pre ref={ref} info={info} components={{ Token }} />
+    <Pre ref={ref} code={code} components={{ Token }} />
   )
 }
 

@@ -1,21 +1,20 @@
-import { CodeBlock } from "codehike"
 import { cn } from "@/lib/utils"
 import { z } from "zod"
 
-import { Block, Code as CodeSchema, parse } from "codehike/schema"
-import { Pre, highlight } from "codehike/code"
+import { Block, CodeBlock, parse } from "codehike/schema"
+import { Pre, RawCode, highlight } from "codehike/code"
 
 const Content = Block.extend({
   blocks: z
     .tuple([
       Block.extend({
-        code: z.array(CodeSchema),
+        code: z.array(CodeBlock),
         note: Block.optional(),
       }),
     ])
     .rest(
       Block.extend({
-        code: z.array(CodeSchema).optional(),
+        code: z.array(CodeBlock).optional(),
         note: Block.optional(),
       }),
     ),
@@ -55,7 +54,7 @@ async function Code({
   codeblock,
   note,
 }: {
-  codeblock: CodeBlock
+  codeblock: RawCode
   note?: React.ReactNode
 }) {
   const Note = ({ children, query }: any) => {
@@ -76,7 +75,7 @@ async function Code({
         <span>{codeblock.meta}</span>
       </div>
       <Pre
-        info={info}
+        code={info}
         className="p-2 overflow-auto m-0"
         components={{ ...annotations }}
       />

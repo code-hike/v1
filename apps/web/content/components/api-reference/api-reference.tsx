@@ -6,7 +6,7 @@ import {
 } from "./collapsible"
 import {
   Block,
-  Code as CodeBlock,
+  CodeBlock as CodeBlock,
   parse,
 } from "codehike/schema"
 import { z } from "zod"
@@ -169,7 +169,7 @@ async function Code({
       <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
         <span>{codeblock.meta}</span>
       </div>
-      <Pre info={info} className="p-2 overflow-auto" />
+      <Pre code={info} className="p-2 overflow-auto" />
     </div>
   )
 }

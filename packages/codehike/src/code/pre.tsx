@@ -5,7 +5,7 @@ import {
   BlockAnnotation,
   BlockAnnotationComponent,
   BlockAnnotationComponents,
-  CodeInfo,
+  HighlightedCode,
   InlineAnnotation,
   InternalToken,
   LineAnnotationComponent,
@@ -30,8 +30,8 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ info, components = {}, className, ...rest }, ref) => {
-    const { tokens, themeName, lang, annotations } = info
+  ({ code, components = {}, className, ...rest }, ref) => {
+    const { tokens, themeName, lang, annotations } = code
 
     if (!tokens) {
       throw new Error(

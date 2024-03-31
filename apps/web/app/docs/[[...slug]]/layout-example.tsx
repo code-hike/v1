@@ -1,15 +1,15 @@
-import { Block, Code as CodeSchema, parse } from "codehike/schema"
+import { Block, CodeBlock, parse } from "codehike/schema"
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "@/ui/copy-button"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
-import { CodeData, highlight, Pre } from "codehike/code"
+import { RawCode, highlight, Pre } from "codehike/code"
 
 const Content = Block.extend({
   intro: Block,
-  mdx: CodeSchema,
+  mdx: CodeBlock,
   preview: Block,
-  code: z.array(CodeSchema),
+  code: z.array(CodeBlock),
 })
 type LayoutContent = z.infer<typeof Content>
 
@@ -55,12 +55,12 @@ export function LayoutExample({ getBlocks }: { getBlocks: any }) {
   )
 }
 
-async function MDXCode({ data }: { data: CodeData }) {
+async function MDXCode({ data }: { data: RawCode }) {
   const info = await highlight(data, "github-dark")
-  return <Pre info={info} className="m-0 whitespace-pre-wrap" />
+  return <Pre code={info} className="m-0 whitespace-pre-wrap" />
 }
 
-async function Code({ codeblock }: { codeblock: CodeData }) {
+async function Code({ codeblock }: { codeblock: RawCode }) {
   const c = codeblock
   const info = await highlight(codeblock, "github-dark")
   if (c.meta === "dependencies") {
@@ -72,7 +72,7 @@ async function Code({ codeblock }: { codeblock: CodeData }) {
         <span>{c.meta}</span>
         <CopyButton className="ml-auto" text={c.value} />
       </div>
-      <Pre info={info} className="max-h-96 m-0" />
+      <Pre code={info} className="max-h-96 m-0" />
     </div>
   )
 }

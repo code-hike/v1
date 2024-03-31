@@ -1,8 +1,8 @@
 import { splitAnnotationsAndCode } from "./extract-annotations.js"
 import {
   CodeAnnotation,
-  CodeData,
-  CodeInfo,
+  RawCode,
+  HighlightedCode,
   Theme,
   Token,
   Whitespace,
@@ -13,10 +13,10 @@ import { Lines, Tokens, highlight as lighter } from "@code-hike/lighter"
 type AnyToken = Token | Whitespace
 
 export async function highlight(
-  data: CodeData,
+  data: RawCode,
   theme: Theme,
   config: { annotationPrefix?: string } = {},
-): Promise<CodeInfo> {
+): Promise<HighlightedCode> {
   const { value, lang } = data
   const { code, annotations } = await splitAnnotationsAndCode(
     value,

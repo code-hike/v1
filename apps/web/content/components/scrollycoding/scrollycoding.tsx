@@ -45,5 +45,5 @@ async function Code({
   codeblock: CodeBlock
 }) {
   const info = await highlight(codeblock, "github-dark")
-  return <Pre info={info} className="min-h-[40rem]" />
+  return <Pre code={info} className="min-h-[40rem]" />
 }

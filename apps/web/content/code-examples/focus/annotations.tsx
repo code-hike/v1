@@ -1,8 +1,7 @@
 "use client"
 
 import {
-  BlockAnnotationComponent,
-  CodeInfo,
+  HighlightedCode,
   Pre,
   LineAnnotationComponent,
   LineComponent,
@@ -10,9 +9,9 @@ import {
 import { useLayoutEffect, useRef, useState } from "react"
 
 export function CodeContainer({
-  info,
+  code,
 }: {
-  info: CodeInfo
+  code: HighlightedCode
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const firstRender = useRef(true)
@@ -61,8 +60,8 @@ export function CodeContainer({
       >
         <Pre
           className="m-0 px-0"
-          info={{
-            ...info,
+          code={{
+            ...code,
             annotations: [
               {
                 name: "Focus",

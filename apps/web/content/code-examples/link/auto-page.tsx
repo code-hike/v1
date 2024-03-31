@@ -1,6 +1,6 @@
 import {
   CodeAnnotation,
-  CodeData,
+  RawCode,
   Pre,
   InlineAnnotation,
   highlight,
@@ -12,15 +12,11 @@ export default function Page() {
   return <Content components={{ Code }} />
 }
 
-async function Code({
-  codeblock,
-}: {
-  codeblock: CodeData
-}) {
+async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
   const annotations = getLinkAnnotations(info.code)
   info.annotations.push(...annotations)
-  return <Pre info={info} components={{ InlineLink }} />
+  return <Pre code={info} components={{ InlineLink }} />
 }
 
 const urlRegex = /https?:\/\/[\w\-_.~:/?#[\]@!$&*+,;=%]+/g

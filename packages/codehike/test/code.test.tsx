@@ -58,7 +58,7 @@ async function testCompilation(name: string, mdx: string) {
   const html = await rscToHTML(
     // @ts-ignore
     <Pre
-      info={info}
+      code={info}
       components={{
         // Mark,
         Token,
