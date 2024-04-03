@@ -1,21 +1,24 @@
-import { CodeBlock, CodeContent } from "codehike"
 import { CopyButton } from "./copy-button"
 import { TerminalSquare } from "lucide-react"
 import { TabsContent, TabsList, TabsToggle } from "./tabs-toggle"
+import { RawCode, Pre, highlight } from "codehike/code"
 
-export function DependencyTerminal({ codeblock }: { codeblock: CodeBlock }) {
+async function Code({ codeblock }: { codeblock: RawCode }) {
+  const info = await highlight(codeblock, "github-dark")
+  return <Pre code={info} className="max-h-96 m-0" />
+}
+
+export function DependencyTerminal({ codeblock }: { codeblock: RawCode }) {
   const options = ["npm install", "yarn add", "pnpm install"].map(
     (command) => ({
       name: command.split(" ")[0],
       content: (
-        <CodeContent
+        <Code
           codeblock={{
             ...codeblock,
             lang: "bash",
             value: `${command} ${codeblock.value}`,
           }}
-          config={{ theme: "github-dark", annotationPrefix: "!" }}
-          className="max-h-96 m-0"
         />
       ),
     }),

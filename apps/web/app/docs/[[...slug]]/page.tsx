@@ -4,6 +4,9 @@ import { Callout } from "next-docs-ui/components/callout"
 import { RollButton } from "next-docs-ui/components/roll-button"
 import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
+import { LayoutExample } from "./layout-example"
+import { CodeExample } from "./code-example"
+import { PreviewImplementation } from "./preview-implementation"
 
 export default async function Page({
   params,
@@ -16,7 +19,18 @@ export default async function Page({
     notFound()
   }
 
-  const MDX = page.data.exports.default
+  // @ts-ignore
+  const { default: MDX, getBlocks } = page.data.exports
+  const layout = page.data.layout
+
+  let children = <MDX />
+  if (layout === "LayoutExample") {
+    children = <LayoutExample getBlocks={getBlocks} />
+  } else if (layout === "CodeExample") {
+    children = <CodeExample getBlocks={getBlocks} />
+  } else if (layout === "PreviewAndImplementation") {
+    children = <PreviewImplementation getBlocks={getBlocks} />
+  }
 
   return (
     <DocsPage
@@ -26,12 +40,12 @@ export default async function Page({
       <DocsBody className="min-h-screen">
         <RollButton />
         <h1>{page.data.title}</h1>
-        <Callout title="Unstable API" type="warn">
+        {/* <Callout title="Unstable API" type="warn">
           This version of Code Hike is under development. Proceed at your own
           risk.
-        </Callout>
+        </Callout> */}
 
-        <MDX />
+        {children}
       </DocsBody>
     </DocsPage>
   )

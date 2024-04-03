@@ -1,6 +1,5 @@
 import { BlockContent, Code, DefinitionContent, Heading, Image } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
-import { readFile } from "./code/extract-annotations.js"
 
 export type JSXChild = BlockContent | DefinitionContent
 
@@ -252,4 +251,68 @@ export async function parseCode(code: Code, mdxPath?: string) {
     lang: code.lang,
     meta: code.meta,
   }
+}
+
+export async function readFile(
+  externalCodePath: string,
+  mdxFilePath: string | undefined,
+  range: string | undefined,
+) {
+  const annotationContent = "from " + mdxFilePath + " " + (range || "")
+
+  let fs, path
+
+  try {
+    fs = (await import("fs")).default
+    path = (await import("path")).default
+    if (!fs || !fs.readFileSync || !path || !path.resolve) {
+      throw new Error("fs or path not found")
+    }
+  } catch (e: any) {
+    e.message = `Code Hike couldn't resolve this annotation:
+${annotationContent}
+Looks like node "fs" and "path" modules are not available.`
+    throw e
+  }
+
+  // if we don't know the path of the mdx file:
+  if (mdxFilePath == null) {
+    throw new Error(
+      `Code Hike couldn't resolve this annotation:
+  ${annotationContent}
+  Someone is calling the mdx compile function without setting the path.
+  Open an issue on CodeHike's repo for help.`,
+    )
+  }
+
+  const dir = path.dirname(mdxFilePath)
+  const absoluteCodepath = path.resolve(dir, externalCodePath)
+
+  let content: string
+  try {
+    content = fs.readFileSync(absoluteCodepath, "utf8")
+  } catch (e: any) {
+    e.message = `Code Hike couldn't resolve this annotation:
+${annotationContent}
+${absoluteCodepath} doesn't exist.`
+    throw e
+  }
+
+  if (range) {
+    const [start, end] = range.split(":")
+    const startLine = parseInt(start)
+    const endLine = parseInt(end)
+    if (isNaN(startLine) || isNaN(endLine)) {
+      throw new Error(
+        `Code Hike couldn't resolve this annotation:
+${annotationContent}
+The range is not valid. Should be something like:
+ ${externalCodePath} 2:5`,
+      )
+    }
+    const lines = content.split("\n")
+    content = lines.slice(startLine - 1, endLine).join("\n")
+  }
+
+  return content
 }

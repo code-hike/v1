@@ -1,0 +1,92 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "h2",
+      "properties": {},
+      "children": [{ "type": "text", "value": "Hello world" }]
+    },
+    { "type": "text", "value": "\n" },
+    {
+      "type": "element",
+      "tagName": "p",
+      "properties": {},
+      "children": [
+        { "type": "text", "value": "Shouldn't add any code hike stuff." }
+      ]
+    },
+    { "type": "text", "value": "\n" },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "MyCode",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "codeblock",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "value" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "// !Foo\r\nconsole.log(1)",
+                            "raw": "\"// !Foo\\r\\nconsole.log(1)\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "lang" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "js",
+                            "raw": "\"js\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "meta" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": null,
+                            "raw": "null"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  ]
+}

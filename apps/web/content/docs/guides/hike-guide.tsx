@@ -1,26 +1,27 @@
-import { CodeBlock, CodeContent } from "codehike"
 import { cn } from "@/lib/utils"
 import { z } from "zod"
 
-import { Block, Code as CodeSchema, parse } from "codehike/schema"
+import { Block, CodeBlock, parse } from "codehike/schema"
+import { Pre, RawCode, highlight } from "codehike/code"
 
 const Content = Block.extend({
   blocks: z
     .tuple([
       Block.extend({
-        code: z.array(CodeSchema),
+        code: z.array(CodeBlock),
         note: Block.optional(),
       }),
     ])
     .rest(
       Block.extend({
-        code: z.array(CodeSchema).optional(),
+        code: z.array(CodeBlock).optional(),
         note: Block.optional(),
       }),
     ),
 })
 
 export function HikeGuide({ hike }: any) {
+  return <div>TO DO</div>
   const content = parse(hike, Content)
   const { blocks } = content
   const first = blocks[0]
@@ -50,11 +51,11 @@ export function HikeGuide({ hike }: any) {
   )
 }
 
-function Code({
+async function Code({
   codeblock,
   note,
 }: {
-  codeblock: CodeBlock
+  codeblock: RawCode
   note?: React.ReactNode
 }) {
   const Note = ({ children, query }: any) => {
@@ -67,16 +68,17 @@ function Code({
     )
   }
 
+  const info = await highlight(codeblock, "github-dark")
+
   return (
     <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900 flex-1 min-w-0">
       <div className="items-center bg-zinc-800 p-2 pl-2 text-xs flex text-zinc-100">
         <span>{codeblock.meta}</span>
       </div>
-      <CodeContent
-        codeblock={codeblock}
+      <Pre
+        code={info}
         className="p-2 overflow-auto m-0"
-        config={{ theme: "github-dark", annotationPrefix: "!" }}
-        components={{ ...annotations, Note }}
+        components={{ ...annotations }}
       />
     </div>
   )

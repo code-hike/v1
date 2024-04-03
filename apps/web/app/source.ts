@@ -6,7 +6,13 @@ import { z } from "zod"
 export const docs = loader({
   baseUrl: "/docs",
   rootDir: "docs",
-  source: createMDXSource(map),
+  source: createMDXSource(map, {
+    schema: {
+      frontmatter: defaultSchemas.frontmatter.extend({
+        layout: z.string().default("Docs"),
+      }),
+    },
+  }),
 })
 
 export const blog = loader({

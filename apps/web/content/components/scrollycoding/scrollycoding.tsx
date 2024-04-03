@@ -1,5 +1,6 @@
 import { Steps, ScrollyStep, Step } from "codehike/scrolly"
-import { CodeContent, CodeBlock } from "codehike"
+
+import { Pre, RawCode, highlight } from "codehike/code"
 
 export function Scrollycoding({ hike }: { hike: any }) {
   const steps = hike.steps.map((step: any) => ({
@@ -38,12 +39,7 @@ function ScrollableContent({ steps }: { steps: any[] }) {
   )
 }
 
-function Code({ codeblock }: { codeblock: CodeBlock }) {
-  return (
-    <CodeContent
-      codeblock={codeblock}
-      config={{ theme: "github-dark" }}
-      className="min-h-[40rem]"
-    />
-  )
+async function Code({ codeblock }: { codeblock: RawCode }) {
+  const info = await highlight(codeblock, "github-dark")
+  return <Pre code={info} className="min-h-[40rem]" />
 }

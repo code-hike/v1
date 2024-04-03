@@ -5,13 +5,13 @@ export const Block = z.object({
   children: z.array(z.custom<React.ReactNode>()),
 })
 
-export const Code = z.object({
+export const CodeBlock = z.object({
   meta: z.string(),
   value: z.string(),
   lang: z.string(),
 })
 
-export const Image = z.object({
+export const ImageBlock = z.object({
   url: z.string(),
   alt: z.string(),
   title: z.string(),
