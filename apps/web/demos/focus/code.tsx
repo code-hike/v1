@@ -51,7 +51,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
   return (
     <>
       <Pre
-        className="m-0 px-0 max-h-72 scroll-smooth overflow-auto"
+        className="m-0 px-0 max-h-72 scroll-smooth overflow-auto bg-zinc-950"
         ref={ref}
         code={{
           ...code,
@@ -95,7 +95,7 @@ export const LineFocus: LineAnnotationComponent = ({
   return (
     <div
       data-focus={true}
-      className="opacity-50 data-[focus]:opacity-100 bg-zinc-500/30 px-2"
+      className="opacity-50 data-[focus]:opacity-100 bg-zinc-700/30 px-2"
     >
       {children}
     </div>

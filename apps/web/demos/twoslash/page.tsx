@@ -31,8 +31,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     codeblock.lang,
   )
 
-  const { hovers, code, queries, completions, errors } =
-    result
+  const { hovers, code, queries, completions, errors } = result
 
   // console.log(result)
 
@@ -78,17 +77,14 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
   return (
     <Pre
-      className="m-0"
+      className="m-0 bg-zinc-950"
       code={info}
       components={{ InlineHover: Hover, BlockQuery }}
     />
   )
 }
 
-const BlockQuery: BlockAnnotationComponent = ({
-  annotation,
-  children,
-}) => {
+const BlockQuery: BlockAnnotationComponent = ({ annotation, children }) => {
   const { character, className } = annotation.data
   return (
     <>
@@ -111,15 +107,9 @@ const BlockQuery: BlockAnnotationComponent = ({
   )
 }
 
-const Hover: InlineAnnotationComponent = ({
-  children,
-  annotation,
-}) => {
+const Hover: InlineAnnotationComponent = ({ children, annotation }) => {
   return (
-    <span
-      className="decoration-dotted underline"
-      title={annotation.query}
-    >
+    <span className="decoration-dotted underline" title={annotation.query}>
       {children}
     </span>
   )

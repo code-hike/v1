@@ -1,4 +1,3 @@
-import { CodeBlock } from "codehike"
 import { CopyButton } from "./copy-button"
 import { TerminalSquare } from "lucide-react"
 import { TabsContent, TabsList, TabsToggle } from "./tabs-toggle"
@@ -9,7 +8,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   return <Pre code={info} className="max-h-96 m-0" />
 }
 
-export function DependencyTerminal({ codeblock }: { codeblock: CodeBlock }) {
+export function DependencyTerminal({ codeblock }: { codeblock: RawCode }) {
   const options = ["npm install", "yarn add", "pnpm install"].map(
     (command) => ({
       name: command.split(" ")[0],

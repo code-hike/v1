@@ -16,7 +16,7 @@ export function CodeSwitcher({ infos }: { infos: HighlightedCode[] }) {
   return (
     <>
       <CodeClient info={infos[index]} />
-      <div className="p-2 mt-auto font-light text-center">
+      <div className="p-2 mt-auto font-light text-center text-white">
         <button onClick={next} className="border border-current rounded px-2">
           Switch code
         </button>
@@ -56,7 +56,7 @@ export class CodeClient extends React.Component<{
         style={{ position: "relative" }}
         {...rest}
         components={{ Token }}
-        className="m-0 h-80"
+        className="m-0 h-80 bg-zinc-950"
       />
     )
   }

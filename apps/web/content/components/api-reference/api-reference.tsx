@@ -4,11 +4,7 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "./collapsible"
-import {
-  Block,
-  CodeBlock as CodeBlock,
-  parse,
-} from "codehike/schema"
+import { Block, CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
 import { Pre, highlight } from "codehike/code"
 

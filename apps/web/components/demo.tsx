@@ -32,14 +32,14 @@ export async function Demo({
         content.md
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>
-      <Pre className="m-0 bg-transparent" code={highlighted} />
+      <Pre className="m-0 bg-zinc-950 rounded-none" code={highlighted} />
     </div>
   )
 
   const { default: Page } = await import(`@/demos/${name}/page`)
 
   const preview = (
-    <div className="min-w-0 rounded flex-1 bg-blue-500/40 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden ">
+    <div className="min-w-0 rounded flex-1 bg-blue-900/80 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden ">
       <Page />
       {children && (
         <div className="mt-auto text-center text-white font-light">

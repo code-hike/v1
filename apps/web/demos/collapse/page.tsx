@@ -16,9 +16,6 @@ type CodeComponent = (props: { codeblock: RawCode }) => Promise<JSX.Element>
 const Code: CodeComponent = async ({ codeblock }) => {
   const highlighted = await highlight(codeblock, "github-dark")
 
-  console.log(JSON.stringify(codeblock, null, 2))
-  console.log(JSON.stringify(highlighted.annotations, null, 2))
-
   highlighted.annotations = highlighted.annotations.flatMap((annotation) => {
     if (annotation.name !== "Collapse") {
       return annotation
@@ -42,7 +39,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
 
   return (
     <Pre
-      className="m-0 px-0"
+      className="m-0 px-0 bg-zinc-950"
       code={highlighted}
       components={{
         BlockCollapse,

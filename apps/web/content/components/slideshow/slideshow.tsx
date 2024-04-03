@@ -1,6 +1,5 @@
-import { CodeBlock } from "codehike"
 import { Slides, Controls } from "./slides"
-import { Pre, highlight } from "codehike/code"
+import { Pre, RawCode, highlight } from "codehike/code"
 
 export function Slideshow({ hike }: { hike: any }) {
   return (
@@ -17,11 +16,7 @@ export function Slideshow({ hike }: { hike: any }) {
   )
 }
 
-async function Code({
-  codeblock,
-}: {
-  codeblock: CodeBlock
-}) {
+async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
   return (
     <Pre

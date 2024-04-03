@@ -10,7 +10,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
   return (
     <Pre
-      className="m-0 px-0"
+      className="m-0 px-0 bg-zinc-950"
       code={info}
       components={{ LineMark, Line }}
     />
