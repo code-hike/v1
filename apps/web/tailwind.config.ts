@@ -6,6 +6,8 @@ const config = {
   presets: [createPreset() as any],
   content: [
     "./ui/**/*.{ts,tsx,js,jsx}",
+    "./demos/**/*.{ts,tsx,js,jsx}",
+    "./components/**/*.{ts,tsx,js,jsx}",
     "./app/**/*.{ts,tsx,js,jsx}",
     "./content/**/*.{md,mdx,ts,tsx,js,jsx}",
     "./mdx-components.{ts,tsx}",

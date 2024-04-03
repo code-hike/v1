@@ -13,15 +13,7 @@ export function CodeExample({ getBlocks }: { getBlocks: any }) {
     Content,
   )
 
-  return (
-    <>
-      <Callout title="Code Examples" type="info">
-        Use this examples as a reference. Use them as inspiration to create your
-        own components. Copy, paste, customize.
-      </Callout>
-      {children}
-    </>
-  )
+  return children
 }
 
 function UsageAndPreview({ children }: { children: React.ReactNode }) {

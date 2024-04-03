@@ -6,6 +6,7 @@ import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
 import { LayoutExample } from "./layout-example"
 import { CodeExample } from "./code-example"
+import { PreviewImplementation } from "./preview-implementation"
 
 export default async function Page({
   params,
@@ -27,6 +28,8 @@ export default async function Page({
     children = <LayoutExample getBlocks={getBlocks} />
   } else if (layout === "CodeExample") {
     children = <CodeExample getBlocks={getBlocks} />
+  } else if (layout === "PreviewAndImplementation") {
+    children = <PreviewImplementation getBlocks={getBlocks} />
   }
 
   return (
@@ -37,10 +40,10 @@ export default async function Page({
       <DocsBody className="min-h-screen">
         <RollButton />
         <h1>{page.data.title}</h1>
-        <Callout title="Unstable API" type="warn">
+        {/* <Callout title="Unstable API" type="warn">
           This version of Code Hike is under development. Proceed at your own
           risk.
-        </Callout>
+        </Callout> */}
 
         {children}
       </DocsBody>

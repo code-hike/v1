@@ -1,26 +1,3 @@
----
-title: Collapse
-description: Collapse annotation example
-layout: PreviewAndImplementation
----
-
-import Preview from "@/content/code-examples/collapse/page"
-
-<Demo name="collapse" />
-
-## !implementation
-
-We use the `Collapsible` component from [shadcn/ui](https://ui.shadcn.com/docs/components/collapsible):
-
-```bash
-npx shadcn-ui@latest add collapsible
-```
-
-### !explainer
-
-So, for each `!Collapse` annotation we need two add to extra annotations, one for the trigger and one for the content.
-
-```tsx !
 import {
   Collapsible,
   CollapsibleContent,
@@ -30,10 +7,18 @@ import { ChevronDownIcon } from "lucide-react"
 import { RawCode, Pre, highlight, BlockAnnotation } from "codehike/code"
 import Content from "./content.md"
 
+export default function Page() {
+  return <Content components={{ Code }} />
+}
+
+type CodeComponent = (props: { codeblock: RawCode }) => Promise<JSX.Element>
+
 const Code: CodeComponent = async ({ codeblock }) => {
   const highlighted = await highlight(codeblock, "github-dark")
 
-  // !Tooltip[41:51] annotations
+  console.log(JSON.stringify(codeblock, null, 2))
+  console.log(JSON.stringify(highlighted.annotations, null, 2))
+
   highlighted.annotations = highlighted.annotations.flatMap((annotation) => {
     if (annotation.name !== "Collapse") {
       return annotation
@@ -113,31 +98,3 @@ function Line({
     </div>
   )
 }
-```
-
-#### !!notes collapsible
-
-There are three parts to the `Collapsible` component:
-
-- `CollapsibleTrigger` in our case is the top line that is clicked to fold/unfold the content
-- `CollapsibleContent` is the rest of the lines that are folded/unfolded
-- `Collapsible` wraps the trigger and content
-
-#### !!notes annotations
-
-```json
-[
-  {
-    "name": "Collapse",
-    "query": "",
-    "fromLineNumber": 1,
-    "toLineNumber": 4
-  },
-  {
-    "name": "Collapse",
-    "query": "collapsed",
-    "fromLineNumber": 7,
-    "toLineNumber": 10
-  }
-]
-```

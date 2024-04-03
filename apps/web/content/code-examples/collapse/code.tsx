@@ -10,17 +10,14 @@ import {
   highlight,
   BlockAnnotation,
 } from "codehike/code"
-import Content from "./content.md"
-
-export default function Page() {
-  return <Content components={{ Code }} />
-}
 
 type CodeComponent = (props: {
   codeblock: RawCode
 }) => Promise<JSX.Element>
 
-const Code: CodeComponent = async ({ codeblock }) => {
+export const CollapseCode: CodeComponent = async ({
+  codeblock,
+}) => {
   const highlighted = await highlight(
     codeblock,
     "github-dark",

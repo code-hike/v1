@@ -5,12 +5,14 @@ import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 const chConfig = {
   components: {
     code: "Code",
+    codeGroup: "CodeGroup",
     image: "Image",
     table: "Table",
   },
-  // syntaxHighlight: {
-  //   theme: "github-dark",
-  // },
+  ignoreCodeblock: (codeblock) => codeblock.lang === "mermaid",
+  syntaxHighlight: {
+    theme: "github-dark",
+  },
 }
 
 const withMDX = createNextDocsMDX({
