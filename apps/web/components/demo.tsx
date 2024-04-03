@@ -1,9 +1,15 @@
-import { Pre, highlight } from "codehike/code"
 import fs from "fs"
 import path from "path"
+import { Pre, highlight } from "codehike/code"
 import { CopyButton } from "./copy-button"
 
-export async function Demo({ name }: { name: string }) {
+export async function Demo({
+  name,
+  children,
+}: {
+  name: string
+  children: React.ReactNode
+}) {
   const value = await fs.promises.readFile(
     path.join(process.cwd(), "demos", name, "content.md"),
     "utf-8",
@@ -33,11 +39,14 @@ export async function Demo({ name }: { name: string }) {
   const { default: Page } = await import(`@/demos/${name}/page`)
 
   const preview = (
-    <PreviewContainer>
-      <div className="overflow-hidden">
-        <Page />
-      </div>
-    </PreviewContainer>
+    <div className="min-w-0 rounded flex-1 bg-blue-500/40 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden ">
+      <Page />
+      {children && (
+        <div className="mt-auto text-center text-white font-light">
+          {children}
+        </div>
+      )}
+    </div>
   )
 
   return (
