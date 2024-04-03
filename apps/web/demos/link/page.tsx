@@ -8,5 +8,5 @@ export default function Page() {
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
-  return <Pre code={info} components={{ InlineLink }} />
+  return <Pre code={info} components={{ InlineLink }} className="m-0" />
 }

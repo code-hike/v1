@@ -21,6 +21,7 @@ const Content = Block.extend({
 })
 
 export function HikeGuide({ hike }: any) {
+  return <div>TO DO</div>
   const content = parse(hike, Content)
   const { blocks } = content
   const first = blocks[0]

@@ -7,7 +7,7 @@ function lorem(ipsum, dolor = 1) {
 }
 
 // !Collapse(1:4) collapsed
-function bar(ipsum, dolor = 1) {
+function ipsum(ipsum, dolor = 1) {
   const sit = ipsum == null ? 0 : 1
   dolor = sit - amet(dolor)
   return sit ? consectetur(ipsum) : []
