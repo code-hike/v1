@@ -12,13 +12,17 @@ Fold and unfold blocks of code.
 
 ## !implementation
 
+```txt
+// TO DO
+```
+
+### !explainer
+
 We use the `Collapsible` component from [shadcn/ui](https://ui.shadcn.com/docs/components/collapsible):
 
 ```bash
 npx shadcn-ui@latest add collapsible
 ```
-
-### !explainer
 
 So, for each `!Collapse` annotation we need two add to extra annotations, one for the trigger and one for the content.
 
@@ -28,9 +32,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { ChevronDownIcon } from "lucide-react"
-import { RawCode, Pre, highlight, BlockAnnotation } from "codehike/code"
-import Content from "./content.md"
 
 const Code: CodeComponent = async ({ codeblock }) => {
   const highlighted = await highlight(codeblock, "github-dark")
