@@ -1,12 +1,17 @@
 {
   "type": "root",
   "children": [
-    { "type": "paragraph", "children": [{ "type": "text", "value": "ho" }] },
     {
-      "type": "heading",
-      "depth": 1,
-      "children": [{ "type": "text", "value": "!foo bar" }]
+      "type": "code",
+      "lang": "scala",
+      "meta": "!!",
+      "value": "object Main {\r\n  def factorial(n: Int): Int = {\r\n    if (n == 0) {\r\n      return 1\r\n    } else {\r\n      return n * factorial(n - 1)\r\n    }\r\n  }\r\n}"
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "bax" }] }
+    {
+      "type": "code",
+      "lang": "python",
+      "meta": "!!",
+      "value": "def factorial(n):\r\n    if n == 0:\r\n        return 1\r\n    else:\r\n        return n * factorial(n - 1)"
+    }
   ]
 }

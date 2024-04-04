@@ -10,11 +10,12 @@ export type { HikeSection }
 type MDXContent = (props: MDXProps) => JSX.Element
 
 export function getBlocks(Content: MDXContent, props: MDXProps = {}) {
-  return Content({
+  const result = Content({
     _returnBlocks: true,
     ...props,
     components: { Hike: true, ...props.components } as any,
   }) as any
+  return result
 }
 
 export function parseContent<Output, Def extends ZodTypeDef, Input>(

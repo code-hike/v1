@@ -30,15 +30,6 @@
                       {
                         "type": "Property",
                         "kind": "init",
-                        "key": { "type": "Identifier", "name": "p" },
-                        "value": { "type": "Literal", "value": "p" },
-                        "method": false,
-                        "shorthand": false,
-                        "computed": false
-                      },
-                      {
-                        "type": "Property",
-                        "kind": "init",
                         "key": { "type": "Identifier", "name": "slot" },
                         "value": { "type": "Literal", "value": "slot" },
                         "method": false,
@@ -100,7 +91,31 @@
                           "type": "JSXElement",
                           "openingElement": {
                             "type": "JSXOpeningElement",
-                            "attributes": [],
+                            "attributes": [
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "name"
+                                },
+                                "value": { "type": "Literal", "value": "code" }
+                              },
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "index"
+                                },
+                                "value": {
+                                  "type": "JSXExpressionContainer",
+                                  "expression": {
+                                    "type": "Literal",
+                                    "value": 0,
+                                    "raw": "0"
+                                  }
+                                }
+                              }
+                            ],
                             "name": {
                               "type": "JSXMemberExpression",
                               "object": {
@@ -109,31 +124,13 @@
                               },
                               "property": {
                                 "type": "JSXIdentifier",
-                                "name": "p"
+                                "name": "slot"
                               }
                             },
-                            "selfClosing": false
+                            "selfClosing": true
                           },
-                          "closingElement": {
-                            "type": "JSXClosingElement",
-                            "name": {
-                              "type": "JSXMemberExpression",
-                              "object": {
-                                "type": "JSXIdentifier",
-                                "name": "_components"
-                              },
-                              "property": {
-                                "type": "JSXIdentifier",
-                                "name": "p"
-                              }
-                            }
-                          },
-                          "children": [
-                            {
-                              "type": "JSXExpressionContainer",
-                              "expression": { "type": "Literal", "value": "ho" }
-                            }
-                          ]
+                          "closingElement": null,
+                          "children": []
                         },
                         {
                           "type": "JSXElement",
@@ -146,7 +143,22 @@
                                   "type": "JSXIdentifier",
                                   "name": "name"
                                 },
-                                "value": { "type": "Literal", "value": "foo" }
+                                "value": { "type": "Literal", "value": "code" }
+                              },
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "index"
+                                },
+                                "value": {
+                                  "type": "JSXExpressionContainer",
+                                  "expression": {
+                                    "type": "Literal",
+                                    "value": 1,
+                                    "raw": "1"
+                                  }
+                                }
                               }
                             ],
                             "name": {
@@ -208,104 +220,98 @@
                     "method": false,
                     "shorthand": false,
                     "computed": false,
-                    "key": { "type": "Literal", "value": "foo" },
+                    "key": { "type": "Literal", "value": "code" },
                     "kind": "init",
                     "value": {
-                      "type": "ObjectExpression",
-                      "properties": [
+                      "type": "ArrayExpression",
+                      "elements": [
                         {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "children" },
-                          "kind": "init",
-                          "value": {
-                            "type": "ArrayExpression",
-                            "elements": [
-                              {
-                                "type": "JSXElement",
-                                "openingElement": {
-                                  "type": "JSXOpeningElement",
-                                  "attributes": [],
-                                  "name": {
-                                    "type": "JSXMemberExpression",
-                                    "object": {
-                                      "type": "JSXIdentifier",
-                                      "name": "_components"
-                                    },
-                                    "property": {
-                                      "type": "JSXIdentifier",
-                                      "name": "p"
-                                    }
-                                  },
-                                  "selfClosing": false
-                                },
-                                "closingElement": {
-                                  "type": "JSXClosingElement",
-                                  "name": {
-                                    "type": "JSXMemberExpression",
-                                    "object": {
-                                      "type": "JSXIdentifier",
-                                      "name": "_components"
-                                    },
-                                    "property": {
-                                      "type": "JSXIdentifier",
-                                      "name": "p"
-                                    }
-                                  }
-                                },
-                                "children": [
-                                  {
-                                    "type": "JSXExpressionContainer",
-                                    "expression": {
-                                      "type": "Literal",
-                                      "value": "bax"
-                                    }
-                                  }
-                                ]
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "object Main {\r\n  def factorial(n: Int): Int = {\r\n    if (n == 0) {\r\n      return 1\r\n    } else {\r\n      return n * factorial(n - 1)\r\n    }\r\n  }\r\n}",
+                                "raw": "\"object Main {\\r\\n  def factorial(n: Int): Int = {\\r\\n    if (n == 0) {\\r\\n      return 1\\r\\n    } else {\\r\\n      return n * factorial(n - 1)\\r\\n    }\\r\\n  }\\r\\n}\""
                               }
-                            ]
-                          }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "scala",
+                                "raw": "\"scala\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "",
+                                "raw": "\"\""
+                              }
+                            }
+                          ]
                         },
                         {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "title" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "bar",
-                            "raw": "\"bar\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "_data" },
-                          "kind": "init",
-                          "value": {
-                            "type": "ObjectExpression",
-                            "properties": [
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "header" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "Literal",
-                                  "value": "# !foo bar",
-                                  "raw": "\"# !foo bar\""
-                                }
+                          "type": "ObjectExpression",
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "value" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "def factorial(n):\r\n    if n == 0:\r\n        return 1\r\n    else:\r\n        return n * factorial(n - 1)",
+                                "raw": "\"def factorial(n):\\r\\n    if n == 0:\\r\\n        return 1\\r\\n    else:\\r\\n        return n * factorial(n - 1)\""
                               }
-                            ]
-                          }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "lang" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "python",
+                                "raw": "\"python\""
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": { "type": "Literal", "value": "meta" },
+                              "kind": "init",
+                              "value": {
+                                "type": "Literal",
+                                "value": "",
+                                "raw": "\"\""
+                              }
+                            }
+                          ]
                         }
                       ]
                     }
@@ -337,15 +343,6 @@
                 "init": {
                   "type": "ObjectExpression",
                   "properties": [
-                    {
-                      "type": "Property",
-                      "kind": "init",
-                      "key": { "type": "Identifier", "name": "p" },
-                      "value": { "type": "Literal", "value": "p" },
-                      "method": false,
-                      "shorthand": false,
-                      "computed": false
-                    },
                     {
                       "type": "Property",
                       "kind": "init",

@@ -9,7 +9,7 @@ import { SKIP, visit } from "estree-util-visit"
 import { getObjectAttribute } from "./estree.js"
 import {
   listToSection,
-  isHikeHeading,
+  isHikeElement,
   parseCode,
 } from "./1.remark-list-to-section.js"
 import { sectionToAttribute } from "./2.remark-section-to-attribute.js"
@@ -32,9 +32,9 @@ export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
 ) => {
   return async (root, file) => {
     let tree = root
-    // if we find any hikeable heading outside of <Hike>s,
+    // if we find any hikeable element outside of <Hike>s,
     // let's wrap everything in a <Hike>
-    if (root.children.some(isHikeHeading)) {
+    if (root.children.some(isHikeElement)) {
       tree.children = [
         {
           type: "mdxJsxFlowElement",

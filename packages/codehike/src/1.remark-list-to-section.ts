@@ -118,7 +118,7 @@ export async function listToSection(
       while (parent.depth >= child.depth && parent.parent) {
         parent = parent.parent
       }
-    } else if (child.type === "code" && child.meta?.trim().startsWith("!")) {
+    } else if (isHikeCode(child)) {
       const {
         name = DEFAULT_CODE_NAME,
         multi,
@@ -141,10 +141,7 @@ export async function listToSection(
       })
     } else if (
       // ![!name title](image.png)
-      child.type === "paragraph" &&
-      child.children.length === 1 &&
-      child.children[0].type === "image" &&
-      child.children[0].alt?.startsWith("!")
+      isHikeImage(child)
     ) {
       const img = child.children[0]
       const {
@@ -168,9 +165,7 @@ export async function listToSection(
       })
     } else if (
       // !foo bar
-      child.type === "paragraph" &&
-      child.children[0]?.type === "text" &&
-      child.children[0]?.value?.trim().startsWith("!")
+      isHikeValue(child)
     ) {
       const values = child.children[0].value.split(/\r?\n/)
       values.forEach((value) => {
@@ -198,7 +193,49 @@ export async function listToSection(
   return root
 }
 
-export function isHikeHeading(child: any) {
+export function isHikeElement(child: any) {
+  return (
+    isHikeHeading(child) ||
+    isHikeCode(child) ||
+    isHikeImage(child) ||
+    isHikeValue(child)
+  )
+}
+
+function isHikeValue(child: any): child is {
+  type: "paragraph"
+  children: [
+    {
+      type: "text"
+      value: string
+    },
+  ]
+} {
+  return (
+    child.type === "paragraph" &&
+    child.children.length === 1 &&
+    child.children[0].type === "text" &&
+    child.children[0].value?.trim().startsWith("!")
+  )
+}
+
+function isHikeCode(child: any): child is Code {
+  return child.type === "code" && child.meta?.trim().startsWith("!")
+}
+
+function isHikeImage(child: any): child is {
+  type: "paragraph"
+  children: [Image]
+} {
+  return (
+    child.type === "paragraph" &&
+    child.children.length === 1 &&
+    child.children[0].type === "image" &&
+    child.children[0].alt?.startsWith("!")
+  )
+}
+
+function isHikeHeading(child: any) {
   return (
     child.type === "heading" &&
     child.children[0]?.type === "text" &&

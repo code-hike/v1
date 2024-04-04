@@ -1,32 +1,37 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 export function getBlocks(props = {}) {
   const _components = {
-      p: "p",
       slot: "slot",
       ...props.components,
     },
     { Hike } = _components
   return {
     children: [
-      <_components.p>{"ho"}</_components.p>,
-      <_components.slot name="foo" />,
+      <_components.slot name="code" index={0} />,
+      <_components.slot name="code" index={1} />,
     ],
     title: "",
     _data: {
       header: "",
     },
-    foo: {
-      children: [<_components.p>{"bax"}</_components.p>],
-      title: "bar",
-      _data: {
-        header: "# !foo bar",
+    code: [
+      {
+        value:
+          "object Main {\r\n  def factorial(n: Int): Int = {\r\n    if (n == 0) {\r\n      return 1\r\n    } else {\r\n      return n * factorial(n - 1)\r\n    }\r\n  }\r\n}",
+        lang: "scala",
+        meta: "",
       },
-    },
+      {
+        value:
+          "def factorial(n):\r\n    if n == 0:\r\n        return 1\r\n    else:\r\n        return n * factorial(n - 1)",
+        lang: "python",
+        meta: "",
+      },
+    ],
   }
 }
 function _createMdxContent(props) {
   const _components = {
-      p: "p",
       slot: "slot",
       ...props.components,
     },
