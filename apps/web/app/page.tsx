@@ -7,16 +7,18 @@ import { Boxes } from "./landing/boxes"
 export default function HomePage() {
   return (
     <main className="min-h-screen max-w-3xl mx-auto">
-      <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white pt-28  max-w-2xl mx-auto">
+      <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white pt-20 max-w-2xl mx-auto">
         Content belongs
         <br /> in Markdown
       </h1>
-      <h2 className="mt-6 text-xl text-primary/80 text-center max-w-3xl mx-auto  pb-16">
+      {/* <h2 className="mt-6 text-xl text-primary/80 text-center max-w-3xl mx-auto  pb-16">
         The authoring experience of Markdown meets the dynamic versatility of
         React
-      </h2>
+      </h2> */}
 
-      <div className="flex w-full justify-center gap-4 pb-16">
+      <Chart />
+
+      <div className="flex w-full justify-center gap-4 my-14">
         <ButtonLink href="docs" className="w-32">
           Docs
         </ButtonLink>
@@ -33,6 +35,56 @@ export default function HomePage() {
 
       <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
     </main>
+  )
+}
+
+function Chart() {
+  return (
+    <div className="my-10  text-primary/80 max-w-2xl mx-auto bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-700/50 rounded-xl py-5 px-8">
+      <h2 className="text-center pb-4 text-lg">
+        Content experiences you can build
+        <br /> while keeping your content in Markdown/MDX:
+      </h2>
+      <div className="flex flex-col items-start gap-1 py-1">
+        <Bar value={25}>Markdown</Bar>
+        <Bar value={45}>MDX</Bar>
+        <Bar value={80}>MDX + Code Hike</Bar>
+        <Bar value={90}>MDX + Code Hike + RSC</Bar>
+      </div>
+      <div className="flex w-full justify-between px-1 pt-1 text-sm bg-gradient-to-r from-violet-700 to-pink-600 dark:from-violet-400 dark:to-pink-400 bg-clip-text text-transparent font-bold">
+        <span className="w-16 text-left">More Static</span>
+        <span className="w-20 text-center">Static Article</span>
+        <span className="w-24 text-center">Interactive Explainer</span>
+        <span className="w-24 text-center">Annotated Walkthrough</span>
+        <span className="w-24 text-center">Personalized Docs</span>
+        <span className="w-16 text-right">More Dynamic</span>
+      </div>
+    </div>
+  )
+}
+
+function Bar({
+  className,
+  children,
+  value,
+}: {
+  className?: string
+  children: React.ReactNode
+  value: number
+}) {
+  return (
+    <div
+      className={cn(
+        "relative w-full px-4 py-0.5 text-base text-white bg-gradient-to-r from-violet-600  dark:from-violet-800 to-pink-500 dark:to-pink-500 rounded",
+        className,
+      )}
+    >
+      {children}
+      <div
+        className="absolute right-0 bg-zinc-50 dark:bg-zinc-900 opacity-80 inset-y-0"
+        style={{ width: `${100 - value}%` }}
+      ></div>
+    </div>
   )
 }
 
