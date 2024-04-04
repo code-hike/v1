@@ -92,6 +92,45 @@ export function addBlocksExport(program: any) {
       right: { type: "ObjectExpression", properties: [] },
     },
   ]
+
+  // add if statement
+  const ifStatement = {
+    type: "IfStatement",
+    // test if props._returnBlocks is truthy
+    test: {
+      type: "MemberExpression",
+      object: { type: "Identifier", name: "props" },
+      property: { type: "Identifier", name: "_returnBlocks" },
+    },
+    consequent: {
+      type: "BlockStatement",
+      body: [
+        {
+          type: "ReturnStatement",
+          // return getBlocks(props)
+          argument: {
+            type: "CallExpression",
+            callee: {
+              type: "Identifier",
+              name: "getBlocks",
+            },
+            arguments: [
+              {
+                type: "Identifier",
+                name: "props",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  }
+  // add if before return
+  _createMdxContent.body.body.splice(
+    _createMdxContent.body.body.indexOf(_createMdxContentReturn),
+    0,
+    ifStatement,
+  )
 }
 
 function find(node: any, predicate: (node: any) => boolean) {

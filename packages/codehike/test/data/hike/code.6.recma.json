@@ -477,6 +477,27 @@
             }
           },
           {
+            "type": "IfStatement",
+            "test": {
+              "type": "MemberExpression",
+              "object": { "type": "Identifier", "name": "props" },
+              "property": { "type": "Identifier", "name": "_returnBlocks" }
+            },
+            "consequent": {
+              "type": "BlockStatement",
+              "body": [
+                {
+                  "type": "ReturnStatement",
+                  "argument": {
+                    "type": "CallExpression",
+                    "callee": { "type": "Identifier", "name": "getBlocks" },
+                    "arguments": [{ "type": "Identifier", "name": "props" }]
+                  }
+                }
+              ]
+            }
+          },
+          {
             "type": "ReturnStatement",
             "argument": {
               "type": "JSXElement",

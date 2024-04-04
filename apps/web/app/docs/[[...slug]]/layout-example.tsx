@@ -4,22 +4,17 @@ import { CopyButton } from "@/ui/copy-button"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
 import { RawCode, highlight, Pre } from "codehike/code"
+import { parseContent } from "codehike"
 
-const Content = Block.extend({
+const ContentSchema = Block.extend({
   intro: Block,
   mdx: CodeBlock,
   preview: Block,
   code: z.array(CodeBlock),
 })
-type LayoutContent = z.infer<typeof Content>
 
-export function LayoutExample({ getBlocks }: { getBlocks: any }) {
-  const content = parse(
-    getBlocks({
-      Code: () => <div>Doo</div>,
-    }),
-    Content,
-  )
+export function LayoutExample({ MDX }: { MDX: any }) {
+  const content = parseContent(ContentSchema, MDX)
   const { intro, mdx, preview, code } = content
 
   return (

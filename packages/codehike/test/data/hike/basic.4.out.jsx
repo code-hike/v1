@@ -5,9 +5,8 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike, MyCode } = _components
+    { Hike } = _components
   if (!Hike) _missingMdxReference("Hike", true)
-  if (!MyCode) _missingMdxReference("MyCode", true)
   return (
     <Hike
       __hike={{
@@ -16,64 +15,21 @@ function _createMdxContent(props) {
         _data: {
           header: "",
         },
-        hero: {
-          children: "hero",
-          title: "3333",
+        foo: {
+          children: "foo",
+          title: "bar",
           _data: {
-            header: "# !hero 3333",
+            header: "# !foo bar",
           },
-          foo: [
-            {
-              children: "hero.foo",
-              title: "",
-              _data: {
-                header: "## !!foo",
-              },
-              foo: {
-                alt: "bar",
-                title: "",
-                url: "http://example.com/foo",
-              },
-            },
-            {
-              children: "hero.foo",
-              title: "baz",
-              _data: {
-                header: "## !!foo baz",
-              },
-              hey: "11 11",
-              one: ["333", "444"],
-            },
-          ],
         },
       }}
     >
       <_components.slot path="">
-        <MyCode
-          codeblock={{
-            value: "{}",
-            lang: "json",
-            meta: "config",
-          }}
-        />
-        <_components.p>{"lorem"}</_components.p>
-        <_components.slot name="hero" />
-        <_components.p>{"foo"}</_components.p>
-      </_components.slot>
-      <_components.slot path="hero">
-        <_components.slot name="foo" index={0} />
-        <_components.slot name="foo" index={1} />
-      </_components.slot>
-      <_components.slot path="hero.foo">
-        <_components.p>{"bax"}</_components.p>
+        <_components.p>{"ho"}</_components.p>
         <_components.slot name="foo" />
       </_components.slot>
-      <_components.slot path="hero.foo">
-        <_components.p>{"3"}</_components.p>
-        <_components.slot name="hey" />
-        <_components.slot name="one" index={0} />
-        <_components.slot name="one" index={1} />
-        <_components.p>{"asdasdf"}</_components.p>
+      <_components.slot path="foo">
+        <_components.p>{"bax"}</_components.p>
       </_components.slot>
     </Hike>
   )

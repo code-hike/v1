@@ -40,6 +40,9 @@ function _createMdxContent(props) {
     },
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
+  if (props._returnBlocks) {
+    return getBlocks(props)
+  }
   return <Hike foo={"bar"} hike={getBlocks(props)}></Hike>
 }
 export default function MDXContent(props = {}) {

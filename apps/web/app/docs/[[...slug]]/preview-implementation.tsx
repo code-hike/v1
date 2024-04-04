@@ -1,9 +1,10 @@
 import { RawCode, Pre, highlight } from "codehike/code"
-import { Block, CodeBlock, parse } from "codehike/schema"
+import { Block } from "codehike/schema"
 import React from "react"
-import { map, z } from "zod"
+import { z } from "zod"
 import { Demo } from "@/components/demo"
 import { CodeWithNotes } from "@/components/code-with-notes"
+import { parseContent } from "codehike"
 
 const ContentSchema = Block.extend({
   implementation: Block.extend({}),
@@ -11,16 +12,13 @@ const ContentSchema = Block.extend({
 
 type Content = z.infer<typeof ContentSchema>
 
-export function PreviewImplementation({ getBlocks }: { getBlocks: any }) {
-  const { children, implementation } = parse(
-    getBlocks({
-      components: {
-        Code,
-        Demo,
-      },
-    }),
-    ContentSchema,
-  )
+export function PreviewImplementation({ MDX }: { MDX: any }) {
+  const { children, implementation } = parseContent(ContentSchema, MDX, {
+    components: {
+      Code,
+      Demo,
+    },
+  })
 
   return (
     <>
