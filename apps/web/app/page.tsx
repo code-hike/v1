@@ -55,7 +55,7 @@ function Chart() {
         <span className="w-16 text-left">More Static</span>
         <span className="w-20 text-center">Static Article</span>
         <span className="w-24 text-center">Interactive Explainer</span>
-        <span className="w-24 text-center">Annotated Walkthrough</span>
+        <span className="w-20 text-center">Landing Page</span>
         <span className="w-24 text-center">Personalized Docs</span>
         <span className="w-16 text-right">More Dynamic</span>
       </div>

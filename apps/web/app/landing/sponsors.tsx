@@ -2,6 +2,7 @@ import GHLogo from "./logo.github.png"
 import GHText from "./text.github.png"
 import MetaLogo from "./logo.meta.png"
 import DrivlyLogo from "./logo.drivly.png"
+import SpeakeasyLogo from "./logo.speakeasy.svg"
 import UidevLogo from "./logo.uidev.svg"
 import Image from "next/image"
 import Link from "next/link"
@@ -72,14 +73,14 @@ export function TopSponsors({
         </a>
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
-          href="https://driv.ly/"
+          href="https://www.speakeasyapi.dev/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
-            src={DrivlyLogo}
-            alt="Drivly logo"
-            height={48 * scale}
+            src={SpeakeasyLogo}
+            alt="Speakeasy logo"
+            height={36 * scale}
             placeholder="empty"
             priority={true}
           />
