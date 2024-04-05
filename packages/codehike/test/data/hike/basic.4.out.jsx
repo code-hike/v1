@@ -1,40 +1,22 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = {
-      slot: "slot",
+      h1: "h1",
+      p: "p",
       ...props.components,
     },
-    { Hike } = _components
-  if (!Hike) _missingMdxReference("Hike", true)
+    { Foo } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
   return (
-    <Hike
-      __hike={{
-        children: "",
-        title: "",
-        _data: {
-          header: "",
-        },
-        code: [
-          {
-            value:
-              "object Main {\r\n  def factorial(n: Int): Int = {\r\n    if (n == 0) {\r\n      return 1\r\n    } else {\r\n      return n * factorial(n - 1)\r\n    }\r\n  }\r\n}",
-            lang: "scala",
-            meta: "",
-          },
-          {
-            value:
-              "def factorial(n):\r\n    if n == 0:\r\n        return 1\r\n    else:\r\n        return n * factorial(n - 1)",
-            lang: "python",
-            meta: "",
-          },
-        ],
-      }}
-    >
-      <_components.slot path="">
-        <_components.slot name="code" index={0} />
-        <_components.slot name="code" index={1} />
-      </_components.slot>
-    </Hike>
+    <>
+      <_components.p>{"hello"}</_components.p>
+      {"\n"}
+      <Foo>
+        <_components.p>{"bar"}</_components.p>
+        <_components.h1>{"!x 1"}</_components.h1>
+        <_components.p>{"hey"}</_components.p>
+      </Foo>
+    </>
   )
 }
 export default function MDXContent(props = {}) {

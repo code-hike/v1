@@ -1,66 +1,53 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import { Hike } from "../../src/Hike"
 function _createMdxContent(props) {
   const _components = {
       p: "p",
       slot: "slot",
       ...props.components,
     },
-    { MyCode } = _components
+    { Hike, MyCode } = _components
+  if (!Hike) _missingMdxReference("Hike", true)
   if (!MyCode) _missingMdxReference("MyCode", true)
   return (
     <Hike
-      foo={"bar"}
       __hike={{
         children: "",
         title: "",
         _data: {
           header: "",
         },
+        code: {
+          value:
+            "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
+          lang: "py",
+          meta: "",
+        },
       }}
     >
       <_components.slot path="">
-        <_components.p>{"Hello world!"}</_components.p>
+        <_components.p>{"hello"}</_components.p>
         <MyCode
           codeblock={{
             type: "code",
-            lang: "js",
-            meta: "my meta",
-            value: 'console.log("hello world")\r\nconsole.log("bye world")',
+            lang: "py",
+            meta: null,
+            value:
+              "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
             position: {
               start: {
-                line: 7,
+                line: 3,
                 column: 1,
-                offset: 79,
+                offset: 9,
               },
               end: {
-                line: 10,
+                line: 5,
                 column: 4,
-                offset: 151,
+                offset: 36,
               },
             },
           }}
         />
-        <MyCode
-          codeblock={{
-            type: "code",
-            lang: "jsonc",
-            meta: "THE CUSTOMER OBJECT",
-            value: "// !Mark(2)",
-            position: {
-              start: {
-                line: 12,
-                column: 1,
-                offset: 155,
-              },
-              end: {
-                line: 14,
-                column: 4,
-                offset: 201,
-              },
-            },
-          }}
-        />
+        <_components.slot name="code" />
       </_components.slot>
     </Hike>
   )

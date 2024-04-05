@@ -15,6 +15,7 @@ import {
 import { sectionToAttribute } from "./2.remark-section-to-attribute.js"
 import { moveChildrenToHikeProp } from "./4.recma-move-children.js"
 import { addBlocksExport } from "./5.recma-export-hike.js"
+import { transformImportedCode } from "./mdx/0.import-code-from-path.js"
 
 /**
  * Code Hike configuration object
@@ -31,7 +32,7 @@ export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
   config,
 ) => {
   return async (root, file) => {
-    let tree = root
+    let tree = await transformImportedCode(root, file)
     // if we find any hikeable element outside of <Hike>s,
     // let's wrap everything in a <Hike>
     if (root.children.some(isHikeElement)) {
@@ -46,10 +47,10 @@ export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
       ]
     }
 
-    tree = (await transformAllHikes(root, config, file)) as any
+    tree = (await transformAllHikes(root, config)) as any
 
     if (config?.components?.code) {
-      tree = transformAllCode(tree, config, file) as any
+      tree = transformAllCode(tree, config) as any
     }
     return tree
   }
@@ -58,7 +59,7 @@ export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
 export const recmaCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
   config,
 ) => {
-  return async (root, file) => {
+  return async (root) => {
     let tree = transformAllRecmaHikes(root, config as any) as any
     return tree as any
   }
@@ -67,14 +68,8 @@ export const recmaCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
 export async function transformAllCode(
   node: Root | Content,
   config: CodeHikeConfig,
-  file?: any,
 ) {
-  const mdxPath = file?.history
-    ? file.history[file.history.length - 1]
-    : undefined
-
   if (node.type === "code") {
-    const codeblock = await parseCode(node, mdxPath)
     return {
       type: "mdxJsxFlowElement",
       name: config?.components?.code || "Code",
@@ -82,7 +77,7 @@ export async function transformAllCode(
         {
           type: "mdxJsxAttribute",
           name: "codeblock",
-          value: getObjectAttribute(codeblock),
+          value: getObjectAttribute(node),
         },
       ],
       children: [],
@@ -92,7 +87,7 @@ export async function transformAllCode(
   if ("children" in node && node.children.length > 0) {
     // @ts-ignore
     node.children = await Promise.all(
-      node.children.map((child) => transformAllCode(child, config, file)),
+      node.children.map((child) => transformAllCode(child, config)),
     )
   }
 
@@ -102,26 +97,23 @@ export async function transformAllCode(
 export async function transformAllHikes(
   node: Root | Content,
   config?: CodeHikeConfig,
-  file?: any,
 ) {
-  const mdxPath = file?.history ? file.history[file.history.length - 1] : null
-
   if (node.type === "mdxJsxFlowElement" && node.name === "Hike") {
-    return await transformRemarkHike(node, mdxPath)
+    return await transformRemarkHike(node)
   }
 
   if ("children" in node && node.children.length > 0) {
     // @ts-ignore
     node.children = await Promise.all(
-      node.children.map((child) => transformAllHikes(child, config, file)),
+      node.children.map((child) => transformAllHikes(child, config)),
     )
   }
 
   return node
 }
 
-async function transformRemarkHike(node: MdxJsxFlowElement, mdxPath?: string) {
-  const section = await listToSection(node, mdxPath)
+async function transformRemarkHike(node: MdxJsxFlowElement) {
+  const section = await listToSection(node)
   const { children, attributes } = sectionToAttribute(section)
 
   node.children = children

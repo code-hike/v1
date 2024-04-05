@@ -2,281 +2,35 @@
   "type": "root",
   "children": [
     {
+      "type": "element",
+      "tagName": "p",
+      "properties": {},
+      "children": [{ "type": "text", "value": "hello" }]
+    },
+    { "type": "text", "value": "\n" },
+    {
       "type": "mdxJsxFlowElement",
-      "name": "Hike",
-      "attributes": [
-        {
-          "type": "mdxJsxAttribute",
-          "name": "__hike",
-          "value": {
-            "type": "mdxJsxAttributeValueExpression",
-            "value": "",
-            "data": {
-              "estree": {
-                "type": "Program",
-                "body": [
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": {
-                      "type": "ObjectExpression",
-                      "properties": [
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "children" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "",
-                            "raw": "\"\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "title" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "",
-                            "raw": "\"\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "_data" },
-                          "kind": "init",
-                          "value": {
-                            "type": "ObjectExpression",
-                            "properties": [
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "header" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "Literal",
-                                  "value": "",
-                                  "raw": "\"\""
-                                }
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "code" },
-                          "kind": "init",
-                          "value": {
-                            "type": "ArrayExpression",
-                            "elements": [
-                              {
-                                "type": "ObjectExpression",
-                                "properties": [
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "value"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "object Main {\r\n  def factorial(n: Int): Int = {\r\n    if (n == 0) {\r\n      return 1\r\n    } else {\r\n      return n * factorial(n - 1)\r\n    }\r\n  }\r\n}",
-                                      "raw": "\"object Main {\\r\\n  def factorial(n: Int): Int = {\\r\\n    if (n == 0) {\\r\\n      return 1\\r\\n    } else {\\r\\n      return n * factorial(n - 1)\\r\\n    }\\r\\n  }\\r\\n}\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "lang"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "scala",
-                                      "raw": "\"scala\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "meta"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "",
-                                      "raw": "\"\""
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "ObjectExpression",
-                                "properties": [
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "value"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "def factorial(n):\r\n    if n == 0:\r\n        return 1\r\n    else:\r\n        return n * factorial(n - 1)",
-                                      "raw": "\"def factorial(n):\\r\\n    if n == 0:\\r\\n        return 1\\r\\n    else:\\r\\n        return n * factorial(n - 1)\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "lang"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "python",
-                                      "raw": "\"python\""
-                                    }
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false,
-                                    "key": {
-                                      "type": "Literal",
-                                      "value": "meta"
-                                    },
-                                    "kind": "init",
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "",
-                                      "raw": "\"\""
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "sourceType": "module",
-                "comments": []
-              }
-            }
-          }
-        }
-      ],
+      "name": "Foo",
+      "attributes": [],
+      "data": { "_mdxExplicitJsx": true },
       "children": [
         {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            { "type": "mdxJsxAttribute", "name": "path", "value": "" }
-          ],
-          "children": [
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "index",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "0",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": 0,
-                              "raw": "0"
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
-              ],
-              "children": []
-            },
-            {
-              "type": "mdxJsxFlowElement",
-              "name": "slot",
-              "attributes": [
-                { "type": "mdxJsxAttribute", "name": "name", "value": "code" },
-                {
-                  "type": "mdxJsxAttribute",
-                  "name": "index",
-                  "value": {
-                    "type": "mdxJsxAttributeValueExpression",
-                    "value": "1",
-                    "data": {
-                      "estree": {
-                        "type": "Program",
-                        "body": [
-                          {
-                            "type": "ExpressionStatement",
-                            "expression": {
-                              "type": "Literal",
-                              "value": 1,
-                              "raw": "1"
-                            }
-                          }
-                        ],
-                        "sourceType": "module",
-                        "comments": []
-                      }
-                    }
-                  }
-                }
-              ],
-              "children": []
-            }
-          ]
+          "type": "element",
+          "tagName": "p",
+          "properties": {},
+          "children": [{ "type": "text", "value": "bar" }]
+        },
+        {
+          "type": "element",
+          "tagName": "h1",
+          "properties": {},
+          "children": [{ "type": "text", "value": "!x 1" }]
+        },
+        {
+          "type": "element",
+          "tagName": "p",
+          "properties": {},
+          "children": [{ "type": "text", "value": "hey" }]
         }
       ]
     }
