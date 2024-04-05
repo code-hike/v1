@@ -10,6 +10,8 @@ export async function transformAllHikes(root: Root) {
   const hikes: MdxJsxFlowElement[] = []
 
   visit(tree, "mdxJsxFlowElement", (node) => {
+    // if (node.children.some(isHikeElement)) {
+    // }
     if (node.name === "Hike") {
       hikes.push(node)
     }
