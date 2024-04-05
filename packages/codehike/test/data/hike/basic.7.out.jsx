@@ -1,21 +1,42 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = {
-      h1: "h1",
       p: "p",
+      slot: "slot",
       ...props.components,
     },
-    { Foo } = _components
-  if (!Foo) _missingMdxReference("Foo", true)
+    { Hike } = _components
+  if (!Hike) _missingMdxReference("Hike", true)
   return (
     <>
       <_components.p>{"hello"}</_components.p>
       {"\n"}
-      <Foo>
-        <_components.p>{"bar"}</_components.p>
-        <_components.h1>{"!x 1"}</_components.h1>
-        <_components.p>{"hey"}</_components.p>
-      </Foo>
+      <Hike
+        hike={{
+          children: [<_components.slot name="x" />],
+          title: "",
+          _data: {
+            header: "",
+          },
+          x: {
+            children: [
+              <_components.p>{"hey"}</_components.p>,
+              <_components.slot name="s" />,
+            ],
+            title: "1",
+            _data: {
+              header: "# !x 1",
+            },
+            s: {
+              children: [<_components.p>{"bar"}</_components.p>],
+              title: "3",
+              _data: {
+                header: "## !s 3",
+              },
+            },
+          },
+        }}
+      ></Hike>
     </>
   )
 }

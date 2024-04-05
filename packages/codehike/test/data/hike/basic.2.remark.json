@@ -4,13 +4,9 @@
     { "type": "paragraph", "children": [{ "type": "text", "value": "hello" }] },
     {
       "type": "mdxJsxFlowElement",
-      "name": "Foo",
+      "name": "Hike",
       "attributes": [],
       "children": [
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bar" }]
-        },
         {
           "type": "heading",
           "depth": 1,
@@ -19,6 +15,15 @@
         {
           "type": "paragraph",
           "children": [{ "type": "text", "value": "hey" }]
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [{ "type": "text", "value": "!s 3" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "bar" }]
         }
       ],
       "data": { "_mdxExplicitJsx": true }

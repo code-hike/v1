@@ -4,21 +4,285 @@
     { "type": "paragraph", "children": [{ "type": "text", "value": "hello" }] },
     {
       "type": "mdxJsxFlowElement",
-      "name": "Foo",
-      "attributes": [],
+      "name": "Hike",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "__hike",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "children" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "title" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "",
+                            "raw": "\"\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "_data" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "header" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "",
+                                  "raw": "\"\""
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "x" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Literal",
+                                  "value": "children"
+                                },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "x",
+                                  "raw": "\"x\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "title" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "1",
+                                  "raw": "\"1\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "_data" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "header"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "# !x 1",
+                                        "raw": "\"# !x 1\""
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "s" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "children"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "x.s",
+                                        "raw": "\"x.s\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "title"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "3",
+                                        "raw": "\"3\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "_data"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ObjectExpression",
+                                        "properties": [
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "header"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "## !s 3",
+                                              "raw": "\"## !s 3\""
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
       "children": [
         {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bar" }]
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "" }
+          ],
+          "children": [
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "x" }
+              ],
+              "children": []
+            }
+          ]
         },
         {
-          "type": "heading",
-          "depth": 1,
-          "children": [{ "type": "text", "value": "!x 1" }]
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "x" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "hey" }]
+            },
+            {
+              "type": "mdxJsxFlowElement",
+              "name": "slot",
+              "attributes": [
+                { "type": "mdxJsxAttribute", "name": "name", "value": "s" }
+              ],
+              "children": []
+            }
+          ]
         },
         {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "hey" }]
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            { "type": "mdxJsxAttribute", "name": "path", "value": "x.s" }
+          ],
+          "children": [
+            {
+              "type": "paragraph",
+              "children": [{ "type": "text", "value": "bar" }]
+            }
+          ]
         }
       ],
       "data": { "_mdxExplicitJsx": true }
