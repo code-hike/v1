@@ -1,32 +1,11 @@
 {
   "type": "root",
   "children": [
-    { "type": "paragraph", "children": [{ "type": "text", "value": "hello" }] },
     {
-      "type": "mdxJsxFlowElement",
-      "name": "Hike",
-      "attributes": [],
-      "children": [
-        {
-          "type": "heading",
-          "depth": 1,
-          "children": [{ "type": "text", "value": "!x 1" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "hey" }]
-        },
-        {
-          "type": "heading",
-          "depth": 2,
-          "children": [{ "type": "text", "value": "!s 3" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bar" }]
-        }
-      ],
-      "data": { "_mdxExplicitJsx": true }
-    }
+      "type": "heading",
+      "depth": 1,
+      "children": [{ "type": "text", "value": "!foo" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "bar" }] }
   ]
 }

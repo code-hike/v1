@@ -3,7 +3,7 @@
   "children": [
     {
       "type": "mdxJsxFlowElement",
-      "name": "Hike",
+      "name": "slot",
       "attributes": [
         {
           "type": "mdxJsxAttribute",

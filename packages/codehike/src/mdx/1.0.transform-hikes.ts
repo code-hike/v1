@@ -1,8 +1,8 @@
 import { Root } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { visit } from "unist-util-visit"
-import { isHikeElement, listToSection } from "../1.remark-list-to-section.js"
-import { sectionToAttribute } from "../2.remark-section-to-attribute.js"
+import { isHikeElement, listToSection } from "./1.1.remark-list-to-section.js"
+import { sectionToAttribute } from "./1.2.remark-section-to-attribute.js"
 
 export async function transformAllHikes(root: Root) {
   let tree = wrapInHike(root)
@@ -10,9 +10,7 @@ export async function transformAllHikes(root: Root) {
   const hikes: MdxJsxFlowElement[] = []
 
   visit(tree, "mdxJsxFlowElement", (node) => {
-    // if (node.children.some(isHikeElement)) {
-    // }
-    if (node.name === "Hike") {
+    if (node.children.some(isHikeElement)) {
       hikes.push(node)
     }
   })
@@ -29,7 +27,7 @@ function wrapInHike(root: Root) {
     root.children = [
       {
         type: "mdxJsxFlowElement",
-        name: "Hike",
+        name: "slot",
         attributes: [],
         // todo what is different between RootContent and (BlockContent | DefinitionContent)
         children: root.children as any,

@@ -4,7 +4,7 @@ import "mdast-util-mdx-jsx"
 import { Root } from "mdast"
 
 import { transformImportedCode } from "./mdx/0.import-code-from-path.js"
-import { transformAllHikes } from "./mdx/1.transform-hikes.js"
+import { transformAllHikes } from "./mdx/1.0.transform-hikes.js"
 import { transformAllCode } from "./mdx/2.transform-code.js"
 import { transformHikeProps } from "./mdx/3.transform-hike-props.js"
 

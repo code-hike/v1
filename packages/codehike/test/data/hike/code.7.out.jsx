@@ -1,16 +1,15 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 import { Hike } from "../../src/Hike"
-export function getBlocks(props = {}) {
+function _createMdxContent(props) {
   const _components = {
       p: "p",
-      slot: "slot",
       ...props.components,
     },
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
-  return {
-    children: [
-      <_components.p>{"Hello world!"}</_components.p>,
+  return (
+    <Hike foo={"bar"}>
+      <_components.p>{"Hello world!"}</_components.p>
       <MyCode
         codeblock={{
           type: "code",
@@ -30,7 +29,7 @@ export function getBlocks(props = {}) {
             },
           },
         }}
-      />,
+      />
       <MyCode
         codeblock={{
           type: "code",
@@ -50,26 +49,9 @@ export function getBlocks(props = {}) {
             },
           },
         }}
-      />,
-    ],
-    title: "",
-    _data: {
-      header: "",
-    },
-  }
-}
-function _createMdxContent(props) {
-  const _components = {
-      p: "p",
-      slot: "slot",
-      ...props.components,
-    },
-    { MyCode } = _components
-  if (!MyCode) _missingMdxReference("MyCode", true)
-  if (props._returnBlocks) {
-    return getBlocks(props)
-  }
-  return <Hike foo={"bar"} hike={getBlocks(props)}></Hike>
+      />
+    </Hike>
+  )
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

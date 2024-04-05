@@ -1,51 +1,34 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = {
-      p: "p",
-      slot: "slot",
-      ...props.components,
-    },
-    { Hike } = _components
-  if (!Hike) _missingMdxReference("Hike", true)
+    p: "p",
+    slot: "slot",
+    ...props.components,
+  }
   return (
-    <>
-      <_components.p>{"hello"}</_components.p>
-      {"\n"}
-      <Hike
-        __hike={{
-          children: "",
+    <_components.slot
+      __hike={{
+        children: "",
+        title: "",
+        _data: {
+          header: "",
+        },
+        foo: {
+          children: "foo",
           title: "",
           _data: {
-            header: "",
+            header: "# !foo",
           },
-          x: {
-            children: "x",
-            title: "1",
-            _data: {
-              header: "# !x 1",
-            },
-            s: {
-              children: "x.s",
-              title: "3",
-              _data: {
-                header: "## !s 3",
-              },
-            },
-          },
-        }}
-      >
-        <_components.slot path="">
-          <_components.slot name="x" />
-        </_components.slot>
-        <_components.slot path="x">
-          <_components.p>{"hey"}</_components.p>
-          <_components.slot name="s" />
-        </_components.slot>
-        <_components.slot path="x.s">
-          <_components.p>{"bar"}</_components.p>
-        </_components.slot>
-      </Hike>
-    </>
+        },
+      }}
+    >
+      <_components.slot path="">
+        <_components.slot name="foo" />
+      </_components.slot>
+      <_components.slot path="foo">
+        <_components.p>{"bar"}</_components.p>
+      </_components.slot>
+    </_components.slot>
   )
 }
 export default function MDXContent(props = {}) {
@@ -56,14 +39,5 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
-  )
-}
-function _missingMdxReference(id, component) {
-  throw new Error(
-    "Expected " +
-      (component ? "component" : "object") +
-      " `" +
-      id +
-      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

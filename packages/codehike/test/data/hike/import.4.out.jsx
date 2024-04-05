@@ -5,11 +5,10 @@ function _createMdxContent(props) {
       slot: "slot",
       ...props.components,
     },
-    { Hike, MyCode } = _components
-  if (!Hike) _missingMdxReference("Hike", true)
+    { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
   return (
-    <Hike
+    <_components.slot
       __hike={{
         children: "",
         title: "",
@@ -49,7 +48,7 @@ function _createMdxContent(props) {
         />
         <_components.slot name="code" />
       </_components.slot>
-    </Hike>
+    </_components.slot>
   )
 }
 export default function MDXContent(props = {}) {

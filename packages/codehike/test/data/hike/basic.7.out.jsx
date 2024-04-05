@@ -1,44 +1,28 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = {
-      p: "p",
-      slot: "slot",
-      ...props.components,
+    p: "p",
+    slot: "slot",
+    ...props.components,
+  }
+  const _blocks = {
+    children: [<_components.slot name="foo" />],
+    title: "",
+    _data: {
+      header: "",
     },
-    { Hike } = _components
-  if (!Hike) _missingMdxReference("Hike", true)
-  return (
-    <>
-      <_components.p>{"hello"}</_components.p>
-      {"\n"}
-      <Hike
-        hike={{
-          children: [<_components.slot name="x" />],
-          title: "",
-          _data: {
-            header: "",
-          },
-          x: {
-            children: [
-              <_components.p>{"hey"}</_components.p>,
-              <_components.slot name="s" />,
-            ],
-            title: "1",
-            _data: {
-              header: "# !x 1",
-            },
-            s: {
-              children: [<_components.p>{"bar"}</_components.p>],
-              title: "3",
-              _data: {
-                header: "## !s 3",
-              },
-            },
-          },
-        }}
-      ></Hike>
-    </>
-  )
+    foo: {
+      children: [<_components.p>{"bar"}</_components.p>],
+      title: "",
+      _data: {
+        header: "# !foo",
+      },
+    },
+  }
+  if (props._returnBlocks) {
+    return _blocks
+  }
+  return _blocks.children
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}
@@ -48,14 +32,5 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
-  )
-}
-function _missingMdxReference(id, component) {
-  throw new Error(
-    "Expected " +
-      (component ? "component" : "object") +
-      " `" +
-      id +
-      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

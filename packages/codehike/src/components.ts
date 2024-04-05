@@ -13,7 +13,6 @@ export function getBlocks(Content: MDXContent, props: MDXProps = {}) {
   const result = Content({
     _returnBlocks: true,
     ...props,
-    components: { Hike: true, ...props.components } as any,
   }) as any
   return result
 }
