@@ -6,6 +6,7 @@ import { notFound } from "next/navigation"
 import { LayoutExample } from "./layout-example"
 import { CodeExample } from "./code-example"
 import { PreviewImplementation } from "./preview-implementation"
+import { AllCodeDemos } from "@/components/all-code-demos"
 
 export default async function Page({
   params,
@@ -13,6 +14,7 @@ export default async function Page({
   params: { slug?: string[] }
 }) {
   const page = docs.getPage(params.slug)
+  console.log(params.slug)
 
   if (page == null) {
     notFound()
@@ -23,7 +25,14 @@ export default async function Page({
   const layout = page.data.layout
 
   let children = <MDX />
-  if (layout === "LayoutExample") {
+  if (layout === "CodeIndex") {
+    children = (
+      <>
+        <MDX />
+        <AllCodeDemos />
+      </>
+    )
+  } else if (layout === "LayoutExample") {
     children = <LayoutExample MDX={MDX} />
   } else if (layout === "CodeExample") {
     children = <CodeExample MDX={MDX} />

@@ -4,6 +4,8 @@ description: Collapse annotation example
 layout: PreviewAndImplementation
 ---
 
+## !demo
+
 Fold and unfold blocks of code.
 
 <Demo name="collapse">
@@ -11,12 +13,6 @@ Fold and unfold blocks of code.
 </Demo>
 
 ## !implementation
-
-```txt
-// TO DO
-```
-
-### !explainer
 
 We use the `Collapsible` component from [shadcn/ui](https://ui.shadcn.com/docs/components/collapsible):
 
@@ -26,7 +22,9 @@ npx shadcn-ui@latest add collapsible
 
 So, for each `!Collapse` annotation we need two add to extra annotations, one for the trigger and one for the content.
 
-```tsx !
+<CodeWithNotes>
+
+```tsx ! code.tsx
 import {
   Collapsible,
   CollapsibleContent,
@@ -144,3 +142,5 @@ There are three parts to the `Collapsible` component:
   }
 ]
 ```
+
+</CodeWithNotes>
