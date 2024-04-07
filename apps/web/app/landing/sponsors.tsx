@@ -19,7 +19,7 @@ export function TopSponsors({
 }) {
   return (
     <section className={className}>
-      <h3 className="text-center pb-4 text-primary/60 text-md">{title}</h3>
+      <h3 className="text-center pb-6 text-primary/60 text-md">{title}</h3>
       <div className="flex gap-4 justify-center invert dark:invert-0 flex-wrap">
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
