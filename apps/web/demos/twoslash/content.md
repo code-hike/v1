@@ -1,8 +1,8 @@
 ```ts
-// @errors: 2588 2304
-const a = "123"
+const hi = "Hello"
+const msg = `${hi}, world`
+//    ^?
 
-a = 132
-
-b = a + 3
+// @errors: 2588
+msg = 123
 ```

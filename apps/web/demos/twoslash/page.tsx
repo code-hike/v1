@@ -7,6 +7,13 @@ import {
   LineAnnotationComponent,
   highlight,
 } from "codehike/code"
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipArrow,
+} from "@/components/ui/tooltip"
 import Content from "./content.md"
 import { createTwoslasher } from "twoslash"
 
@@ -32,8 +39,6 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   )
 
   const { hovers, code, queries, completions, errors } = result
-
-  // console.log(result)
 
   const data = { ...codeblock, value: code }
   const info = await highlight(data, "github-dark")
@@ -71,7 +76,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
       query: text,
       fromLineNumber: line + 1,
       toLineNumber: line + 1,
-      data: { character, className: "text-red-500" },
+      data: { character, className: "text-red-400" },
     })
   })
 
@@ -79,7 +84,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       className="m-0 bg-zinc-950"
       code={info}
-      components={{ InlineHover: Hover, BlockQuery }}
+      components={{ InlineHover, BlockQuery }}
     />
   )
 }
@@ -92,14 +97,14 @@ const BlockQuery: BlockAnnotationComponent = ({ annotation, children }) => {
       <div
         style={{ minWidth: `${character + 4}ch` }}
         className={
-          "w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces" +
+          "w-fit border bg-zinc-900 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces" +
           " " +
           className
         }
       >
         <div
           style={{ left: `${character + 1}ch` }}
-          className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-800"
+          className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-900"
         />
         {annotation.query}
       </div>
@@ -107,10 +112,26 @@ const BlockQuery: BlockAnnotationComponent = ({ annotation, children }) => {
   )
 }
 
-const Hover: InlineAnnotationComponent = ({ children, annotation }) => {
+export const InlineHover: InlineAnnotationComponent = async ({
+  children,
+  annotation,
+}) => {
+  const { query, data } = annotation
+  const highlighted = await highlight(
+    { value: query, lang: "ts", meta: "" },
+    "github-dark",
+  )
   return (
-    <span className="decoration-dotted underline" title={annotation.query}>
-      {children}
-    </span>
+    <TooltipProvider delayDuration={300}>
+      <Tooltip>
+        <TooltipTrigger className="underline decoration-dashed cursor-pointer">
+          {children}
+        </TooltipTrigger>
+        <TooltipContent className="bg-zinc-900" sideOffset={0}>
+          <Pre code={highlighted} className="m-0 p-1 bg-transparent" />
+          <TooltipArrow className="fill-zinc-800" />
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
