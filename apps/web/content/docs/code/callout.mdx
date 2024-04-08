@@ -28,7 +28,7 @@ import {
 
 export async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-
+  // !Callout[/annotations/] transform-annotations
   highlighted.annotations = highlighted.annotations.map((annotation) => {
     if (annotation.name != "Callout") {
       return annotation
@@ -40,6 +40,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
       query,
       fromLineNumber: lineNumber,
       toLineNumber: lineNumber,
+      // !Callout[/column/] column
       data: { column: (fromColumn + toColumn) / 2 },
     }
   })
@@ -72,6 +73,14 @@ const BlockCallout: BlockAnnotationComponent = ({ annotation, children }) => {
   )
 }
 ```
+
+## !!notes transform-annotations
+
+We need to transform the `Callout` annotations from `InlineAnnotation` to `BlockAnnotation`
+
+## !!notes column
+
+We store the `column` in the annotation data
 
 </CodeWithNotes>
 

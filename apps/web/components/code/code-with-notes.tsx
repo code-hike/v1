@@ -7,6 +7,7 @@ import {
   expandCollapseAnnotations,
   collapseComponents,
 } from "../annotations/collapse"
+import { transformCallouts, BlockCallout } from "../annotations/callout"
 
 const ContentSchema = z.object({
   code: CodeBlock,
@@ -18,7 +19,9 @@ type RawBlocks = any
 export async function CodeWithNotes(props: RawBlocks) {
   const { code, notes = [] } = parse(props, ContentSchema)
   const highlighted = await highlight(code, "github-dark")
+
   highlighted.annotations = expandCollapseAnnotations(highlighted.annotations)
+  highlighted.annotations = transformCallouts(highlighted.annotations)
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
@@ -28,6 +31,7 @@ export async function CodeWithNotes(props: RawBlocks) {
     return {
       ...a,
       data: {
+        ...a.data,
         children: note.children,
       },
     }
@@ -42,7 +46,7 @@ export async function CodeWithNotes(props: RawBlocks) {
       <Pre
         className="m-0 px-0 bg-transparent whitespace-pre-wrap"
         code={highlighted}
-        components={{ InlineTooltip, ...collapseComponents }}
+        components={{ InlineTooltip, BlockCallout, ...collapseComponents }}
       />
     </div>
   )
