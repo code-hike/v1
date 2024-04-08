@@ -1,23 +1,3 @@
----
-title: Callout
-description: Callout
-layout: PreviewAndImplementation
----
-
-## !demo
-
-Fold and unfold blocks of code.
-
-<Demo name="callout" />
-
-## !implementation
-
-The tricky part about this one is that we have an inline annotation (because we want to have an arrow pointing to a specific column) but we want to render a block annotation (so we render the callout outside of the line we are annotating).
-
-<CodeWithNotes>
-
-```tsx ! code.tsx
-// !Collapse(1:6) collapsed
 import {
   RawCode,
   Pre,
@@ -73,6 +53,3 @@ const BlockCallout: BlockAnnotationComponent = ({ annotation, children }) => {
     </>
   )
 }
-```
-
-</CodeWithNotes>

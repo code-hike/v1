@@ -3,6 +3,10 @@ import { Block, CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
 import { CopyButton } from "@/components/copy-button"
 import { InlineTooltip } from "@/components/annotations/tooltip"
+import {
+  expandCollapseAnnotations,
+  collapseComponents,
+} from "../annotations/collapse"
 
 const ContentSchema = z.object({
   code: CodeBlock,
@@ -14,6 +18,7 @@ type RawBlocks = any
 export async function CodeWithNotes(props: RawBlocks) {
   const { code, notes = [] } = parse(props, ContentSchema)
   const highlighted = await highlight(code, "github-dark")
+  highlighted.annotations = expandCollapseAnnotations(highlighted.annotations)
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
@@ -37,7 +42,7 @@ export async function CodeWithNotes(props: RawBlocks) {
       <Pre
         className="m-0 px-0 bg-transparent whitespace-pre-wrap"
         code={highlighted}
-        components={{ Line, InlineTooltip }}
+        components={{ Line, InlineTooltip, ...collapseComponents }}
       />
     </div>
   )
