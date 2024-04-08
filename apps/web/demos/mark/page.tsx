@@ -1,6 +1,11 @@
-import { RawCode, Pre, highlight } from "codehike/code"
+import {
+  RawCode,
+  Pre,
+  highlight,
+  LineAnnotationComponent,
+  LineComponent,
+} from "codehike/code"
 import Content from "./content.md"
-import { LineAnnotationComponent, LineComponent } from "codehike/code"
 
 export default function Page() {
   return <Content components={{ Code }} />
@@ -17,7 +22,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   )
 }
 
-export const LineMark: LineAnnotationComponent = ({ children }) => {
+const LineMark: LineAnnotationComponent = ({ children }) => {
   return (
     <div className="px-2 border-l-2 border-blue-400 bg-blue-400/10">
       {children}
@@ -25,6 +30,6 @@ export const LineMark: LineAnnotationComponent = ({ children }) => {
   )
 }
 
-export const Line: LineComponent = ({ children }) => {
+const Line: LineComponent = ({ children }) => {
   return <div className="px-2 border-l-2 border-transparent">{children}</div>
 }
