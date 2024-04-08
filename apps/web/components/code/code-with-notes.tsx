@@ -6,13 +6,13 @@ import { InlineTooltip } from "@/components/annotations/tooltip"
 
 const ContentSchema = z.object({
   code: CodeBlock,
-  notes: z.array(Block),
+  notes: z.array(Block).optional(),
 })
 
 type RawBlocks = any
 
 export async function CodeWithNotes(props: RawBlocks) {
-  const { code, notes } = parse(props, ContentSchema)
+  const { code, notes = [] } = parse(props, ContentSchema)
   const highlighted = await highlight(code, "github-dark")
 
   // find matches between annotations and notes
