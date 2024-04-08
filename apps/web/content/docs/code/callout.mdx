@@ -60,9 +60,7 @@ const BlockCallout: BlockAnnotationComponent = ({ annotation, children }) => {
       {children}
       <div
         style={{ minWidth: `${column + 4}ch` }}
-        className={
-          "w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces"
-        }
+        className="w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces"
       >
         <div
           style={{ left: `${column}ch` }}
@@ -76,3 +74,39 @@ const BlockCallout: BlockAnnotationComponent = ({ annotation, children }) => {
 ```
 
 </CodeWithNotes>
+
+## Make it better
+
+Some ways to improve the callout annotation:
+
+- add different annotations with different styles (like Warning, Error, Info, etc)
+- add an option to show the callout either before or after the line
+- put markdown inside the callout (you'll need to write something like the `SuperCode` component below)
+
+````mdx content.mdx
+<SuperCode>
+
+```js !
+function lorem(ipsum, dolor = 1) {
+  const sit = ipsum == null ? 0 : 1
+  // !Callout[/sit/] sit-info
+  dolor = sit - amet(dolor)
+  // !Callout[/ispum/] ispum-info
+  return sit ? consectetur(ipsum) : []
+}
+```
+
+## !! sit-info
+
+Here you can put _markdown_
+
+## !! ispum-info
+
+Even code
+
+```js
+console.log("Hello, World!")
+```
+
+</SuperCode>
+````

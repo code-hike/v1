@@ -1,4 +1,4 @@
-import { LineComponent, Pre, highlight } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
 import { Block, CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"
 import { CopyButton } from "@/components/copy-button"
@@ -42,19 +42,8 @@ export async function CodeWithNotes(props: RawBlocks) {
       <Pre
         className="m-0 px-0 bg-transparent whitespace-pre-wrap"
         code={highlighted}
-        components={{ Line, InlineTooltip, ...collapseComponents }}
+        components={{ InlineTooltip, ...collapseComponents }}
       />
-    </div>
-  )
-}
-
-const Line: LineComponent = ({ lineNumber, children, ...rest }) => {
-  return (
-    <div data-line={lineNumber} className="table-row ">
-      <span className="pr-6 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-        {lineNumber}
-      </span>
-      <div className="table-cell break-words">{children}</div>
     </div>
   )
 }
