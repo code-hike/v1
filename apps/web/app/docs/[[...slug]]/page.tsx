@@ -14,7 +14,6 @@ export default async function Page({
   params: { slug?: string[] }
 }) {
   const page = docs.getPage(params.slug)
-  console.log(params.slug)
 
   if (page == null) {
     notFound()
