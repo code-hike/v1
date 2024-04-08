@@ -1,12 +1,12 @@
 import { docs } from "@/app/source"
 import type { Metadata } from "next"
-import { Callout } from "next-docs-ui/components/callout"
 import { RollButton } from "next-docs-ui/components/roll-button"
 import { DocsPage, DocsBody } from "next-docs-ui/page"
 import { notFound } from "next/navigation"
 import { LayoutExample } from "./layout-example"
 import { CodeExample } from "./code-example"
 import { PreviewImplementation } from "./preview-implementation"
+import { AllCodeDemos } from "@/components/all-code-demos"
 
 export default async function Page({
   params,
@@ -20,16 +20,23 @@ export default async function Page({
   }
 
   // @ts-ignore
-  const { default: MDX, getBlocks } = page.data.exports
+  const { default: MDX } = page.data.exports
   const layout = page.data.layout
 
   let children = <MDX />
-  if (layout === "LayoutExample") {
-    children = <LayoutExample getBlocks={getBlocks} />
+  if (layout === "CodeIndex") {
+    children = (
+      <>
+        <MDX />
+        <AllCodeDemos />
+      </>
+    )
+  } else if (layout === "LayoutExample") {
+    children = <LayoutExample MDX={MDX} />
   } else if (layout === "CodeExample") {
-    children = <CodeExample getBlocks={getBlocks} />
+    children = <CodeExample MDX={MDX} />
   } else if (layout === "PreviewAndImplementation") {
-    children = <PreviewImplementation getBlocks={getBlocks} />
+    children = <PreviewImplementation MDX={MDX} />
   }
 
   return (

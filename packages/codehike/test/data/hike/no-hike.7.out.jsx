@@ -15,9 +15,22 @@ function _createMdxContent(props) {
       {"\n"}
       <MyCode
         codeblock={{
-          value: "// !Foo\r\nconsole.log(1)",
+          type: "code",
           lang: "js",
           meta: null,
+          value: "// !Foo\r\nconsole.log(1)",
+          position: {
+            start: {
+              line: 5,
+              column: 1,
+              offset: 56,
+            },
+            end: {
+              line: 8,
+              column: 4,
+              offset: 91,
+            },
+          },
         }}
       />
     </>

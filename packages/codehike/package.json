@@ -31,7 +31,8 @@
     "@code-hike/lighter": "0.9.1",
     "diff": "^5.1.0",
     "estree-util-visit": "^2.0.0",
-    "mdast-util-mdx-jsx": "^3.0.0"
+    "mdast-util-mdx-jsx": "^3.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^3.0.0",

@@ -1,17 +1,15 @@
+import { parseContent } from "codehike"
 import { RawCode, Pre, highlight } from "codehike/code"
 import { Block, parse } from "codehike/schema"
 import { Callout } from "next-docs-ui/components/callout"
 import React from "react"
 
-const Content = Block.extend({})
+const ContentSchema = Block.extend({})
 
-export function CodeExample({ getBlocks }: { getBlocks: any }) {
-  const { children } = parse(
-    getBlocks({
-      components: { UsageAndPreview, Code: UsageCode, PreviewContainer },
-    }),
-    Content,
-  )
+export function CodeExample({ MDX }: { MDX: any }) {
+  const { children } = parseContent(ContentSchema, MDX, {
+    components: { UsageAndPreview, Code: UsageCode, PreviewContainer },
+  })
 
   return children
 }

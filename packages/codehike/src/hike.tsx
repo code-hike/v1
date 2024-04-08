@@ -17,33 +17,6 @@ export function Hike({
   return React.createElement(as, { hike, ...rest })
 }
 
-function StaticHike({ children }: { children: React.ReactNode }) {
-  const hike = getStepsFromChildren(children)
-  return slotToStaticJSX(hike)
-}
-
-function slotToStaticJSX(section: HikeSection<string>): React.ReactNode[] {
-  return section.children.flatMap((child: any) => {
-    if (child.type === React.Fragment && child.key) {
-      const name = child.key
-      if (name === "code") {
-        return section.code!.map((code, i) => (
-          <pre key={i}>
-            <code className={code.lang}>{code.value}</code>
-          </pre>
-        ))
-      }
-      const sections = section[name]!
-      const childSlot = sections.shift()
-      if (!childSlot) {
-        throw new Error(`Missing slot ${name}`)
-      }
-      return slotToStaticJSX(childSlot)
-    }
-    return child
-  })
-}
-
 export type HikeSection<T extends string = "steps"> = {
   [key in T]?: HikeSection<T>[]
 } & {

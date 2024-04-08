@@ -39,7 +39,7 @@ export async function Demo({
   const { default: Page } = await import(`@/demos/${name}/page`)
 
   const preview = (
-    <div className="min-w-0 rounded flex-1 bg-blue-900/80 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden ">
+    <div className="min-w-0 rounded flex-1 bg-blue-900/80 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden prose-invert">
       <Page />
       {children && (
         <div className="mt-auto text-center text-white font-light">
@@ -53,14 +53,6 @@ export async function Demo({
     <div className="flex gap-2 items-stretch">
       <div className="min-w-0 flex-1">{usage}</div>
       {preview}
-    </div>
-  )
-}
-function PreviewContainer({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-w-0 rounded flex-1 bg-blue-500/40 bg-[url(/dark-grid.svg)] p-3 flex flex-col ">
-      {children}
-      <div className="mt-auto text-center text-white">Foo bar</div>
     </div>
   )
 }

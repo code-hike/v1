@@ -3,8 +3,8 @@ import {
   HikeContent,
   HikeSection,
   JSXChild,
-} from "./1.remark-list-to-section.js"
-import { getObjectAttribute } from "./estree.js"
+} from "./1.1.remark-list-to-section.js"
+import { getObjectAttribute } from "../estree.js"
 
 export function sectionToAttribute(root: HikeSection) {
   const children: JSXChild[] = getSectionContainers(root, "")

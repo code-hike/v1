@@ -61,7 +61,6 @@ const DEFAULT_VALUE_NAME = "value"
 
 export async function listToSection(
   hikeElement: MdxJsxFlowElement,
-  mdxPath?: string,
 ): Promise<HikeSection> {
   const { children } = hikeElement
 
@@ -118,13 +117,12 @@ export async function listToSection(
       while (parent.depth >= child.depth && parent.parent) {
         parent = parent.parent
       }
-    } else if (child.type === "code" && child.meta?.trim().startsWith("!")) {
+    } else if (isHikeCode(child)) {
       const {
         name = DEFAULT_CODE_NAME,
         multi,
         title,
       } = parseName(child.meta || "")
-      const value = await parseCodeValue(child, mdxPath)
       parent.children.push({
         type: "code",
         name,
@@ -134,17 +132,14 @@ export async function listToSection(
               (c) => c.type != "content" && c.name === name,
             ).length
           : undefined,
-        value,
+        value: child.value,
         lang: child.lang,
         meta: title,
         // parentPath: mdxPath,
       })
     } else if (
       // ![!name title](image.png)
-      child.type === "paragraph" &&
-      child.children.length === 1 &&
-      child.children[0].type === "image" &&
-      child.children[0].alt?.startsWith("!")
+      isHikeImage(child)
     ) {
       const img = child.children[0]
       const {
@@ -168,9 +163,7 @@ export async function listToSection(
       })
     } else if (
       // !foo bar
-      child.type === "paragraph" &&
-      child.children[0]?.type === "text" &&
-      child.children[0]?.value?.trim().startsWith("!")
+      isHikeValue(child)
     ) {
       const values = child.children[0].value.split(/\r?\n/)
       values.forEach((value) => {
@@ -198,7 +191,49 @@ export async function listToSection(
   return root
 }
 
-export function isHikeHeading(child: any) {
+export function isHikeElement(child: any) {
+  return (
+    isHikeHeading(child) ||
+    isHikeCode(child) ||
+    isHikeImage(child) ||
+    isHikeValue(child)
+  )
+}
+
+function isHikeValue(child: any): child is {
+  type: "paragraph"
+  children: [
+    {
+      type: "text"
+      value: string
+    },
+  ]
+} {
+  return (
+    child.type === "paragraph" &&
+    child.children.length === 1 &&
+    child.children[0].type === "text" &&
+    child.children[0].value?.trim().startsWith("!")
+  )
+}
+
+function isHikeCode(child: any): child is Code {
+  return child.type === "code" && child.meta?.trim().startsWith("!")
+}
+
+function isHikeImage(child: any): child is {
+  type: "paragraph"
+  children: [Image]
+} {
+  return (
+    child.type === "paragraph" &&
+    child.children.length === 1 &&
+    child.children[0].type === "image" &&
+    child.children[0].alt?.startsWith("!")
+  )
+}
+
+function isHikeHeading(child: any) {
   return (
     child.type === "heading" &&
     child.children[0]?.type === "text" &&
@@ -235,84 +270,10 @@ function parseHeading(heading: Heading) {
   }
 }
 
-async function parseCodeValue(code: Code, mdxPath?: string) {
-  if (code.value?.startsWith("!from ")) {
-    const fromData = code.value.slice(6).trim()
-    const [codepath, range] = fromData?.split(/\s+/) || []
-    const value = await readFile(codepath, mdxPath, range)
-    return value
-  }
-  return code.value
-}
-
-export async function parseCode(code: Code, mdxPath?: string) {
+export async function parseCode(code: Code) {
   return {
-    value: await parseCodeValue(code, mdxPath),
+    value: code.value,
     lang: code.lang,
     meta: code.meta,
   }
-}
-
-export async function readFile(
-  externalCodePath: string,
-  mdxFilePath: string | undefined,
-  range: string | undefined,
-) {
-  const annotationContent = "from " + mdxFilePath + " " + (range || "")
-
-  let fs, path
-
-  try {
-    fs = (await import("fs")).default
-    path = (await import("path")).default
-    if (!fs || !fs.readFileSync || !path || !path.resolve) {
-      throw new Error("fs or path not found")
-    }
-  } catch (e: any) {
-    e.message = `Code Hike couldn't resolve this annotation:
-${annotationContent}
-Looks like node "fs" and "path" modules are not available.`
-    throw e
-  }
-
-  // if we don't know the path of the mdx file:
-  if (mdxFilePath == null) {
-    throw new Error(
-      `Code Hike couldn't resolve this annotation:
-  ${annotationContent}
-  Someone is calling the mdx compile function without setting the path.
-  Open an issue on CodeHike's repo for help.`,
-    )
-  }
-
-  const dir = path.dirname(mdxFilePath)
-  const absoluteCodepath = path.resolve(dir, externalCodePath)
-
-  let content: string
-  try {
-    content = fs.readFileSync(absoluteCodepath, "utf8")
-  } catch (e: any) {
-    e.message = `Code Hike couldn't resolve this annotation:
-${annotationContent}
-${absoluteCodepath} doesn't exist.`
-    throw e
-  }
-
-  if (range) {
-    const [start, end] = range.split(":")
-    const startLine = parseInt(start)
-    const endLine = parseInt(end)
-    if (isNaN(startLine) || isNaN(endLine)) {
-      throw new Error(
-        `Code Hike couldn't resolve this annotation:
-${annotationContent}
-The range is not valid. Should be something like:
- ${externalCodePath} 2:5`,
-      )
-    }
-    const lines = content.split("\n")
-    content = lines.slice(startLine - 1, endLine).join("\n")
-  }
-
-  return content
 }

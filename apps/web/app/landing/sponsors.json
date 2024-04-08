@@ -21,7 +21,7 @@
   },
   {
     "name": "speakeasy-api",
-    "amount": 1488
+    "amount": 1787
   },
   {
     "name": "drivly",
@@ -80,6 +80,10 @@
     "amount": 243
   },
   {
+    "name": "nathanclevenger",
+    "amount": 239
+  },
+  {
     "name": "obgibson",
     "amount": 234
   },
@@ -90,10 +94,6 @@
   {
     "name": "glenngillen",
     "amount": 225
-  },
-  {
-    "name": "nathanclevenger",
-    "amount": 220
   },
   {
     "name": "invertase",
@@ -120,6 +120,10 @@
     "amount": 189
   },
   {
+    "name": "kiliman",
+    "amount": 183
+  },
+  {
     "name": "codeSTACKr",
     "amount": 180
   },
@@ -130,10 +134,6 @@
   {
     "name": "codentell",
     "amount": 175
-  },
-  {
-    "name": "kiliman",
-    "amount": 174
   },
   {
     "name": "jrolfs",
@@ -442,6 +442,10 @@
   {
     "name": "achan-godaddy",
     "amount": 7
+  },
+  {
+    "name": "RayJason",
+    "amount": 6
   },
   {
     "name": "samedskulj",
