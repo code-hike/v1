@@ -1,4 +1,4 @@
-import { CopyButton } from "./copy-button"
+import { CopyButton } from "@/components/copy-button"
 import { TerminalSquare } from "lucide-react"
 import { TabsContent, TabsList, TabsToggle } from "./tabs-toggle"
 import { RawCode, Pre, highlight } from "codehike/code"
