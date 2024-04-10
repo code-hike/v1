@@ -1,0 +1,86 @@
+---
+title: The Three-Component Problem
+description: Dynamic composition in React
+date: 2024-04-10
+authors: [pomber]
+---
+
+This is an interesting problem I'm facing with React and couldn't find a convincing solution yet.
+
+## First some context
+
+I'm building a library for syntax highlighting. The library allows you to override a couple of things with components. For example, you can override how a line looks:
+
+```jsx user-code.jsx
+import { Code } from "library"
+
+function MyLine({ lineNumber, children, ...props }) {
+  return (
+    <div>
+      {lineNumber} - {children}
+    </div>
+  )
+}
+
+function MyCode(props) {
+  return <Code {...props} components={{ Line: MyLine }} />
+}
+```
+
+But the library also have annotations, which can also change how a line looks or behave:
+
+```jsx user-code.jsx
+function MyMarkedLine({ lineNumber, children, ...props }) {
+  return (
+    <div {...props} className="px-4 bg-yellow-100">
+      <span className="w-[3ch]">{lineNumber}</span>
+      {children}
+    </div>
+  )
+}
+
+function MyCalloutLine({ ...props }) {}
+
+function MyCode(props) {
+  return (
+    <Code
+      {...props}
+      components={{
+        Line: MyLine,
+        MarkedLine: MyMarkedLine,
+        CalloutLine: MyCalloutLine,
+      }}
+    />
+  )
+}
+```
+
+### Extra complexity
+
+Things we left out but are important:
+
+- It's not just lines, other components can be overridden and annotated too (tokens, token groups, line groups, pre blocks, etc).
+- We can't call the components as functions. Components may use hooks.
+- Should also work for RSC. Components can be `async`.
+
+### The Line API
+
+```jsx
+function MyMarkedLine({ Line, ...props }) {
+  return <Line {...props} className="bg-yellow-200" />
+}
+
+function MyCalloutLine({ Line, ...props }) {
+  return (
+    <>
+      <div>Lorem ipsum</div>
+      <Line {...props} />
+    </>
+  )
+}
+```
+
+## Questions for you
+
+- How would you render the line for the given API
+- How would you redesign the API?
