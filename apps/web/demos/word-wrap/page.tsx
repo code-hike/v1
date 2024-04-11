@@ -24,7 +24,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
           components={{ Line }}
         />
       </ResizablePanel>
-      <ResizableHandle withHandle />
+      <ResizableHandle withHandle className="bg-transparent" />
       <ResizablePanel defaultSize={5}></ResizablePanel>
     </ResizablePanelGroup>
   )
