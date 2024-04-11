@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
-import { CopyButton } from "./copy-button"
+import { CopyButton } from "@/components/copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
 import { Block, CodeBlock as CodeBlock, parse } from "codehike/schema"
 import { z } from "zod"

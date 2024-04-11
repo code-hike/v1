@@ -1,6 +1,6 @@
 import { Block, CodeBlock, parse } from "codehike/schema"
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
-import { CopyButton } from "@/ui/copy-button"
+import { CopyButton } from "@/components/copy-button"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
 import { RawCode, highlight, Pre } from "codehike/code"

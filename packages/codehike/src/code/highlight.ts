@@ -23,7 +23,11 @@ export async function highlight(
     lang,
     config.annotationPrefix || "!",
   )
-  const { lines, lang: lighterLang } = await lighter(code, lang, theme as any, {
+  const {
+    lines,
+    lang: lighterLang,
+    style,
+  } = await lighter(code, lang, theme as any, {
     annotations: [],
     scopes: true,
   })

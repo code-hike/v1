@@ -40,6 +40,9 @@ export const Pre: PreComponent = forwardRef(
     }
 
     const lines = toLines(tokens)
+    const indentations = lines.map(
+      (line) => line.tokens[0].value.match(/^\s*/)?.[0].length || 0,
+    )
 
     const blockAnnotations = annotations.filter(isBlockAnnotation)
     const inlineAnnotations = annotations.filter(isInlineAnnotation)
@@ -58,6 +61,7 @@ export const Pre: PreComponent = forwardRef(
           linesOrGroups={groups}
           components={components}
           inlineAnnotations={inlineAnnotations}
+          indentations={indentations}
         />
       </pre>
     )
@@ -68,12 +72,14 @@ function RenderLines({
   linesOrGroups,
   components,
   inlineAnnotations,
+  indentations,
   annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
   components: AnnotationComponents
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
+  indentations: number[]
 }) {
   return linesOrGroups.map((group) => {
     if (isGroup(group)) {
@@ -84,6 +90,7 @@ function RenderLines({
           components={components}
           inlineAnnotations={inlineAnnotations}
           annotationStack={annotationStack}
+          indentations={indentations}
         />
       )
     }
@@ -110,18 +117,28 @@ function RenderLines({
       />
     )
 
+    const indentation = indentations[lineNumber - 1]
+
     if (annotation) {
       let { name } = annotation
       const LineComponent =
         components[("Line" + name) as keyof LineAnnotationComponents]
       return (
-        <LineComponent lineNumber={lineNumber} annotation={annotation}>
+        <LineComponent
+          lineNumber={lineNumber}
+          indentation={indentation}
+          annotation={annotation}
+        >
           {children}
         </LineComponent>
       )
     } else if (Line) {
       return (
-        <Line lineNumber={lineNumber} key={lineNumber}>
+        <Line
+          lineNumber={lineNumber}
+          indentation={indentation}
+          key={lineNumber}
+        >
           {children}
         </Line>
       )
@@ -136,11 +153,13 @@ function AnnotatedLines({
   components,
   inlineAnnotations,
   annotationStack,
+  indentations,
 }: {
   group: LineGroup
   components: AnnotationComponents
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
+  indentations: number[]
 }) {
   const { annotation, lines } = group
   const { name } = annotation
@@ -153,6 +172,7 @@ function AnnotatedLines({
         components={components}
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
+        indentations={indentations}
       />
     )
   }
@@ -163,6 +183,7 @@ function AnnotatedLines({
         components={components}
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
+        indentations={indentations}
       />
     </Component>
   )

@@ -1,8 +1,69 @@
 ---
-title: The Code
+title: Codeblocks
 description: Showing code
 ---
 
-```js
-// TO DO
+By default, Code Hike won't touch your codeblocks. You need to opt-in by providing the name of the component you want to use to render the code.
+
+```js your-config.mjs
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
+
+/** @type {import('codehike/mdx').CodeHikeConfig} */
+const chConfig = {
+  components: {
+    // !Focus
+    code: "MyCode",
+  },
+}
+
+const mdxOptions = {
+  remarkPlugins: [[remarkCodeHike, chConfig]],
+  recmaPlugins: [[recmaCodeHike, chConfig]],
+}
 ```
+
+Now, the content of markdown codeblocks will be passed to the `MyCode` component.
+
+````mdx content.md
+# Lorem ipsum
+
+```js hello.js
+console.log(1)
+```
+````
+
+```jsx output.js
+function MDXContent() {
+  return (
+    <>
+      <h1>Lorem ipsum</h1>
+      {/* !Focus(1:5) */}
+      <MyCode codeblock={{
+        value: `console.log(1)`,
+        lang: "js",
+        meta: "hello.js",
+      }}>
+    </>
+  )
+}
+```
+
+Notice that the code isn't highlighted yet, this is intentional to give you more flexibility and take advantage of React Server Components.
+
+```tsx code.tsx
+import { Pre, RawCode, highlight } from "codehike/code"
+
+export async function MyCode({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return (
+    <div className="rounded border border-zinc-700">
+      <div className="bg-zinc-900 p-2">{highlighted.meta}</div>
+      <Pre code={highlighted} className="px-2" />
+    </div>
+  )
+}
+```
+
+TODO: ignoring some codeblocks
+
+TODO: non-RSC example

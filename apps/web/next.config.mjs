@@ -5,7 +5,6 @@ import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 const chConfig = {
   components: {
     code: "Code",
-    codeGroup: "CodeGroup",
     image: "Image",
     table: "Table",
   },

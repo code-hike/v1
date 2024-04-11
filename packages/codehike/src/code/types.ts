@@ -102,12 +102,16 @@ export type BlockAnnotationComponent = React.ComponentType<{
 
 type LineAnnotationProps = {
   lineNumber: number
+  indentation: number
   children: React.ReactNode
 }
+type InnerLine = React.ComponentType<LineAnnotationProps & Record<string, any>>
+
 export type LineAnnotationComponent = React.ComponentType<
   LineAnnotationProps & {
+    // InnerLine: InnerLine
     annotation: BlockAnnotation
-  }
+  } & Record<string, any>
 >
 
 export type InlineAnnotationComponent = React.ComponentType<{
@@ -200,4 +204,18 @@ export type InternalToken = {
   value: string
   style?: React.CSSProperties
   range: [number, number]
+}
+
+export type AnnotationComponents2 = {
+  name: string
+  transform?: (
+    annotation: CodeAnnotation,
+  ) => undefined | CodeAnnotation | CodeAnnotation[]
+  Pre?: PreComponent
+  Block?: BlockAnnotationComponent
+  Line?: LineAnnotationComponent
+  AnnotatedLine?: LineAnnotationComponent
+  Inline?: InlineAnnotationComponent
+  Token?: TokenAnnotationComponent
+  AnnotatedToken?: TokenAnnotationComponent
 }

@@ -1,25 +1,11 @@
 import type { MDXComponents } from "mdx/types"
 import defaultComponents from "next-docs-ui/mdx/default"
-
-import { highlight, Pre } from "codehike/code"
-import { Line, BlockCollapse } from "@/ui/collapse"
+import { BasicCode } from "./components/code/basic-code"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...defaultComponents,
     ...components,
-    Code,
+    Code: BasicCode,
   }
-}
-
-async function Code(props: { codeblock: any }) {
-  const { codeblock } = props
-  const info = await highlight(codeblock, "github-dark")
-  return (
-    <Pre
-      code={info}
-      components={{ Line, BlockCollapse }}
-      className="py-2 !bg-zinc-900 leading-normal overflow-auto w-full whitespace-pre-wrap"
-    />
-  )
 }
