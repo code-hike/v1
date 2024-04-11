@@ -43,7 +43,7 @@ function Chart() {
     <div className="my-10  text-primary/80 max-w-2xl mx-auto bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-700/50 rounded-xl py-5 px-8">
       <h2 className="text-center pb-4 text-lg">
         Content experiences you can build
-        <br /> while keeping all your content in markup:
+        <br /> while keeping all your content in plain markup:
       </h2>
       <div className="flex flex-col items-start gap-1 py-1">
         <Bar value={25}>Markdown</Bar>
