@@ -4,7 +4,13 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { ChevronDownIcon } from "lucide-react"
-import { RawCode, Pre, highlight, BlockAnnotation } from "codehike/code"
+import {
+  RawCode,
+  Pre,
+  highlight,
+  BlockAnnotation,
+  AnnotationComponents,
+} from "codehike/code"
 import Content from "./content.md"
 
 export default function Page() {
@@ -94,4 +100,64 @@ function Line({
       {children}
     </div>
   )
+}
+
+// --
+
+const collapse: AnnotationComponents = {
+  name: "Collapse",
+  transform: (annotation) => {
+    const { fromLineNumber } = annotation as BlockAnnotation
+    return [
+      annotation,
+      {
+        ...annotation,
+        fromLineNumber: fromLineNumber,
+        toLineNumber: fromLineNumber,
+        name: "CollapseTrigger",
+      },
+      {
+        ...annotation,
+        fromLineNumber: fromLineNumber + 1,
+        name: "CollapseContent",
+      },
+    ]
+  },
+  Block: ({ annotation, children }) => {
+    return (
+      <Collapsible defaultOpen={annotation.query !== "collapsed"}>
+        {children}
+      </Collapsible>
+    )
+  },
+}
+
+const collapseTrigger: AnnotationComponents = {
+  name: "CollapseTrigger",
+  AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
+    const icon = (
+      <ChevronDownIcon
+        className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
+        size={15}
+      />
+    )
+    return (
+      <CollapsibleTrigger className="group">
+        <InnerLine {...props} icon={icon} />
+      </CollapsibleTrigger>
+    )
+  },
+  Line: ({ annotation, icon, InnerLine, children, ...props }) => {
+    return (
+      <InnerLine {...props}>
+        <span className="w-6 text-center inline-block">{icon}</span>
+        {children}
+      </InnerLine>
+    )
+  },
+}
+
+const collapseContent: AnnotationComponents = {
+  name: "CollapseContent",
+  Block: CollapsibleContent,
 }

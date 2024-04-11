@@ -27,12 +27,12 @@ export async function Demo({
   )
 
   const usage = (
-    <div className="border border-zinc-700 rounded overflow-hidden min-h-full">
+    <div className="border border-zinc-700 rounded overflow-hidden min-h-full flex flex-col">
       <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
         content.md
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>
-      <Pre className="m-0 bg-zinc-950 rounded-none" code={highlighted} />
+      <Pre className="m-0 bg-zinc-950 rounded-none flex-1" code={highlighted} />
     </div>
   )
 
@@ -42,7 +42,7 @@ export async function Demo({
     <div className="min-w-0 rounded flex-1 bg-blue-900/80 bg-[url(/dark-grid.svg)] p-3 flex flex-col overflow-hidden prose-invert">
       <Page />
       {children && (
-        <div className="mt-auto text-center text-white font-light">
+        <div className="mt-auto text-center text-white font-light pt-2">
           {children}
         </div>
       )}
