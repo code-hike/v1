@@ -29,7 +29,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       className="m-0 bg-zinc-950"
       code={highlighted}
-      components2={{ BlockCallout }}
+      // components2={{ BlockCallout }}
     />
   )
 }

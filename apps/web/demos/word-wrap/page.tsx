@@ -21,39 +21,38 @@ const Code: CodeComponent = async ({ codeblock }) => {
         <Pre
           className="m-0 px-0 bg-zinc-950 w-full whitespace-pre-wrap"
           code={highlighted}
-          components2={{ Line }}
+          components={[{ Line: NumberedLine }, { Line: WrapableLine }]}
         />
       </ResizablePanel>
       <ResizableHandle
         withHandle
         className="bg-transparent dark:bg-transparent"
       />
-      <ResizablePanel defaultSize={5}></ResizablePanel>
+      <ResizablePanel defaultSize={5} />
     </ResizablePanelGroup>
   )
 }
 
-const Line: LineComponent = ({
-  children,
-  lineNumber,
-  indentation,
-  ...props
-}) => {
+const NumberedLine: LineComponent = ({ InnerLine, ...props }) => {
   return (
     <div className="table-row">
       <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-        {lineNumber}
+        {props.lineNumber}
       </span>
-      <div
-        className="px-2"
-        {...props}
-        style={{
-          textIndent: `${-indentation}ch`,
-          marginLeft: `${indentation}ch`,
-        }}
-      >
-        {children}
-      </div>
+      <InnerLine {...props} />
     </div>
+  )
+}
+
+const WrapableLine: LineComponent = ({ InnerLine, ...props }) => {
+  return (
+    <InnerLine
+      {...props}
+      className="px-2"
+      style={{
+        textIndent: `${-props.indentation}ch`,
+        marginLeft: `${props.indentation}ch`,
+      }}
+    />
   )
 }

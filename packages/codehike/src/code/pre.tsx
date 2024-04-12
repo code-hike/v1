@@ -3,13 +3,9 @@ import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationComponents,
   BlockAnnotation,
-  BlockAnnotationComponent,
-  BlockAnnotationComponents,
-  HighlightedCode,
   InlineAnnotation,
+  InnerLine,
   InternalToken,
-  LineAnnotationComponent,
-  LineAnnotationComponents,
   PreComponent,
   Tokens,
   isBlockAnnotation,
@@ -30,7 +26,7 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, components2: components = {}, className, ...rest }, ref) => {
+  ({ code, components = [], className, ...rest }, ref) => {
     const { tokens, themeName, lang, annotations } = code
 
     if (!tokens) {
@@ -76,7 +72,7 @@ function RenderLines({
   annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
-  components: AnnotationComponents
+  components: AnnotationComponents[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
@@ -96,18 +92,14 @@ function RenderLines({
     }
 
     const lineNumber = group.range[0]
+    const indentation = indentations[lineNumber - 1]
+
     const lineAnnotations = inlineAnnotations.filter(
       (annotation) => annotation.lineNumber === lineNumber,
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    // find the first annotation that has a Line component or "Line"
-    const annotation = annotationStack.find(
-      ({ name }) =>
-        components[("Line" + name) as keyof LineAnnotationComponents],
-    )
-
-    let Line = components.Line
+    let Line = getLineComponent(annotationStack, components)
 
     let children: React.ReactNode = (
       <RenderLineContent
@@ -117,35 +109,30 @@ function RenderLines({
       />
     )
 
-    const indentation = indentations[lineNumber - 1]
-
-    if (annotation) {
-      let { name } = annotation
-      const LineComponent =
-        components[("Line" + name) as keyof LineAnnotationComponents]
-      return (
-        <LineComponent
-          lineNumber={lineNumber}
-          indentation={indentation}
-          annotation={annotation}
-        >
-          {children}
-        </LineComponent>
-      )
-    } else if (Line) {
-      return (
-        <Line
-          lineNumber={lineNumber}
-          indentation={indentation}
-          key={lineNumber}
-        >
-          {children}
-        </Line>
-      )
-    } else {
-      return children
-    }
+    return (
+      <Line lineNumber={lineNumber} indentation={indentation} key={lineNumber}>
+        {children}
+      </Line>
+    )
   })
+}
+
+const DefaultLine: InnerLine = ({
+  children,
+  lineNumber,
+  indentation,
+  ...props
+}) => {
+  return <div {...props}>{children}</div>
+}
+
+function getLineComponent(
+  annotationStack: BlockAnnotation[],
+  components: AnnotationComponents[],
+): InnerLine {
+  return components.reduce((Inner, { Line }) => {
+    return Line ? (props) => <Line InnerLine={Inner} {...props} /> : Inner
+  }, DefaultLine)
 }
 
 function AnnotatedLines({
@@ -156,15 +143,14 @@ function AnnotatedLines({
   indentations,
 }: {
   group: LineGroup
-  components: AnnotationComponents
+  components: AnnotationComponents[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]
 }) {
   const { annotation, lines } = group
   const { name } = annotation
-  const Component =
-    components[("Block" + name) as keyof BlockAnnotationComponents]
+  const Component = components.find((c) => c.name === name)?.Block
   if (!Component) {
     return (
       <RenderLines

@@ -10,8 +10,8 @@ type Prettify<T> = {
 } & {}
 
 export type BlockAnnotation = {
-  /** Annotation name (used to find the right AnnotationComponent) */
-  name: ComponentName
+  /** Annotation name */
+  name: string
   /** String metadata */
   query: string
   /** Line number where the annotation block starts */
@@ -23,8 +23,8 @@ export type BlockAnnotation = {
 }
 
 export type InlineAnnotation = {
-  /** Annotation name (used to find the right AnnotationComponent) */
-  name: ComponentName
+  /** Annotation name */
+  name: string
   /** String metadata */
   query: string
   /** Line number  */
@@ -105,11 +105,17 @@ type LineAnnotationProps = {
   indentation: number
   children: React.ReactNode
 }
-type InnerLine = React.ComponentType<LineAnnotationProps & Record<string, any>>
+export type InnerLine = React.ComponentType<
+  LineAnnotationProps & Record<string, any>
+>
+
+export type LineComponent = React.ComponentType<
+  LineAnnotationProps & { InnerLine: InnerLine }
+>
 
 export type LineAnnotationComponent = React.ComponentType<
   LineAnnotationProps & {
-    // InnerLine: InnerLine
+    InnerLine: InnerLine
     annotation: BlockAnnotation
   } & Record<string, any>
 >
@@ -131,70 +137,11 @@ export type TokenAnnotationComponent = React.ComponentType<
   }
 >
 
-type CapitalLetter =
-  | "A"
-  | "B"
-  | "C"
-  | "D"
-  | "E"
-  | "F"
-  | "G"
-  | "H"
-  | "I"
-  | "J"
-  | "K"
-  | "L"
-  | "M"
-  | "N"
-  | "O"
-  | "P"
-  | "Q"
-  | "R"
-  | "S"
-  | "T"
-  | "U"
-  | "V"
-  | "W"
-  | "X"
-  | "Y"
-  | "Z"
-type ComponentName = `${CapitalLetter}${string}`
-
-export type BlockAnnotationComponents = Record<
-  `Block${ComponentName}`,
-  BlockAnnotationComponent
->
-
-export type LineAnnotationComponents = Record<
-  `Line${ComponentName}`,
-  LineAnnotationComponent
->
-
-export type TokenAnnotationComponents = Record<
-  `Token${ComponentName}`,
-  TokenAnnotationComponent
->
-
-export type InlineAnnotationComponents = Record<
-  `Inline${ComponentName}`,
-  InlineAnnotationComponent
->
-
 export type TokenComponent = React.ComponentType<TokenAnnotationProps>
-
-export type LineComponent = React.ComponentType<LineAnnotationProps>
-
-export type AnnotationComponents = BlockAnnotationComponents &
-  LineAnnotationComponents &
-  InlineAnnotationComponents &
-  TokenAnnotationComponents & {
-    Token?: TokenComponent
-    Line?: LineComponent
-  }
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode
-  components2?: AnnotationComponents
+  components?: AnnotationComponents[]
 }
 export type PreComponent = React.ForwardRefExoticComponent<
   PreProps & React.RefAttributes<HTMLPreElement>
@@ -206,16 +153,16 @@ export type InternalToken = {
   range: [number, number]
 }
 
-export type AnnotationComponents2 = {
-  name: string
+export type AnnotationComponents = {
+  name?: string
   transform?: (
     annotation: CodeAnnotation,
   ) => undefined | CodeAnnotation | CodeAnnotation[]
   Pre?: PreComponent
   Block?: BlockAnnotationComponent
-  Line?: LineAnnotationComponent
+  Line?: LineComponent
   AnnotatedLine?: LineAnnotationComponent
   Inline?: InlineAnnotationComponent
-  Token?: TokenAnnotationComponent
+  Token?: TokenComponent
   AnnotatedToken?: TokenAnnotationComponent
 }

@@ -10,6 +10,10 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
 
   return (
-    <Pre className="m-0 bg-zinc-950" code={info} components2={{ InlineFold }} />
+    <Pre
+      className="m-0 bg-zinc-950"
+      code={info}
+      // components2={{ InlineFold }}
+    />
   )
 }

@@ -55,7 +55,7 @@ export class CodeClient extends React.Component<{
         code={info}
         style={{ position: "relative" }}
         {...rest}
-        components2={{ Token }}
+        // components2={{ Token }}
         className="m-0 h-80 bg-zinc-950"
       />
     )

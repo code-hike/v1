@@ -33,7 +33,7 @@ export async function CodeWithNotes({ blocks }: { blocks: any }) {
       <Pre
         className="m-0 px-0 bg-transparent whitespace-pre-wrap"
         code={highlighted}
-        components2={{ Line, InlineTooltip }}
+        // components2={{ Line, InlineTooltip }}
       />
     </div>
   )

@@ -84,7 +84,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       className="m-0 bg-zinc-950"
       code={info}
-      components2={{ InlineHover, BlockQuery }}
+      // components2={{ InlineHover, BlockQuery }}
     />
   )
 }

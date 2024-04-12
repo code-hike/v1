@@ -17,7 +17,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       className="m-0 px-0 bg-zinc-950"
       code={highlighted}
-      components2={{ LineMark, Line }}
+      // components2={{ LineMark, Line }}
     />
   )
 }

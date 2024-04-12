@@ -47,12 +47,12 @@ const Code: CodeComponent = async ({ codeblock }) => {
     <Pre
       className="m-0 px-0 bg-zinc-950"
       code={highlighted}
-      components2={{
-        BlockCollapse,
-        BlockCollapseContent: CollapsibleContent,
-        LineCollapseTrigger,
-        Line,
-      }}
+      // components2={{
+      //   BlockCollapse,
+      //   BlockCollapseContent: CollapsibleContent,
+      //   LineCollapseTrigger,
+      //   Line,
+      // }}
     />
   )
 }

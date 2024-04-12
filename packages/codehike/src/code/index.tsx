@@ -12,7 +12,7 @@ import type {
   InlineAnnotationComponent,
   TokenAnnotationComponent,
   BlockAnnotationComponent,
-  AnnotationComponents2 as AnnotationComponents,
+  AnnotationComponents,
 } from "./types.js"
 
 import { highlight } from "./highlight.js"

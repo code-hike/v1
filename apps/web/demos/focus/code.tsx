@@ -63,7 +63,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
             },
           ],
         }}
-        components2={{ LineFocus, Line }}
+        // components2={{ LineFocus, Line }}
       />
       <div className="p-2 mt-auto font-light text-center">
         You can also change the focus annotations on a rendered codeblock:

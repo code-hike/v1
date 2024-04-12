@@ -22,7 +22,13 @@ export function CodeWithOccurrences({ code }: { code: HighlightedCode }) {
     }
   }, [])
 
-  return <Pre ref={ref} code={code} components2={{ Token }} />
+  return (
+    <Pre
+      ref={ref}
+      code={code}
+      // components2={{ Token }}
+    />
+  )
 }
 
 const Token: TokenComponent = ({ value, lineNumber, ...props }) => {
