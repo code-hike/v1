@@ -78,7 +78,7 @@ async function Code({
       <Pre
         code={info}
         className="p-2 overflow-auto m-0"
-        components={{ ...annotations }}
+        components2={{ ...annotations }}
       />
     </div>
   )

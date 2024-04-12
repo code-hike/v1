@@ -30,7 +30,7 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, components = {}, className, ...rest }, ref) => {
+  ({ code, components2: components = {}, className, ...rest }, ref) => {
     const { tokens, themeName, lang, annotations } = code
 
     if (!tokens) {

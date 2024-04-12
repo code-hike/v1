@@ -194,7 +194,7 @@ export type AnnotationComponents = BlockAnnotationComponents &
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode
-  components?: AnnotationComponents
+  components2?: AnnotationComponents
 }
 export type PreComponent = React.ForwardRefExoticComponent<
   PreProps & React.RefAttributes<HTMLPreElement>

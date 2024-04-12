@@ -17,7 +17,7 @@ export async function BasicCode({ codeblock }: { codeblock: RawCode }) {
       </div>
       <Pre
         code={highlighted}
-        components={{ LineFocus, Line }}
+        components2={{ LineFocus, Line }}
         className="m-0 px-0 bg-transparent whitespace-pre-wrap group"
       />
     </div>
