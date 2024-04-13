@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  HighlightedCode,
-  Pre,
-  LineAnnotationComponent,
-  LineComponent,
-  AnnotationComponents,
-} from "codehike/code"
+import { HighlightedCode, Pre, AnnotationComponents } from "codehike/code"
 import { useLayoutEffect, useRef, useState } from "react"
 
 const ranges = {
@@ -93,11 +87,11 @@ const focus: AnnotationComponents = {
   name: "Focus",
   Line: ({ InnerLine, ...props }) => (
     <InnerLine
-      base={props}
+      merge={props}
       className="opacity-50 data-[focus]:opacity-100 px-2"
     />
   ),
   AnnotatedLine: ({ InnerLine, annotation, ...props }) => (
-    <InnerLine base={props} data-focus={true} className="bg-zinc-700/30" />
+    <InnerLine merge={props} data-focus={true} className="bg-zinc-700/30" />
   ),
 }

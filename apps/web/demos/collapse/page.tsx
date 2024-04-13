@@ -91,13 +91,13 @@ const collapseTrigger: AnnotationComponents = {
     )
     return (
       <CollapsibleTrigger className="group">
-        <InnerLine base={props} icon={icon} />
+        <InnerLine merge={props} icon={icon} />
       </CollapsibleTrigger>
     )
   },
   Line: ({ annotation, icon, InnerLine, children, ...props }) => {
     return (
-      <InnerLine base={props}>
+      <InnerLine merge={props}>
         <span className="w-6 text-center inline-block">{icon}</span>
         {children}
       </InnerLine>

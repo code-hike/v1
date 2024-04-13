@@ -23,10 +23,10 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 const wordWrap: AnnotationComponents = {
   name: "WordWrap",
   AnnotatedLine: ({ InnerLine, annotation, ...props }) => (
-    <InnerLine base={props} className="bg-blue-800" />
+    <InnerLine merge={props} className="bg-blue-800" />
   ),
   Line: ({ InnerLine, ...props }) => (
-    <InnerLine base={props} className="border border-red-100" />
+    <InnerLine merge={props} className="border border-red-100" />
   ),
 }
 
@@ -37,7 +37,7 @@ const foo: AnnotationComponents = {
   ),
   Line: ({ InnerLine, ...props }) => (
     <div>
-      <InnerLine base={props} className="mx-auto w-80" />
+      <InnerLine merge={props} className="mx-auto w-80" />
     </div>
   ),
 }

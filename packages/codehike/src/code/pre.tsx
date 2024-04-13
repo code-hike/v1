@@ -118,9 +118,8 @@ function RenderLines({
   })
 }
 
-const DefaultLine: InnerLine = ({ base = {}, ...props }) => {
-  const { ...rest } = mergeProps(base, props)
-  return <div {...rest} />
+const DefaultLine: InnerLine = ({ merge: base = {}, ...props }) => {
+  return <div {...mergeProps(base, props)} />
 }
 
 function getLineComponent(
@@ -132,8 +131,8 @@ function getLineComponent(
       return Inner
     }
 
-    return ({ base = {}, ...props }) => {
-      const result = mergeProps(base, props) as any
+    return ({ merge = {}, ...props }) => {
+      const result = mergeProps(merge, props) as any
       return <Line {...result} InnerLine={Inner} />
     }
   }, DefaultLine)
@@ -143,8 +142,8 @@ function getLineComponent(
     if (!annotation || !AnnotatedLine) {
       return Inner
     }
-    return ({ base = {}, ...props }) => {
-      const result = mergeProps(base, props) as any
+    return ({ merge = {}, ...props }) => {
+      const result = mergeProps(merge, props) as any
       return (
         <AnnotatedLine {...result} annotation={annotation} InnerLine={Inner} />
       )

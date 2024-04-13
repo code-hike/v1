@@ -107,7 +107,7 @@ type LineAnnotationProps = {
 }
 export type InnerLine = React.ComponentType<
   Partial<LineAnnotationProps> & {
-    base?: Partial<LineAnnotationProps>
+    merge?: Partial<LineAnnotationProps>
   } & Record<string, any>
 >
 
