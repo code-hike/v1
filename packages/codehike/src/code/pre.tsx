@@ -11,6 +11,7 @@ import {
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
+import { mergeProps } from "./merge-props.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -117,22 +118,38 @@ function RenderLines({
   })
 }
 
-const DefaultLine: InnerLine = ({
-  children,
-  lineNumber,
-  indentation,
-  ...props
-}) => {
-  return <div {...props}>{children}</div>
+const DefaultLine: InnerLine = ({ base = {}, ...props }) => {
+  const { ...rest } = mergeProps(base, props)
+  return <div {...rest} />
 }
 
 function getLineComponent(
   annotationStack: BlockAnnotation[],
   components: AnnotationComponents[],
 ): InnerLine {
-  return components.reduce((Inner, { Line }) => {
-    return Line ? (props) => <Line InnerLine={Inner} {...props} /> : Inner
+  const BaseLine = components.reduce((Inner, { Line }) => {
+    if (!Line) {
+      return Inner
+    }
+
+    return ({ base = {}, ...props }) => {
+      const result = mergeProps(base, props) as any
+      return <Line {...result} InnerLine={Inner} />
+    }
   }, DefaultLine)
+
+  return components.reduce((Inner, { name, AnnotatedLine }) => {
+    const annotation = annotationStack.find((a) => a.name === name)
+    if (!annotation || !AnnotatedLine) {
+      return Inner
+    }
+    return ({ base = {}, ...props }) => {
+      const result = mergeProps(base, props) as any
+      return (
+        <AnnotatedLine {...result} annotation={annotation} InnerLine={Inner} />
+      )
+    }
+  }, BaseLine)
 }
 
 function AnnotatedLines({

@@ -106,11 +106,13 @@ type LineAnnotationProps = {
   children: React.ReactNode
 }
 export type InnerLine = React.ComponentType<
-  LineAnnotationProps & Record<string, any>
+  Partial<LineAnnotationProps> & {
+    base?: Partial<LineAnnotationProps>
+  } & Record<string, any>
 >
 
 export type LineComponent = React.ComponentType<
-  LineAnnotationProps & { InnerLine: InnerLine }
+  LineAnnotationProps & { InnerLine: InnerLine } & Record<string, any>
 >
 
 export type LineAnnotationComponent = React.ComponentType<

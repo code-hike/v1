@@ -5,6 +5,7 @@ import {
   Pre,
   LineAnnotationComponent,
   LineComponent,
+  AnnotationComponents,
 } from "codehike/code"
 import { useLayoutEffect, useRef, useState } from "react"
 
@@ -63,7 +64,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
             },
           ],
         }}
-        // components2={{ LineFocus, Line }}
+        components={[focus]}
       />
       <div className="p-2 mt-auto font-light text-center">
         You can also change the focus annotations on a rendered codeblock:
@@ -88,24 +89,15 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
   )
 }
 
-export const LineFocus: LineAnnotationComponent = ({
-  children,
-  annotation,
-}) => {
-  return (
-    <div
-      data-focus={true}
-      className="opacity-50 data-[focus]:opacity-100 bg-zinc-700/30 px-2"
-    >
-      {children}
-    </div>
-  )
-}
-
-export const Line: LineComponent = ({ children }) => {
-  return (
-    <div className="opacity-50 data-[focus]:opacity-100 transition-opacity px-2">
-      {children}
-    </div>
-  )
+const focus: AnnotationComponents = {
+  name: "Focus",
+  Line: ({ InnerLine, ...props }) => (
+    <InnerLine
+      base={props}
+      className="opacity-50 data-[focus]:opacity-100 px-2"
+    />
+  ),
+  AnnotatedLine: ({ InnerLine, annotation, ...props }) => (
+    <InnerLine base={props} data-focus={true} className="bg-zinc-700/30" />
+  ),
 }

@@ -47,62 +47,10 @@ const Code: CodeComponent = async ({ codeblock }) => {
     <Pre
       className="m-0 px-0 bg-zinc-950"
       code={highlighted}
-      // components2={{
-      //   BlockCollapse,
-      //   BlockCollapseContent: CollapsibleContent,
-      //   LineCollapseTrigger,
-      //   Line,
-      // }}
+      components={[collapse, collapseTrigger, collapseContent]}
     />
   )
 }
-
-function BlockCollapse({
-  annotation,
-  children,
-}: {
-  annotation: any
-  children: React.ReactNode
-}) {
-  return (
-    <Collapsible defaultOpen={annotation.query !== "collapsed"}>
-      {children}
-    </Collapsible>
-  )
-}
-
-function LineCollapseTrigger({ annotation, ...props }: any) {
-  const icon = (
-    <ChevronDownIcon
-      className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
-      size={15}
-    />
-  )
-  return (
-    <CollapsibleTrigger className="group">
-      <Line {...props} icon={icon} />
-    </CollapsibleTrigger>
-  )
-}
-
-function Line({
-  children,
-  lineNumber,
-  icon,
-}: {
-  children: React.ReactNode
-  lineNumber: number
-  icon?: React.ReactNode
-}) {
-  return (
-    <div data-line={lineNumber}>
-      <span className="w-6 text-center inline-block">{icon}</span>
-      {children}
-    </div>
-  )
-}
-
-// --
 
 const collapse: AnnotationComponents = {
   name: "Collapse",
@@ -143,13 +91,13 @@ const collapseTrigger: AnnotationComponents = {
     )
     return (
       <CollapsibleTrigger className="group">
-        <InnerLine {...props} icon={icon} />
+        <InnerLine base={props} icon={icon} />
       </CollapsibleTrigger>
     )
   },
   Line: ({ annotation, icon, InnerLine, children, ...props }) => {
     return (
-      <InnerLine {...props}>
+      <InnerLine base={props}>
         <span className="w-6 text-center inline-block">{icon}</span>
         {children}
       </InnerLine>

@@ -46,7 +46,12 @@ export function RenderLineContent({
     }
   })
 }
-const DefaultTokenComponent: TokenComponent = ({ value, ...props }) => {
+const DefaultTokenComponent: TokenComponent = ({
+  value,
+  lineNumber,
+  ...props
+}) => {
+  // TODO extract range
   return <span {...props}>{value}</span>
 }
 
