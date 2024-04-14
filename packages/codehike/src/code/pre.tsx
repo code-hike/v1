@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
-  AnnotationComponents,
+  AnnotationHandler,
   BlockAnnotation,
   InlineAnnotation,
   InnerLine,
@@ -28,19 +28,15 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, components = [], className, ...rest }, ref) => {
+  ({ code, handlers: components = [], className, ...rest }, ref) => {
     let { tokens, themeName, lang, annotations } = code
 
     components
       .filter((c) => c.transform)
       .forEach((c) => {
-        annotations = annotations.flatMap((a) => {
-          if (c.name === a.name) {
-            return c.transform!(a) || []
-          } else {
-            return a
-          }
-        })
+        annotations = annotations.flatMap((a) =>
+          c.name != a.name ? a : c.transform!(a as any) || [],
+        )
       })
 
     if (!tokens) {
@@ -90,7 +86,7 @@ function RenderLines({
   annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
-  components: AnnotationComponents[]
+  components: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
@@ -142,7 +138,7 @@ const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
 
 function getLineComponent(
   annotationStack: BlockAnnotation[],
-  components: AnnotationComponents[],
+  components: AnnotationHandler[],
 ): InnerLine {
   const BaseLine = components.reduce((Inner, { Line }) => {
     if (!Line) {
@@ -177,7 +173,7 @@ function AnnotatedLines({
   indentations,
 }: {
   group: LineGroup
-  components: AnnotationComponents[]
+  components: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]

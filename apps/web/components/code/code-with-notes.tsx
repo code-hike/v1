@@ -40,7 +40,7 @@ export async function CodeWithNotes(props: RawBlocks) {
       <Pre
         className="m-0 px-0 bg-transparent whitespace-pre-wrap"
         code={highlighted}
-        components={[callout, tooltip, ...collapse]}
+        handlers={[callout, tooltip, ...collapse]}
       />
     </div>
   )

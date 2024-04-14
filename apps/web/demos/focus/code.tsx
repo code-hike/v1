@@ -1,6 +1,6 @@
 "use client"
 
-import { HighlightedCode, Pre, AnnotationComponents } from "codehike/code"
+import { HighlightedCode, Pre, AnnotationHandler } from "codehike/code"
 import React, { forwardRef, useLayoutEffect, useRef, useState } from "react"
 
 const ranges = {
@@ -59,7 +59,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
             },
           ],
         }}
-        components={[focus]}
+        handlers={[focus]}
       />
       <div className="p-2 mt-auto font-light text-center">
         You can also change the focus annotations on a rendered codeblock:
@@ -84,7 +84,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
   )
 }
 
-const focus: AnnotationComponents = {
+const focus: AnnotationHandler = {
   name: "Focus",
   Pre: forwardRef(({ InnerPre, ...props }, ref) => {
     ref = useRef<HTMLPreElement>(null)

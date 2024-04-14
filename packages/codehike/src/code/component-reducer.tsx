@@ -1,11 +1,11 @@
 import { forwardRef } from "react"
-import { AnnotationComponents } from "./types.js"
+import { AnnotationHandler } from "./types.js"
 
 export const DefaultPre: BasePre = forwardRef((props, ref) => {
   return <pre {...props} ref={ref} />
 })
 
-export function getPreComponent(components: AnnotationComponents[]) {
+export function getPreComponent(components: AnnotationHandler[]) {
   const OuterPre = components.find((c) => c.Pre)?.Pre as CustomPre
 
   if (!OuterPre) {

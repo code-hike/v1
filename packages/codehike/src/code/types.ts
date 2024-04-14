@@ -143,7 +143,7 @@ export type TokenComponent = React.ComponentType<TokenAnnotationProps>
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode
-  components?: AnnotationComponents[]
+  handlers?: AnnotationHandler[]
 }
 export type PreComponent = React.ForwardRefExoticComponent<
   PreProps & React.RefAttributes<HTMLPreElement>
@@ -165,7 +165,7 @@ type AnnotationTransformer<T> = (
   annotation: T,
 ) => undefined | CodeAnnotation | CodeAnnotation[]
 
-export type AnnotationComponents = {
+export type AnnotationHandler = {
   name?: string
   transform?:
     | AnnotationTransformer<InlineAnnotation>

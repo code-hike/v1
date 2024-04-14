@@ -9,7 +9,7 @@ import {
   Pre,
   highlight,
   BlockAnnotation,
-  AnnotationComponents,
+  AnnotationHandler,
 } from "codehike/code"
 import Content from "./content.md"
 
@@ -47,15 +47,15 @@ const Code: CodeComponent = async ({ codeblock }) => {
     <Pre
       className="m-0 px-0 bg-zinc-950"
       code={highlighted}
-      components={[collapse, collapseTrigger, collapseContent]}
+      handlers={[collapse, collapseTrigger, collapseContent]}
     />
   )
 }
 
-const collapse: AnnotationComponents = {
+const collapse: AnnotationHandler = {
   name: "Collapse",
-  transform: (annotation) => {
-    const { fromLineNumber } = annotation as BlockAnnotation
+  transform: (annotation: BlockAnnotation) => {
+    const { fromLineNumber } = annotation
     return [
       annotation,
       {
@@ -80,7 +80,7 @@ const collapse: AnnotationComponents = {
   },
 }
 
-const collapseTrigger: AnnotationComponents = {
+const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
   AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
     const icon = (
@@ -105,7 +105,7 @@ const collapseTrigger: AnnotationComponents = {
   },
 }
 
-const collapseContent: AnnotationComponents = {
+const collapseContent: AnnotationHandler = {
   name: "CollapseContent",
   Block: CollapsibleContent,
 }

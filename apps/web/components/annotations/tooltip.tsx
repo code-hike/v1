@@ -1,4 +1,4 @@
-import { AnnotationComponents, InlineAnnotationComponent } from "codehike/code"
+import { AnnotationHandler, InlineAnnotationComponent } from "codehike/code"
 import {
   TooltipProvider,
   Tooltip,
@@ -7,7 +7,7 @@ import {
   TooltipArrow,
 } from "@/components/ui/tooltip"
 
-export const tooltip: AnnotationComponents = {
+export const tooltip: AnnotationHandler = {
   name: "Tooltip",
   Inline: ({ children, annotation }) => {
     const { query, data } = annotation

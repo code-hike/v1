@@ -1,5 +1,5 @@
 import {
-  AnnotationComponents,
+  AnnotationHandler,
   CodeAnnotation,
   InlineAnnotation,
   InternalToken,
@@ -21,7 +21,7 @@ export function RenderLineContent({
   lineNumber,
 }: {
   lineContent: LineContent
-  components: AnnotationComponents[]
+  components: AnnotationHandler[]
   lineNumber: number
 }) {
   // TODO get Token from annotationStack
@@ -57,7 +57,7 @@ const DefaultTokenComponent: TokenComponent = ({
 
 function getTokenComponent(
   annotationStack: CodeAnnotation[],
-  components: AnnotationComponents[],
+  components: AnnotationHandler[],
 ) {
   return DefaultTokenComponent
 }
@@ -69,7 +69,7 @@ function AnnotatedTokens({
 }: {
   lineNumber: number
   group: TokenGroup
-  components: AnnotationComponents[]
+  components: AnnotationHandler[]
 }) {
   const { annotation, content } = group
   const { name } = annotation

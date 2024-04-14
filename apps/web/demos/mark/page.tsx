@@ -1,11 +1,9 @@
-import { RawCode, Pre, highlight, AnnotationComponents } from "codehike/code"
+import { RawCode, Pre, highlight, AnnotationHandler } from "codehike/code"
 import Content from "./content.md"
 
 export default function Page() {
   return <Content components={{ Code }} />
 }
-
-type Foo = AnnotationComponents
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
@@ -13,12 +11,12 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       className="m-0 px-0 bg-zinc-950 selection:bg-red-300"
       code={highlighted}
-      components={foos}
+      handlers={handlers}
     />
   )
 }
 
-const mark: Foo = {
+const mark: AnnotationHandler = {
   name: "Mark",
   AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
     <InnerLine merge={props} data-mark={true} />
@@ -31,4 +29,4 @@ const mark: Foo = {
   ),
 }
 
-const foos = [mark]
+const handlers = [mark]

@@ -1,9 +1,9 @@
 "use client"
 
-import { AnnotationComponents } from "codehike/code"
+import { AnnotationHandler } from "codehike/code"
 import { useState } from "react"
 
-export const Inline: AnnotationComponents["Inline"] = ({
+export const Inline: AnnotationHandler["Inline"] = ({
   annotation,
   children,
 }) => {

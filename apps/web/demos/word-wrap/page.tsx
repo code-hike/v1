@@ -21,7 +21,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
         <Pre
           className="m-0 px-0 bg-zinc-950 w-full whitespace-pre-wrap"
           code={highlighted}
-          components={[{ Line: NumberedLine }, { Line: WrapableLine }]}
+          handlers={[{ Line: NumberedLine }, { Line: WrapableLine }]}
         />
       </ResizablePanel>
       <ResizableHandle

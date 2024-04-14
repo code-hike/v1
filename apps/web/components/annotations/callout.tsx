@@ -1,10 +1,9 @@
-import { AnnotationComponents, InlineAnnotation } from "codehike/code"
+import { AnnotationHandler, InlineAnnotation } from "codehike/code"
 
-export const callout: AnnotationComponents = {
+export const callout: AnnotationHandler = {
   name: "Callout",
-  transform: (annotation) => {
-    const { name, query, lineNumber, fromColumn, toColumn } =
-      annotation as InlineAnnotation
+  transform: (annotation: InlineAnnotation) => {
+    const { name, query, lineNumber, fromColumn, toColumn } = annotation
     return {
       name,
       query,

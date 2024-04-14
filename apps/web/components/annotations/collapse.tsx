@@ -4,12 +4,12 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { ChevronDownIcon } from "lucide-react"
-import { BlockAnnotation, AnnotationComponents } from "codehike/code"
+import { BlockAnnotation, AnnotationHandler } from "codehike/code"
 
-const collapseRoot: AnnotationComponents = {
+const collapseRoot: AnnotationHandler = {
   name: "Collapse",
-  transform: (annotation) => {
-    const { fromLineNumber } = annotation as BlockAnnotation
+  transform: (annotation: BlockAnnotation) => {
+    const { fromLineNumber } = annotation
     return [
       annotation,
       {
@@ -34,7 +34,7 @@ const collapseRoot: AnnotationComponents = {
   },
 }
 
-const collapseTrigger: AnnotationComponents = {
+const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
   AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
     const icon = (
@@ -62,7 +62,7 @@ const collapseTrigger: AnnotationComponents = {
   },
 }
 
-const collapseContent: AnnotationComponents = {
+const collapseContent: AnnotationHandler = {
   name: "CollapseContent",
   Block: CollapsibleContent,
 }
