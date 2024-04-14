@@ -1,9 +1,12 @@
 "use client"
 
-import { InlineAnnotationComponent } from "codehike/code"
+import { AnnotationComponents } from "codehike/code"
 import { useState } from "react"
 
-export const InlineFold: InlineAnnotationComponent = ({ children }) => {
+export const Inline: AnnotationComponents["Inline"] = ({
+  annotation,
+  children,
+}) => {
   const [folded, setFolded] = useState(true)
   if (!folded) {
     return children
