@@ -155,12 +155,18 @@ export type InternalToken = {
   range: [number, number]
 }
 
+type ForwardRefPre<Props> = React.ForwardRefExoticComponent<
+  React.ComponentProps<"pre"> & Props & React.RefAttributes<HTMLPreElement>
+>
+type CustomPre = ForwardRefPre<{ InnerPre: InnerPre }>
+type InnerPre = ForwardRefPre<{}>
+
 export type AnnotationComponents = {
   name?: string
   transform?: (
     annotation: CodeAnnotation,
   ) => undefined | CodeAnnotation | CodeAnnotation[]
-  Pre?: PreComponent
+  Pre?: CustomPre
   Block?: BlockAnnotationComponent
   Line?: LineComponent
   AnnotatedLine?: LineAnnotationComponent

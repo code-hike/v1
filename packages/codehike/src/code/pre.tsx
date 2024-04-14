@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationComponents,
@@ -12,6 +12,7 @@ import {
   isInlineAnnotation,
 } from "./types.js"
 import { mergeProps } from "./merge-props.js"
+import { getPreComponent } from "./component-reducer.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -46,8 +47,12 @@ export const Pre: PreComponent = forwardRef(
 
     const groups = toLineGroups(lines, blockAnnotations)
 
+    const StackedPre = useMemo(() => {
+      return getPreComponent(components)
+    }, [components.map((c) => c.name).join(",")])
+
     return (
-      <pre
+      <StackedPre
         ref={ref}
         data-theme={themeName}
         data-lang={lang}
@@ -60,7 +65,7 @@ export const Pre: PreComponent = forwardRef(
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
         />
-      </pre>
+      </StackedPre>
     )
   },
 )
@@ -118,8 +123,9 @@ function RenderLines({
   })
 }
 
-const DefaultLine: InnerLine = ({ merge: base = {}, ...props }) => {
-  return <div {...mergeProps(base, props)} />
+const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
+  const { lineNumber, indentation, ...props } = mergeProps(base, rest)
+  return <div {...props} />
 }
 
 function getLineComponent(
