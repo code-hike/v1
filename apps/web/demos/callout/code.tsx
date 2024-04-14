@@ -10,21 +10,6 @@ import {
 export async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
 
-  highlighted.annotations = highlighted.annotations.map((annotation) => {
-    if (annotation.name != "Callout") {
-      return annotation
-    }
-    const { name, query, lineNumber, fromColumn, toColumn } =
-      annotation as InlineAnnotation
-    return {
-      name,
-      query,
-      fromLineNumber: lineNumber,
-      toLineNumber: lineNumber,
-      data: { column: (fromColumn + toColumn) / 2 },
-    }
-  })
-
   return (
     <Pre
       className="m-0 bg-zinc-950"

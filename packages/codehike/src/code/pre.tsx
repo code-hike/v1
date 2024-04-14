@@ -29,7 +29,19 @@ type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
   ({ code, components = [], className, ...rest }, ref) => {
-    const { tokens, themeName, lang, annotations } = code
+    let { tokens, themeName, lang, annotations } = code
+
+    components
+      .filter((c) => c.transform)
+      .forEach((c) => {
+        annotations = annotations.flatMap((a) => {
+          if (c.name === a.name) {
+            return c.transform!(a) || []
+          } else {
+            return a
+          }
+        })
+      })
 
     if (!tokens) {
       throw new Error(

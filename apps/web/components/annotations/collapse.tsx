@@ -4,23 +4,11 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { ChevronDownIcon } from "lucide-react"
-import {
-  RawCode,
-  Pre,
-  highlight,
-  BlockAnnotation,
-  InlineAnnotation,
-  CodeAnnotation,
-  LineComponent,
-} from "codehike/code"
+import { BlockAnnotation, AnnotationComponents } from "codehike/code"
 
-export function expandCollapseAnnotations(
-  annotations: CodeAnnotation[],
-): CodeAnnotation[] {
-  return annotations.flatMap((annotation) => {
-    if (annotation.name !== "Collapse") {
-      return annotation
-    }
+const collapseRoot: AnnotationComponents = {
+  name: "Collapse",
+  transform: (annotation) => {
     const { fromLineNumber } = annotation as BlockAnnotation
     return [
       annotation,
@@ -36,61 +24,47 @@ export function expandCollapseAnnotations(
         name: "CollapseContent",
       },
     ]
-  })
+  },
+  Block: ({ annotation, children }) => {
+    return (
+      <Collapsible defaultOpen={annotation.query !== "collapsed"}>
+        {children}
+      </Collapsible>
+    )
+  },
 }
 
-export const collapseComponents = {
-  BlockCollapse,
-  BlockCollapseContent: CollapsibleContent,
-  LineCollapseTrigger,
-  Line,
+const collapseTrigger: AnnotationComponents = {
+  name: "CollapseTrigger",
+  AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
+    const icon = (
+      <ChevronDownIcon
+        className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
+        size={15}
+      />
+    )
+    return (
+      <CollapsibleTrigger className="group contents">
+        <InnerLine merge={props} icon={icon} />
+      </CollapsibleTrigger>
+    )
+  },
+  Line: ({ annotation, icon, InnerLine, lineNumber, children, ...props }) => {
+    return (
+      <InnerLine merge={props} className="table-row">
+        <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
+          {lineNumber}
+        </span>
+        <span className="w-6 text-center table-cell">{icon}</span>
+        <div className="table-cell break-words">{children}</div>
+      </InnerLine>
+    )
+  },
 }
 
-function BlockCollapse({
-  annotation,
-  children,
-}: {
-  annotation: any
-  children: React.ReactNode
-}) {
-  return (
-    <Collapsible defaultOpen={annotation.query !== "collapsed"}>
-      {children}
-    </Collapsible>
-  )
+const collapseContent: AnnotationComponents = {
+  name: "CollapseContent",
+  Block: CollapsibleContent,
 }
 
-function LineCollapseTrigger({ annotation, ...props }: any) {
-  const icon = (
-    <ChevronDownIcon
-      className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
-      size={15}
-    />
-  )
-  return (
-    <CollapsibleTrigger className="group contents">
-      <Line {...props} icon={icon} />
-    </CollapsibleTrigger>
-  )
-}
-
-function Line({
-  lineNumber,
-  children,
-  icon,
-  ...rest
-}: {
-  children: React.ReactNode
-  lineNumber: number
-  icon?: React.ReactNode
-}) {
-  return (
-    <div data-line={lineNumber} className="table-row">
-      <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-        {lineNumber}
-      </span>
-      <span className="w-6 text-center table-cell">{icon}</span>
-      <div className="table-cell break-words">{children}</div>
-    </div>
-  )
-}
+export const collapse = [collapseRoot, collapseTrigger, collapseContent]
