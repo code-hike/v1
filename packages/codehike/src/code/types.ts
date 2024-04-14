@@ -37,7 +37,7 @@ export type InlineAnnotation = {
   data?: any
 }
 
-export type CodeAnnotation = Prettify<BlockAnnotation | InlineAnnotation>
+export type CodeAnnotation = BlockAnnotation | InlineAnnotation
 
 export function isBlockAnnotation(
   annotation: CodeAnnotation,
@@ -161,11 +161,16 @@ type ForwardRefPre<Props> = React.ForwardRefExoticComponent<
 type CustomPre = ForwardRefPre<{ InnerPre: InnerPre }>
 type InnerPre = ForwardRefPre<{}>
 
+type AnnotationTransformer<T> = (
+  annotation: T,
+) => undefined | CodeAnnotation | CodeAnnotation[]
+
 export type AnnotationComponents = {
   name?: string
-  transform?: (
-    annotation: CodeAnnotation,
-  ) => undefined | CodeAnnotation | CodeAnnotation[]
+  transform?:
+    | AnnotationTransformer<InlineAnnotation>
+    | AnnotationTransformer<BlockAnnotation>
+    | AnnotationTransformer<CodeAnnotation>
   Pre?: CustomPre
   Block?: BlockAnnotationComponent
   Line?: LineComponent

@@ -2,7 +2,6 @@ import { Block } from "codehike/schema"
 import React from "react"
 import { z } from "zod"
 import { Demo } from "@/components/demo"
-import { CodeWithNotes } from "@/components/code/code-with-notes"
 import { parseContent } from "codehike"
 import { Pre, RawCode, highlight } from "codehike/code"
 import { CopyButton } from "@/components/copy-button"
@@ -14,7 +13,7 @@ const ContentSchema = Block.extend({
 
 export function PreviewImplementation({ MDX }: { MDX: any }) {
   const { demo, implementation } = parseContent(ContentSchema, MDX, {
-    components: { Demo, CodeWithNotes, Code: DemoCode },
+    components: { Demo, Code: DemoCode },
   })
 
   return (

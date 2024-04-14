@@ -1,35 +1,15 @@
-import {
-  RawCode,
-  Pre,
-  highlight,
-  BlockAnnotationComponent,
-  InlineAnnotation,
-  AnnotationComponents,
-} from "codehike/code"
+import { InlineAnnotation, AnnotationComponents } from "codehike/code"
 
-export async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-
-  return (
-    <Pre
-      className="m-0 bg-zinc-950"
-      code={highlighted}
-      components={[callout]}
-    />
-  )
-}
-
-const callout: AnnotationComponents = {
+export const callout: AnnotationComponents = {
   name: "Callout",
-  transform: (annotation) => {
-    const { name, query, lineNumber, fromColumn, toColumn } =
-      annotation as InlineAnnotation
+  transform: (annotation: InlineAnnotation) => {
+    const { name, query, lineNumber, fromColumn, toColumn, data } = annotation
     return {
       name,
       query,
       fromLineNumber: lineNumber,
       toLineNumber: lineNumber,
-      data: { column: (fromColumn + toColumn) / 2 },
+      data: { ...data, column: (fromColumn + toColumn) / 2 },
     }
   },
   Block: ({ annotation, children }) => {
