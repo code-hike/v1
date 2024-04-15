@@ -5,19 +5,8 @@ export default function Page() {
   return <Content components={{ Code }} />
 }
 
-async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-  return (
-    <Pre
-      className="m-0 px-0 bg-zinc-950 selection:bg-red-300"
-      code={highlighted}
-      handlers={handlers}
-    />
-  )
-}
-
 const mark: AnnotationHandler = {
-  name: "Mark",
+  name: "mark",
   AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
     <InnerLine merge={props} data-mark={true} />
   ),
@@ -29,4 +18,13 @@ const mark: AnnotationHandler = {
   ),
 }
 
-const handlers = [mark]
+async function Code({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return (
+    <Pre
+      className="m-0 px-0 bg-zinc-950 selection:bg-red-300"
+      code={highlighted}
+      handlers={[mark]}
+    />
+  )
+}
