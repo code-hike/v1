@@ -22,7 +22,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
   return (
     <Pre
-      className="m-0 px-0 bg-zinc-950 selection:bg-red-300"
+      className="m-0 px-0 bg-zinc-950"
       code={highlighted}
       handlers={[mark]}
     />

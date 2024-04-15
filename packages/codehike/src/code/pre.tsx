@@ -47,7 +47,7 @@ export const Pre: PreComponent = forwardRef(
 
     const lines = toLines(tokens)
     const indentations = lines.map(
-      (line) => line.tokens[0].value.match(/^\s*/)?.[0].length || 0,
+      (line) => line.tokens[0]?.value.match(/^\s*/)?.[0].length || 0,
     )
 
     const blockAnnotations = annotations.filter(isBlockAnnotation)
