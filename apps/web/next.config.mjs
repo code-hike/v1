@@ -25,6 +25,11 @@ const withMDX = createNextDocsMDX({
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  webpack: (config) => {
+    // fix https://github.com/microsoft/TypeScript-Website/pull/3022
+    config.module.exprContextCritical = false
+    return config
+  },
   images: {
     remotePatterns: [
       {
