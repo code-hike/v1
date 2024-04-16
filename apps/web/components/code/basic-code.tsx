@@ -1,47 +1,32 @@
-import {
-  LineAnnotationComponent,
-  LineComponent,
-  Pre,
-  RawCode,
-  highlight,
-} from "codehike/code"
+import { AnnotationHandler, Pre, RawCode, highlight } from "codehike/code"
 import { CopyButton } from "@/components/copy-button"
 
 export async function BasicCode({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
+  const highlighted = await highlight(codeblock, "github-from-css")
   return (
-    <div className="border border-zinc-700 rounded overflow-hidden my-2">
-      <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
+    <div className="border border-editorGroup-border rounded overflow-hidden my-2">
+      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-sm text-tab-activeForeground flex">
         <span>{highlighted.meta}</span>
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>
       <Pre
         code={highlighted}
-        // components2={{ LineFocus, Line }}
         className="m-0 px-0 bg-transparent whitespace-pre-wrap group"
+        handlers={[focus]}
       />
     </div>
   )
 }
 
-export const LineFocus: LineAnnotationComponent = ({
-  children,
-  annotation,
-}) => {
-  return (
-    <div
-      data-focus={true}
-      className="opacity-50 data-[focus]:opacity-100 bg-zinc-700/30 px-2"
-    >
-      {children}
-    </div>
-  )
-}
-
-export const Line: LineComponent = ({ children }) => {
-  return (
-    <div className="group-has-[[data-focus]]:opacity-50 data-[focus]:opacity-100 transition-opacity px-2">
-      {children}
-    </div>
-  )
+const focus: AnnotationHandler = {
+  name: "Focus",
+  AnnotatedLine: ({ InnerLine, ...props }) => (
+    <InnerLine merge={props} data-focus={true} />
+  ),
+  Line: ({ InnerLine, ...props }) => (
+    <InnerLine
+      merge={props}
+      className="group-has-[[data-focus]]:opacity-60 data-[focus]:!opacity-100 transition-opacity px-2 data-[focus]:bg-editor-rangeHighlightBackground"
+    />
+  ),
 }

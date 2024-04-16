@@ -40,7 +40,7 @@ export async function highlight(
     style,
   } = await lighter(code, lang, theme as any, {
     annotations: [],
-    scopes: true,
+    scopes: false, // true for better token transitions, but breaks css themes
   })
 
   const tokens = joinLines(lines)

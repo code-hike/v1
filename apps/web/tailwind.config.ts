@@ -23,6 +23,12 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        "editor-rangeHighlightBackground": "var(--ch-18)",
+        "editorGroup-border": "var(--ch-23)",
+        "editorGroupHeader-tabsBackground": "var(--ch-22)",
+        "tab-activeForeground": "var(--ch-4)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
