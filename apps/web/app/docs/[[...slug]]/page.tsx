@@ -19,7 +19,6 @@ export default async function Page({
     notFound()
   }
 
-  // @ts-ignore
   const { default: MDX } = page.data.exports
   const layout = page.data.layout
 
@@ -45,7 +44,7 @@ export default async function Page({
       // toc={page.data.exports.toc}
     >
       <DocsBody className="min-h-screen">
-        <RollButton />
+        {/* <RollButton /> */}
         <h1>{page.data.title}</h1>
         {/* <Callout title="Unstable API" type="warn">
           This version of Code Hike is under development. Proceed at your own
