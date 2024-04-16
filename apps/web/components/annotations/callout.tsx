@@ -24,11 +24,11 @@ export const callout: AnnotationHandler = {
             minWidth: `${column + 4}ch`,
             marginLeft: `${7 + indentation}ch`,
           }}
-          className="w-fit border bg-zinc-900 border-zinc-200/50 rounded px-2 relative my-1 whitespace-break-spaces prose-p:my-1 text-center"
+          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-2 relative my-1 whitespace-break-spaces prose-p:my-1 text-center"
         >
           <div
             style={{ left: `${column - indentation}ch` }}
-            className="absolute border-r border-b  border-zinc-200/50 w-2 h-2 rotate-45 translate-y-1/2 -bottom-[1px] bg-zinc-900"
+            className="absolute border-r border-b  border-editorGroup-border w-2 h-2 rotate-45 translate-y-1/2 -bottom-[1px] bg-editorGroupHeader-tabsBackground"
           />
           {annotation.data.children || annotation.query}
         </div>

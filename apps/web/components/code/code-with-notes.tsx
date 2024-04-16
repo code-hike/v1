@@ -15,7 +15,7 @@ type RawBlocks = any
 
 export async function CodeWithNotes(props: RawBlocks) {
   const { code, notes = [] } = parse(props, ContentSchema)
-  const highlighted = await highlight(code, "github-dark")
+  const highlighted = await highlight(code, "github-from-css")
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
@@ -32,8 +32,8 @@ export async function CodeWithNotes(props: RawBlocks) {
   })
 
   return (
-    <div className="border border-zinc-700 rounded overflow-hidden">
-      <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
+    <div className="border border-editorGroup-border rounded overflow-hidden">
+      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex">
         <span>{highlighted.meta}</span>
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>

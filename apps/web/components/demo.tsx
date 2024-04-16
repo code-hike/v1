@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import { Pre, highlight } from "codehike/code"
 import { CopyButton } from "./copy-button"
+import { BasicCode } from "./code/basic-code"
 
 export async function Demo({
   name,
@@ -14,26 +15,16 @@ export async function Demo({
     path.join(process.cwd(), "demos", name, "content.md"),
     "utf-8",
   )
-  const highlighted = await highlight(
-    {
-      value,
-      lang: "mdx",
-      meta: "",
-    },
-    "github-dark",
-    {
-      annotationPrefix: "!!",
-    },
-  )
 
   const usage = (
-    <div className="border border-zinc-700 rounded overflow-hidden min-h-full flex flex-col">
-      <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
-        content.md
-        <CopyButton text={highlighted.code} className="ml-auto" />
-      </div>
-      <Pre className="m-0 bg-zinc-950 rounded-none flex-1" code={highlighted} />
-    </div>
+    <BasicCode
+      className="min-h-full flex flex-col my-0"
+      codeblock={{
+        value,
+        lang: "mdx",
+        meta: "content.md prefix",
+      }}
+    />
   )
 
   const { default: Page } = await import(`@/demos/${name}/page`)
