@@ -27,6 +27,7 @@ const config = {
         "editor-rangeHighlightBackground": "var(--ch-18)",
         "editor-background": "var(--ch-16)",
         "editor-foreground": "var(--ch-4)",
+        "editor-selectionBackground": "var(--ch-20)",
         "editorGroup-border": "var(--ch-23)",
         "editorGroupHeader-tabsBackground": "var(--ch-22)",
         "tab-activeForeground": "var(--ch-4)",

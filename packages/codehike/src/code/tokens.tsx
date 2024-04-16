@@ -38,7 +38,12 @@ export function RenderLineContent({
       )
     } else {
       return item.style ? (
-        <TokenComp {...item} key={i} lineNumber={lineNumber} />
+        <TokenComp
+          style={item.style}
+          value={item.value}
+          key={i}
+          lineNumber={lineNumber}
+        />
       ) : (
         // whitespace
         item.value

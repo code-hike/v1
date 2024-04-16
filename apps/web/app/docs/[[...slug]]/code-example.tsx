@@ -1,7 +1,5 @@
 import { parseContent } from "codehike"
-import { RawCode, Pre, highlight } from "codehike/code"
-import { Block, parse } from "codehike/schema"
-import { Callout } from "next-docs-ui/components/callout"
+import { Block } from "codehike/schema"
 import React from "react"
 
 const ContentSchema = Block.extend({})

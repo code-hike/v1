@@ -28,7 +28,7 @@ export async function BasicCode({
       </div>
       <Pre
         code={highlighted}
-        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap group flex-1"
+        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap group flex-1 selection:bg-editor-selectionBackground"
         handlers={[focus]}
       />
     </div>

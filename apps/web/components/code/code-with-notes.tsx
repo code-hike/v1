@@ -38,7 +38,7 @@ export async function CodeWithNotes(props: RawBlocks) {
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>
       <Pre
-        className="m-0 px-0 bg-transparent whitespace-pre-wrap"
+        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
         code={highlighted}
         handlers={[callout, tooltip, ...collapse]}
       />
