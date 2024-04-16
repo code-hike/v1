@@ -8,31 +8,33 @@ function _createMdxContent(props) {
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
   const _blocks = {
-    children: [
-      <_components.p>{"hello"}</_components.p>,
-      <MyCode
-        codeblock={{
-          type: "code",
-          lang: "py",
-          meta: null,
-          value:
-            "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
-          position: {
-            start: {
-              line: 3,
-              column: 1,
-              offset: 9,
+    children: (
+      <>
+        <_components.p>{"hello"}</_components.p>
+        <MyCode
+          codeblock={{
+            type: "code",
+            lang: "py",
+            meta: null,
+            value:
+              "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
+            position: {
+              start: {
+                line: 3,
+                column: 1,
+                offset: 9,
+              },
+              end: {
+                line: 5,
+                column: 4,
+                offset: 36,
+              },
             },
-            end: {
-              line: 5,
-              column: 4,
-              offset: 36,
-            },
-          },
-        }}
-      />,
-      <_components.slot name="code" />,
-    ],
+          }}
+        />
+        <_components.slot name="code" />
+      </>
+    ),
     title: "",
     _data: {
       header: "",

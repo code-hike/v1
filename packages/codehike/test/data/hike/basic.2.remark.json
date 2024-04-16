@@ -1,11 +1,52 @@
 {
   "type": "root",
   "children": [
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hello" }] },
     {
-      "type": "heading",
-      "depth": 1,
-      "children": [{ "type": "text", "value": "!foo" }]
+      "type": "mdxJsxFlowElement",
+      "name": "CodeWithNotes",
+      "attributes": [],
+      "children": [
+        {
+          "type": "code",
+          "lang": "tsx",
+          "meta": "! code.tsx",
+          "value": "console.log(\"Hello, World!\")"
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [
+            { "type": "text", "value": "!!notes transform-annotations" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            { "type": "text", "value": "We need to transform the " },
+            { "type": "inlineCode", "value": "Callout" },
+            { "type": "text", "value": " annotations from " },
+            { "type": "inlineCode", "value": "InlineAnnotation" },
+            { "type": "text", "value": " to " },
+            { "type": "inlineCode", "value": "BlockAnnotation" }
+          ]
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [{ "type": "text", "value": "!!notes column" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            { "type": "text", "value": "We store the " },
+            { "type": "inlineCode", "value": "column" },
+            { "type": "text", "value": " in the annotation data" }
+          ]
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "bar" }] }
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hey" }] }
   ]
 }

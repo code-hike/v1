@@ -76,6 +76,24 @@ function getSectionContainers(section: HikeSection, path: string) {
 }
 
 function sectionContainer(section: HikeSection, path: string): JSXChild {
+  const elements = section.children.map((child) => {
+    if (child.type === "content") {
+      return child.value
+    }
+    return placeholder(child.name, child.index)
+  })
+
+  const child: JSXChild =
+    elements.length == 1
+      ? elements[0]
+      : {
+          // wrap elemts in fragment
+          type: "mdxJsxFlowElement",
+          name: null,
+          attributes: [],
+          children: elements,
+        }
+
   return {
     type: "mdxJsxFlowElement",
     name: "slot",
@@ -86,12 +104,7 @@ function sectionContainer(section: HikeSection, path: string): JSXChild {
         value: path,
       },
     ],
-    children: section.children.map((child) => {
-      if (child.type === "content") {
-        return child.value
-      }
-      return placeholder(child.name, child.index)
-    }),
+    children: child ? [child] : [],
   }
 }
 

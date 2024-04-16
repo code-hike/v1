@@ -2,7 +2,7 @@ import { ZodTypeDef, z } from "zod"
 
 export const Block = z.object({
   title: z.string(),
-  children: z.array(z.custom<React.ReactNode>()),
+  children: z.custom<React.ReactNode>(),
 })
 
 export const CodeBlock = z.object({
