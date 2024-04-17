@@ -14,77 +14,65 @@ Add callouts inside your code blocks.
 
 ## !implementation
 
-The tricky part about this one is that we have an inline annotation (because we want to have an arrow pointing to a specific column) but we want to render a block annotation (so we render the callout outside of the line we are annotating).
-
 <CodeWithNotes>
 
 ```tsx ! code.tsx
-// !Collapse(1:6) collapsed
-import {
-  RawCode,
-  Pre,
-  highlight,
-  BlockAnnotationComponent,
-  InlineAnnotation,
-} from "codehike/code"
+import { InlineAnnotation, AnnotationHandler } from "codehike/code"
 
-export async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-  // !Callout[/annotations/] transform-annotations
-  highlighted.annotations = highlighted.annotations.map((annotation) => {
-    if (annotation.name != "Callout") {
-      return annotation
-    }
-    const { name, query, lineNumber, fromColumn, toColumn } =
-      annotation as InlineAnnotation
+const callout: AnnotationHandler = {
+  name: "callout",
+  // !callout[/transform/] transform-annotations
+  transform: (annotation: InlineAnnotation) => {
+    const { name, query, lineNumber, fromColumn, toColumn, data } = annotation
     return {
       name,
       query,
       fromLineNumber: lineNumber,
       toLineNumber: lineNumber,
-      // !Callout[/column/] column
-      data: { column: (fromColumn + toColumn) / 2 },
+      // !callout[/column/] column
+      data: { ...data, column: (fromColumn + toColumn) / 2 },
     }
-  })
-
-  return (
-    <Pre
-      className="m-0 bg-zinc-950"
-      code={highlighted}
-      components={{ BlockCallout }}
-    />
-  )
-}
-
-const BlockCallout: BlockAnnotationComponent = ({ annotation, children }) => {
-  const { column } = annotation.data
-  return (
-    <>
-      {children}
-      <div
-        style={{ minWidth: `${column + 4}ch` }}
-        className="w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces"
-      >
+  },
+  Block: ({ annotation, children }) => {
+    const { column } = annotation.data
+    // !fold[/className="(.*?)"/gm]
+    return (
+      <>
+        {children}
         <div
-          style={{ left: `${column}ch` }}
-          className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-800"
-        />
-        {annotation.query}
-      </div>
-    </>
-  )
+          style={{ minWidth: `${column + 4}ch` }}
+          className="w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces"
+        >
+          <div
+            style={{ left: `${column}ch` }}
+            className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-800"
+          />
+          {annotation.query}
+        </div>
+      </>
+    )
+  },
 }
 ```
 
 ## !!notes transform-annotations
 
-We need to transform the `Callout` annotations from `InlineAnnotation` to `BlockAnnotation`
+We need to transform the annotations from `InlineAnnotation` to `BlockAnnotation`
 
 ## !!notes column
 
-We store the `column` in the annotation data
+This will be the position of the arrow in the callout
 
 </CodeWithNotes>
+
+Then pass the `callout` handler to the `Pre` component:
+
+```tsx code.tsx ln
+async function Code({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return <Pre code={highlighted} handlers={[callout]} />
+}
+```
 
 ## Make it better
 
@@ -92,32 +80,4 @@ Some ways to improve the callout annotation:
 
 - add different annotations with different styles (like Warning, Error, Info, etc)
 - add an option to show the callout either before or after the line
-- put markdown inside the callout (you'll need to write something like the `SuperCode` component below)
-
-````mdx content.mdx prefix ln
-<SuperCode>
-
-```js !
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : 1
-  // !Callout[/sit/] sit-info
-  dolor = sit - amet(dolor)
-  // !Callout[/ispum/] ispum-info
-  return sit ? consectetur(ipsum) : []
-}
-```
-
-## !! sit-info
-
-Here you can put _markdown_
-
-## !! ispum-info
-
-Even code
-
-```js
-console.log("Hello, World!")
-```
-
-</SuperCode>
-````
+- put markdown inside the callout (see the [tooltip example](/docs/code/tooltip/))

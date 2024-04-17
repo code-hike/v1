@@ -5,6 +5,7 @@ import { CopyButton } from "@/components/copy-button"
 import { tooltip } from "@/components/annotations/tooltip"
 import { collapse } from "../annotations/collapse"
 import { callout } from "../annotations/callout"
+import { fold } from "../annotations/fold"
 
 const ContentSchema = z.object({
   code: CodeBlock,
@@ -40,7 +41,7 @@ export async function CodeWithNotes(props: RawBlocks) {
       <Pre
         className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
         code={highlighted}
-        handlers={[callout, tooltip, ...collapse]}
+        handlers={[callout, tooltip, ...collapse, fold]}
       />
     </div>
   )
