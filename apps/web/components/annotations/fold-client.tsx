@@ -15,6 +15,7 @@ export const InlineFold: AnnotationHandler["Inline"] = ({
     <button
       onClick={() => setFolded(false)}
       aria-label="Expand"
+      title="Click to expand"
       className="bg-editorGroupHeader-tabsBackground rounded px-1"
     >
       ...

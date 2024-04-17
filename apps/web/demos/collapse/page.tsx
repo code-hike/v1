@@ -17,31 +17,8 @@ export default function Page() {
   return <Content components={{ Code }} />
 }
 
-type CodeComponent = (props: { codeblock: RawCode }) => Promise<JSX.Element>
-
-const Code: CodeComponent = async ({ codeblock }) => {
+async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-
-  highlighted.annotations = highlighted.annotations.flatMap((annotation) => {
-    if (annotation.name !== "Collapse") {
-      return annotation
-    }
-    const { fromLineNumber } = annotation as BlockAnnotation
-    return [
-      annotation,
-      {
-        ...annotation,
-        fromLineNumber: fromLineNumber,
-        toLineNumber: fromLineNumber,
-        name: "CollapseTrigger",
-      },
-      {
-        ...annotation,
-        fromLineNumber: fromLineNumber + 1,
-        name: "CollapseContent",
-      },
-    ]
-  })
 
   return (
     <Pre
@@ -53,7 +30,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
 }
 
 const collapse: AnnotationHandler = {
-  name: "Collapse",
+  name: "collapse",
   transform: (annotation: BlockAnnotation) => {
     const { fromLineNumber } = annotation
     return [
