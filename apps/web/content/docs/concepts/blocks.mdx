@@ -13,6 +13,9 @@ This lets you add structure to your markdown content that you can then use to re
 
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
+{/* !ruler(5) 1 */}
+{/* !ruler(7:11) 2 */}
+{/* !ruler(13:15) 3 */}
 import { MyComponent } from "./my-component"
 
 <MyComponent>
@@ -42,7 +45,9 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
+  // !ruler 1
   children: <p>The two towers</p>,
+  // !ruler(1:9) 2
   mordor: {
     title: "Barad-dûr",
     children: (
@@ -52,6 +57,7 @@ props = {
       </>
     ),
   },
+  // !ruler(1:4) 3
   isengard: {
     title: "Orthanc",
     children: <p>Saruman's stronghold</p>,
@@ -71,6 +77,11 @@ Besides headings, you can add the `!` decoration to images, codeblocks, and para
 
 ````mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
+{/* !ruler(5) 1 */}
+{/* !ruler(7) 2 */}
+{/* !ruler(9) 3 */}
+{/* !ruler(11:13) 4 */}
+{/* !ruler(15:17) 5 */}
 import { MyComponent } from "./my-component"
 
 <MyComponent>
@@ -102,18 +113,23 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
+  // !ruler 1
   children: <p>The Fellowship of the Ring</p>,
+  // !ruler 2
   author: "Tolkien",
+  // !ruler(1:5) 3
   cover: {
     alt: "Gandalf",
     title: "a wizard",
     url: "/gandalf.jpg",
   },
+  // !ruler(1:5) 4
   riddle: {
     value: 'speak("friend")',
     lang: "js",
     meta: "mellon.js",
   },
+  // !ruler(1:4) 5
   moria: {
     children: <p>Speak, friend, and enter</p>,
     title: "western gate",
@@ -131,6 +147,9 @@ You can use `!!`, instead of `!`, to list all the blocks with the same decoratio
 
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
+{/* !ruler(5) 1 */}
+{/* !ruler(7:9) 2 */}
+{/* !ruler(11:13) 3 */}
 import { MyComponent } from "./my-component"
 
 <MyComponent>
@@ -158,12 +177,15 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
+  // !ruler 1
   children: <p>The Brandybuck Brunch</p>,
   breakfasts: [
+    // !ruler(1:4) 2
     {
       title: "first",
       children: <p>Grilled mushrooms</p>,
     },
+    // !ruler(1:4) 3
     {
       title: "second",
       children: <p>Apple pancakes</p>,

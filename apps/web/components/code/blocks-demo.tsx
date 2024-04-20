@@ -10,6 +10,7 @@ import {
 import theme from "@/theme.mjs"
 import { CodeIcon } from "../annotations/icons"
 import { pill } from "../annotations/pill"
+import { ruler } from "../annotations/ruler"
 
 export async function BlocksDemo(props: unknown) {
   const { content, component, result } = parseProps(
@@ -23,7 +24,7 @@ export async function BlocksDemo(props: unknown) {
 
   const resultChildren = <CalloutCode code={result} />
   return (
-    <div className="flex gap-2 items-stretch">
+    <div className="flex gap-2 items-stretch ruler-group">
       <div className="min-w-0 flex-1 ">
         <CodeWithNotes code={content} />
       </div>
@@ -41,7 +42,19 @@ export async function BlocksDemo(props: unknown) {
 
 async function CalloutCode({ code }: { code: RawCode }) {
   const highlighted = await highlight(code, theme)
-  return <Pre code={highlighted} className="m-0 p-1 bg-transparent" />
+  return (
+    <Pre
+      code={highlighted}
+      className="m-0 py-1 px-0 bg-transparent"
+      handlers={[ruler, lineHandler]}
+    />
+  )
+}
+
+const lineHandler: AnnotationHandler = {
+  Line: ({ InnerLine, ...props }) => {
+    return <InnerLine merge={props} className="px-3" />
+  },
 }
 
 export async function CodeWithNotes({
@@ -75,7 +88,7 @@ export async function CodeWithNotes({
       <Pre
         className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
         code={highlighted}
-        handlers={[callout, pill]}
+        handlers={[callout, pill, ruler]}
       />
     </div>
   )
@@ -106,7 +119,7 @@ const callout: AnnotationHandler = {
         <InnerLine {...props} />
         <div
           style={{ minWidth: `${column + 4}ch` }}
-          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-2 relative my-1 ml-[3ch] whitespace-break-spaces prose-p:my-0"
+          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-0 relative my-1 ml-[3ch] whitespace-break-spaces prose-p:my-0"
         >
           <div
             style={{ left: `${column - 3}ch` }}
