@@ -9,6 +9,7 @@ import {
 } from "codehike/code"
 import theme from "@/theme.mjs"
 import { CodeIcon } from "../annotations/icons"
+import { pill } from "../annotations/pill"
 
 export async function BlocksDemo(props: unknown) {
   const { content, component, result } = parseProps(
@@ -74,7 +75,7 @@ export async function CodeWithNotes({
       <Pre
         className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
         code={highlighted}
-        handlers={[callout]}
+        handlers={[callout, pill]}
       />
     </div>
   )
