@@ -1,75 +1,75 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
+import { MyComponent } from "./my-component"
 function _createMdxContent(props) {
   const _components = {
-      code: "code",
-      p: "p",
-      slot: "slot",
-      ...props.components,
-    },
-    { CodeWithNotes } = _components
-  if (!CodeWithNotes) _missingMdxReference("CodeWithNotes", true)
+    p: "p",
+    slot: "slot",
+    ...props.components,
+  }
   return (
-    <>
-      <_components.p>{"hello"}</_components.p>
-      {"\n"}
-      <CodeWithNotes
-        __hike={{
-          children: "",
+    <MyComponent
+      __hike={{
+        children: "",
+        title: "",
+        _data: {
+          header: "",
+        },
+        master: {
+          children: "master",
           title: "",
           _data: {
-            header: "",
+            header: "## !master",
           },
-          code: {
-            value: 'console.log("Hello, World!")',
-            lang: "tsx",
-            meta: "code.tsx",
-          },
-          notes: [
+          rings: [
             {
-              children: "notes",
-              title: "transform-annotations",
+              children: "master.rings",
+              title: "Elves",
               _data: {
-                header: "## !!notes transform-annotations",
+                header: "### !!rings Elves",
               },
             },
             {
-              children: "notes",
-              title: "column",
+              children: "master.rings",
+              title: "Dwarves",
               _data: {
-                header: "## !!notes column",
+                header: "### !!rings Dwarves",
+              },
+            },
+            {
+              children: "master.rings",
+              title: "Men",
+              _data: {
+                header: "### !!rings Men",
               },
             },
           ],
-        }}
-      >
-        <_components.slot path="">
-          <>
-            <_components.slot name="code" />
-            <_components.slot name="notes" index={0} />
-            <_components.slot name="notes" index={1} />
-          </>
-        </_components.slot>
-        <_components.slot path="notes">
-          <_components.p>
-            {"We need to transform the "}
-            <_components.code>{"Callout"}</_components.code>
-            {" annotations from "}
-            <_components.code>{"InlineAnnotation"}</_components.code>
-            {" to "}
-            <_components.code>{"BlockAnnotation"}</_components.code>
-          </_components.p>
-        </_components.slot>
-        <_components.slot path="notes">
-          <_components.p>
-            {"We store the "}
-            <_components.code>{"column"}</_components.code>
-            {" in the annotation data"}
-          </_components.p>
-        </_components.slot>
-      </CodeWithNotes>
-      {"\n"}
-      <_components.p>{"hey"}</_components.p>
-    </>
+        },
+      }}
+    >
+      <_components.slot path="">
+        <>
+          <_components.p>{"The Rings of Power"}</_components.p>
+          <_components.slot name="master" />
+        </>
+      </_components.slot>
+      <_components.slot path="master">
+        <>
+          <_components.p>{"The One Ring"}</_components.p>
+          <_components.slot name="rings" index={0} />
+          <_components.slot name="rings" index={1} />
+          <_components.slot name="rings" index={2} />
+        </>
+      </_components.slot>
+      <_components.slot path="master.rings">
+        <_components.p>{"Three rings"}</_components.p>
+      </_components.slot>
+      <_components.slot path="master.rings">
+        <_components.p>{"Seven rings"}</_components.p>
+      </_components.slot>
+      <_components.slot path="master.rings">
+        <_components.p>{"Nine rings"}</_components.p>
+      </_components.slot>
+    </MyComponent>
   )
 }
 export default function MDXContent(props = {}) {
@@ -80,14 +80,5 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
-  )
-}
-function _missingMdxReference(id, component) {
-  throw new Error(
-    "Expected " +
-      (component ? "component" : "object") +
-      " `" +
-      id +
-      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

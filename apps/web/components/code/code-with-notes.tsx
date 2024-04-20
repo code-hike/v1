@@ -1,5 +1,5 @@
 import { Pre, highlight } from "codehike/code"
-import { Block, CodeBlock, parseProps } from "codehike/blocks"
+import { Block, CodeBlock, ImageBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
 import { CopyButton } from "@/components/copy-button"
 import { tooltip } from "@/components/annotations/tooltip"
@@ -12,9 +12,17 @@ const ContentSchema = z.object({
   notes: z.array(Block).optional(),
 })
 
+const Schema = Block.extend({
+  author: z.string(),
+  cover: ImageBlock.optional(),
+  riddle: CodeBlock,
+  breakfasts: z.array(Block),
+})
+
 type RawBlocks = any
 
 export async function CodeWithNotes(props: RawBlocks) {
+  const data = parseProps(props, Schema)
   const { code, notes = [] } = parseProps(props, ContentSchema)
   const highlighted = await highlight(code, "github-from-css")
 

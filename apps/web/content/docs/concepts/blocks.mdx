@@ -16,17 +16,17 @@ import { MyComponent } from "./my-component"
 
 <MyComponent>
 
-Hello
+The two towers
 
-## !one 111
+## !mordor Barad-dûr
 
-Uno lorem ipsum
+The Dark Tower
 
-Another paragraph
+Sauron's fortress
 
-## !two 222
+## !isengard Orthanc
 
-Dos dolor sit
+Saruman's stronghold
 
 </MyComponent>
 ```
@@ -41,26 +41,26 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
-  children: <p>Hello</p>,
-  one: {
-    title: "111",
+  children: <p>The two towers</p>,
+  mordor: {
+    title: "Barad-dûr",
     children: (
       <>
-        <p>Uno lorem ipsum</p>
-        <p>Another paragraph</p>
+        <p>The Dark Tower</p>
+        <p>Sauron's fortress</p>
       </>
     ),
   },
-  two: {
-    title: "222",
-    children: <p>Dos dolor sit</p>,
+  isengard: {
+    title: "Orthanc",
+    children: <p>Saruman's stronghold</p>,
   },
 }
 ```
 
 </BlocksDemo>
 
-The `!one` decoration at the start of the heading tells Code Hike to group the content between this heading and the next one, the `## !two` heading. That content group becomes a block object, that you can then use in your components.
+The `!mordor` decoration at the start of the first heading tells Code Hike to group the content between this heading and the next one, the `## !isengard` heading. That content group becomes a block object, that you can then use in your components.
 
 ## Images, CodeBlocks, and Paragraphs
 
@@ -73,19 +73,19 @@ import { MyComponent } from "./my-component"
 
 <MyComponent>
 
-Hello
+The Fellowship of the Ring
 
-!lorem ipsum
+!author Tolkien
 
-[!cover 111](/one.jpg foo)
+![!cover Gandalf](/gandalf.jpg "a wizard")
 
-```js !foo bar
-console.log("Hello!")
+```js !riddle mellon.js
+speak("friend")
 ```
 
-## !one 111
+## !moria western gate
 
-Uno lorem ipsum
+Speak, friend, and enter
 
 </MyComponent>
 ````
@@ -100,21 +100,21 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
-  children: <p>Hello</p>,
-  lorem: "ipsum",
+  children: <p>The Fellowship of the Ring</p>,
+  author: "Tolkien",
   cover: {
-    title: "111",
-    src: "/one.jpg",
-    alt: "foo",
+    alt: "Gandalf",
+    title: "a wizard",
+    url: "/gandalf.jpg",
   },
-  foo: {
+  riddle: {
+    value: 'speak("friend")',
     lang: "js",
-    meta: "bar",
-    value: 'console.log("Hello!")',
+    meta: "mellon.js",
   },
-  one: {
-    title: "111",
-    children: <p>Uno lorem ipsum</p>,
+  moria: {
+    children: <p>Speak, friend, and enter</p>,
+    title: "western gate",
   },
 }
 ```
@@ -132,15 +132,15 @@ import { MyComponent } from "./my-component"
 
 <MyComponent>
 
-Hello
+The Brandybuck Brunch
 
-## !!chapters one
+## !!breakfasts first
 
-Uno lorem ipsum
+Grilled mushrooms
 
-## !!chapters two
+## !!breakfasts second
 
-Dos dolor sit
+Apple pancakes
 
 </MyComponent>
 ```
@@ -155,21 +155,23 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
-  children: <p>Hello</p>,
-  chapters: [
+  children: <p>The Brandybuck Brunch</p>,
+  breakfasts: [
     {
-      title: "one",
-      children: <p>Uno lorem ipsum</p>,
+      title: "first",
+      children: <p>Grilled mushrooms</p>,
     },
     {
-      title: "two",
-      children: <p>Dos dolor sit</p>,
+      title: "second",
+      children: <p>Apple pancakes</p>,
     },
   ],
 }
 ```
 
 </BlocksDemo>
+
+The same applies to images, codeblocks, and paragraphs.
 
 ## Nesting
 
@@ -182,15 +184,23 @@ import { MyComponent } from "./my-component"
 
 <MyComponent>
 
-Hello
+The Rings of Power
 
-## !!chapters one
+## !master
 
-Uno lorem ipsum
+The One Ring
 
-## !!chapters two
+### !!rings Elves
 
-Dos dolor sit
+Three rings
+
+### !!rings Dwarves
+
+Seven rings
+
+### !!rings Men
+
+Nine rings
 
 </MyComponent>
 ```
@@ -205,17 +215,25 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
-  children: <p>Hello</p>,
-  chapters: [
-    {
-      title: "one",
-      children: <p>Uno lorem ipsum</p>,
-    },
-    {
-      title: "two",
-      children: <p>Dos dolor sit</p>,
-    },
-  ],
+  children: <p>The Rings of Power</p>,
+  master: {
+    children: <p>The One Ring</p>,
+    title: "",
+    rings: [
+      {
+        children: <p>Three rings</p>,
+        title: "Elves",
+      },
+      {
+        children: <p>Seven rings</p>,
+        title: "Dwarves",
+      },
+      {
+        children: <p>Nine rings</p>,
+        title: "Men",
+      },
+    ],
+  },
 }
 ```
 
@@ -235,37 +253,43 @@ import { MyComponent } from "./my-component"
 
 <MyComponent>
 
-Hello
+The Fellowship of the Ring
 
-!lorem ipsum
+!author Tolkien
 
-[!cover 111](/one.jpg foo)
+![!cover Gandalf](/gandalf.jpg "a wizard")
 
-```js !foo bar
-console.log("Hello!")
+```js !riddle mellon.js
+speak("friend")
 ```
 
-## !one 111
+## !!breakfasts first
 
-Uno lorem ipsum
+Grilled mushrooms
+
+## !!breakfasts second
+
+Apple pancakes
 
 </MyComponent>
 ````
 
 ```jsx !component my-component.tsx
+import { z } from "zod"
 import {
   parseProps, Block, CodeBlock, ImageBlock
 } from "codehike/blocks"
 
-const ContentSchema = Block.extend({
-  lorem: string,
-  cover: ImageBlock,
-  foo: CodeBlock,
+const Schema = Block.extend({
+  author: z.string(),
+  cover: ImageBlock.optional(),
+  riddle: CodeBlock,
+  breakfasts: z.array(Block),
 })
 
 export function MyComponent(props) {
   // !callout[/data/] result
-  const data = parseProps(props, ContentSchema)
+  const data = parseProps(props, Schema)
   ...
 }
 
@@ -273,18 +297,23 @@ export function MyComponent(props) {
 
 ```tsx !result
 const data: {
-  children: React.ReactNode
-  lorem: string
-  cover: {
+  title: string
+  children?: ReactNode
+  author: string
+  cover?: {
     title: string
-    src: string
+    url: string
     alt: string
   }
-  foo: {
-    lang: string
+  riddle: {
     meta: string
     value: string
+    lang: string
   }
+  breakfasts: {
+    title: string
+    children?: ReactNode
+  }[]
 }
 ```
 
@@ -292,28 +321,31 @@ const data: {
 
 ## Root level blocks
 
-You can use decorated elements directly in the root of the Markdown/MDX file.
+You can use decorated elements directly in the root of your Markdown/MDX file.
 
 <BlocksDemo>
 
 ```mdx !content content.md
-Hello
+The Brandybuck Brunch
 
-## !one 111
+## !!breakfasts first
 
-Uno lorem ipsum
+Grilled mushrooms
+
+## !!breakfasts second
+
+Apple pancakes
 ```
 
 ```jsx !component page.jsx
-import { parseContent } from "codehike"
+import { parseRoot } from "codehike"
 import MDX from "./content.md"
 
 const Schema = Block.extend({
-  foo: CodeBlock,
+  breakfasts: z.array(Block),
 })
 
 export default function Page() {
-  // !callout[/data/] result
   const data = parseRoot(MDX, Schema)
   ...
 }
@@ -332,6 +364,6 @@ Coming soon
 
 ## Examples
 
-The [tooltip example](/docs/code/tooltip) shows how to use blocks at a component level.
+The [code tooltip example](/docs/code/tooltip) shows how to use blocks at a component level.
 
 The [scrollycoding example](/docs/layouts/scrollycoding) shows how to use blocks for layout at a page level.
