@@ -13,11 +13,13 @@ const colors = [
 export const ruler: AnnotationHandler = {
   name: "ruler",
   Block: ({ annotation, children }) => {
-    const n = Number(annotation.query || "1")
+    const [k, c] = annotation.query?.split(" ")
+    const n = Number(k || "1")
     const bg = colors[n % colors.length]
     return (
       <div className="relative" data-hover={n}>
         <div
+          style={{ left: c ? "6px" : "2px" }}
           className={`absolute top-0.5 bottom-0.5 left-0.5 w-[3px] rounded-sm ${bg}`}
         />
         <div

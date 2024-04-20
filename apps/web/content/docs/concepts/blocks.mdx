@@ -206,6 +206,11 @@ You can use headigns with different levels to create nested blocks.
 
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
+{/* !ruler(5) 1 */}
+{/* !ruler(7:21) 2 */}
+{/* !ruler(11:13) 3 2 */}
+{/* !ruler(15:17) 4 2 */}
+{/* !ruler(19:21) 5 2 */}
 import { MyComponent } from "./my-component"
 
 <MyComponent>
@@ -241,19 +246,24 @@ export function MyComponent(props) {
 
 ```jsx !result
 props = {
+  // !ruler 1
   children: <p>The Rings of Power</p>,
+  // !ruler(1:18) 2
   master: {
     children: <p>The One Ring</p>,
     title: "",
     rings: [
+      // !ruler(1:4) 3 2
       {
         children: <p>Three rings</p>,
         title: "Elves",
       },
+      // !ruler(1:4) 4 2
       {
         children: <p>Seven rings</p>,
         title: "Dwarves",
       },
+      // !ruler(1:4) 5 2
       {
         children: <p>Nine rings</p>,
         title: "Men",

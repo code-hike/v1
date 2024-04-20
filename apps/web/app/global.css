@@ -72,21 +72,21 @@ html.light {
   --ch-26: #ffffffe6;
 }
 
-.ruler-group:has([data-hover="1"]:hover) [data-hover="1"] .bg {
+.ruler-group:has([data-hover="1"]:hover) [data-hover="1"] > .bg {
   opacity: 1;
 }
-.ruler-group:has([data-hover="2"]:hover) [data-hover="2"] .bg {
+.ruler-group:has([data-hover="2"]:hover) [data-hover="2"] > .bg {
   opacity: 1;
 }
-.ruler-group:has([data-hover="3"]:hover) [data-hover="3"] .bg {
+.ruler-group:has([data-hover="3"]:hover) [data-hover="3"] > .bg {
   opacity: 1;
 }
-.ruler-group:has([data-hover="4"]:hover) [data-hover="4"] .bg {
+.ruler-group:has([data-hover="4"]:hover) [data-hover="4"] > .bg {
   opacity: 1;
 }
-.ruler-group:has([data-hover="5"]:hover) [data-hover="5"] .bg {
+.ruler-group:has([data-hover="5"]:hover) [data-hover="5"] > .bg {
   opacity: 1;
 }
-.ruler-group:has([data-hover="6"]:hover) [data-hover="6"] .bg {
+.ruler-group:has([data-hover="6"]:hover) [data-hover="6"] > .bg {
   opacity: 1;
 }
