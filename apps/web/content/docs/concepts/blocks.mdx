@@ -1,0 +1,337 @@
+---
+title: MDX Blocks
+description: Making markdown mallable with blocks
+---
+
+import { BlocksDemo } from "@/components/code/blocks-demo"
+
+You can decorate some markdown elements with a special syntax, and Code Hike will transform them into objects and pass it as props to your components.
+
+This lets you add structure to your markdown content that you can then use to render it in any way you want using React components.
+
+<BlocksDemo>
+
+```mdx !content content.mdx
+import { MyComponent } from "./my-component"
+
+<MyComponent>
+
+Hello
+
+## !one 111
+
+Uno lorem ipsum
+
+Another paragraph
+
+## !two 222
+
+Dos dolor sit
+
+</MyComponent>
+```
+
+```jsx !component my-component.jsx
+// !callout[/props/] result
+export function MyComponent(props) {
+  ...
+}
+
+```
+
+```jsx !result
+props = {
+  children: <p>Hello</p>,
+  one: {
+    title: "111",
+    children: (
+      <>
+        <p>Uno lorem ipsum</p>
+        <p>Another paragraph</p>
+      </>
+    ),
+  },
+  two: {
+    title: "222",
+    children: <p>Dos dolor sit</p>,
+  },
+}
+```
+
+</BlocksDemo>
+
+The `!one` decoration at the start of the heading tells Code Hike to group the content between this heading and the next one, the `## !two` heading. That content group becomes a block object, that you can then use in your components.
+
+## Images, CodeBlocks, and Paragraphs
+
+Besides headings, you can add the `!` decoration to images, codeblocks, and paragraphs.
+
+<BlocksDemo>
+
+````mdx !content content.mdx
+import { MyComponent } from "./my-component"
+
+<MyComponent>
+
+Hello
+
+!lorem ipsum
+
+[!cover 111](/one.jpg foo)
+
+```js !foo bar
+console.log("Hello!")
+```
+
+## !one 111
+
+Uno lorem ipsum
+
+</MyComponent>
+````
+
+```jsx !component my-component.jsx
+// !callout[/props/] result
+export function MyComponent(props) {
+  ...
+}
+
+```
+
+```jsx !result
+props = {
+  children: <p>Hello</p>,
+  lorem: "ipsum",
+  cover: {
+    title: "111",
+    src: "/one.jpg",
+    alt: "foo",
+  },
+  foo: {
+    lang: "js",
+    meta: "bar",
+    value: 'console.log("Hello!")',
+  },
+  one: {
+    title: "111",
+    children: <p>Uno lorem ipsum</p>,
+  },
+}
+```
+
+</BlocksDemo>
+
+## Lists
+
+You can use `!!`, instead of `!`, to list all the blocks with the same decoration in an array.
+
+<BlocksDemo>
+
+```mdx !content content.mdx
+import { MyComponent } from "./my-component"
+
+<MyComponent>
+
+Hello
+
+## !!chapters one
+
+Uno lorem ipsum
+
+## !!chapters two
+
+Dos dolor sit
+
+</MyComponent>
+```
+
+```jsx !component my-component.jsx
+// !callout[/props/] result
+export function MyComponent(props) {
+  ...
+}
+
+```
+
+```jsx !result
+props = {
+  children: <p>Hello</p>,
+  chapters: [
+    {
+      title: "one",
+      children: <p>Uno lorem ipsum</p>,
+    },
+    {
+      title: "two",
+      children: <p>Dos dolor sit</p>,
+    },
+  ],
+}
+```
+
+</BlocksDemo>
+
+## Nesting
+
+You can use headigns with different levels to create nested blocks.
+
+<BlocksDemo>
+
+```mdx !content content.mdx
+import { MyComponent } from "./my-component"
+
+<MyComponent>
+
+Hello
+
+## !!chapters one
+
+Uno lorem ipsum
+
+## !!chapters two
+
+Dos dolor sit
+
+</MyComponent>
+```
+
+```jsx !component my-component.jsx
+// !callout[/props/] result
+export function MyComponent(props) {
+  ...
+}
+
+```
+
+```jsx !result
+props = {
+  children: <p>Hello</p>,
+  chapters: [
+    {
+      title: "one",
+      children: <p>Uno lorem ipsum</p>,
+    },
+    {
+      title: "two",
+      children: <p>Dos dolor sit</p>,
+    },
+  ],
+}
+```
+
+</BlocksDemo>
+
+## Schema
+
+You can use [zod](https://zod.dev/) schemas to validate the content coming from the MDX. This has two main benefits:
+
+- **Type-safe markdown**: You'll see an error if the content doesn't match the schema
+- **Better tooling**:You'll get autocompletion and type checking in your editor
+
+<BlocksDemo>
+
+````mdx !content content.mdx
+import { MyComponent } from "./my-component"
+
+<MyComponent>
+
+Hello
+
+!lorem ipsum
+
+[!cover 111](/one.jpg foo)
+
+```js !foo bar
+console.log("Hello!")
+```
+
+## !one 111
+
+Uno lorem ipsum
+
+</MyComponent>
+````
+
+```jsx !component my-component.tsx
+import {
+  parseProps, Block, CodeBlock, ImageBlock
+} from "codehike/blocks"
+
+const ContentSchema = Block.extend({
+  lorem: string,
+  cover: ImageBlock,
+  foo: CodeBlock,
+})
+
+export function MyComponent(props) {
+  // !callout[/data/] result
+  const data = parseProps(props, ContentSchema)
+  ...
+}
+
+```
+
+```tsx !result
+const data: {
+  children: React.ReactNode
+  lorem: string
+  cover: {
+    title: string
+    src: string
+    alt: string
+  }
+  foo: {
+    lang: string
+    meta: string
+    value: string
+  }
+}
+```
+
+</BlocksDemo>
+
+## Root level blocks
+
+You can use decorated elements directly in the root of the Markdown/MDX file.
+
+<BlocksDemo>
+
+```mdx !content content.md
+Hello
+
+## !one 111
+
+Uno lorem ipsum
+```
+
+```jsx !component page.jsx
+import { parseContent } from "codehike"
+import MDX from "./content.md"
+
+const Schema = Block.extend({
+  foo: CodeBlock,
+})
+
+export default function Page() {
+  // !callout[/data/] result
+  const data = parseRoot(MDX, Schema)
+  ...
+}
+
+```
+
+```tsx !result
+const data: {}
+```
+
+</BlocksDemo>
+
+## Component blocks
+
+Coming soon
+
+## Examples
+
+The [tooltip example](/docs/code/tooltip) shows how to use blocks at a component level.
+
+The [scrollycoding example](/docs/layouts/scrollycoding) shows how to use blocks for layout at a page level.

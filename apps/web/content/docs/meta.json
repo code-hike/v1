@@ -2,7 +2,7 @@
   "title": "Docs",
   "pages": [
     "index",
-    "...guides",
+    "concepts",
     "---API---",
     "...api",
     "---Examples---",

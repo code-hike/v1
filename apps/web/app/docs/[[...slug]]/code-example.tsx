@@ -1,11 +1,10 @@
-import { parseContent } from "codehike"
-import { Block } from "codehike/schema"
+import { Block, parseRoot } from "codehike/blocks"
 import React from "react"
 
 const ContentSchema = Block.extend({})
 
 export function CodeExample({ MDX }: { MDX: any }) {
-  const { children } = parseContent(ContentSchema, MDX, {
+  const { children } = parseRoot(MDX, ContentSchema, {
     components: { PreviewContainer },
   })
 

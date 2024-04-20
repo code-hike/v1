@@ -1,14 +1,13 @@
 import { highlight } from "codehike/code"
 import Content from "./content.mdx"
 import { CodeSwitcher } from "./code"
-import { parseContent } from "codehike"
-import { Block, CodeBlock } from "codehike/schema"
+import { Block, CodeBlock, parseRoot } from "codehike/blocks"
 import { z } from "zod"
 
 export default async function Page() {
-  const { code } = parseContent(
-    Block.extend({ code: z.array(CodeBlock) }),
+  const { code } = parseRoot(
     Content,
+    Block.extend({ code: z.array(CodeBlock) }),
   )
 
   const infos = await Promise.all(

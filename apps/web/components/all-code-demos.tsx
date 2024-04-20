@@ -1,7 +1,6 @@
 import { docs } from "@/app/source"
-import { Block } from "codehike/schema"
+import { Block, parseRoot } from "codehike/blocks"
 import { Demo } from "@/components/demo"
-import { parseContent } from "codehike"
 import { CodeWithNotes } from "@/components/code/code-with-notes"
 import Link from "next/link"
 
@@ -15,7 +14,7 @@ export function AllCodeDemos() {
   return demoPages.map((page) => {
     const { title, exports } = page.data
     const { default: MDX } = exports
-    const { demo } = parseContent(Block.extend({ demo: Block }), MDX, {
+    const { demo } = parseRoot(MDX, Block.extend({ demo: Block }), {
       components: { Demo, CodeWithNotes },
     })
     const href = `/docs/${page.slugs.join("/")}`

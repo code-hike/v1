@@ -2,6 +2,7 @@ import { AnnotationHandler, Pre, RawCode, highlight } from "codehike/code"
 import { CopyButton } from "@/components/copy-button"
 import { cn } from "@/lib/utils"
 import { fold } from "../annotations/fold"
+import theme from "@/theme.mjs"
 
 export async function BasicCode({
   codeblock,
@@ -13,7 +14,7 @@ export async function BasicCode({
   const { meta, ...flags } = extractFlags(codeblock)
   const highlighted = await highlight(
     codeblock,
-    "github-from-css",
+    theme,
     flags.prefix ? { annotationPrefix: "!!" } : {},
   )
   return (

@@ -3,7 +3,6 @@ import {
   CodeAnnotation,
   RawCode,
   HighlightedCode,
-  Theme,
   Token,
   Whitespace,
   isWhitespace,
@@ -13,6 +12,7 @@ import {
   Tokens,
   highlight as lighter,
   LANG_NAMES,
+  Theme,
 } from "@code-hike/lighter"
 
 type AnyToken = Token | Whitespace
@@ -54,7 +54,7 @@ export async function highlight(
     tokens: joinedTokens,
     lang: lighterLang,
     annotations: compatAnnotations(annotations),
-    themeName: theme,
+    themeName: typeof theme === "string" ? theme : theme?.name || "unknown",
   }
 }
 

@@ -1,5 +1,5 @@
 import { Pre, highlight } from "codehike/code"
-import { Block, CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
 import { CopyButton } from "@/components/copy-button"
 import { tooltip } from "@/components/annotations/tooltip"
@@ -15,7 +15,7 @@ const ContentSchema = z.object({
 type RawBlocks = any
 
 export async function CodeWithNotes(props: RawBlocks) {
-  const { code, notes = [] } = parse(props, ContentSchema)
+  const { code, notes = [] } = parseProps(props, ContentSchema)
   const highlighted = await highlight(code, "github-from-css")
 
   // find matches between annotations and notes

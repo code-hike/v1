@@ -1,7 +1,7 @@
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "@/components/copy-button"
 import { DependencyTerminal } from "./dependency-terminal"
-import { Block, CodeBlock as CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock as CodeBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
 import { Pre, highlight } from "codehike/code"
 
@@ -13,7 +13,7 @@ const TabsSchema = Block.extend({
 type TabsContent = z.infer<typeof TabsSchema>
 
 export function ExampleTabs({ hike }: any) {
-  const content = parse(hike, TabsSchema)
+  const content = parseProps(hike, TabsSchema)
   const mdx = content.code.filter((code: any) => code.lang === "mdx")[0]
   const code = content.code.filter((code: any) => code.lang !== "mdx")
   const preview = content.preview
