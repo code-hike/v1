@@ -286,6 +286,12 @@ You can use [zod](https://zod.dev/) schemas to validate the content coming from 
 
 ````mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
+{/* !ruler(5) 1 */}
+{/* !ruler(7) 2 */}
+{/* !ruler(9) 3 */}
+{/* !ruler(11:13) 4 */}
+{/* !ruler(15:17) 5 */}
+{/* !ruler(19:21) 5 */}
 import { MyComponent } from "./my-component"
 
 <MyComponent>
@@ -318,9 +324,13 @@ import {
 } from "codehike/blocks"
 
 const Schema = Block.extend({
+  // !ruler 2
   author: z.string(),
+  // !ruler 3
   cover: ImageBlock.optional(),
+  // !ruler 4
   riddle: CodeBlock,
+  // !ruler 5
   breakfasts: z.array(Block),
 })
 
@@ -335,18 +345,23 @@ export function MyComponent(props) {
 ```tsx !result
 const data: {
   title: string
+  // !ruler 1
   children?: ReactNode
+  // !ruler 2
   author: string
+  // !ruler(1:5) 3
   cover?: {
     title: string
     url: string
     alt: string
   }
+  // !ruler(1:5) 4
   riddle: {
     meta: string
     value: string
     lang: string
   }
+  // !ruler(1:4) 5
   breakfasts: {
     title: string
     children?: ReactNode
