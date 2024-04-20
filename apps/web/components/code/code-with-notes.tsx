@@ -12,17 +12,9 @@ const ContentSchema = z.object({
   notes: z.array(Block).optional(),
 })
 
-const Schema = Block.extend({
-  author: z.string(),
-  cover: ImageBlock.optional(),
-  riddle: CodeBlock,
-  breakfasts: z.array(Block),
-})
-
 type RawBlocks = any
 
 export async function CodeWithNotes(props: RawBlocks) {
-  const data = parseProps(props, Schema)
   const { code, notes = [] } = parseProps(props, ContentSchema)
   const highlighted = await highlight(code, "github-from-css")
 
