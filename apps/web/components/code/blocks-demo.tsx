@@ -8,6 +8,7 @@ import {
   highlight,
 } from "codehike/code"
 import theme from "@/theme.mjs"
+import { CodeIcon } from "../annotations/icons"
 
 export async function BlocksDemo(props: unknown) {
   const { content, component, result } = parseProps(
@@ -50,6 +51,7 @@ export async function CodeWithNotes({
   notes?: Record<string, { children: React.ReactNode }>
 }) {
   const highlighted = await highlight(code, theme)
+  const icon = <CodeIcon codeblock={code} />
 
   highlighted.annotations = highlighted.annotations.map((a) => {
     const note = notes[a.query]
@@ -65,7 +67,8 @@ export async function CodeWithNotes({
 
   return (
     <div className="min-h-full border border-editorGroup-border rounded overflow-hidden">
-      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex">
+      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex items-center gap-3">
+        {icon}
         <span>{highlighted.meta}</span>
       </div>
       <Pre
