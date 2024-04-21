@@ -11,6 +11,8 @@ This lets you add structure to your markdown content that you can then use to re
 
 <BlocksDemo>
 
+!caption Code Hike transforming decorated markdown into props
+
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
 {/* !ruler(5) 1 */}
@@ -75,6 +77,8 @@ Besides headings, you can add the `!` decoration to images, codeblocks, and para
 
 <BlocksDemo>
 
+!caption Decorated paragraphs, images, and codeblocks
+
 ````mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
 {/* !ruler(5) 1 */}
@@ -120,19 +124,19 @@ props = {
   // !ruler(1:5) 3
   cover: {
     alt: "Gandalf",
-    title: "a wizard",
     url: "/gandalf.jpg",
+    title: "a wizard",
   },
   // !ruler(1:5) 4
   riddle: {
-    value: 'speak("friend")',
     lang: "js",
     meta: "mellon.js",
+    value: 'speak("friend")',
   },
   // !ruler(1:4) 5
   moria: {
-    children: <p>Speak, friend, and enter</p>,
     title: "western gate",
+    children: <p>Speak, friend, and enter</p>,
   },
 }
 ```
@@ -144,6 +148,8 @@ props = {
 You can use `!!`, instead of `!`, to list all the blocks with the same decoration in an array.
 
 <BlocksDemo>
+
+!caption Using !! for lists
 
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
@@ -204,6 +210,8 @@ You can use headigns with different levels to create nested blocks.
 
 <BlocksDemo>
 
+!caption Using header levels for nesting
+
 ```mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
 {/* !ruler(5) 1 */}
@@ -250,23 +258,23 @@ props = {
   children: <p>The Rings of Power</p>,
   // !ruler(1:18) 2
   master: {
-    children: <p>The One Ring</p>,
     title: "",
+    children: <p>The One Ring</p>,
     rings: [
       // !ruler(1:4) 3 2
       {
-        children: <p>Three rings</p>,
         title: "Elves",
+        children: <p>Three rings</p>,
       },
       // !ruler(1:4) 4 2
       {
-        children: <p>Seven rings</p>,
         title: "Dwarves",
+        children: <p>Seven rings</p>,
       },
       // !ruler(1:4) 5 2
       {
-        children: <p>Nine rings</p>,
         title: "Men",
+        children: <p>Nine rings</p>,
       },
     ],
   },
@@ -283,6 +291,8 @@ You can use [zod](https://zod.dev/) schemas to validate the content coming from 
 - **Better tooling**:You'll get autocompletion and type checking in your editor
 
 <BlocksDemo>
+
+!caption Using schemas for markdown validation and typing
 
 ````mdx !content content.mdx
 {/* !pill[/!!?\w+/mg] */}
@@ -351,15 +361,15 @@ const data: {
   author: string
   // !ruler(1:5) 3
   cover?: {
-    title: string
-    url: string
     alt: string
+    url: string
+    title: string
   }
   // !ruler(1:5) 4
   riddle: {
+    lang: string
     meta: string
     value: string
-    lang: string
   }
   // !ruler(1:4) 5
   breakfasts: {
@@ -376,6 +386,8 @@ const data: {
 You can use decorated elements directly in the root of your Markdown/MDX file.
 
 <BlocksDemo>
+
+!caption Using decorated elements in plain markdown
 
 ```mdx !content content.md
 {/* !pill[/!!?\w+/mg] */}

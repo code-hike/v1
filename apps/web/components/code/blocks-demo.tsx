@@ -11,11 +11,13 @@ import theme from "@/theme.mjs"
 import { CodeIcon } from "../annotations/icons"
 import { pill } from "../annotations/pill"
 import { ruler } from "../annotations/ruler"
+import { z } from "zod"
 
 export async function BlocksDemo(props: unknown) {
-  const { content, component, result } = parseProps(
+  const { content, component, result, caption } = parseProps(
     props,
     Block.extend({
+      caption: z.string().optional(),
       content: CodeBlock,
       component: CodeBlock,
       result: CodeBlock,
@@ -24,19 +26,26 @@ export async function BlocksDemo(props: unknown) {
 
   const resultChildren = <CalloutCode code={result} />
   return (
-    <div className="flex gap-2 items-stretch ruler-group">
-      <div className="min-w-0 flex-1 ">
-        <CodeWithNotes code={content} />
+    <figure className="ruler-group m-0">
+      <div className="flex gap-2 items-stretch w-full">
+        <div className="min-w-0 flex-1 ">
+          <CodeWithNotes code={content} />
+        </div>
+        <div className="min-w-0 flex-1 min-h-full">
+          <CodeWithNotes
+            code={component}
+            notes={{
+              result: { children: resultChildren },
+            }}
+          />
+        </div>
       </div>
-      <div className="min-w-0 flex-1 min-h-full">
-        <CodeWithNotes
-          code={component}
-          notes={{
-            result: { children: resultChildren },
-          }}
-        />
-      </div>
-    </div>
+      {caption && (
+        <figcaption className="text-sm mt-2 text-center opacity-70">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   )
 }
 
