@@ -1,11 +1,12 @@
 ---
-title: MDX Blocks
+title: Blocks
 description: Making markdown mallable with blocks
 ---
 
 import { BlocksDemo } from "@/components/code/blocks-demo"
+import { Pill } from "@/components/annotations/pill"
 
-You can decorate some markdown elements with a special syntax, and Code Hike will transform them into objects and pass it as props to your components.
+You can <Pill>decorate</Pill> some markdown elements with a special syntax, Code Hike will transform them into object and pass them as props to your components.
 
 This lets you add structure to your markdown content that you can then use to render it in any way you want using React components.
 
@@ -69,7 +70,7 @@ props = {
 
 </BlocksDemo>
 
-The `!mordor` decoration at the start of the first heading tells Code Hike to group the content between this heading and the next one, the `## !isengard` heading. That content group becomes a block object, that you can then use in your components.
+The <Pill>!mordor</Pill> decoration at the start of the first heading tells Code Hike to group the content between this heading and the next one, the <Pill>!isengard</Pill> heading. That content group becomes a block object, that you can then use in your components.
 
 ## Images, CodeBlocks, and Paragraphs
 

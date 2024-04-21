@@ -10,3 +10,14 @@ export const pill: AnnotationHandler = {
     )
   },
 }
+
+export function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="bg-cyan-500/20 dark:bg-cyan-400/20 p-0.5 -m-0.5 rounded"
+      style={{ color: "var(--ch-2)" }}
+    >
+      {children}
+    </span>
+  )
+}
