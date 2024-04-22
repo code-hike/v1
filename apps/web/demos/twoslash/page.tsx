@@ -1,12 +1,4 @@
-import {
-  BlockAnnotationComponent,
-  RawCode,
-  Pre,
-  InlineAnnotation,
-  InlineAnnotationComponent,
-  LineAnnotationComponent,
-  highlight,
-} from "codehike/code"
+import { RawCode, Pre, highlight, AnnotationHandler } from "codehike/code"
 import {
   TooltipProvider,
   Tooltip,
@@ -45,7 +37,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
   hovers.forEach(({ text, line, character, length }) => {
     info.annotations.push({
-      name: "Hover",
+      name: "hover",
       query: text,
       lineNumber: line + 1,
       fromColumn: character + 1,
@@ -55,7 +47,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
   queries.forEach(({ text, line, character, length }) => {
     info.annotations.push({
-      name: "Query",
+      name: "query",
       query: text,
       fromLineNumber: line + 1,
       toLineNumber: line + 1,
@@ -72,7 +64,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
   errors.forEach(({ text, line, character, length }) => {
     info.annotations.push({
-      name: "Query",
+      name: "query",
       query: text,
       fromLineNumber: line + 1,
       toLineNumber: line + 1,
@@ -81,57 +73,56 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   })
 
   return (
-    <Pre
-      className="m-0 bg-zinc-950"
-      code={info}
-      // components2={{ InlineHover, BlockQuery }}
-    />
+    <Pre className="m-0 bg-zinc-950" code={info} handlers={[hover, query]} />
   )
 }
 
-const BlockQuery: BlockAnnotationComponent = ({ annotation, children }) => {
-  const { character, className } = annotation.data
-  return (
-    <>
-      {children}
-      <div
-        style={{ minWidth: `${character + 4}ch` }}
-        className={
-          "w-fit border bg-zinc-900 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces" +
-          " " +
-          className
-        }
-      >
+const hover: AnnotationHandler = {
+  name: "hover",
+  Inline: async ({ children, annotation }) => {
+    const { query, data } = annotation
+    const highlighted = await highlight(
+      { value: query, lang: "ts", meta: "" },
+      "github-dark",
+    )
+    return (
+      <TooltipProvider delayDuration={300}>
+        <Tooltip>
+          <TooltipTrigger className="underline decoration-dashed cursor-pointer">
+            {children}
+          </TooltipTrigger>
+          <TooltipContent className="bg-zinc-900" sideOffset={0}>
+            <Pre code={highlighted} className="m-0 p-1 bg-transparent" />
+            <TooltipArrow className="fill-zinc-800" />
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  },
+}
+
+const query: AnnotationHandler = {
+  name: "query",
+  Block: ({ annotation, children }) => {
+    const { character, className } = annotation.data
+    return (
+      <>
+        {children}
         <div
-          style={{ left: `${character + 1}ch` }}
-          className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-900"
-        />
-        {annotation.query}
-      </div>
-    </>
-  )
-}
-
-export const InlineHover: InlineAnnotationComponent = async ({
-  children,
-  annotation,
-}) => {
-  const { query, data } = annotation
-  const highlighted = await highlight(
-    { value: query, lang: "ts", meta: "" },
-    "github-dark",
-  )
-  return (
-    <TooltipProvider delayDuration={300}>
-      <Tooltip>
-        <TooltipTrigger className="underline decoration-dashed cursor-pointer">
-          {children}
-        </TooltipTrigger>
-        <TooltipContent className="bg-zinc-900" sideOffset={0}>
-          <Pre code={highlighted} className="m-0 p-1 bg-transparent" />
-          <TooltipArrow className="fill-zinc-800" />
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
+          style={{ minWidth: `${character + 4}ch` }}
+          className={
+            "w-fit border bg-zinc-900 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces" +
+            " " +
+            className
+          }
+        >
+          <div
+            style={{ left: `${character + 1}ch` }}
+            className="absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-900"
+          />
+          {annotation.query}
+        </div>
+      </>
+    )
+  },
 }
