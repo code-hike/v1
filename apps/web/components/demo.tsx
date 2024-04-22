@@ -7,18 +7,22 @@ import { BasicCode } from "./code/basic-code"
 export async function Demo({
   name,
   children,
+  maxHeight,
+  content = "content.md",
 }: {
   name: string
+  content?: string
   children: React.ReactNode
+  maxHeight?: number
 }) {
   const value = await fs.promises.readFile(
-    path.join(process.cwd(), "demos", name, "content.md"),
+    path.join(process.cwd(), "demos", name, content),
     "utf-8",
   )
 
   const usage = (
     <BasicCode
-      className="min-h-full flex flex-col my-0"
+      className="min-h-full flex flex-col my-0 max-h-full"
       codeblock={{
         value,
         lang: "mdx",
@@ -41,8 +45,8 @@ export async function Demo({
   )
 
   return (
-    <div className="flex gap-2 items-stretch">
-      <div className="min-w-0 flex-1">{usage}</div>
+    <div className="flex gap-2 items-stretch" style={{ maxHeight }}>
+      <div className="min-w-0 flex-1 max-h-full">{usage}</div>
       {preview}
     </div>
   )

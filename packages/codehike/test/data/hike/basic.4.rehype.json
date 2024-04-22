@@ -2,37 +2,15 @@
   "type": "root",
   "children": [
     {
-      "type": "mdxjsEsm",
-      "value": "import { MyComponent } from \"./my-component\"",
-      "data": {
-        "estree": {
-          "type": "Program",
-          "body": [
-            {
-              "type": "ImportDeclaration",
-              "specifiers": [
-                {
-                  "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "MyComponent" },
-                  "local": { "type": "Identifier", "name": "MyComponent" }
-                }
-              ],
-              "source": {
-                "type": "Literal",
-                "value": "./my-component",
-                "raw": "\"./my-component\""
-              }
-            }
-          ],
-          "sourceType": "module",
-          "comments": []
-        }
-      }
+      "type": "element",
+      "tagName": "p",
+      "properties": {},
+      "children": [{ "type": "text", "value": "Heaas" }]
     },
     { "type": "text", "value": "\n" },
     {
       "type": "mdxJsxFlowElement",
-      "name": "MyComponent",
+      "name": "CodeWithTooltips",
       "attributes": [
         {
           "type": "mdxJsxAttribute",
@@ -106,7 +84,59 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "master" },
+                          "key": { "type": "Literal", "value": "code" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "value" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}",
+                                  "raw": "\"function lorem(ipsum, dolor = 1) {\\r\\n  const sit = ipsum == null ? 0 : ipsum.sit\\r\\n  // !mark(1:2)\\r\\n  dolor = sit - amet(dolor)\\r\\n  return sit ? consectetur(ipsum) : []\\r\\n}\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "lang" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "js",
+                                  "raw": "\"js\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "meta" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "",
+                                  "raw": "\"\""
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "foo" },
                           "kind": "init",
                           "value": {
                             "type": "ObjectExpression",
@@ -123,8 +153,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "master",
-                                  "raw": "\"master\""
+                                  "value": "foo",
+                                  "raw": "\"foo\""
                                 }
                               },
                               {
@@ -162,11 +192,40 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "## !master",
-                                        "raw": "\"## !master\""
+                                        "value": "## !foo",
+                                        "raw": "\"## !foo\""
                                       }
                                     }
                                   ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "bar" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Literal",
+                                  "value": "children"
+                                },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "bar",
+                                  "raw": "\"bar\""
                                 }
                               },
                               {
@@ -174,217 +233,39 @@
                                 "method": false,
                                 "shorthand": false,
                                 "computed": false,
-                                "key": { "type": "Literal", "value": "rings" },
+                                "key": { "type": "Literal", "value": "title" },
                                 "kind": "init",
                                 "value": {
-                                  "type": "ArrayExpression",
-                                  "elements": [
+                                  "type": "Literal",
+                                  "value": "",
+                                  "raw": "\"\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "_data" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
                                     {
-                                      "type": "ObjectExpression",
-                                      "properties": [
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "children"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "master.rings",
-                                            "raw": "\"master.rings\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "title"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "Elves",
-                                            "raw": "\"Elves\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "_data"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "ObjectExpression",
-                                            "properties": [
-                                              {
-                                                "type": "Property",
-                                                "method": false,
-                                                "shorthand": false,
-                                                "computed": false,
-                                                "key": {
-                                                  "type": "Literal",
-                                                  "value": "header"
-                                                },
-                                                "kind": "init",
-                                                "value": {
-                                                  "type": "Literal",
-                                                  "value": "### !!rings Elves",
-                                                  "raw": "\"### !!rings Elves\""
-                                                }
-                                              }
-                                            ]
-                                          }
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "ObjectExpression",
-                                      "properties": [
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "children"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "master.rings",
-                                            "raw": "\"master.rings\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "title"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "Dwarves",
-                                            "raw": "\"Dwarves\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "_data"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "ObjectExpression",
-                                            "properties": [
-                                              {
-                                                "type": "Property",
-                                                "method": false,
-                                                "shorthand": false,
-                                                "computed": false,
-                                                "key": {
-                                                  "type": "Literal",
-                                                  "value": "header"
-                                                },
-                                                "kind": "init",
-                                                "value": {
-                                                  "type": "Literal",
-                                                  "value": "### !!rings Dwarves",
-                                                  "raw": "\"### !!rings Dwarves\""
-                                                }
-                                              }
-                                            ]
-                                          }
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "ObjectExpression",
-                                      "properties": [
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "children"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "master.rings",
-                                            "raw": "\"master.rings\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "title"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "Literal",
-                                            "value": "Men",
-                                            "raw": "\"Men\""
-                                          }
-                                        },
-                                        {
-                                          "type": "Property",
-                                          "method": false,
-                                          "shorthand": false,
-                                          "computed": false,
-                                          "key": {
-                                            "type": "Literal",
-                                            "value": "_data"
-                                          },
-                                          "kind": "init",
-                                          "value": {
-                                            "type": "ObjectExpression",
-                                            "properties": [
-                                              {
-                                                "type": "Property",
-                                                "method": false,
-                                                "shorthand": false,
-                                                "computed": false,
-                                                "key": {
-                                                  "type": "Literal",
-                                                  "value": "header"
-                                                },
-                                                "kind": "init",
-                                                "value": {
-                                                  "type": "Literal",
-                                                  "value": "### !!rings Men",
-                                                  "raw": "\"### !!rings Men\""
-                                                }
-                                              }
-                                            ]
-                                          }
-                                        }
-                                      ]
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "header"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "## !bar",
+                                        "raw": "\"## !bar\""
+                                      }
                                     }
                                   ]
                                 }
@@ -421,9 +302,7 @@
                   "type": "element",
                   "tagName": "p",
                   "properties": {},
-                  "children": [
-                    { "type": "text", "value": "The Rings of Power" }
-                  ]
+                  "children": [{ "type": "text", "value": "fasdfas" }]
                 },
                 {
                   "type": "mdxJsxFlowElement",
@@ -432,7 +311,31 @@
                     {
                       "type": "mdxJsxAttribute",
                       "name": "name",
-                      "value": "master"
+                      "value": "code"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "slot",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "name",
+                      "value": "foo"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "slot",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "name",
+                      "value": "bar"
                     }
                   ],
                   "children": []
@@ -445,132 +348,14 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "path", "value": "master" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "foo" }
           ],
           "children": [
             {
-              "type": "mdxJsxFlowElement",
-              "name": null,
-              "attributes": [],
-              "children": [
-                {
-                  "type": "element",
-                  "tagName": "p",
-                  "properties": {},
-                  "children": [{ "type": "text", "value": "The One Ring" }]
-                },
-                {
-                  "type": "mdxJsxFlowElement",
-                  "name": "slot",
-                  "attributes": [
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "name",
-                      "value": "rings"
-                    },
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "index",
-                      "value": {
-                        "type": "mdxJsxAttributeValueExpression",
-                        "value": "0",
-                        "data": {
-                          "estree": {
-                            "type": "Program",
-                            "body": [
-                              {
-                                "type": "ExpressionStatement",
-                                "expression": {
-                                  "type": "Literal",
-                                  "value": 0,
-                                  "raw": "0"
-                                }
-                              }
-                            ],
-                            "sourceType": "module",
-                            "comments": []
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "children": []
-                },
-                {
-                  "type": "mdxJsxFlowElement",
-                  "name": "slot",
-                  "attributes": [
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "name",
-                      "value": "rings"
-                    },
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "index",
-                      "value": {
-                        "type": "mdxJsxAttributeValueExpression",
-                        "value": "1",
-                        "data": {
-                          "estree": {
-                            "type": "Program",
-                            "body": [
-                              {
-                                "type": "ExpressionStatement",
-                                "expression": {
-                                  "type": "Literal",
-                                  "value": 1,
-                                  "raw": "1"
-                                }
-                              }
-                            ],
-                            "sourceType": "module",
-                            "comments": []
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "children": []
-                },
-                {
-                  "type": "mdxJsxFlowElement",
-                  "name": "slot",
-                  "attributes": [
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "name",
-                      "value": "rings"
-                    },
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "index",
-                      "value": {
-                        "type": "mdxJsxAttributeValueExpression",
-                        "value": "2",
-                        "data": {
-                          "estree": {
-                            "type": "Program",
-                            "body": [
-                              {
-                                "type": "ExpressionStatement",
-                                "expression": {
-                                  "type": "Literal",
-                                  "value": 2,
-                                  "raw": "2"
-                                }
-                              }
-                            ],
-                            "sourceType": "module",
-                            "comments": []
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "children": []
-                }
-              ]
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [{ "type": "text", "value": "Hello" }]
             }
           ]
         },
@@ -578,56 +363,14 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            {
-              "type": "mdxJsxAttribute",
-              "name": "path",
-              "value": "master.rings"
-            }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "bar" }
           ],
           "children": [
             {
               "type": "element",
               "tagName": "p",
               "properties": {},
-              "children": [{ "type": "text", "value": "Three rings" }]
-            }
-          ]
-        },
-        {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            {
-              "type": "mdxJsxAttribute",
-              "name": "path",
-              "value": "master.rings"
-            }
-          ],
-          "children": [
-            {
-              "type": "element",
-              "tagName": "p",
-              "properties": {},
-              "children": [{ "type": "text", "value": "Seven rings" }]
-            }
-          ]
-        },
-        {
-          "type": "mdxJsxFlowElement",
-          "name": "slot",
-          "attributes": [
-            {
-              "type": "mdxJsxAttribute",
-              "name": "path",
-              "value": "master.rings"
-            }
-          ],
-          "children": [
-            {
-              "type": "element",
-              "tagName": "p",
-              "properties": {},
-              "children": [{ "type": "text", "value": "Nine rings" }]
+              "children": [{ "type": "text", "value": "World" }]
             }
           ]
         }

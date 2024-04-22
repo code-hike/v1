@@ -1,13 +1,61 @@
 ---
 title: Tooltip
 description: Tooltip
-layout: CodeExample
+layout: PreviewAndImplementation
 ---
 
-```txt
-// TO DO
+import { CodeWithNotes } from "@/components/code/code-with-notes"
+
+## !demo
+
+A tooltip annotation where the tooltip content can be any MDX content.
+
+<Demo name="tooltip" content="content.mdx" maxHeight={500}>
+  Hover (or focus) the `lorem` and `consectetur` tokens to see the respective
+  tooltips.
+</Demo>
+
+## !implementation
+
+We could do this in a few ways. One way is to have two components, one for _marked_ lines and one for lines that are not marked.
+
+<CodeWithNotes>
+
+```tsx ! code.tsx
+import { AnnotationHandler } from "codehike/code"
+
+const mark: AnnotationHandler = {
+  name: "mark",
+  AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
+    <InnerLine merge={props} data-mark={true} />
+  ),
+  Line: ({ InnerLine, ...props }) => (
+    <InnerLine
+      merge={props}
+      className={
+        "border-l-2 border-transparent " +
+        "data-[mark]:border-blue-400 data-[mark]:bg-blue-400/10"
+      }
+    />
+  ),
+}
 ```
 
-## ! foo
+</CodeWithNotes>
 
-foo
+To use it, pass it to the `handlers` prop of the `Pre` component.
+
+```tsx code.tsx
+async function Code({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return <Pre code={highlighted} handlers={[mark]} />
+}
+```
+
+## Make it better
+
+Some ideas to improve the mark annotation:
+
+- Add a handler for inline marks
+- Mix it with the [`Focus annotation`](/docs/code/focus)
+- Use border and background colors from the [theme](/docs/guides/themes)

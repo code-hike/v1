@@ -1,63 +1,53 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import { MyComponent } from "./my-component"
 function _createMdxContent(props) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { CodeWithTooltips } = _components
+  if (!CodeWithTooltips) _missingMdxReference("CodeWithTooltips", true)
   return (
-    <MyComponent
-      {...{
-        children: (
-          <>
-            <_components.p>{"The Rings of Power"}</_components.p>
-            <_components.slot name="master" />
-          </>
-        ),
-        title: "",
-        _data: {
-          header: "",
-        },
-        master: {
+    <>
+      <_components.p>{"Heaas"}</_components.p>
+      {"\n"}
+      <CodeWithTooltips
+        {...{
           children: (
             <>
-              <_components.p>{"The One Ring"}</_components.p>
-              <_components.slot name="rings" index={0} />
-              <_components.slot name="rings" index={1} />
-              <_components.slot name="rings" index={2} />
+              <_components.p>{"fasdfas"}</_components.p>
+              <_components.slot name="code" />
+              <_components.slot name="foo" />
+              <_components.slot name="bar" />
             </>
           ),
           title: "",
           _data: {
-            header: "## !master",
+            header: "",
           },
-          rings: [
-            {
-              children: <_components.p>{"Three rings"}</_components.p>,
-              title: "Elves",
-              _data: {
-                header: "### !!rings Elves",
-              },
+          code: {
+            value:
+              "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}",
+            lang: "js",
+            meta: "",
+          },
+          foo: {
+            children: <_components.p>{"Hello"}</_components.p>,
+            title: "",
+            _data: {
+              header: "## !foo",
             },
-            {
-              children: <_components.p>{"Seven rings"}</_components.p>,
-              title: "Dwarves",
-              _data: {
-                header: "### !!rings Dwarves",
-              },
+          },
+          bar: {
+            children: <_components.p>{"World"}</_components.p>,
+            title: "",
+            _data: {
+              header: "## !bar",
             },
-            {
-              children: <_components.p>{"Nine rings"}</_components.p>,
-              title: "Men",
-              _data: {
-                header: "### !!rings Men",
-              },
-            },
-          ],
-        },
-      }}
-    ></MyComponent>
+          },
+        }}
+      ></CodeWithTooltips>
+    </>
   )
 }
 export default function MDXContent(props = {}) {
@@ -68,5 +58,14 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
+  )
+}
+function _missingMdxReference(id, component) {
+  throw new Error(
+    "Expected " +
+      (component ? "component" : "object") +
+      " `" +
+      id +
+      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

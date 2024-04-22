@@ -17,9 +17,13 @@ export const tooltip: AnnotationHandler = {
           <TooltipTrigger className="underline decoration-dashed cursor-pointer">
             {children}
           </TooltipTrigger>
-          <TooltipContent className="bg-zinc-900" sideOffset={0}>
+          <TooltipContent
+            className="bg-zinc-900"
+            sideOffset={0}
+            align="start"
+            alignOffset={-8}
+          >
             {data?.children || query}
-            <TooltipArrow className="fill-zinc-800" />
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

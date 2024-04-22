@@ -1,78 +1,39 @@
 {
   "type": "root",
   "children": [
-    {
-      "type": "mdxjsEsm",
-      "value": "import { MyComponent } from \"./my-component\"",
-      "data": {
-        "estree": {
-          "type": "Program",
-          "body": [
-            {
-              "type": "ImportDeclaration",
-              "specifiers": [
-                {
-                  "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "MyComponent" },
-                  "local": { "type": "Identifier", "name": "MyComponent" }
-                }
-              ],
-              "source": {
-                "type": "Literal",
-                "value": "./my-component",
-                "raw": "\"./my-component\""
-              }
-            }
-          ],
-          "sourceType": "module",
-          "comments": []
-        }
-      }
-    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "Heaas" }] },
     {
       "type": "mdxJsxFlowElement",
-      "name": "MyComponent",
+      "name": "CodeWithTooltips",
       "attributes": [],
       "children": [
         {
           "type": "paragraph",
-          "children": [{ "type": "text", "value": "The Rings of Power" }]
+          "children": [{ "type": "text", "value": "fasdfas" }]
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": "!code",
+          "value": "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}"
         },
         {
           "type": "heading",
           "depth": 2,
-          "children": [{ "type": "text", "value": "!master" }]
+          "children": [{ "type": "text", "value": "!foo" }]
         },
         {
           "type": "paragraph",
-          "children": [{ "type": "text", "value": "The One Ring" }]
+          "children": [{ "type": "text", "value": "Hello" }]
         },
         {
           "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!!rings Elves" }]
+          "depth": 2,
+          "children": [{ "type": "text", "value": "!bar" }]
         },
         {
           "type": "paragraph",
-          "children": [{ "type": "text", "value": "Three rings" }]
-        },
-        {
-          "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!!rings Dwarves" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "Seven rings" }]
-        },
-        {
-          "type": "heading",
-          "depth": 3,
-          "children": [{ "type": "text", "value": "!!rings Men" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "Nine rings" }]
+          "children": [{ "type": "text", "value": "World" }]
         }
       ],
       "data": { "_mdxExplicitJsx": true }
