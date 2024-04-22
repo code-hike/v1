@@ -11,51 +11,84 @@ import { CodeWithNotes } from "@/components/code/code-with-notes"
 A tooltip annotation where the tooltip content can be any MDX content.
 
 <Demo name="tooltip" content="content.mdx" maxHeight={500}>
-  Hover (or focus) the `lorem` and `consectetur` tokens to see the respective
-  tooltips.
+  Hover (or focus) the **lorem** and **consectetur** tokens to see the
+  respective tooltips.
 </Demo>
 
 ## !implementation
 
-We could do this in a few ways. One way is to have two components, one for _marked_ lines and one for lines that are not marked.
+After we highlight the code, we find annotations where the query matches a tooltip title. If we find a match, we include the tooltip content in the annotation data.
 
-<CodeWithNotes>
+<CodeWithNotes lineNumbers={false}>
+
+```tsx ! code.tsx
+import { Block, CodeBlock, parseProps } from "codehike/blocks"
+import { Pre, highlight } from "codehike/code"
+import { z } from "zod"
+
+const Schema = Block.extend({
+  code: CodeBlock,
+  tooltips: z.array(Block).optional(),
+})
+
+async function CodeWithTooltips(props: unknown) {
+  const { code, tooltips = [] } = parseProps(props, Schema)
+  const highlighted = await highlight(code, theme)
+
+  highlighted.annotations = highlighted.annotations.map((a) => {
+    const tooltip = tooltips.find((t) => t.title === a.query)
+    if (!tooltip) return a
+    return {
+      ...a,
+      // !callout[/tooltip/] data
+      data: { ...a.data, children: tooltip.children },
+    }
+  })
+  return <Pre code={highlighted} handlers={[tooltip]} />
+}
+```
+
+## !!notes data
+
+We store the tooltip content in the annotation data
+
+</CodeWithNotes>
+
+Then we define an `AnnotationHandler` to render the tooltip inline using the [shadcn tooltip](https://ui.shadcn.com/docs/components/tooltip) components (`npx shadcn-ui@latest add tooltip`):
+
+<CodeWithNotes lineNumbers={false}>
 
 ```tsx ! code.tsx
 import { AnnotationHandler } from "codehike/code"
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip"
 
-const mark: AnnotationHandler = {
-  name: "mark",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
-    <InnerLine merge={props} data-mark={true} />
-  ),
-  Line: ({ InnerLine, ...props }) => (
-    <InnerLine
-      merge={props}
-      className={
-        "border-l-2 border-transparent " +
-        "data-[mark]:border-blue-400 data-[mark]:bg-blue-400/10"
-      }
-    />
-  ),
+const tooltip: AnnotationHandler = {
+  name: "tooltip",
+  Inline: ({ children, annotation }) => {
+    const { query, data } = annotation
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger className="underline decoration-dashed">
+            {children}
+          </TooltipTrigger>
+          <TooltipContent align="start">
+            {data?.children || query}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  },
 }
 ```
 
 </CodeWithNotes>
 
-To use it, pass it to the `handlers` prop of the `Pre` component.
-
-```tsx code.tsx
-async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-  return <Pre code={highlighted} handlers={[mark]} />
-}
-```
-
 ## Make it better
 
-Some ideas to improve the mark annotation:
-
-- Add a handler for inline marks
-- Mix it with the [`Focus annotation`](/docs/code/focus)
-- Use border and background colors from the [theme](/docs/guides/themes)
+You can use the same concept to embed the MDX not only in tooltips but other annotations like [callouts](/docs/code/callout).

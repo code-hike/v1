@@ -6,17 +6,16 @@ import { tooltip } from "@/components/annotations/tooltip"
 import { collapse } from "../annotations/collapse"
 import { callout } from "../annotations/callout"
 import { fold } from "../annotations/fold"
+import theme from "@/theme.mjs"
 
 const ContentSchema = z.object({
   code: CodeBlock,
   notes: z.array(Block).optional(),
 })
 
-type RawBlocks = any
-
-export async function CodeWithNotes(props: RawBlocks) {
+export async function CodeWithNotes(props: unknown) {
   const { code, notes = [] } = parseProps(props, ContentSchema)
-  const highlighted = await highlight(code, "github-from-css")
+  const highlighted = await highlight(code, theme)
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
