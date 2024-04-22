@@ -13,9 +13,8 @@
   "exports": {
     "./mdx": "./dist/remark.js",
     "./scrolly": "./dist/scrolly.js",
-    "./schema": "./dist/schema.js",
-    "./code": "./dist/code/index.js",
-    ".": "./dist/components.js"
+    "./blocks": "./dist/blocks.js",
+    "./code": "./dist/code/index.js"
   },
   "files": [
     "dist/**"

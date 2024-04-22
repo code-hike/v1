@@ -1,4 +1,4 @@
-import { InlineAnnotationComponent } from "codehike/code"
+import { AnnotationHandler, InlineAnnotationComponent } from "codehike/code"
 import {
   TooltipProvider,
   Tooltip,
@@ -7,22 +7,26 @@ import {
   TooltipArrow,
 } from "@/components/ui/tooltip"
 
-export const InlineTooltip: InlineAnnotationComponent = ({
-  children,
-  annotation,
-}) => {
-  const { query, data } = annotation
-  return (
-    <TooltipProvider delayDuration={300}>
-      <Tooltip>
-        <TooltipTrigger className="underline decoration-dashed cursor-pointer">
-          {children}
-        </TooltipTrigger>
-        <TooltipContent className="bg-zinc-900" sideOffset={0}>
-          {data?.children || query}
-          <TooltipArrow className="fill-zinc-800" />
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
+export const tooltip: AnnotationHandler = {
+  name: "Tooltip",
+  Inline: ({ children, annotation }) => {
+    const { query, data } = annotation
+    return (
+      <TooltipProvider delayDuration={300}>
+        <Tooltip>
+          <TooltipTrigger className="underline decoration-dashed cursor-pointer">
+            {children}
+          </TooltipTrigger>
+          <TooltipContent
+            className="bg-zinc-900"
+            sideOffset={0}
+            align="start"
+            alignOffset={-8}
+          >
+            {data?.children || query}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  },
 }

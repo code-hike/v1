@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 import { z } from "zod"
 
-import { Block, CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { Pre, RawCode, highlight } from "codehike/code"
 
 const Content = Block.extend({
@@ -22,7 +22,7 @@ const Content = Block.extend({
 
 export function HikeGuide({ hike }: any) {
   return <div>TO DO</div>
-  const content = parse(hike, Content)
+  const content = parseProps(hike, Content)
   const { blocks } = content
   const first = blocks[0]
   return (
@@ -78,7 +78,7 @@ async function Code({
       <Pre
         code={info}
         className="p-2 overflow-auto m-0"
-        components={{ ...annotations }}
+        // components2={{ ...annotations }}
       />
     </div>
   )

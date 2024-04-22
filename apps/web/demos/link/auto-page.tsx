@@ -16,13 +16,16 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
   const annotations = getLinkAnnotations(info.code)
   info.annotations.push(...annotations)
-  return <Pre code={info} components={{ InlineLink }} />
+  return (
+    <Pre
+      code={info}
+      // components2={{ InlineLink }}
+    />
+  )
 }
 
 const urlRegex = /https?:\/\/[\w\-_.~:/?#[\]@!$&*+,;=%]+/g
-function getLinkAnnotations(
-  code: string,
-): InlineAnnotation[] {
+function getLinkAnnotations(code: string): InlineAnnotation[] {
   const lines = code.split("\n")
   const annotations: InlineAnnotation[] = []
 

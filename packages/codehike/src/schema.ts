@@ -2,7 +2,7 @@ import { ZodTypeDef, z } from "zod"
 
 export const Block = z.object({
   title: z.string(),
-  children: z.array(z.custom<React.ReactNode>()),
+  children: z.custom<React.ReactNode>(),
 })
 
 export const CodeBlock = z.object({
@@ -17,7 +17,7 @@ export const ImageBlock = z.object({
   title: z.string(),
 })
 
-export function parse<Output, Def extends ZodTypeDef, Input>(
+export function parseProps<Output, Def extends ZodTypeDef, Input>(
   content: unknown,
   Schema: z.ZodType<Output, Def, Input>,
 ): Output {

@@ -2,9 +2,9 @@
   "title": "Docs",
   "pages": [
     "index",
-    "...guides",
-    "---API---",
-    "...api",
+    "concepts/blocks",
+    "concepts/code",
+    "concepts/annotations",
     "---Examples---",
     "code",
     "layouts"

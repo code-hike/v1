@@ -1,4 +1,4 @@
-import Demo from "@/demos/word-wrap/page"
+import Demo from "@/demos/fold/page"
 
 export default function Page() {
   return <Demo />

@@ -115,8 +115,10 @@
                       "key": { "type": "Literal", "value": "children" },
                       "kind": "init",
                       "value": {
-                        "type": "ArrayExpression",
-                        "elements": [
+                        "type": "JSXFragment",
+                        "openingFragment": { "type": "JSXOpeningFragment" },
+                        "closingFragment": { "type": "JSXClosingFragment" },
+                        "children": [
                           {
                             "type": "JSXElement",
                             "openingElement": {

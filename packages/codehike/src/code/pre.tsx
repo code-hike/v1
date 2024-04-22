@@ -1,20 +1,18 @@
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
-  AnnotationComponents,
+  AnnotationHandler,
   BlockAnnotation,
-  BlockAnnotationComponent,
-  BlockAnnotationComponents,
-  HighlightedCode,
   InlineAnnotation,
+  InnerLine,
   InternalToken,
-  LineAnnotationComponent,
-  LineAnnotationComponents,
   PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
+import { mergeProps } from "./merge-props.js"
+import { getPreComponent } from "./component-reducer.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -30,8 +28,16 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, components = {}, className, ...rest }, ref) => {
-    const { tokens, themeName, lang, annotations } = code
+  ({ code, handlers: components = [], className, ...rest }, ref) => {
+    let { tokens, themeName, lang, annotations } = code
+
+    components
+      .filter((c) => c.transform)
+      .forEach((c) => {
+        annotations = annotations.flatMap((a) =>
+          c.name != a.name ? a : c.transform!(a as any) || [],
+        )
+      })
 
     if (!tokens) {
       throw new Error(
@@ -41,7 +47,7 @@ export const Pre: PreComponent = forwardRef(
 
     const lines = toLines(tokens)
     const indentations = lines.map(
-      (line) => line.tokens[0].value.match(/^\s*/)?.[0].length || 0,
+      (line) => line.tokens[0]?.value.match(/^\s*/)?.[0].length || 0,
     )
 
     const blockAnnotations = annotations.filter(isBlockAnnotation)
@@ -49,8 +55,12 @@ export const Pre: PreComponent = forwardRef(
 
     const groups = toLineGroups(lines, blockAnnotations)
 
+    const StackedPre = useMemo(() => {
+      return getPreComponent(components)
+    }, [components.map((c) => c.name).join(",")])
+
     return (
-      <pre
+      <StackedPre
         ref={ref}
         data-theme={themeName}
         data-lang={lang}
@@ -63,7 +73,7 @@ export const Pre: PreComponent = forwardRef(
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
         />
-      </pre>
+      </StackedPre>
     )
   },
 )
@@ -76,7 +86,7 @@ function RenderLines({
   annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
-  components: AnnotationComponents
+  components: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
@@ -96,18 +106,14 @@ function RenderLines({
     }
 
     const lineNumber = group.range[0]
+    const indentation = indentations[lineNumber - 1]
+
     const lineAnnotations = inlineAnnotations.filter(
       (annotation) => annotation.lineNumber === lineNumber,
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    // find the first annotation that has a Line component or "Line"
-    const annotation = annotationStack.find(
-      ({ name }) =>
-        components[("Line" + name) as keyof LineAnnotationComponents],
-    )
-
-    let Line = components.Line
+    let Line = getLineComponent(annotationStack, components)
 
     let children: React.ReactNode = (
       <RenderLineContent
@@ -117,35 +123,46 @@ function RenderLines({
       />
     )
 
-    const indentation = indentations[lineNumber - 1]
-
-    if (annotation) {
-      let { name } = annotation
-      const LineComponent =
-        components[("Line" + name) as keyof LineAnnotationComponents]
-      return (
-        <LineComponent
-          lineNumber={lineNumber}
-          indentation={indentation}
-          annotation={annotation}
-        >
-          {children}
-        </LineComponent>
-      )
-    } else if (Line) {
-      return (
-        <Line
-          lineNumber={lineNumber}
-          indentation={indentation}
-          key={lineNumber}
-        >
-          {children}
-        </Line>
-      )
-    } else {
-      return children
-    }
+    return (
+      <Line lineNumber={lineNumber} indentation={indentation} key={lineNumber}>
+        {children}
+      </Line>
+    )
   })
+}
+
+const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
+  const { lineNumber, indentation, ...props } = mergeProps(base, rest)
+  return <div {...props} />
+}
+
+function getLineComponent(
+  annotationStack: BlockAnnotation[],
+  components: AnnotationHandler[],
+): InnerLine {
+  const BaseLine = components.reduce((Inner, { Line }) => {
+    if (!Line) {
+      return Inner
+    }
+
+    return ({ merge = {}, ...props }) => {
+      const result = mergeProps(merge, props) as any
+      return <Line {...result} InnerLine={Inner} />
+    }
+  }, DefaultLine)
+
+  return components.reduce((Inner, { name, AnnotatedLine }) => {
+    const annotation = annotationStack.find((a) => a.name === name)
+    if (!annotation || !AnnotatedLine) {
+      return Inner
+    }
+    return ({ merge = {}, ...props }) => {
+      const result = mergeProps(merge, props) as any
+      return (
+        <AnnotatedLine {...result} annotation={annotation} InnerLine={Inner} />
+      )
+    }
+  }, BaseLine)
 }
 
 function AnnotatedLines({
@@ -156,15 +173,14 @@ function AnnotatedLines({
   indentations,
 }: {
   group: LineGroup
-  components: AnnotationComponents
+  components: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]
 }) {
   const { annotation, lines } = group
   const { name } = annotation
-  const Component =
-    components[("Block" + name) as keyof BlockAnnotationComponents]
+  const Component = components.find((c) => c.name === name)?.Block
   if (!Component) {
     return (
       <RenderLines

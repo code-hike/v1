@@ -2,38 +2,33 @@ import fs from "fs"
 import path from "path"
 import { Pre, highlight } from "codehike/code"
 import { CopyButton } from "./copy-button"
+import { BasicCode } from "./code/basic-code"
 
 export async function Demo({
   name,
   children,
+  maxHeight,
+  content = "content.md",
 }: {
   name: string
+  content?: string
   children: React.ReactNode
+  maxHeight?: number
 }) {
   const value = await fs.promises.readFile(
-    path.join(process.cwd(), "demos", name, "content.md"),
+    path.join(process.cwd(), "demos", name, content),
     "utf-8",
-  )
-  const highlighted = await highlight(
-    {
-      value,
-      lang: "mdx",
-      meta: "",
-    },
-    "github-dark",
-    {
-      annotationPrefix: "!!",
-    },
   )
 
   const usage = (
-    <div className="border border-zinc-700 rounded overflow-hidden min-h-full flex flex-col">
-      <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
-        content.md
-        <CopyButton text={highlighted.code} className="ml-auto" />
-      </div>
-      <Pre className="m-0 bg-zinc-950 rounded-none flex-1" code={highlighted} />
-    </div>
+    <BasicCode
+      className="min-h-full flex flex-col my-0 max-h-full"
+      codeblock={{
+        value,
+        lang: "mdx",
+        meta: "content.md prefix",
+      }}
+    />
   )
 
   const { default: Page } = await import(`@/demos/${name}/page`)
@@ -50,8 +45,8 @@ export async function Demo({
   )
 
   return (
-    <div className="flex gap-2 items-stretch">
-      <div className="min-w-0 flex-1">{usage}</div>
+    <div className="flex gap-2 items-stretch" style={{ maxHeight }}>
+      <div className="min-w-0 flex-1 max-h-full">{usage}</div>
       {preview}
     </div>
   )

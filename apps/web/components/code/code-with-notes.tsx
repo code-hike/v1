@@ -1,27 +1,21 @@
 import { Pre, highlight } from "codehike/code"
-import { Block, CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock, ImageBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
 import { CopyButton } from "@/components/copy-button"
-import { InlineTooltip } from "@/components/annotations/tooltip"
-import {
-  expandCollapseAnnotations,
-  collapseComponents,
-} from "../annotations/collapse"
-import { transformCallouts, BlockCallout } from "../annotations/callout"
+import { tooltip } from "@/components/annotations/tooltip"
+import { collapse } from "../annotations/collapse"
+import { callout } from "../annotations/callout"
+import { fold } from "../annotations/fold"
+import theme from "@/theme.mjs"
 
 const ContentSchema = z.object({
   code: CodeBlock,
   notes: z.array(Block).optional(),
 })
 
-type RawBlocks = any
-
-export async function CodeWithNotes(props: RawBlocks) {
-  const { code, notes = [] } = parse(props, ContentSchema)
-  const highlighted = await highlight(code, "github-dark")
-
-  highlighted.annotations = expandCollapseAnnotations(highlighted.annotations)
-  highlighted.annotations = transformCallouts(highlighted.annotations)
+export async function CodeWithNotes(props: unknown) {
+  const { code, notes = [] } = parseProps(props, ContentSchema)
+  const highlighted = await highlight(code, theme)
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
@@ -38,15 +32,15 @@ export async function CodeWithNotes(props: RawBlocks) {
   })
 
   return (
-    <div className="border border-zinc-700 rounded overflow-hidden">
-      <div className="border-b border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-300 text-sm flex">
+    <div className="border border-editorGroup-border rounded overflow-hidden">
+      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex">
         <span>{highlighted.meta}</span>
         <CopyButton text={highlighted.code} className="ml-auto" />
       </div>
       <Pre
-        className="m-0 px-0 bg-transparent whitespace-pre-wrap"
+        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
         code={highlighted}
-        components={{ InlineTooltip, BlockCallout, ...collapseComponents }}
+        handlers={[callout, tooltip, ...collapse, fold]}
       />
     </div>
   )

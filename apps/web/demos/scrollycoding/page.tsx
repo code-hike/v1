@@ -1,6 +1,5 @@
-import { parseContent } from "codehike"
 import Content from "./content.md"
-import { Block, CodeBlock } from "codehike/schema"
+import { Block, CodeBlock, parseRoot } from "codehike/blocks"
 import { z } from "zod"
 import { Tabs, Tab, TabPanel } from "./sticker"
 import { Pre, RawCode, highlight } from "codehike/code"
@@ -14,7 +13,7 @@ const ContentSchema = Block.extend({
 })
 
 export default function Page() {
-  const { steps } = parseContent(ContentSchema, Content)
+  const { steps } = parseRoot(Content, ContentSchema)
   return (
     <Tabs className="flex gap-4">
       <div className="flex-1 mt-32 mb-[90vh] ml-2 prose prose-invert">

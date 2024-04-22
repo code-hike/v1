@@ -121,10 +121,7 @@ export function moveChildrenToHikeProp(node: any) {
       // console.log("visit", path)
       const elements = childrenByPath[path].shift()
 
-      node.value = {
-        type: "ArrayExpression",
-        elements,
-      }
+      node.value = elements[0]
       return SKIP
     }
   })

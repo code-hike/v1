@@ -3,12 +3,17 @@ import {
   CodeAnnotation,
   RawCode,
   HighlightedCode,
-  Theme,
   Token,
   Whitespace,
   isWhitespace,
 } from "./types.js"
-import { Lines, Tokens, highlight as lighter } from "@code-hike/lighter"
+import {
+  Lines,
+  Tokens,
+  highlight as lighter,
+  LANG_NAMES,
+  Theme,
+} from "@code-hike/lighter"
 
 type AnyToken = Token | Whitespace
 
@@ -17,7 +22,13 @@ export async function highlight(
   theme: Theme,
   config: { annotationPrefix?: string } = {},
 ): Promise<HighlightedCode> {
-  const { value, lang } = data
+  let { value, lang = "txt" } = data
+
+  if (!LANG_NAMES.includes(lang)) {
+    console.warn(`Code Hike warning: Unknown language "${lang}"`)
+    lang = "txt"
+  }
+
   const { code, annotations } = await splitAnnotationsAndCode(
     value,
     lang,
@@ -29,7 +40,7 @@ export async function highlight(
     style,
   } = await lighter(code, lang, theme as any, {
     annotations: [],
-    scopes: true,
+    scopes: false, // true for better token transitions, but breaks css themes
   })
 
   const tokens = joinLines(lines)
@@ -43,7 +54,7 @@ export async function highlight(
     tokens: joinedTokens,
     lang: lighterLang,
     annotations: compatAnnotations(annotations),
-    themeName: theme,
+    themeName: typeof theme === "string" ? theme : theme?.name || "unknown",
   }
 }
 

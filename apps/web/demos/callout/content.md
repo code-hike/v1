@@ -1,8 +1,10 @@
 ```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : 1
-  // !Callout[/sit/] Sit amet consectetur
-  dolor = sit - amet(dolor)
-  return sit ? consectetur(ipsum) : []
-}
+const lorem = ipsum(dolor, sit)
+// !callout[/amet/] This is a callout
+const [amet, consectetur] = [0, 0]
+lorem.adipiscing((sed, elit) => {
+  if (sed) {
+    amet += elit
+  }
+})
 ```

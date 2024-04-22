@@ -1,10 +1,13 @@
-import { HikeSection } from "codehike"
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
 } from "./collapsible"
-import { Block, CodeBlock, parse } from "codehike/schema"
+import {
+  Block,
+  CodeBlock,
+  parseProps,
+} from "codehike/blocks"
 import { z } from "zod"
 import { Pre, highlight } from "codehike/code"
 
@@ -30,7 +33,7 @@ export async function APIReference({
 }: {
   hike: unknown
 }) {
-  const { main, extra, returns, code } = parse(
+  const { main, extra, returns, code } = parseProps(
     hike,
     ContentSchema,
   )
@@ -132,7 +135,7 @@ function CollapsibleProperty({
 function ChildProperties({
   properties,
 }: {
-  properties?: HikeSection[]
+  properties?: any[]
 }) {
   if (!properties || properties.length === 0) return null
   return (

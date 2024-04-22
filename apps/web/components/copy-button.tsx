@@ -14,7 +14,7 @@ export function CopyButton({
 
   return (
     <button
-      className={`hover:bg-zinc-700 -m-1 p-1 rounded ${className}`}
+      className={`hover:bg-gray-400/20 -m-1 p-1 rounded ${className}`}
       onClick={() => {
         navigator.clipboard.writeText(text)
         setCopied(true)
@@ -23,7 +23,7 @@ export function CopyButton({
       aria-label="Copy to clipboard"
     >
       {copied ? (
-        <Check size={16} className="text-green-300" />
+        <Check size={16} className="text-green-500" />
       ) : (
         <Copy size={16} />
       )}

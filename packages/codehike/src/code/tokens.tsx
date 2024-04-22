@@ -1,11 +1,10 @@
 import {
-  AnnotationComponents,
-  BlockAnnotationComponent,
+  AnnotationHandler,
+  CodeAnnotation,
   InlineAnnotation,
-  InlineAnnotationComponent,
-  InlineAnnotationComponents,
   InternalToken,
   TokenAnnotationComponent,
+  TokenComponent,
 } from "./types.js"
 
 type TokenGroup = {
@@ -22,11 +21,11 @@ export function RenderLineContent({
   lineNumber,
 }: {
   lineContent: LineContent
-  components: AnnotationComponents
+  components: AnnotationHandler[]
   lineNumber: number
 }) {
   // TODO get Token from annotationStack
-  const TokenComp = components.Token || TokenComponent
+  const TokenComp = getTokenComponent([], components)
   return lineContent.map((item, i) => {
     if (isGroup(item)) {
       return (
@@ -39,7 +38,12 @@ export function RenderLineContent({
       )
     } else {
       return item.style ? (
-        <TokenComp {...item} key={i} lineNumber={lineNumber} />
+        <TokenComp
+          style={item.style}
+          value={item.value}
+          key={i}
+          lineNumber={lineNumber}
+        />
       ) : (
         // whitespace
         item.value
@@ -47,9 +51,20 @@ export function RenderLineContent({
     }
   })
 }
+const DefaultTokenComponent: TokenComponent = ({
+  value,
+  lineNumber,
+  ...props
+}) => {
+  // TODO extract range
+  return <span {...props}>{value}</span>
+}
 
-function TokenComponent({ value, style }: InternalToken) {
-  return <span style={style}>{value}</span>
+function getTokenComponent(
+  annotationStack: CodeAnnotation[],
+  components: AnnotationHandler[],
+) {
+  return DefaultTokenComponent
 }
 
 function AnnotatedTokens({
@@ -59,12 +74,11 @@ function AnnotatedTokens({
 }: {
   lineNumber: number
   group: TokenGroup
-  components: AnnotationComponents
+  components: AnnotationHandler[]
 }) {
   const { annotation, content } = group
   const { name } = annotation
-  const Component =
-    components[("Inline" + name) as keyof InlineAnnotationComponents]
+  const Component = components.find((c) => c.name === name)?.Inline
   if (!Component) {
     return (
       <RenderLineContent

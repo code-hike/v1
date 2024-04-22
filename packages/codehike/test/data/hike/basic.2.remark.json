@@ -1,11 +1,42 @@
 {
   "type": "root",
   "children": [
+    { "type": "paragraph", "children": [{ "type": "text", "value": "Heaas" }] },
     {
-      "type": "heading",
-      "depth": 1,
-      "children": [{ "type": "text", "value": "!foo" }]
-    },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "bar" }] }
+      "type": "mdxJsxFlowElement",
+      "name": "CodeWithTooltips",
+      "attributes": [],
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "fasdfas" }]
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "meta": "!code",
+          "value": "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}"
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [{ "type": "text", "value": "!foo" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "Hello" }]
+        },
+        {
+          "type": "heading",
+          "depth": 2,
+          "children": [{ "type": "text", "value": "!bar" }]
+        },
+        {
+          "type": "paragraph",
+          "children": [{ "type": "text", "value": "World" }]
+        }
+      ],
+      "data": { "_mdxExplicitJsx": true }
+    }
   ]
 }

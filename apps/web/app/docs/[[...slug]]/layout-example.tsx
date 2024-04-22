@@ -1,10 +1,9 @@
-import { Block, CodeBlock, parse } from "codehike/schema"
+import { Block, CodeBlock, parseRoot } from "codehike/blocks"
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
 import { CopyButton } from "@/components/copy-button"
 import { z } from "zod"
 import { DependencyTerminal } from "@/ui/dependency-terminal"
 import { RawCode, highlight, Pre } from "codehike/code"
-import { parseContent } from "codehike"
 
 const ContentSchema = Block.extend({
   intro: Block,
@@ -14,7 +13,7 @@ const ContentSchema = Block.extend({
 })
 
 export function LayoutExample({ MDX }: { MDX: any }) {
-  const content = parseContent(ContentSchema, MDX)
+  const content = parseRoot(MDX, ContentSchema)
   const { intro, mdx, preview, code } = content
 
   return (

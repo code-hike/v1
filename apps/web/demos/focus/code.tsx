@@ -1,24 +1,16 @@
 "use client"
 
-import {
-  HighlightedCode,
-  Pre,
-  LineAnnotationComponent,
-  LineComponent,
-} from "codehike/code"
-import { useLayoutEffect, useRef, useState } from "react"
+import { HighlightedCode, Pre, AnnotationHandler } from "codehike/code"
+import React, { forwardRef, useLayoutEffect, useRef, useState } from "react"
 
 const ranges = {
   lorem: { fromLineNumber: 1, toLineNumber: 5 },
   ipsum: { fromLineNumber: 7, toLineNumber: 11 },
-  dolor: { fromLineNumber: 13, toLineNumber: 17 },
+  dolor: { fromLineNumber: 11, toLineNumber: 15 },
 }
 
-export function CodeContainer({ code }: { code: HighlightedCode }) {
-  const ref = useRef<HTMLPreElement>(null)
+function useScrollToFocus(ref: React.RefObject<HTMLPreElement>) {
   const firstRender = useRef(true)
-  const [focused, setFocused] = useState<"lorem" | "ipsum" | "dolor">("dolor")
-
   useLayoutEffect(() => {
     if (ref.current) {
       // find all descendants whith data-focus="true"
@@ -48,11 +40,15 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
       firstRender.current = false
     }
   })
+}
+
+export function CodeContainer({ code }: { code: HighlightedCode }) {
+  const [focused, setFocused] = useState<"lorem" | "ipsum" | "dolor">("dolor")
+
   return (
     <>
       <Pre
         className="m-0 px-0 max-h-72 scroll-smooth overflow-auto bg-zinc-950"
-        ref={ref}
         code={{
           ...code,
           annotations: [
@@ -63,7 +59,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
             },
           ],
         }}
-        components={{ LineFocus, Line }}
+        handlers={[focus]}
       />
       <div className="p-2 mt-auto font-light text-center">
         You can also change the focus annotations on a rendered codeblock:
@@ -88,24 +84,36 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
   )
 }
 
-export const LineFocus: LineAnnotationComponent = ({
-  children,
-  annotation,
-}) => {
-  return (
-    <div
-      data-focus={true}
-      className="opacity-50 data-[focus]:opacity-100 bg-zinc-700/30 px-2"
-    >
-      {children}
-    </div>
-  )
+const focus: AnnotationHandler = {
+  name: "Focus",
+  Pre: forwardRef(({ InnerPre, ...props }, ref) => {
+    ref = useRef<HTMLPreElement>(null)
+    useScrollToFocus(ref)
+    return <InnerPre {...props} ref={ref} />
+  }),
+  Line: ({ InnerLine, ...props }) => (
+    <InnerLine
+      merge={props}
+      className="opacity-50 data-[focus]:opacity-100 px-2"
+    />
+  ),
+  AnnotatedLine: ({ InnerLine, annotation, ...props }) => (
+    <InnerLine merge={props} data-focus={true} className="bg-zinc-700/30" />
+  ),
 }
 
-export const Line: LineComponent = ({ children }) => {
-  return (
-    <div className="opacity-50 data-[focus]:opacity-100 transition-opacity px-2">
-      {children}
-    </div>
-  )
+// from https://stackoverflow.com/questions/73015696/whats-the-difference-between-reacts-forwardedref-and-refobject
+function useForwardedRef<T>(ref: React.ForwardedRef<T>) {
+  const innerRef = React.useRef<T>(null)
+
+  React.useLayoutEffect(() => {
+    if (!ref) return
+    if (typeof ref === "function") {
+      ref(innerRef.current)
+    } else {
+      ref.current = innerRef.current
+    }
+  })
+
+  return innerRef
 }
