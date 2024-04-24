@@ -12,6 +12,11 @@ export async function BasicCode({
   className?: string
 }) {
   const { meta, ...flags } = extractFlags(codeblock)
+
+  if (flags.command) {
+    return <CommandCode codeblock={codeblock} />
+  }
+
   const highlighted = await highlight(
     codeblock,
     theme,
@@ -36,7 +41,25 @@ export async function BasicCode({
     </div>
   )
 }
-const validFlags = ["prefix", "ln", "ww"]
+
+async function CommandCode({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, theme)
+  return (
+    <div className="border border-editorGroup-border rounded overflow-hidden my-2 relative">
+      <CopyButton
+        text={highlighted.code}
+        className="absolute right-4 h-full my-0"
+      />
+      <Pre
+        code={highlighted}
+        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap group flex-1 selection:bg-editor-selectionBackground"
+        handlers={[focus, fold]}
+      />
+    </div>
+  )
+}
+
+const validFlags = ["prefix", "ln", "ww", "command"]
 
 function extractFlags(codeblock: RawCode) {
   const parts = codeblock.meta?.split(" ") ?? []

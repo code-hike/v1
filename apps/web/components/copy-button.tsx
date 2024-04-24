@@ -2,6 +2,7 @@
 
 import { Copy, Check } from "lucide-react"
 import * as React from "react"
+import { cn } from "../lib/utils"
 
 export function CopyButton({
   text,
@@ -14,7 +15,7 @@ export function CopyButton({
 
   return (
     <button
-      className={`hover:bg-gray-400/20 -m-1 p-1 rounded ${className}`}
+      className={cn(`hover:bg-gray-400/20 -m-1 p-1 rounded`, className)}
       onClick={() => {
         navigator.clipboard.writeText(text)
         setCopied(true)
