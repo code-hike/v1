@@ -1,5 +1,6 @@
 "use client"
 import React from "react"
+import { ObservedDiv, Scroller } from "./scroller.js"
 
 const StepsContext = React.createContext<{
   selectedIndex: number
@@ -9,26 +10,28 @@ const StepsContext = React.createContext<{
   selectIndex: () => {},
 })
 
-export function Steps({
+export function SelectionProvider({
   children,
   ...rest
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [selectedIndex, selectIndex] = React.useState<number>(0)
   return (
     <div data-selected-index={selectedIndex} {...rest}>
-      <StepsContext.Provider
-        value={{
-          selectedIndex,
-          selectIndex,
-        }}
-      >
-        {children}
-      </StepsContext.Provider>
+      <Scroller onIndexChange={selectIndex}>
+        <StepsContext.Provider
+          value={{
+            selectedIndex,
+            selectIndex,
+          }}
+        >
+          {children}
+        </StepsContext.Provider>
+      </Scroller>
     </div>
   )
 }
 
-export function Step({
+export function Selectable({
   index,
   selectOn = ["click"],
   ...rest
@@ -47,14 +50,23 @@ export function Step({
     }
     return handlers
   }, [index, selectIndex, selectOn])
-  return (
-    <div data-selected={selectedIndex === index} {...eventHandlers} {...rest} />
+
+  const props = {
+    "data-selected": selectedIndex === index,
+    ...eventHandlers,
+    ...rest,
+  }
+
+  return selectOn.includes("scroll") ? (
+    <ObservedDiv index={index} {...props} />
+  ) : (
+    <div {...props} />
   )
 }
 
-export function Display({ values }: { values: React.ReactNode[] }) {
+export function Selection({ from }: { from: React.ReactNode[] }) {
   const { selectedIndex } = React.useContext(StepsContext)
-  return values[selectedIndex]
+  return from[selectedIndex]
 }
 
 export function useStepIndex() {

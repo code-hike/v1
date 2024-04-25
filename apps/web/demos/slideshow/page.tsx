@@ -1,7 +1,15 @@
-import { Block, CodeBlock, parseRoot } from "codehike/blocks"
+import {
+  Block,
+  CodeBlock,
+  parseRoot,
+} from "codehike/blocks"
 import Content from "./content.md"
 import { z } from "zod"
-import { Display, Step, Steps } from "codehike/utils"
+import {
+  Selection,
+  Selectable,
+  SelectionProvider,
+} from "codehike/utils"
 import { Pre, RawCode, highlight } from "codehike/code"
 import { Controls } from "./controls"
 
@@ -12,21 +20,26 @@ const Schema = Block.extend({
 export default function Page() {
   const { steps } = parseRoot(Content, Schema)
   return (
-    <Steps>
+    <SelectionProvider>
       <Controls length={steps.length} />
-      <Display
-        values={steps.map((step) => (
+      <Selection
+        from={steps.map((step) => (
           <Code codeblock={step.code} />
         ))}
       />
       <Controls length={steps.length} />
-      <Display values={steps.map((step) => step.children)} />
-    </Steps>
+      <Selection
+        from={steps.map((step) => step.children)}
+      />
+    </SelectionProvider>
   )
 }
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
+  const highlighted = await highlight(
+    codeblock,
+    "github-dark",
+  )
   return (
     <Pre
       code={highlighted}
