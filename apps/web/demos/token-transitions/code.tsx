@@ -6,7 +6,12 @@ import {
   getFirstSnapshot,
   SnapshotElement,
 } from "./animate-tokens"
-import { HighlightedCode, Pre, TokenComponent } from "codehike/code"
+import {
+  AnnotationHandler,
+  HighlightedCode,
+  Pre,
+  TokenComponent,
+} from "codehike/code"
 
 export function CodeSwitcher({ infos }: { infos: HighlightedCode[] }) {
   const [index, setIndex] = React.useState(0)
@@ -55,17 +60,20 @@ export class CodeClient extends React.Component<{
         code={info}
         style={{ position: "relative" }}
         {...rest}
-        // components2={{ Token }}
+        handlers={[tokenTransitions]}
         className="m-0 h-80 bg-zinc-950"
       />
     )
   }
 }
 
-const Token: TokenComponent = ({ value, ...props }) => {
-  return (
-    <span {...props} className="inline-block">
-      {value}
-    </span>
-  )
+const tokenTransitions: AnnotationHandler = {
+  name: "token-transitions",
+  Token: ({ value, ...props }) => {
+    return (
+      <span {...props} className="inline-block bg-red-300">
+        {value}
+      </span>
+    )
+  },
 }

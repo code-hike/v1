@@ -28,10 +28,10 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, handlers: components = [], className, ...rest }, ref) => {
+  ({ code, handlers = [], className, ...rest }, ref) => {
     let { tokens, themeName, lang, annotations } = code
 
-    components
+    handlers
       .filter((c) => c.transform)
       .forEach((c) => {
         annotations = annotations.flatMap((a) =>
@@ -56,8 +56,8 @@ export const Pre: PreComponent = forwardRef(
     const groups = toLineGroups(lines, blockAnnotations)
 
     const StackedPre = useMemo(() => {
-      return getPreComponent(components)
-    }, [components.map((c) => c.name).join(",")])
+      return getPreComponent(handlers)
+    }, [handlers.map((c) => c.name).join(",")])
 
     return (
       <StackedPre
@@ -69,7 +69,7 @@ export const Pre: PreComponent = forwardRef(
       >
         <RenderLines
           linesOrGroups={groups}
-          components={components}
+          handlers={handlers}
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
         />
@@ -80,13 +80,13 @@ export const Pre: PreComponent = forwardRef(
 
 function RenderLines({
   linesOrGroups,
-  components,
+  handlers,
   inlineAnnotations,
   indentations,
   annotationStack = [],
 }: {
   linesOrGroups: LinesOrGroups
-  components: AnnotationHandler[]
+  handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
@@ -97,7 +97,7 @@ function RenderLines({
         <AnnotatedLines
           key={group.range[0]}
           group={group}
-          components={components}
+          handlers={handlers}
           inlineAnnotations={inlineAnnotations}
           annotationStack={annotationStack}
           indentations={indentations}
@@ -113,12 +113,12 @@ function RenderLines({
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    let Line = getLineComponent(annotationStack, components)
+    let Line = getLineComponent(annotationStack, handlers)
 
     let children: React.ReactNode = (
       <RenderLineContent
         lineContent={lineContent}
-        components={components}
+        handlers={handlers}
         lineNumber={lineNumber}
       />
     )
@@ -138,9 +138,9 @@ const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
 
 function getLineComponent(
   annotationStack: BlockAnnotation[],
-  components: AnnotationHandler[],
+  handlers: AnnotationHandler[],
 ): InnerLine {
-  const BaseLine = components.reduce((Inner, { Line }) => {
+  const BaseLine = handlers.reduce((Inner, { Line }) => {
     if (!Line) {
       return Inner
     }
@@ -151,7 +151,7 @@ function getLineComponent(
     }
   }, DefaultLine)
 
-  return components.reduce((Inner, { name, AnnotatedLine }) => {
+  return handlers.reduce((Inner, { name, AnnotatedLine }) => {
     const annotation = annotationStack.find((a) => a.name === name)
     if (!annotation || !AnnotatedLine) {
       return Inner
@@ -167,25 +167,25 @@ function getLineComponent(
 
 function AnnotatedLines({
   group,
-  components,
+  handlers,
   inlineAnnotations,
   annotationStack,
   indentations,
 }: {
   group: LineGroup
-  components: AnnotationHandler[]
+  handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]
 }) {
   const { annotation, lines } = group
   const { name } = annotation
-  const Component = components.find((c) => c.name === name)?.Block
+  const Component = handlers.find((c) => c.name === name)?.Block
   if (!Component) {
     return (
       <RenderLines
         linesOrGroups={lines}
-        components={components}
+        handlers={handlers}
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
@@ -196,7 +196,7 @@ function AnnotatedLines({
     <Component annotation={annotation}>
       <RenderLines
         linesOrGroups={lines}
-        components={components}
+        handlers={handlers}
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}

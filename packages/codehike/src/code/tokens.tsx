@@ -17,21 +17,21 @@ type LineContent = (InternalToken | TokenGroup)[]
 
 export function RenderLineContent({
   lineContent,
-  components,
+  handlers,
   lineNumber,
 }: {
   lineContent: LineContent
-  components: AnnotationHandler[]
+  handlers: AnnotationHandler[]
   lineNumber: number
 }) {
   // TODO get Token from annotationStack
-  const TokenComp = getTokenComponent([], components)
+  const TokenComp = getTokenComponent([], handlers)
   return lineContent.map((item, i) => {
     if (isGroup(item)) {
       return (
         <AnnotatedTokens
           group={item}
-          components={components}
+          handlers={handlers}
           key={i}
           lineNumber={lineNumber}
         />
@@ -62,7 +62,7 @@ const DefaultTokenComponent: TokenComponent = ({
 
 function getTokenComponent(
   annotationStack: CodeAnnotation[],
-  components: AnnotationHandler[],
+  handlers: AnnotationHandler[],
 ) {
   return DefaultTokenComponent
 }
@@ -70,20 +70,20 @@ function getTokenComponent(
 function AnnotatedTokens({
   lineNumber,
   group,
-  components,
+  handlers,
 }: {
   lineNumber: number
   group: TokenGroup
-  components: AnnotationHandler[]
+  handlers: AnnotationHandler[]
 }) {
   const { annotation, content } = group
   const { name } = annotation
-  const Component = components.find((c) => c.name === name)?.Inline
+  const Component = handlers.find((c) => c.name === name)?.Inline
   if (!Component) {
     return (
       <RenderLineContent
         lineContent={content}
-        components={components}
+        handlers={handlers}
         lineNumber={lineNumber}
       />
     )
@@ -92,7 +92,7 @@ function AnnotatedTokens({
     <Component annotation={annotation} lineNumber={lineNumber}>
       <RenderLineContent
         lineContent={content}
-        components={components}
+        handlers={handlers}
         lineNumber={lineNumber}
       />
     </Component>
