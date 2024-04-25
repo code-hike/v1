@@ -128,6 +128,12 @@ export type InlineAnnotationComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
+export type InnerToken = React.ComponentType<
+  Partial<TokenAnnotationProps> & {
+    merge?: Partial<TokenAnnotationProps>
+  } & Record<string, any>
+>
+
 type TokenAnnotationProps = {
   lineNumber: number
   value: string
@@ -139,7 +145,9 @@ export type TokenAnnotationComponent = React.ComponentType<
   }
 >
 
-export type TokenComponent = React.ComponentType<TokenAnnotationProps>
+export type TokenComponent = React.ComponentType<
+  TokenAnnotationProps & { InnerToken: InnerToken } & Record<string, any>
+>
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode

@@ -1,7 +1,9 @@
+import { mergeProps } from "./merge-props.js"
 import {
   AnnotationHandler,
   CodeAnnotation,
   InlineAnnotation,
+  InnerToken,
   InternalToken,
   TokenAnnotationComponent,
   TokenComponent,
@@ -51,12 +53,8 @@ export function RenderLineContent({
     }
   })
 }
-const DefaultTokenComponent: TokenComponent = ({
-  value,
-  lineNumber,
-  ...props
-}) => {
-  // TODO extract range
+const DefaultToken: InnerToken = ({ merge: base = {}, ...rest }) => {
+  const { value, lineNumber, ...props } = mergeProps(base, rest)
   return <span {...props}>{value}</span>
 }
 
@@ -64,7 +62,18 @@ function getTokenComponent(
   annotationStack: CodeAnnotation[],
   handlers: AnnotationHandler[],
 ) {
-  return DefaultTokenComponent
+  const BaseToken = handlers.reduce((Inner, { Token }) => {
+    if (!Token) {
+      return Inner
+    }
+
+    return ({ merge = {}, ...props }) => {
+      const result = mergeProps(merge, props) as any
+      return <Token {...result} InnerToken={Inner} />
+    }
+  }, DefaultToken)
+  // TODO use annotationStack
+  return BaseToken
 }
 
 function AnnotatedTokens({

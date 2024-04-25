@@ -69,11 +69,7 @@ export class CodeClient extends React.Component<{
 
 const tokenTransitions: AnnotationHandler = {
   name: "token-transitions",
-  Token: ({ value, ...props }) => {
-    return (
-      <span {...props} className="inline-block bg-red-300">
-        {value}
-      </span>
-    )
-  },
+  Token: ({ InnerToken, ...props }) => (
+    <InnerToken merge={props} className="inline-block" />
+  ),
 }
