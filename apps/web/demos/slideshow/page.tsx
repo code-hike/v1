@@ -20,9 +20,7 @@ export default function Page() {
         ))}
       />
       <Controls length={steps.length} />
-      <div>
-        <Display values={steps.map((step) => step.children)} />
-      </div>
+      <Display values={steps.map((step) => step.children)} />
     </Steps>
   )
 }

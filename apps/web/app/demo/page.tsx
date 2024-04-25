@@ -1,4 +1,4 @@
-import Demo from "@/demos/slideshow/page"
+import Demo from "@/demos/api-reference/page"
 
 export default function Page() {
   return <Demo />
