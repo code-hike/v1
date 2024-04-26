@@ -24,7 +24,7 @@ async function CodeWithTooltips(props: unknown) {
     props,
     Block.extend({ code: CodeBlock, tooltips: z.array(Block).optional() }),
   )
-  const highlighted = await highlight(code, theme)
+  const highlighted = await highlight(code, "github-dark")
 
   highlighted.annotations = highlighted.annotations.map((a) => {
     const note = tooltips.find((n) => n.title === a.query)

@@ -55,7 +55,7 @@ async function CalloutCode({ code }: { code: RawCode }) {
     <Pre
       code={highlighted}
       className="m-0 py-1 px-0 bg-transparent"
-      handlers={[ruler, lineHandler]}
+      handlers={[ruler, lineHandler, pill]}
     />
   )
 }
