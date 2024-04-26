@@ -11,6 +11,7 @@ import {
   Selectable,
   SelectionProvider,
 } from "codehike/utils"
+import { tokenTransitions } from "@/components/annotations/token-transitions"
 
 const Schema = Block.extend({
   steps: z.array(Block.extend({ code: CodeBlock })),
@@ -52,6 +53,10 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     "github-dark",
   )
   return (
-    <Pre code={highlighted} className="min-h-[40rem]" />
+    <Pre
+      code={highlighted}
+      className="min-h-[40rem]"
+      // handlers={[tokenTransitions]}
+    />
   )
 }

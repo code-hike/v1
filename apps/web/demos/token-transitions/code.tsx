@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { forwardRef } from "react"
 import {
   animateChange,
   getFirstSnapshot,
@@ -30,12 +30,33 @@ export function CodeSwitcher({ infos }: { infos: HighlightedCode[] }) {
   )
 }
 
-export class CodeClient extends React.Component<{
-  info: HighlightedCode
+export function CodeClient({ info, ...rest }: { info: HighlightedCode }) {
+  return (
+    <Pre
+      code={info}
+      {...rest}
+      handlers={[tokenTransitions]}
+      className="m-0 h-80 bg-zinc-950"
+    />
+  )
+}
+
+const tokenTransitions: AnnotationHandler = {
+  name: "token-transitions",
+  Pre: forwardRef<HTMLPreElement, any>((props, ref) => (
+    <CodeTransitions {...props} ref={ref} />
+  )),
+  Token: ({ InnerToken, ...props }) => (
+    <InnerToken merge={props} className="inline-block" />
+  ),
+}
+
+export class CodeTransitions extends React.Component<{
+  InnerPre: any
 }> {
   ref: React.RefObject<HTMLPreElement>
 
-  constructor(props: { info: HighlightedCode }) {
+  constructor(props: any) {
     super(props)
     this.ref = React.createRef<HTMLPreElement>()
   }
@@ -53,23 +74,9 @@ export class CodeClient extends React.Component<{
   }
 
   render() {
-    const { info, ...rest } = this.props
+    const { InnerPre, ...rest } = this.props
     return (
-      <Pre
-        ref={this.ref}
-        code={info}
-        style={{ position: "relative" }}
-        {...rest}
-        handlers={[tokenTransitions]}
-        className="m-0 h-80 bg-zinc-950"
-      />
+      <InnerPre ref={this.ref} style={{ position: "relative" }} {...rest} />
     )
   }
-}
-
-const tokenTransitions: AnnotationHandler = {
-  name: "token-transitions",
-  Token: ({ InnerToken, ...props }) => (
-    <InnerToken merge={props} className="inline-block" />
-  ),
 }
