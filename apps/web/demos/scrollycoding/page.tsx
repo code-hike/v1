@@ -56,7 +56,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     <Pre
       code={highlighted}
       className="min-h-[40rem]"
-      // handlers={[tokenTransitions]}
+      handlers={[tokenTransitions]}
     />
   )
 }

@@ -15,6 +15,7 @@ import {
 
 export class CodeTransitions extends React.Component<{
   InnerPre: any
+  style?: React.CSSProperties
 }> {
   ref: React.RefObject<HTMLPreElement>
 
@@ -36,9 +37,10 @@ export class CodeTransitions extends React.Component<{
   }
 
   render() {
-    const { InnerPre, ...rest } = this.props
-    return (
-      <InnerPre ref={this.ref} style={{ position: "relative" }} {...rest} />
-    )
+    const style = {
+      position: "relative" as const,
+      ...this.props.style,
+    }
+    return <pre ref={this.ref} {...this.props} style={style} />
   }
 }
