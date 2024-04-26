@@ -1,4 +1,4 @@
-import Demo from "@/demos/fold/page"
+import Demo from "@/demos/test/page"
 
 export default function Page() {
   return <Demo />

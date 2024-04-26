@@ -14,7 +14,8 @@
     "./mdx": "./dist/remark.js",
     "./scrolly": "./dist/scrolly.js",
     "./blocks": "./dist/blocks.js",
-    "./code": "./dist/code/index.js"
+    "./code": "./dist/code/index.js",
+    "./utils": "./dist/utils.js"
   },
   "files": [
     "dist/**"
