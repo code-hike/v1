@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.13
+
+### Minor Changes
+
+- 3f36591: Blocks API
+
 ## 1.0.0-alpha.12
 
 ### Minor Changes
