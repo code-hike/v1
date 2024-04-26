@@ -10,7 +10,6 @@ const houses = [
   "Targaryen",
 ]
 
-// !Mark(1:6)
 const winner =
   houses[
     Math.floor(

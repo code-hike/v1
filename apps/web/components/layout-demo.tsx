@@ -32,25 +32,15 @@ export async function LayoutDemo({
         </div>
       </Tab>
       <Tab value="MDX">
-        <div className="border border-zinc-300/20 rounded mb-8 bg-zinc-900">
-          <div className="items-center bg-zinc-800 p-2 pl-4 text-xs flex text-zinc-100">
-            <span>content.mdx</span>
-            <CopyButton className="ml-auto" text={value} />
-          </div>
-          <MDXCode
-            data={{
-              value,
-              lang: "mdx",
-              meta: "content.md prefix",
-            }}
-          />
-        </div>
+        <BasicCode
+          codeblock={{
+            value,
+            lang: "mdx",
+            meta: "content.md prefix",
+          }}
+        />
       </Tab>
       <Tab value="Implementation">{children}</Tab>
     </Tabs>
   )
-}
-async function MDXCode({ data }: { data: RawCode }) {
-  const info = await highlight(data, "github-dark")
-  return <Pre code={info} className="m-0 whitespace-pre-wrap" />
 }

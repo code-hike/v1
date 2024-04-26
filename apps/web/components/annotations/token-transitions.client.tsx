@@ -7,12 +7,6 @@ import {
   getFirstSnapshot,
 } from "./utils/animate-tokens"
 
-// export const CodeTransitions = forwardRef(
-//   ({ InnerPre, ...rest }: { InnerPre: any }, ref) => {
-//     return <InnerPre {...rest} />
-//   },
-// )
-
 export class CodeTransitions extends React.Component<{
   InnerPre: any
   style?: React.CSSProperties
