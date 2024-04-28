@@ -1,6 +1,7 @@
 import { BlockContent, Code, DefinitionContent, Heading, Image } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { CodeHikeConfig } from "./config.js"
+import { highlight } from "../code/highlight.js"
 
 export type JSXChild = BlockContent | DefinitionContent
 
@@ -121,7 +122,7 @@ export async function listToSection(
       }
     } else if (isHikeCode(child)) {
       // TODO add config
-      const parsedChild = await parseCode(child, {})
+      const parsedChild = await parseCode(child, config)
 
       const {
         name = DEFAULT_CODE_NAME,
@@ -275,10 +276,18 @@ function parseHeading(heading: Heading) {
 }
 
 export async function parseCode(code: Code, config: CodeHikeConfig) {
-  // TODO read from config
-  return {
+  const rawCode = {
     value: code.value,
-    lang: code.lang,
-    meta: code.meta,
+    lang: code.lang || "",
+    meta: code.meta || "",
   }
+
+  if (config.syntaxHighlighting) {
+    if (!config.syntaxHighlighting.theme) {
+      throw new Error("No theme provided for syntax highlighting")
+    }
+    return await highlight(rawCode, config.syntaxHighlighting.theme)
+  }
+
+  return rawCode
 }

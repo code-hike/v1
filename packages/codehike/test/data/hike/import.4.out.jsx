@@ -31,7 +31,7 @@ function _createMdxContent(props) {
               value:
                 "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
               lang: "py",
-              meta: null,
+              meta: "",
             }}
           />
           <_components.slot name="code" />

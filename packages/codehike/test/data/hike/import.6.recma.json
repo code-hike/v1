@@ -221,8 +221,8 @@
                                           "kind": "init",
                                           "value": {
                                             "type": "Literal",
-                                            "value": null,
-                                            "raw": "null"
+                                            "value": "",
+                                            "raw": "\"\""
                                           }
                                         }
                                       ]
