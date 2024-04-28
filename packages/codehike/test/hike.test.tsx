@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest"
-import { remarkCodeHike, recmaCodeHike } from "../src/remark"
+import { remarkCodeHike, recmaCodeHike, CodeHikeConfig } from "../src/remark"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import path from "node:path"
@@ -18,10 +18,13 @@ testNames.forEach((name) => {
   })
 })
 
-const chConfig = {
+const chConfig: CodeHikeConfig = {
   components: {
     code: "MyCode",
   },
+  // syntaxHighlighting: {
+  //   theme: "github-dark",
+  // },
 }
 
 async function testCompilation(name: string, mdx: string, mdxPath: string) {

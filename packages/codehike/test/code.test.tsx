@@ -5,13 +5,7 @@ import { fromMarkdown } from "mdast-util-from-markdown"
 import { Code } from "mdast"
 import React from "react"
 import { renderToReadableStream } from "react-dom/server.edge"
-import {
-  highlight,
-  Pre,
-  LineComponent,
-  TokenComponent,
-  LineAnnotationComponent,
-} from "../src/code/index"
+import { highlight, Pre } from "../src/code/index"
 
 const dataPath = "./test/data/code"
 const testNames = await getTestNames(dataPath)
@@ -57,15 +51,7 @@ async function testCompilation(name: string, mdx: string) {
 
   const html = await rscToHTML(
     // @ts-ignore
-    <Pre
-      code={info}
-      components={{
-        // Mark,
-        Token,
-        LineMark,
-        Line,
-      }}
-    />,
+    <Pre code={info} />,
   )
   expect(html).toMatchFileSnapshot(`./data/code/${name}.3.static.html`)
 }
@@ -83,41 +69,4 @@ async function getTestNames(dirname: string) {
   const allFileNames = await fs.readdir(dirname)
   const mdxFileNames = allFileNames.filter((f) => f.endsWith(".0.mdx"))
   return mdxFileNames.map((f) => f.replace(".0.mdx", ""))
-}
-
-function Mark({
-  children,
-  query,
-}: {
-  children: React.ReactNode
-  query?: string
-}) {
-  return <mark className={query}>{children}</mark>
-}
-
-const Token: TokenComponent = ({ value, style }) => {
-  return value
-}
-
-const LineMark: LineAnnotationComponent = ({
-  lineNumber,
-  children,
-  annotation,
-}) => {
-  const { query } = annotation
-  return (
-    <div className="bg-red-100">
-      <span>{lineNumber}</span>
-      <span className={query}>{children}</span>
-    </div>
-  )
-}
-
-const Line: LineComponent = ({ lineNumber, children }) => {
-  return (
-    <div>
-      <span>{lineNumber}</span>
-      <span>{children}</span>
-    </div>
-  )
 }
