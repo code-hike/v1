@@ -12,42 +12,16 @@ function _createMdxContent(props) {
       <_components.p>{"Hello world!"}</_components.p>
       <MyCode
         codeblock={{
-          type: "code",
+          value: 'console.log("hello world")\r\nconsole.log("bye world")',
           lang: "js",
           meta: "my meta",
-          value: 'console.log("hello world")\r\nconsole.log("bye world")',
-          position: {
-            start: {
-              line: 7,
-              column: 1,
-              offset: 79,
-            },
-            end: {
-              line: 10,
-              column: 4,
-              offset: 151,
-            },
-          },
         }}
       />
       <MyCode
         codeblock={{
-          type: "code",
+          value: "// !Mark(2)",
           lang: "jsonc",
           meta: "THE CUSTOMER OBJECT",
-          value: "// !Mark(2)",
-          position: {
-            start: {
-              line: 12,
-              column: 1,
-              offset: 155,
-            },
-            end: {
-              line: 14,
-              column: 4,
-              offset: 201,
-            },
-          },
         }}
       />
     </Hike>

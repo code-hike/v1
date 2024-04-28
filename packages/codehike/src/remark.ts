@@ -7,25 +7,18 @@ import { transformImportedCode } from "./mdx/0.import-code-from-path.js"
 import { transformAllHikes } from "./mdx/1.0.transform-hikes.js"
 import { transformAllCode } from "./mdx/2.transform-code.js"
 import { transformHikeProps } from "./mdx/3.transform-hike-props.js"
+import { CodeHikeConfig } from "./mdx/config.js"
 
-/**
- * Code Hike configuration object
- * @see [configuration documentation](https://codehike.org/docs)
- */
-export type CodeHikeConfig = {
-  components?: {
-    code?: string
-    image?: string
-  }
-}
+export type { CodeHikeConfig }
 
 export const remarkCodeHike: Plugin<[CodeHikeConfig?], Root, Root> = (
   config,
 ) => {
+  const safeConfig = config || {}
   return async (root, file) => {
     let tree = await transformImportedCode(root, file)
-    tree = await transformAllHikes(tree)
-    tree = await transformAllCode(tree, config)
+    tree = await transformAllHikes(tree, safeConfig)
+    tree = await transformAllCode(tree, safeConfig)
     return tree
   }
 }

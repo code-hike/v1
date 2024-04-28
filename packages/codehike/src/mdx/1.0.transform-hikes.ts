@@ -3,8 +3,9 @@ import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { visit } from "unist-util-visit"
 import { isHikeElement, listToSection } from "./1.1.remark-list-to-section.js"
 import { sectionToAttribute } from "./1.2.remark-section-to-attribute.js"
+import { CodeHikeConfig } from "./config.js"
 
-export async function transformAllHikes(root: Root) {
+export async function transformAllHikes(root: Root, config: CodeHikeConfig) {
   let tree = wrapInHike(root)
 
   const hikes: MdxJsxFlowElement[] = []
@@ -15,7 +16,7 @@ export async function transformAllHikes(root: Root) {
     }
   })
 
-  await Promise.all(hikes.map(transformRemarkHike))
+  await Promise.all(hikes.map((h) => transformRemarkHike(h, config)))
 
   return tree
 }
@@ -37,19 +38,15 @@ function wrapInHike(root: Root) {
   return root
 }
 
-async function transformRemarkHike(node: MdxJsxFlowElement) {
-  const section = await listToSection(node)
+async function transformRemarkHike(
+  node: MdxJsxFlowElement,
+  config: CodeHikeConfig,
+) {
+  const section = await listToSection(node, config)
   const { children, attributes } = sectionToAttribute(section)
 
   node.children = children
   node.attributes.push(...attributes)
-
-  const asAttribute = node.attributes.find((a: any) => a.name === "as") as any
-  const debug = node.attributes.find((a: any) => a.name === "debug")
-  node.attributes = node.attributes.filter((a: any) => a.name !== "as")
-  if (asAttribute && !debug) {
-    node.name = asAttribute?.value?.value || "Hike"
-  }
 
   return node
 }

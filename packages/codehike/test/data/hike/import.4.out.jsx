@@ -28,23 +28,10 @@ function _createMdxContent(props) {
           <_components.p>{"hello"}</_components.p>
           <MyCode
             codeblock={{
-              type: "code",
-              lang: "py",
-              meta: null,
               value:
                 "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
-              position: {
-                start: {
-                  line: 3,
-                  column: 1,
-                  offset: 9,
-                },
-                end: {
-                  line: 5,
-                  column: 4,
-                  offset: 36,
-                },
-              },
+              lang: "py",
+              meta: null,
             }}
           />
           <_components.slot name="code" />

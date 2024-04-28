@@ -5,8 +5,6 @@ import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 const chConfig = {
   components: {
     code: "Code",
-    image: "Image",
-    table: "Table",
   },
   ignoreCodeblock: (codeblock) => codeblock.lang === "mermaid",
   syntaxHighlight: {

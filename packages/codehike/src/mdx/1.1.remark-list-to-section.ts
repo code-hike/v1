@@ -1,5 +1,6 @@
 import { BlockContent, Code, DefinitionContent, Heading, Image } from "mdast"
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
+import { CodeHikeConfig } from "./config.js"
 
 export type JSXChild = BlockContent | DefinitionContent
 
@@ -61,6 +62,7 @@ const DEFAULT_VALUE_NAME = "value"
 
 export async function listToSection(
   hikeElement: MdxJsxFlowElement,
+  config: CodeHikeConfig,
 ): Promise<HikeSection> {
   const { children } = hikeElement
 
@@ -118,11 +120,14 @@ export async function listToSection(
         parent = parent.parent
       }
     } else if (isHikeCode(child)) {
+      // TODO add config
+      const parsedChild = await parseCode(child, {})
+
       const {
         name = DEFAULT_CODE_NAME,
         multi,
         title,
-      } = parseName(child.meta || "")
+      } = parseName(parsedChild.meta || "")
       parent.children.push({
         type: "code",
         name,
@@ -132,10 +137,9 @@ export async function listToSection(
               (c) => c.type != "content" && c.name === name,
             ).length
           : undefined,
-        value: child.value,
-        lang: child.lang,
+        // will need to use getObjectAttribute
+        ...parsedChild,
         meta: title,
-        // parentPath: mdxPath,
       })
     } else if (
       // ![!name title](image.png)
@@ -270,7 +274,8 @@ function parseHeading(heading: Heading) {
   }
 }
 
-export async function parseCode(code: Code) {
+export async function parseCode(code: Code, config: CodeHikeConfig) {
+  // TODO read from config
   return {
     value: code.value,
     lang: code.lang,
