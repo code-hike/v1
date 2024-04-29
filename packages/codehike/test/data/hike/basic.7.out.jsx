@@ -15,34 +15,19 @@ function _createMdxContent(props) {
         {...{
           children: (
             <>
-              <_components.p>{"fasdfas"}</_components.p>
-              <_components.slot name="code" />
+              <_components.p>{"hey"}</_components.p>
               <_components.slot name="foo" />
-              <_components.slot name="bar" />
             </>
           ),
           title: "",
           _data: {
             header: "",
           },
-          code: {
-            value:
-              "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}",
-            lang: "js",
-            meta: "",
-          },
           foo: {
-            children: <_components.p>{"Hello"}</_components.p>,
-            title: "",
+            children: <_components.p>{"bin"}</_components.p>,
+            title: "bar",
             _data: {
-              header: "## !foo",
-            },
-          },
-          bar: {
-            children: <_components.p>{"World"}</_components.p>,
-            title: "",
-            _data: {
-              header: "## !bar",
+              header: "## !foo bar",
             },
           },
         }}

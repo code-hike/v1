@@ -9,31 +9,16 @@
       "children": [
         {
           "type": "paragraph",
-          "children": [{ "type": "text", "value": "fasdfas" }]
-        },
-        {
-          "type": "code",
-          "lang": "js",
-          "meta": "!code",
-          "value": "function lorem(ipsum, dolor = 1) {\r\n  const sit = ipsum == null ? 0 : ipsum.sit\r\n  // !mark(1:2)\r\n  dolor = sit - amet(dolor)\r\n  return sit ? consectetur(ipsum) : []\r\n}"
+          "children": [{ "type": "text", "value": "hey" }]
         },
         {
           "type": "heading",
           "depth": 2,
-          "children": [{ "type": "text", "value": "!foo" }]
+          "children": [{ "type": "text", "value": "!foo bar" }]
         },
         {
           "type": "paragraph",
-          "children": [{ "type": "text", "value": "Hello" }]
-        },
-        {
-          "type": "heading",
-          "depth": 2,
-          "children": [{ "type": "text", "value": "!bar" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "World" }]
+          "children": [{ "type": "text", "value": "bin" }]
         }
       ],
       "data": { "_mdxExplicitJsx": true }

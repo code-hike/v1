@@ -7,6 +7,7 @@ import * as prettier from "prettier"
 
 const dataPath = "./test/data/hike"
 const testNames = await getTestNames(dataPath)
+const JSX = false
 
 testNames.forEach((name) => {
   describe.sequential(`test ${name}`, () => {
@@ -28,14 +29,12 @@ const chConfig: CodeHikeConfig = {
 }
 
 async function testCompilation(name: string, mdx: string, mdxPath: string) {
-  const result = await compile(
-    {
-      value: mdx,
-      history: [mdxPath],
-    },
-    {
+  const file = { value: mdx, history: [mdxPath] }
+
+  // all steps jsx true
+  await expect(
+    await compileAndFormat(file, {
       jsx: true,
-      // baseUrl: import.meta.url,
       remarkPlugins: [
         [logRemark, { name: name + ".2.remark" }],
         [remarkCodeHike, chConfig],
@@ -43,34 +42,49 @@ async function testCompilation(name: string, mdx: string, mdxPath: string) {
       ],
       rehypePlugins: [[(n) => logRemark(n), { name: name + ".4.rehype" }]],
       recmaPlugins: [
-        [(n) => logRemark(n), { name: name + ".5.recma" }],
+        [(n) => logRemark(n), { name: name + ".5.jsx-recma" }],
         [recmaCodeHike, chConfig],
-        [(n) => logRemark(n), { name: name + ".6.recma" }],
+        [(n) => logRemark(n), { name: name + ".6.jsx-recma" }],
       ],
-    },
-  )
-  const out = await prettier.format(String(result), {
-    semi: false,
-    parser: "babel",
-  })
-  await expect(out).toMatchFileSnapshot(`./data/hike/${name}.7.out.jsx`)
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.7.out.jsx`)
 
-  const r = await compile(
-    {
-      value: mdx,
-      history: [mdxPath],
-    },
-    {
-      jsx: true,
-      // baseUrl: import.meta.url,
+  // recma steps jsx false
+  await expect(
+    await compileAndFormat(file, {
+      jsx: false,
       remarkPlugins: [[remarkCodeHike, chConfig]],
-    },
-  )
-  const out2 = await prettier.format(String(r), {
+      recmaPlugins: [
+        [(n) => logRemark(n), { name: name + ".5.js-recma" }],
+        [recmaCodeHike, chConfig],
+        [(n) => logRemark(n), { name: name + ".6.js-recma" }],
+      ],
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.7.out.js`)
+
+  // intermediate result jsx true
+  await expect(
+    await compileAndFormat(file, {
+      jsx: true,
+      remarkPlugins: [[remarkCodeHike, chConfig]],
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.jsx`)
+
+  // intermediate result jsx false
+  await expect(
+    await compileAndFormat(file, {
+      jsx: false,
+      remarkPlugins: [[remarkCodeHike, chConfig]],
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.js`)
+}
+
+async function compileAndFormat(file, options) {
+  const r = await compile(file, options)
+  return await prettier.format(String(r), {
     semi: false,
     parser: "babel",
   })
-  await expect(out2).toMatchFileSnapshot(`./data/hike/${name}.4.out.jsx`)
 }
 
 const ignoreProperties = ["start", "end", "position", "loc", "range"]
