@@ -12,26 +12,23 @@ function _createMdxContent(props) {
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
   return _jsx(_components.slot, {
-    children: _jsx(_components.slot, {
-      path: "",
-      children: _jsxs(_Fragment, {
-        children: [
-          _jsx(_components.p, {
-            children: "hello",
-          }),
-          _jsx(MyCode, {
-            codeblock: {
-              value:
-                "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
-              lang: "py",
-              meta: "",
-            },
-          }),
-          _jsx(_components.slot, {
-            name: "code",
-          }),
-        ],
-      }),
+    children: _jsxs(_Fragment, {
+      children: [
+        _jsx(_components.p, {
+          children: "hello",
+        }),
+        _jsx(MyCode, {
+          codeblock: {
+            value:
+              "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
+            lang: "py",
+            meta: "",
+          },
+        }),
+        _jsx(_components.slot, {
+          name: "code",
+        }),
+      ],
     }),
     title: "",
     _data: {

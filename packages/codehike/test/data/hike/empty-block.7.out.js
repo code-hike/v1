@@ -10,43 +10,25 @@ function _createMdxContent(props) {
     ...props.components,
   }
   return _jsxs(_components.slot, {
-    children: _jsx(_components.slot, {
-      path: "",
-      children: _jsxs(_Fragment, {
-        children: [
-          _jsx(_components.p, {
-            children: "hello",
-          }),
-          _jsx(_components.slot, {
-            name: "foo",
-          }),
-          _jsx(_components.p, {
-            children: "hey",
-          }),
-        ],
-      }),
+    children: _jsxs(_Fragment, {
+      children: [
+        _jsx(_components.p, {
+          children: "hello",
+        }),
+        _jsx(_components.slot, {
+          name: "foo",
+        }),
+        _jsx(_components.p, {
+          children: "hey",
+        }),
+      ],
     }),
     title: "",
     _data: {
       header: "",
     },
     foo: {
-      children: _jsx(_components.slot, {
-        path: "",
-        children: _jsxs(_Fragment, {
-          children: [
-            _jsx(_components.p, {
-              children: "hello",
-            }),
-            _jsx(_components.slot, {
-              name: "foo",
-            }),
-            _jsx(_components.p, {
-              children: "hey",
-            }),
-          ],
-        }),
-      }),
+      children: _jsx(_Fragment, {}),
       title: "hey",
       _data: {
         header: "# !foo hey",

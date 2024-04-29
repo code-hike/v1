@@ -206,21 +206,12 @@
                                       "type": "CallExpression",
                                       "callee": {
                                         "type": "Identifier",
-                                        "name": "_jsx"
+                                        "name": "_jsxs"
                                       },
                                       "arguments": [
                                         {
-                                          "type": "MemberExpression",
-                                          "object": {
-                                            "type": "Identifier",
-                                            "name": "_components"
-                                          },
-                                          "property": {
-                                            "type": "Identifier",
-                                            "name": "slot"
-                                          },
-                                          "computed": false,
-                                          "optional": false
+                                          "type": "Identifier",
+                                          "name": "_Fragment"
                                         },
                                         {
                                           "type": "ObjectExpression",
@@ -229,143 +220,98 @@
                                               "type": "Property",
                                               "key": {
                                                 "type": "Identifier",
-                                                "name": "path"
-                                              },
-                                              "value": {
-                                                "type": "Literal",
-                                                "value": ""
-                                              },
-                                              "kind": "init",
-                                              "method": false,
-                                              "shorthand": false,
-                                              "computed": false
-                                            },
-                                            {
-                                              "type": "Property",
-                                              "key": {
-                                                "type": "Identifier",
                                                 "name": "children"
                                               },
                                               "value": {
-                                                "type": "CallExpression",
-                                                "callee": {
-                                                  "type": "Identifier",
-                                                  "name": "_jsxs"
-                                                },
-                                                "arguments": [
+                                                "type": "ArrayExpression",
+                                                "elements": [
                                                   {
-                                                    "type": "Identifier",
-                                                    "name": "_Fragment"
+                                                    "type": "CallExpression",
+                                                    "callee": {
+                                                      "type": "Identifier",
+                                                      "name": "_jsx"
+                                                    },
+                                                    "arguments": [
+                                                      {
+                                                        "type": "MemberExpression",
+                                                        "object": {
+                                                          "type": "Identifier",
+                                                          "name": "_components"
+                                                        },
+                                                        "property": {
+                                                          "type": "Identifier",
+                                                          "name": "p"
+                                                        },
+                                                        "computed": false,
+                                                        "optional": false
+                                                      },
+                                                      {
+                                                        "type": "ObjectExpression",
+                                                        "properties": [
+                                                          {
+                                                            "type": "Property",
+                                                            "key": {
+                                                              "type": "Identifier",
+                                                              "name": "children"
+                                                            },
+                                                            "value": {
+                                                              "type": "Literal",
+                                                              "value": "hey"
+                                                            },
+                                                            "kind": "init",
+                                                            "method": false,
+                                                            "shorthand": false,
+                                                            "computed": false
+                                                          }
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "optional": false
                                                   },
                                                   {
-                                                    "type": "ObjectExpression",
-                                                    "properties": [
+                                                    "type": "CallExpression",
+                                                    "callee": {
+                                                      "type": "Identifier",
+                                                      "name": "_jsx"
+                                                    },
+                                                    "arguments": [
                                                       {
-                                                        "type": "Property",
-                                                        "key": {
+                                                        "type": "MemberExpression",
+                                                        "object": {
                                                           "type": "Identifier",
-                                                          "name": "children"
+                                                          "name": "_components"
                                                         },
-                                                        "value": {
-                                                          "type": "ArrayExpression",
-                                                          "elements": [
-                                                            {
-                                                              "type": "CallExpression",
-                                                              "callee": {
-                                                                "type": "Identifier",
-                                                                "name": "_jsx"
-                                                              },
-                                                              "arguments": [
-                                                                {
-                                                                  "type": "MemberExpression",
-                                                                  "object": {
-                                                                    "type": "Identifier",
-                                                                    "name": "_components"
-                                                                  },
-                                                                  "property": {
-                                                                    "type": "Identifier",
-                                                                    "name": "p"
-                                                                  },
-                                                                  "computed": false,
-                                                                  "optional": false
-                                                                },
-                                                                {
-                                                                  "type": "ObjectExpression",
-                                                                  "properties": [
-                                                                    {
-                                                                      "type": "Property",
-                                                                      "key": {
-                                                                        "type": "Identifier",
-                                                                        "name": "children"
-                                                                      },
-                                                                      "value": {
-                                                                        "type": "Literal",
-                                                                        "value": "hey"
-                                                                      },
-                                                                      "kind": "init",
-                                                                      "method": false,
-                                                                      "shorthand": false,
-                                                                      "computed": false
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ],
-                                                              "optional": false
+                                                        "property": {
+                                                          "type": "Identifier",
+                                                          "name": "slot"
+                                                        },
+                                                        "computed": false,
+                                                        "optional": false
+                                                      },
+                                                      {
+                                                        "type": "ObjectExpression",
+                                                        "properties": [
+                                                          {
+                                                            "type": "Property",
+                                                            "key": {
+                                                              "type": "Identifier",
+                                                              "name": "name"
                                                             },
-                                                            {
-                                                              "type": "CallExpression",
-                                                              "callee": {
-                                                                "type": "Identifier",
-                                                                "name": "_jsx"
-                                                              },
-                                                              "arguments": [
-                                                                {
-                                                                  "type": "MemberExpression",
-                                                                  "object": {
-                                                                    "type": "Identifier",
-                                                                    "name": "_components"
-                                                                  },
-                                                                  "property": {
-                                                                    "type": "Identifier",
-                                                                    "name": "slot"
-                                                                  },
-                                                                  "computed": false,
-                                                                  "optional": false
-                                                                },
-                                                                {
-                                                                  "type": "ObjectExpression",
-                                                                  "properties": [
-                                                                    {
-                                                                      "type": "Property",
-                                                                      "key": {
-                                                                        "type": "Identifier",
-                                                                        "name": "name"
-                                                                      },
-                                                                      "value": {
-                                                                        "type": "Literal",
-                                                                        "value": "foo"
-                                                                      },
-                                                                      "kind": "init",
-                                                                      "method": false,
-                                                                      "shorthand": false,
-                                                                      "computed": false
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ],
-                                                              "optional": false
-                                                            }
-                                                          ]
-                                                        },
-                                                        "kind": "init",
-                                                        "method": false,
-                                                        "shorthand": false,
-                                                        "computed": false
+                                                            "value": {
+                                                              "type": "Literal",
+                                                              "value": "foo"
+                                                            },
+                                                            "kind": "init",
+                                                            "method": false,
+                                                            "shorthand": false,
+                                                            "computed": false
+                                                          }
+                                                        ]
                                                       }
-                                                    ]
+                                                    ],
+                                                    "optional": false
                                                   }
-                                                ],
-                                                "optional": false
+                                                ]
                                               },
                                               "kind": "init",
                                               "method": false,
@@ -464,7 +410,7 @@
                                                 },
                                                 "property": {
                                                   "type": "Identifier",
-                                                  "name": "slot"
+                                                  "name": "p"
                                                 },
                                                 "computed": false,
                                                 "optional": false
@@ -476,143 +422,11 @@
                                                     "type": "Property",
                                                     "key": {
                                                       "type": "Identifier",
-                                                      "name": "path"
-                                                    },
-                                                    "value": {
-                                                      "type": "Literal",
-                                                      "value": ""
-                                                    },
-                                                    "kind": "init",
-                                                    "method": false,
-                                                    "shorthand": false,
-                                                    "computed": false
-                                                  },
-                                                  {
-                                                    "type": "Property",
-                                                    "key": {
-                                                      "type": "Identifier",
                                                       "name": "children"
                                                     },
                                                     "value": {
-                                                      "type": "CallExpression",
-                                                      "callee": {
-                                                        "type": "Identifier",
-                                                        "name": "_jsxs"
-                                                      },
-                                                      "arguments": [
-                                                        {
-                                                          "type": "Identifier",
-                                                          "name": "_Fragment"
-                                                        },
-                                                        {
-                                                          "type": "ObjectExpression",
-                                                          "properties": [
-                                                            {
-                                                              "type": "Property",
-                                                              "key": {
-                                                                "type": "Identifier",
-                                                                "name": "children"
-                                                              },
-                                                              "value": {
-                                                                "type": "ArrayExpression",
-                                                                "elements": [
-                                                                  {
-                                                                    "type": "CallExpression",
-                                                                    "callee": {
-                                                                      "type": "Identifier",
-                                                                      "name": "_jsx"
-                                                                    },
-                                                                    "arguments": [
-                                                                      {
-                                                                        "type": "MemberExpression",
-                                                                        "object": {
-                                                                          "type": "Identifier",
-                                                                          "name": "_components"
-                                                                        },
-                                                                        "property": {
-                                                                          "type": "Identifier",
-                                                                          "name": "p"
-                                                                        },
-                                                                        "computed": false,
-                                                                        "optional": false
-                                                                      },
-                                                                      {
-                                                                        "type": "ObjectExpression",
-                                                                        "properties": [
-                                                                          {
-                                                                            "type": "Property",
-                                                                            "key": {
-                                                                              "type": "Identifier",
-                                                                              "name": "children"
-                                                                            },
-                                                                            "value": {
-                                                                              "type": "Literal",
-                                                                              "value": "hey"
-                                                                            },
-                                                                            "kind": "init",
-                                                                            "method": false,
-                                                                            "shorthand": false,
-                                                                            "computed": false
-                                                                          }
-                                                                        ]
-                                                                      }
-                                                                    ],
-                                                                    "optional": false
-                                                                  },
-                                                                  {
-                                                                    "type": "CallExpression",
-                                                                    "callee": {
-                                                                      "type": "Identifier",
-                                                                      "name": "_jsx"
-                                                                    },
-                                                                    "arguments": [
-                                                                      {
-                                                                        "type": "MemberExpression",
-                                                                        "object": {
-                                                                          "type": "Identifier",
-                                                                          "name": "_components"
-                                                                        },
-                                                                        "property": {
-                                                                          "type": "Identifier",
-                                                                          "name": "slot"
-                                                                        },
-                                                                        "computed": false,
-                                                                        "optional": false
-                                                                      },
-                                                                      {
-                                                                        "type": "ObjectExpression",
-                                                                        "properties": [
-                                                                          {
-                                                                            "type": "Property",
-                                                                            "key": {
-                                                                              "type": "Identifier",
-                                                                              "name": "name"
-                                                                            },
-                                                                            "value": {
-                                                                              "type": "Literal",
-                                                                              "value": "foo"
-                                                                            },
-                                                                            "kind": "init",
-                                                                            "method": false,
-                                                                            "shorthand": false,
-                                                                            "computed": false
-                                                                          }
-                                                                        ]
-                                                                      }
-                                                                    ],
-                                                                    "optional": false
-                                                                  }
-                                                                ]
-                                                              },
-                                                              "kind": "init",
-                                                              "method": false,
-                                                              "shorthand": false,
-                                                              "computed": false
-                                                            }
-                                                          ]
-                                                        }
-                                                      ],
-                                                      "optional": false
+                                                      "type": "Literal",
+                                                      "value": "bin"
                                                     },
                                                     "kind": "init",
                                                     "method": false,

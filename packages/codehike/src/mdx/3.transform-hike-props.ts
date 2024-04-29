@@ -191,12 +191,17 @@ function moveChildrenToHikeProp(node: any) {
       ? childrenExpression.elements
       : [childrenExpression]
 
-  children.forEach((slot: any) => {
-    const path = slot.arguments[1]?.properties.find(
+  children.forEach((callExpression: any) => {
+    const path = callExpression.arguments[1]?.properties.find(
       (p: any) => p.key.name === "path",
     ).value.value
     childrenByPath[path] = childrenByPath[path] || []
-    childrenByPath[path].push(children)
+    childrenByPath[path].push(
+      // current slot children
+      callExpression.arguments[1].properties.find(
+        (p: any) => p.key.name === "children",
+      ).value,
+    )
   })
 
   // replace all the `children` props inside `__hike` with the actual children
@@ -211,7 +216,7 @@ function moveChildrenToHikeProp(node: any) {
 
       const elements = childrenByPath[path].shift()
 
-      node.value = elements[0]
+      node.value = elements
       return SKIP
     }
   })

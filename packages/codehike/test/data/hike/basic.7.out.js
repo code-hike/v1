@@ -18,36 +18,23 @@ function _createMdxContent(props) {
       }),
       "\n",
       _jsxs(CodeWithTooltips, {
-        children: _jsx(_components.slot, {
-          path: "",
-          children: _jsxs(_Fragment, {
-            children: [
-              _jsx(_components.p, {
-                children: "hey",
-              }),
-              _jsx(_components.slot, {
-                name: "foo",
-              }),
-            ],
-          }),
+        children: _jsxs(_Fragment, {
+          children: [
+            _jsx(_components.p, {
+              children: "hey",
+            }),
+            _jsx(_components.slot, {
+              name: "foo",
+            }),
+          ],
         }),
         title: "",
         _data: {
           header: "",
         },
         foo: {
-          children: _jsx(_components.slot, {
-            path: "",
-            children: _jsxs(_Fragment, {
-              children: [
-                _jsx(_components.p, {
-                  children: "hey",
-                }),
-                _jsx(_components.slot, {
-                  name: "foo",
-                }),
-              ],
-            }),
+          children: _jsx(_components.p, {
+            children: "bin",
           }),
           title: "bar",
           _data: {
