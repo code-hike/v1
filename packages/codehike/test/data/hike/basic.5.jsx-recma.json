@@ -52,101 +52,177 @@
                     }
                   ]
                 }
-              },
-              {
-                "type": "VariableDeclarator",
-                "id": {
-                  "type": "ObjectPattern",
-                  "properties": [
-                    {
-                      "type": "Property",
-                      "kind": "init",
-                      "key": {
-                        "type": "Identifier",
-                        "name": "CodeWithTooltips"
-                      },
-                      "value": {
-                        "type": "Identifier",
-                        "name": "CodeWithTooltips"
-                      },
-                      "method": false,
-                      "shorthand": true,
-                      "computed": false
-                    }
-                  ]
-                },
-                "init": { "type": "Identifier", "name": "_components" }
               }
             ]
           },
           {
-            "type": "IfStatement",
-            "test": {
-              "type": "UnaryExpression",
-              "operator": "!",
-              "prefix": true,
-              "argument": { "type": "Identifier", "name": "CodeWithTooltips" }
-            },
-            "consequent": {
-              "type": "ExpressionStatement",
-              "expression": {
-                "type": "CallExpression",
-                "callee": {
-                  "type": "Identifier",
-                  "name": "_missingMdxReference"
-                },
-                "arguments": [
-                  { "type": "Literal", "value": "CodeWithTooltips" },
-                  { "type": "Literal", "value": true }
-                ],
-                "optional": false
-              }
-            }
-          },
-          {
             "type": "ReturnStatement",
             "argument": {
-              "type": "JSXFragment",
-              "openingFragment": { "type": "JSXOpeningFragment" },
-              "closingFragment": { "type": "JSXClosingFragment" },
-              "children": [
-                {
-                  "type": "JSXElement",
-                  "openingElement": {
-                    "type": "JSXOpeningElement",
-                    "attributes": [],
-                    "name": {
-                      "type": "JSXMemberExpression",
-                      "object": {
-                        "type": "JSXIdentifier",
-                        "name": "_components"
-                      },
-                      "property": { "type": "JSXIdentifier", "name": "p" }
-                    },
-                    "selfClosing": false
-                  },
-                  "closingElement": {
-                    "type": "JSXClosingElement",
-                    "name": {
-                      "type": "JSXMemberExpression",
-                      "object": {
-                        "type": "JSXIdentifier",
-                        "name": "_components"
-                      },
-                      "property": { "type": "JSXIdentifier", "name": "p" }
-                    }
-                  },
-                  "children": [
-                    {
+              "type": "JSXElement",
+              "openingElement": {
+                "type": "JSXOpeningElement",
+                "attributes": [
+                  {
+                    "type": "JSXAttribute",
+                    "name": { "type": "JSXIdentifier", "name": "__hike" },
+                    "value": {
                       "type": "JSXExpressionContainer",
-                      "expression": { "type": "Literal", "value": "Heaas" }
+                      "expression": {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "children" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "",
+                              "raw": "\"\""
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "title" },
+                            "kind": "init",
+                            "value": {
+                              "type": "Literal",
+                              "value": "",
+                              "raw": "\"\""
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "_data" },
+                            "kind": "init",
+                            "value": {
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "header"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "",
+                                    "raw": "\"\""
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": { "type": "Literal", "value": "foo" },
+                            "kind": "init",
+                            "value": {
+                              "type": "ObjectExpression",
+                              "properties": [
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "children"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "foo",
+                                    "raw": "\"foo\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "title"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "Literal",
+                                    "value": "bar",
+                                    "raw": "\"bar\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "_data"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Literal",
+                                          "value": "header"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "## !foo bar",
+                                          "raw": "\"## !foo bar\""
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
                     }
-                  ]
+                  }
+                ],
+                "name": {
+                  "type": "JSXMemberExpression",
+                  "object": { "type": "JSXIdentifier", "name": "_components" },
+                  "property": { "type": "JSXIdentifier", "name": "slot" }
                 },
-                {
-                  "type": "JSXExpressionContainer",
-                  "expression": { "type": "Literal", "value": "\n" }
-                },
+                "selfClosing": false
+              },
+              "closingElement": {
+                "type": "JSXClosingElement",
+                "name": {
+                  "type": "JSXMemberExpression",
+                  "object": { "type": "JSXIdentifier", "name": "_components" },
+                  "property": { "type": "JSXIdentifier", "name": "slot" }
+                }
+              },
+              "children": [
                 {
                   "type": "JSXElement",
                   "openingElement": {
@@ -154,327 +230,36 @@
                     "attributes": [
                       {
                         "type": "JSXAttribute",
-                        "name": { "type": "JSXIdentifier", "name": "__hike" },
-                        "value": {
-                          "type": "JSXExpressionContainer",
-                          "expression": {
-                            "type": "ObjectExpression",
-                            "properties": [
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": {
-                                  "type": "Literal",
-                                  "value": "children"
-                                },
-                                "kind": "init",
-                                "value": {
-                                  "type": "Literal",
-                                  "value": "",
-                                  "raw": "\"\""
-                                }
-                              },
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "title" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "Literal",
-                                  "value": "",
-                                  "raw": "\"\""
-                                }
-                              },
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "_data" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "ObjectExpression",
-                                  "properties": [
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "header"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "",
-                                        "raw": "\"\""
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              {
-                                "type": "Property",
-                                "method": false,
-                                "shorthand": false,
-                                "computed": false,
-                                "key": { "type": "Literal", "value": "foo" },
-                                "kind": "init",
-                                "value": {
-                                  "type": "ObjectExpression",
-                                  "properties": [
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "children"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "foo",
-                                        "raw": "\"foo\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "title"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "Literal",
-                                        "value": "bar",
-                                        "raw": "\"bar\""
-                                      }
-                                    },
-                                    {
-                                      "type": "Property",
-                                      "method": false,
-                                      "shorthand": false,
-                                      "computed": false,
-                                      "key": {
-                                        "type": "Literal",
-                                        "value": "_data"
-                                      },
-                                      "kind": "init",
-                                      "value": {
-                                        "type": "ObjectExpression",
-                                        "properties": [
-                                          {
-                                            "type": "Property",
-                                            "method": false,
-                                            "shorthand": false,
-                                            "computed": false,
-                                            "key": {
-                                              "type": "Literal",
-                                              "value": "header"
-                                            },
-                                            "kind": "init",
-                                            "value": {
-                                              "type": "Literal",
-                                              "value": "## !foo bar",
-                                              "raw": "\"## !foo bar\""
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        }
+                        "name": { "type": "JSXIdentifier", "name": "path" },
+                        "value": { "type": "Literal", "value": "" }
                       }
                     ],
                     "name": {
-                      "type": "JSXIdentifier",
-                      "name": "CodeWithTooltips"
+                      "type": "JSXMemberExpression",
+                      "object": {
+                        "type": "JSXIdentifier",
+                        "name": "_components"
+                      },
+                      "property": { "type": "JSXIdentifier", "name": "slot" }
                     },
                     "selfClosing": false
                   },
                   "closingElement": {
                     "type": "JSXClosingElement",
                     "name": {
-                      "type": "JSXIdentifier",
-                      "name": "CodeWithTooltips"
+                      "type": "JSXMemberExpression",
+                      "object": {
+                        "type": "JSXIdentifier",
+                        "name": "_components"
+                      },
+                      "property": { "type": "JSXIdentifier", "name": "slot" }
                     }
                   },
                   "children": [
                     {
-                      "type": "JSXElement",
-                      "openingElement": {
-                        "type": "JSXOpeningElement",
-                        "attributes": [
-                          {
-                            "type": "JSXAttribute",
-                            "name": { "type": "JSXIdentifier", "name": "path" },
-                            "value": { "type": "Literal", "value": "" }
-                          }
-                        ],
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        },
-                        "selfClosing": false
-                      },
-                      "closingElement": {
-                        "type": "JSXClosingElement",
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        }
-                      },
-                      "children": [
-                        {
-                          "type": "JSXFragment",
-                          "openingFragment": { "type": "JSXOpeningFragment" },
-                          "closingFragment": { "type": "JSXClosingFragment" },
-                          "children": [
-                            {
-                              "type": "JSXElement",
-                              "openingElement": {
-                                "type": "JSXOpeningElement",
-                                "attributes": [],
-                                "name": {
-                                  "type": "JSXMemberExpression",
-                                  "object": {
-                                    "type": "JSXIdentifier",
-                                    "name": "_components"
-                                  },
-                                  "property": {
-                                    "type": "JSXIdentifier",
-                                    "name": "p"
-                                  }
-                                },
-                                "selfClosing": false
-                              },
-                              "closingElement": {
-                                "type": "JSXClosingElement",
-                                "name": {
-                                  "type": "JSXMemberExpression",
-                                  "object": {
-                                    "type": "JSXIdentifier",
-                                    "name": "_components"
-                                  },
-                                  "property": {
-                                    "type": "JSXIdentifier",
-                                    "name": "p"
-                                  }
-                                }
-                              },
-                              "children": [
-                                {
-                                  "type": "JSXExpressionContainer",
-                                  "expression": {
-                                    "type": "Literal",
-                                    "value": "hey"
-                                  }
-                                }
-                              ]
-                            },
-                            {
-                              "type": "JSXElement",
-                              "openingElement": {
-                                "type": "JSXOpeningElement",
-                                "attributes": [
-                                  {
-                                    "type": "JSXAttribute",
-                                    "name": {
-                                      "type": "JSXIdentifier",
-                                      "name": "name"
-                                    },
-                                    "value": {
-                                      "type": "Literal",
-                                      "value": "foo"
-                                    }
-                                  }
-                                ],
-                                "name": {
-                                  "type": "JSXMemberExpression",
-                                  "object": {
-                                    "type": "JSXIdentifier",
-                                    "name": "_components"
-                                  },
-                                  "property": {
-                                    "type": "JSXIdentifier",
-                                    "name": "slot"
-                                  }
-                                },
-                                "selfClosing": true
-                              },
-                              "closingElement": null,
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "JSXElement",
-                      "openingElement": {
-                        "type": "JSXOpeningElement",
-                        "attributes": [
-                          {
-                            "type": "JSXAttribute",
-                            "name": { "type": "JSXIdentifier", "name": "path" },
-                            "value": { "type": "Literal", "value": "foo" }
-                          }
-                        ],
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        },
-                        "selfClosing": false
-                      },
-                      "closingElement": {
-                        "type": "JSXClosingElement",
-                        "name": {
-                          "type": "JSXMemberExpression",
-                          "object": {
-                            "type": "JSXIdentifier",
-                            "name": "_components"
-                          },
-                          "property": {
-                            "type": "JSXIdentifier",
-                            "name": "slot"
-                          }
-                        }
-                      },
+                      "type": "JSXFragment",
+                      "openingFragment": { "type": "JSXOpeningFragment" },
+                      "closingFragment": { "type": "JSXClosingFragment" },
                       "children": [
                         {
                           "type": "JSXElement",
@@ -513,15 +298,112 @@
                               "type": "JSXExpressionContainer",
                               "expression": {
                                 "type": "Literal",
-                                "value": "bin"
+                                "value": "hey"
                               }
                             }
                           ]
+                        },
+                        {
+                          "type": "JSXElement",
+                          "openingElement": {
+                            "type": "JSXOpeningElement",
+                            "attributes": [
+                              {
+                                "type": "JSXAttribute",
+                                "name": {
+                                  "type": "JSXIdentifier",
+                                  "name": "name"
+                                },
+                                "value": { "type": "Literal", "value": "foo" }
+                              }
+                            ],
+                            "name": {
+                              "type": "JSXMemberExpression",
+                              "object": {
+                                "type": "JSXIdentifier",
+                                "name": "_components"
+                              },
+                              "property": {
+                                "type": "JSXIdentifier",
+                                "name": "slot"
+                              }
+                            },
+                            "selfClosing": true
+                          },
+                          "closingElement": null,
+                          "children": []
                         }
                       ]
                     }
-                  ],
-                  "data": { "_mdxExplicitJsx": true }
+                  ]
+                },
+                {
+                  "type": "JSXElement",
+                  "openingElement": {
+                    "type": "JSXOpeningElement",
+                    "attributes": [
+                      {
+                        "type": "JSXAttribute",
+                        "name": { "type": "JSXIdentifier", "name": "path" },
+                        "value": { "type": "Literal", "value": "foo" }
+                      }
+                    ],
+                    "name": {
+                      "type": "JSXMemberExpression",
+                      "object": {
+                        "type": "JSXIdentifier",
+                        "name": "_components"
+                      },
+                      "property": { "type": "JSXIdentifier", "name": "slot" }
+                    },
+                    "selfClosing": false
+                  },
+                  "closingElement": {
+                    "type": "JSXClosingElement",
+                    "name": {
+                      "type": "JSXMemberExpression",
+                      "object": {
+                        "type": "JSXIdentifier",
+                        "name": "_components"
+                      },
+                      "property": { "type": "JSXIdentifier", "name": "slot" }
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "JSXElement",
+                      "openingElement": {
+                        "type": "JSXOpeningElement",
+                        "attributes": [],
+                        "name": {
+                          "type": "JSXMemberExpression",
+                          "object": {
+                            "type": "JSXIdentifier",
+                            "name": "_components"
+                          },
+                          "property": { "type": "JSXIdentifier", "name": "p" }
+                        },
+                        "selfClosing": false
+                      },
+                      "closingElement": {
+                        "type": "JSXClosingElement",
+                        "name": {
+                          "type": "JSXMemberExpression",
+                          "object": {
+                            "type": "JSXIdentifier",
+                            "name": "_components"
+                          },
+                          "property": { "type": "JSXIdentifier", "name": "p" }
+                        }
+                      },
+                      "children": [
+                        {
+                          "type": "JSXExpressionContainer",
+                          "expression": { "type": "Literal", "value": "bin" }
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -642,62 +524,6 @@
             }
           ]
         }
-      }
-    },
-    {
-      "type": "FunctionDeclaration",
-      "id": { "type": "Identifier", "name": "_missingMdxReference" },
-      "generator": false,
-      "async": false,
-      "params": [
-        { "type": "Identifier", "name": "id" },
-        { "type": "Identifier", "name": "component" }
-      ],
-      "body": {
-        "type": "BlockStatement",
-        "body": [
-          {
-            "type": "ThrowStatement",
-            "argument": {
-              "type": "NewExpression",
-              "callee": { "type": "Identifier", "name": "Error" },
-              "arguments": [
-                {
-                  "type": "BinaryExpression",
-                  "left": {
-                    "type": "BinaryExpression",
-                    "left": {
-                      "type": "BinaryExpression",
-                      "left": {
-                        "type": "BinaryExpression",
-                        "left": { "type": "Literal", "value": "Expected " },
-                        "operator": "+",
-                        "right": {
-                          "type": "ConditionalExpression",
-                          "test": { "type": "Identifier", "name": "component" },
-                          "consequent": {
-                            "type": "Literal",
-                            "value": "component"
-                          },
-                          "alternate": { "type": "Literal", "value": "object" }
-                        }
-                      },
-                      "operator": "+",
-                      "right": { "type": "Literal", "value": " `" }
-                    },
-                    "operator": "+",
-                    "right": { "type": "Identifier", "name": "id" }
-                  },
-                  "operator": "+",
-                  "right": {
-                    "type": "Literal",
-                    "value": "` to be defined: you likely forgot to import, pass, or provide it."
-                  }
-                }
-              ]
-            }
-          }
-        ]
       }
     }
   ],

@@ -11,7 +11,7 @@ function _createMdxContent(props) {
     },
     { MyCode } = _components
   if (!MyCode) _missingMdxReference("MyCode", true)
-  return _jsx(_components.slot, {
+  const _blocks = {
     children: _jsxs(_Fragment, {
       children: [
         _jsx(_components.p, {
@@ -40,7 +40,11 @@ function _createMdxContent(props) {
       lang: "py",
       meta: "",
     },
-  })
+  }
+  if (props._returnBlocks) {
+    return _blocks
+  }
+  return _blocks.children
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

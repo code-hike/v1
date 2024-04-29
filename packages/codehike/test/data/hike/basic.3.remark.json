@@ -1,10 +1,9 @@
 {
   "type": "root",
   "children": [
-    { "type": "paragraph", "children": [{ "type": "text", "value": "Heaas" }] },
     {
       "type": "mdxJsxFlowElement",
-      "name": "CodeWithTooltips",
+      "name": "slot",
       "attributes": [
         {
           "type": "mdxJsxAttribute",
@@ -201,8 +200,7 @@
             }
           ]
         }
-      ],
-      "data": { "_mdxExplicitJsx": true }
+      ]
     }
   ]
 }

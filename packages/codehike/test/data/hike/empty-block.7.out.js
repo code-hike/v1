@@ -9,7 +9,7 @@ function _createMdxContent(props) {
     slot: "slot",
     ...props.components,
   }
-  return _jsxs(_components.slot, {
+  const _blocks = {
     children: _jsxs(_Fragment, {
       children: [
         _jsx(_components.p, {
@@ -34,7 +34,11 @@ function _createMdxContent(props) {
         header: "# !foo hey",
       },
     },
-  })
+  }
+  if (props._returnBlocks) {
+    return _blocks
+  }
+  return _blocks.children
 }
 export default function MDXContent(props = {}) {
   const { wrapper: MDXLayout } = props.components || {}

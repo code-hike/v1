@@ -119,19 +119,13 @@
             }
           },
           {
-            "type": "ReturnStatement",
-            "argument": {
-              "type": "CallExpression",
-              "callee": { "type": "Identifier", "name": "_jsx" },
-              "arguments": [
-                {
-                  "type": "MemberExpression",
-                  "object": { "type": "Identifier", "name": "_components" },
-                  "property": { "type": "Identifier", "name": "slot" },
-                  "computed": false,
-                  "optional": false
-                },
-                {
+            "type": "VariableDeclaration",
+            "kind": "const",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": { "type": "Identifier", "name": "_blocks" },
+                "init": {
                   "type": "ObjectExpression",
                   "properties": [
                     {
@@ -429,8 +423,32 @@
                     }
                   ]
                 }
-              ],
-              "optional": false
+              }
+            ]
+          },
+          {
+            "type": "IfStatement",
+            "test": {
+              "type": "MemberExpression",
+              "object": { "type": "Identifier", "name": "props" },
+              "property": { "type": "Identifier", "name": "_returnBlocks" }
+            },
+            "consequent": {
+              "type": "BlockStatement",
+              "body": [
+                {
+                  "type": "ReturnStatement",
+                  "argument": { "type": "Identifier", "name": "_blocks" }
+                }
+              ]
+            }
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "MemberExpression",
+              "object": { "type": "Identifier", "name": "_blocks" },
+              "property": { "type": "Identifier", "name": "children" }
             }
           }
         ]

@@ -1,27 +1,12 @@
 {
   "type": "root",
   "children": [
-    { "type": "paragraph", "children": [{ "type": "text", "value": "Heaas" }] },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hey" }] },
     {
-      "type": "mdxJsxFlowElement",
-      "name": "CodeWithTooltips",
-      "attributes": [],
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "hey" }]
-        },
-        {
-          "type": "heading",
-          "depth": 2,
-          "children": [{ "type": "text", "value": "!foo bar" }]
-        },
-        {
-          "type": "paragraph",
-          "children": [{ "type": "text", "value": "bin" }]
-        }
-      ],
-      "data": { "_mdxExplicitJsx": true }
-    }
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "!foo bar" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "bin" }] }
   ]
 }

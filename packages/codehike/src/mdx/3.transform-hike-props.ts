@@ -12,6 +12,7 @@ export function transformHikeProps(root: any) {
       rootHike,
       functionDeclaration,
       returnStatement,
+      jsxOn,
     )
   }
 
@@ -43,6 +44,7 @@ function detectUsage(returnStatement: any) {
 
   // if there are hike elements not wrapped in a JSX element
   if (
+    jsxOn &&
     returningElement?.type === "JSXElement" &&
     returningElement?.openingElement?.attributes?.some(
       (a: any) => a?.name?.name === "__hike",
@@ -51,6 +53,17 @@ function detectUsage(returnStatement: any) {
   ) {
     rootHike = returningElement
   }
+
+  if (
+    !jsxOn &&
+    returningElement?.type === "CallExpression" &&
+    returningElement?.arguments[1]?.properties?.some(
+      (a: any) => a?.key?.name === "__hike",
+    )
+  ) {
+    rootHike = returningElement
+  }
+
   return { jsxOn, rootHike }
 }
 
@@ -58,6 +71,7 @@ function extractBlocksToConstAndConditionallyReturnThem(
   rootHike: any,
   functionDeclaration: any,
   returnStatement: any,
+  jsxOn: boolean,
 ) {
   const blocksConst = {
     type: "VariableDeclaration",
@@ -66,7 +80,9 @@ function extractBlocksToConstAndConditionallyReturnThem(
       {
         type: "VariableDeclarator",
         id: { type: "Identifier", name: "_blocks" },
-        init: rootHike.openingElement.attributes[0].argument,
+        init: jsxOn
+          ? rootHike.openingElement.attributes[0].argument
+          : rootHike.arguments[1],
       },
     ],
   }
