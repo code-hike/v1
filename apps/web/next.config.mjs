@@ -16,7 +16,7 @@ const withMDX = createNextDocsMDX({
   mdxOptions: {
     remarkPlugins: [[remarkCodeHike, chConfig]],
     recmaPlugins: [[recmaCodeHike, chConfig]],
-    jsx: false,
+    jsx: true,
   },
 })
 
