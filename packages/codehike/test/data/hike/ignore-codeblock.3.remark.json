@@ -1,0 +1,206 @@
+{
+  "type": "root",
+  "children": [
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hey" }] },
+    {
+      "type": "code",
+      "lang": "mermaid",
+      "meta": "foo",
+      "value": "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;"
+    },
+    {
+      "type": "mdxJsxFlowElement",
+      "name": "MyCode",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "codeblock",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "value" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "console.log(2)",
+                            "raw": "\"console.log(2)\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "lang" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "javascript",
+                            "raw": "\"javascript\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "meta" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "index.js",
+                            "raw": "\"index.js\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "code" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "console.log(2)",
+                            "raw": "\"console.log(2)\""
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "tokens" },
+                          "kind": "init",
+                          "value": {
+                            "type": "ArrayExpression",
+                            "elements": [
+                              {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "Literal",
+                                    "value": "console.",
+                                    "raw": "\"console.\""
+                                  },
+                                  {
+                                    "type": "Literal",
+                                    "value": "#C9D1D9",
+                                    "raw": "\"#C9D1D9\""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "Literal",
+                                    "value": "log",
+                                    "raw": "\"log\""
+                                  },
+                                  {
+                                    "type": "Literal",
+                                    "value": "#D2A8FF",
+                                    "raw": "\"#D2A8FF\""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "Literal",
+                                    "value": "(",
+                                    "raw": "\"(\""
+                                  },
+                                  {
+                                    "type": "Literal",
+                                    "value": "#C9D1D9",
+                                    "raw": "\"#C9D1D9\""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "Literal",
+                                    "value": "2",
+                                    "raw": "\"2\""
+                                  },
+                                  {
+                                    "type": "Literal",
+                                    "value": "#79C0FF",
+                                    "raw": "\"#79C0FF\""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "ArrayExpression",
+                                "elements": [
+                                  {
+                                    "type": "Literal",
+                                    "value": ")",
+                                    "raw": "\")\""
+                                  },
+                                  {
+                                    "type": "Literal",
+                                    "value": "#C9D1D9",
+                                    "raw": "\"#C9D1D9\""
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "annotations" },
+                          "kind": "init",
+                          "value": { "type": "ArrayExpression", "elements": [] }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Literal", "value": "themeName" },
+                          "kind": "init",
+                          "value": {
+                            "type": "Literal",
+                            "value": "github-dark",
+                            "raw": "\"github-dark\""
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  ]
+}

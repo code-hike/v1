@@ -1,4 +1,5 @@
 import { Theme } from "@code-hike/lighter"
+import { RawCode } from "../code/types.js"
 
 /**
  * Code Hike configuration object
@@ -8,6 +9,7 @@ export type CodeHikeConfig = {
   components?: {
     code?: string
   }
+  ignoreCode?: (codeblock: RawCode) => boolean
   syntaxHighlighting?: {
     theme?: Theme
   }

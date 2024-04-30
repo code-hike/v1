@@ -1,0 +1,18 @@
+{
+  "type": "root",
+  "children": [
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hey" }] },
+    {
+      "type": "code",
+      "lang": "mermaid",
+      "meta": "foo",
+      "value": "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "meta": "index.js",
+      "value": "console.log(2)"
+    }
+  ]
+}

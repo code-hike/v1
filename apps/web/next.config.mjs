@@ -6,7 +6,7 @@ const chConfig = {
   components: {
     code: "Code",
   },
-  ignoreCodeblock: (codeblock) => codeblock.lang === "mermaid",
+  ignoreCode: (codeblock) => codeblock.lang === "mermaid",
   // syntaxHighlighting: {
   //   theme: "github-dark",
   // },

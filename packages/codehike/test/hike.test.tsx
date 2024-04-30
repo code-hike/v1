@@ -8,26 +8,43 @@ import * as prettier from "prettier"
 const dataPath = "./test/data/hike"
 const testNames = await getTestNames(dataPath)
 
+const chConfig: CodeHikeConfig = {
+  components: {
+    code: "MyCode",
+  },
+}
+
 testNames.forEach((name) => {
   describe.sequential(`test ${name}`, () => {
     test(`compilation`, async () => {
       const mdx = await fs.readFile(`${dataPath}/${name}.0.mdx`, "utf-8")
       const mdxPath = path.resolve(`${dataPath}/${name}.0.mdx`)
-      await testCompilation(name, mdx, mdxPath)
+
+      const configPath = `${dataPath}/${name}.0.config.js`
+      const hasConfig = await fs
+        .access(configPath)
+        .then(() => true)
+        .catch(() => false)
+      let config = chConfig
+      if (hasConfig) {
+        const testConfig = await import(configPath)
+        config = {
+          ...chConfig,
+          ...testConfig.default,
+        }
+      }
+
+      await testCompilation(name, mdx, mdxPath, config)
     })
   })
 })
 
-const chConfig: CodeHikeConfig = {
-  components: {
-    code: "MyCode",
-  },
-  // syntaxHighlighting: {
-  //   theme: "github-dark",
-  // },
-}
-
-async function testCompilation(name: string, mdx: string, mdxPath: string) {
+async function testCompilation(
+  name: string,
+  mdx: string,
+  mdxPath: string,
+  chConfig?: CodeHikeConfig,
+) {
   const file = { value: mdx, history: [mdxPath] }
 
   // all steps jsx true

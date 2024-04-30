@@ -5,12 +5,16 @@ import { parseCode } from "./1.1.remark-list-to-section.js"
 import { CodeHikeConfig } from "./config.js"
 
 export async function transformAllCode(tree: Root, config: CodeHikeConfig) {
-  if (!config?.components?.code) {
+  if (!config.components?.code) {
     return tree
   }
 
   const nodes: Code[] = []
   visit(tree, "code", (node) => {
+    if (config?.ignoreCode && config.ignoreCode(node as any)) {
+      // ignoring this codeblock
+      return
+    }
     nodes.push(node)
   })
 
