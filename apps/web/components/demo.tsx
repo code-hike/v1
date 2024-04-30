@@ -26,7 +26,7 @@ export async function Demo({
       codeblock={{
         value,
         lang: "mdx",
-        meta: "content.md prefix",
+        meta: `${content} prefix`,
       }}
     />
   )

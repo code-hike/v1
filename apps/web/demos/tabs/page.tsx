@@ -1,33 +1,15 @@
----
-title: Tabs
-description: Tabs
-layout: PreviewAndImplementation
----
-
-## !demo
-
-Show multiple code blocks in tabs.
-
-<Demo name="tabs" content="content.mdx" />
-
-## !implementation
-
-We use the [`Tabs` components](https://ui.shadcn.com/docs/components/tabs) from shadcn/ui:
-
-```bash command
-npx shadcn-ui@latest add tabs
-```
-
-And then create a component to handle multiple codeblocks as tabs:
-
-```tsx code.tsx
-import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { Pre, highlight } from "codehike/code"
+import Content from "./content.mdx"
+import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// !fold[/className="(.*?)"/gm]
+export default function Page() {
+  return <Content components={{ CodeWithTabs }} />
+}
+
 const Schema = Block.extend({ tabs: z.array(CodeBlock) })
+
 async function CodeWithTabs(props: unknown) {
   const { tabs } = parseProps(props, Schema)
   const highlighted = await Promise.all(
@@ -50,4 +32,3 @@ async function CodeWithTabs(props: unknown) {
     </Tabs>
   )
 }
-```
