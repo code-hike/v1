@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest"
-import { remarkCodeHike, recmaCodeHike, CodeHikeConfig } from "../src/remark"
+import { remarkCodeHike, recmaCodeHike, CodeHikeConfig } from "../src/mdx"
 import { compile } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import path from "node:path"
@@ -7,7 +7,6 @@ import * as prettier from "prettier"
 
 const dataPath = "./test/data/hike"
 const testNames = await getTestNames(dataPath)
-const JSX = false
 
 testNames.forEach((name) => {
   describe.sequential(`test ${name}`, () => {

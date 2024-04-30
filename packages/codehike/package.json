@@ -11,7 +11,7 @@
     "url": "https://github.com/sponsors/code-hike"
   },
   "exports": {
-    "./mdx": "./dist/remark.js",
+    "./mdx": "./dist/mdx.js",
     "./blocks": "./dist/blocks.js",
     "./code": "./dist/code/index.js",
     "./utils": "./dist/utils.js"
