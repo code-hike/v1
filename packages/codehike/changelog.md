@@ -1,5 +1,12 @@
 # codehike
 
+## 1.0.0-alpha.15
+
+### Patch Changes
+
+- 33f0b11: Add ignoreCode to config
+- 169ec88: Add remark syntax highlighting for non-rsc
+
 ## 1.0.0-alpha.14
 
 ### Patch Changes
