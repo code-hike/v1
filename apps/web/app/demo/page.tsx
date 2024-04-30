@@ -1,9 +1,9 @@
-import Demo from "@/demos/test/page"
+import Demo from "@/demos/callout/page"
 import Content from "./content.md"
 import { HighlightedCode, Pre } from "codehike/code"
 
 export default function Page() {
-  return <Content />
+  return <Demo />
 }
 
 // function Code({ codeblock }: { codeblock: HighlightedCode }) {

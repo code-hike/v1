@@ -59,7 +59,8 @@ function detectUsage(returnStatement: any) {
     returningElement?.type === "CallExpression" &&
     returningElement?.arguments[1]?.properties?.some(
       (a: any) => a?.key?.name === "__hike",
-    )
+    ) &&
+    returningElement?.arguments[0]?.property?.name == "slot"
   ) {
     rootHike = returningElement
   }
@@ -208,16 +209,13 @@ function moveChildrenToHikeProp(node: any) {
       : [childrenExpression]
 
   children.forEach((callExpression: any) => {
-    const path = callExpression.arguments[1]?.properties.find(
-      (p: any) => p.key.name === "path",
-    ).value.value
+    const props = callExpression.arguments[1]?.properties
+    const path = props.find((p: any) => p.key.name === "path").value.value
+
+    let slotChildren = props.find((p: any) => p.key.name === "children").value
+
     childrenByPath[path] = childrenByPath[path] || []
-    childrenByPath[path].push(
-      // current slot children
-      callExpression.arguments[1].properties.find(
-        (p: any) => p.key.name === "children",
-      ).value,
-    )
+    childrenByPath[path].push(slotChildren)
   })
 
   // replace all the `children` props inside `__hike` with the actual children
@@ -246,6 +244,18 @@ function moveChildrenToHikeProp(node: any) {
   node.arguments[1].properties = properties.filter(
     (p: any) => p.key.name !== "children",
   )
+
+  // jsxs calls can only have arrays as children, so we turn any jsxs without array into jsx call
+  visit(node, function (node: any) {
+    if (node.type === "CallExpression" && node.callee.name === "_jsxs") {
+      const childrenProp = node.arguments[1].properties.find(
+        (p: any) => p.key.value === "children",
+      )
+      if (childrenProp && childrenProp.value.type !== "ArrayExpression") {
+        node.callee.name = "_jsx"
+      }
+    }
+  })
 }
 
 function find(node: any, predicate: (node: any) => boolean) {

@@ -77,7 +77,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "foo" },
+                          "key": { "type": "Literal", "value": "demo" },
                           "kind": "init",
                           "value": {
                             "type": "ObjectExpression",
@@ -94,8 +94,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "foo",
-                                  "raw": "\"foo\""
+                                  "value": "demo",
+                                  "raw": "\"demo\""
                                 }
                               },
                               {
@@ -107,8 +107,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "bar",
-                                  "raw": "\"bar\""
+                                  "value": "",
+                                  "raw": "\"\""
                                 }
                               },
                               {
@@ -133,8 +133,82 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "## !foo bar",
-                                        "raw": "\"## !foo bar\""
+                                        "value": "## !demo",
+                                        "raw": "\"## !demo\""
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": {
+                            "type": "Literal",
+                            "value": "implementation"
+                          },
+                          "kind": "init",
+                          "value": {
+                            "type": "ObjectExpression",
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Literal",
+                                  "value": "children"
+                                },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "implementation",
+                                  "raw": "\"implementation\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "title" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "Literal",
+                                  "value": "",
+                                  "raw": "\"\""
+                                }
+                              },
+                              {
+                                "type": "Property",
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": { "type": "Literal", "value": "_data" },
+                                "kind": "init",
+                                "value": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "header"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "## !implementation",
+                                        "raw": "\"## !implementation\""
                                       }
                                     }
                                   ]
@@ -168,10 +242,38 @@
               "attributes": [],
               "children": [
                 {
-                  "type": "element",
-                  "tagName": "p",
-                  "properties": {},
-                  "children": [{ "type": "text", "value": "hey" }]
+                  "type": "mdxjsEsm",
+                  "value": "import { CodeWithNotes } from \"@/components/code/code-with-notes\"",
+                  "data": {
+                    "estree": {
+                      "type": "Program",
+                      "body": [
+                        {
+                          "type": "ImportDeclaration",
+                          "specifiers": [
+                            {
+                              "type": "ImportSpecifier",
+                              "imported": {
+                                "type": "Identifier",
+                                "name": "CodeWithNotes"
+                              },
+                              "local": {
+                                "type": "Identifier",
+                                "name": "CodeWithNotes"
+                              }
+                            }
+                          ],
+                          "source": {
+                            "type": "Literal",
+                            "value": "@/components/code/code-with-notes",
+                            "raw": "\"@/components/code/code-with-notes\""
+                          }
+                        }
+                      ],
+                      "sourceType": "module",
+                      "comments": []
+                    }
+                  }
                 },
                 {
                   "type": "mdxJsxFlowElement",
@@ -180,7 +282,19 @@
                     {
                       "type": "mdxJsxAttribute",
                       "name": "name",
-                      "value": "foo"
+                      "value": "demo"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "slot",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "name",
+                      "value": "implementation"
                     }
                   ],
                   "children": []
@@ -193,14 +307,718 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "path", "value": "foo" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "demo" }
           ],
           "children": [
             {
-              "type": "element",
-              "tagName": "p",
-              "properties": {},
-              "children": [{ "type": "text", "value": "bin" }]
+              "type": "mdxJsxFlowElement",
+              "name": null,
+              "attributes": [],
+              "children": [
+                {
+                  "type": "element",
+                  "tagName": "p",
+                  "properties": {},
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Add callouts inside your code blocks."
+                    }
+                  ]
+                },
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "Demo",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "name",
+                      "value": "callout"
+                    }
+                  ],
+                  "data": { "_mdxExplicitJsx": true },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "mdxJsxFlowElement",
+          "name": "slot",
+          "attributes": [
+            {
+              "type": "mdxJsxAttribute",
+              "name": "path",
+              "value": "implementation"
+            }
+          ],
+          "children": [
+            {
+              "type": "mdxJsxFlowElement",
+              "name": null,
+              "attributes": [],
+              "children": [
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "CodeWithNotes",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "__hike",
+                      "value": {
+                        "type": "mdxJsxAttributeValueExpression",
+                        "value": "",
+                        "data": {
+                          "estree": {
+                            "type": "Program",
+                            "body": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "children"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "",
+                                        "raw": "\"\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "title"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "",
+                                        "raw": "\"\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "_data"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ObjectExpression",
+                                        "properties": [
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "header"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "",
+                                              "raw": "\"\""
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "code"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ObjectExpression",
+                                        "properties": [
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "value"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "import { InlineAnnotation, AnnotationHandler } from \"codehike/code\"\r\n\r\nconst callout: AnnotationHandler = {\r\n  name: \"callout\",\r\n  // !callout[/transform/] transform-annotations\r\n  transform: (annotation: InlineAnnotation) => {\r\n    const { name, query, lineNumber, fromColumn, toColumn, data } = annotation\r\n    return {\r\n      name,\r\n      query,\r\n      fromLineNumber: lineNumber,\r\n      toLineNumber: lineNumber,\r\n      // !callout[/column/] column\r\n      data: { ...data, column: (fromColumn + toColumn) / 2 },\r\n    }\r\n  },\r\n  Block: ({ annotation, children }) => {\r\n    const { column } = annotation.data\r\n    // !fold[/className=\"(.*?)\"/gm]\r\n    return (\r\n      <>\r\n        {children}\r\n        <div\r\n          style={{ minWidth: `${column + 4}ch` }}\r\n          className=\"w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces\"\r\n        >\r\n          <div\r\n            style={{ left: `${column}ch` }}\r\n            className=\"absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-800\"\r\n          />\r\n          {annotation.query}\r\n        </div>\r\n      </>\r\n    )\r\n  },\r\n}",
+                                              "raw": "\"import { InlineAnnotation, AnnotationHandler } from \\\"codehike/code\\\"\\r\\n\\r\\nconst callout: AnnotationHandler = {\\r\\n  name: \\\"callout\\\",\\r\\n  // !callout[/transform/] transform-annotations\\r\\n  transform: (annotation: InlineAnnotation) => {\\r\\n    const { name, query, lineNumber, fromColumn, toColumn, data } = annotation\\r\\n    return {\\r\\n      name,\\r\\n      query,\\r\\n      fromLineNumber: lineNumber,\\r\\n      toLineNumber: lineNumber,\\r\\n      // !callout[/column/] column\\r\\n      data: { ...data, column: (fromColumn + toColumn) / 2 },\\r\\n    }\\r\\n  },\\r\\n  Block: ({ annotation, children }) => {\\r\\n    const { column } = annotation.data\\r\\n    // !fold[/className=\\\"(.*?)\\\"/gm]\\r\\n    return (\\r\\n      <>\\r\\n        {children}\\r\\n        <div\\r\\n          style={{ minWidth: `${column + 4}ch` }}\\r\\n          className=\\\"w-fit border bg-zinc-800 border-current rounded px-2 relative -ml-[1ch] mt-1 whitespace-break-spaces\\\"\\r\\n        >\\r\\n          <div\\r\\n            style={{ left: `${column}ch` }}\\r\\n            className=\\\"absolute border-l border-t border-current w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-zinc-800\\\"\\r\\n          />\\r\\n          {annotation.query}\\r\\n        </div>\\r\\n      </>\\r\\n    )\\r\\n  },\\r\\n}\""
+                                            }
+                                          },
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "lang"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "tsx",
+                                              "raw": "\"tsx\""
+                                            }
+                                          },
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Literal",
+                                              "value": "meta"
+                                            },
+                                            "kind": "init",
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "code.tsx",
+                                              "raw": "\"code.tsx\""
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "notes"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "ArrayExpression",
+                                        "elements": [
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "children"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "notes",
+                                                  "raw": "\"notes\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "title"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "transform-annotations",
+                                                  "raw": "\"transform-annotations\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "_data"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "ObjectExpression",
+                                                  "properties": [
+                                                    {
+                                                      "type": "Property",
+                                                      "method": false,
+                                                      "shorthand": false,
+                                                      "computed": false,
+                                                      "key": {
+                                                        "type": "Literal",
+                                                        "value": "header"
+                                                      },
+                                                      "kind": "init",
+                                                      "value": {
+                                                        "type": "Literal",
+                                                        "value": "## !!notes transform-annotations",
+                                                        "raw": "\"## !!notes transform-annotations\""
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "ObjectExpression",
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "children"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "notes",
+                                                  "raw": "\"notes\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "title"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "Literal",
+                                                  "value": "column",
+                                                  "raw": "\"column\""
+                                                }
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Literal",
+                                                  "value": "_data"
+                                                },
+                                                "kind": "init",
+                                                "value": {
+                                                  "type": "ObjectExpression",
+                                                  "properties": [
+                                                    {
+                                                      "type": "Property",
+                                                      "method": false,
+                                                      "shorthand": false,
+                                                      "computed": false,
+                                                      "key": {
+                                                        "type": "Literal",
+                                                        "value": "header"
+                                                      },
+                                                      "kind": "init",
+                                                      "value": {
+                                                        "type": "Literal",
+                                                        "value": "## !!notes column",
+                                                        "raw": "\"## !!notes column\""
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "sourceType": "module",
+                            "comments": []
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": { "_mdxExplicitJsx": true },
+                  "children": [
+                    {
+                      "type": "mdxJsxFlowElement",
+                      "name": "slot",
+                      "attributes": [
+                        {
+                          "type": "mdxJsxAttribute",
+                          "name": "path",
+                          "value": ""
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "mdxJsxFlowElement",
+                          "name": null,
+                          "attributes": [],
+                          "children": [
+                            {
+                              "type": "mdxJsxFlowElement",
+                              "name": "slot",
+                              "attributes": [
+                                {
+                                  "type": "mdxJsxAttribute",
+                                  "name": "name",
+                                  "value": "code"
+                                }
+                              ],
+                              "children": []
+                            },
+                            {
+                              "type": "mdxJsxFlowElement",
+                              "name": "slot",
+                              "attributes": [
+                                {
+                                  "type": "mdxJsxAttribute",
+                                  "name": "name",
+                                  "value": "notes"
+                                },
+                                {
+                                  "type": "mdxJsxAttribute",
+                                  "name": "index",
+                                  "value": {
+                                    "type": "mdxJsxAttributeValueExpression",
+                                    "value": "0",
+                                    "data": {
+                                      "estree": {
+                                        "type": "Program",
+                                        "body": [
+                                          {
+                                            "type": "ExpressionStatement",
+                                            "expression": {
+                                              "type": "Literal",
+                                              "value": 0,
+                                              "raw": "0"
+                                            }
+                                          }
+                                        ],
+                                        "sourceType": "module",
+                                        "comments": []
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "children": []
+                            },
+                            {
+                              "type": "mdxJsxFlowElement",
+                              "name": "slot",
+                              "attributes": [
+                                {
+                                  "type": "mdxJsxAttribute",
+                                  "name": "name",
+                                  "value": "notes"
+                                },
+                                {
+                                  "type": "mdxJsxAttribute",
+                                  "name": "index",
+                                  "value": {
+                                    "type": "mdxJsxAttributeValueExpression",
+                                    "value": "1",
+                                    "data": {
+                                      "estree": {
+                                        "type": "Program",
+                                        "body": [
+                                          {
+                                            "type": "ExpressionStatement",
+                                            "expression": {
+                                              "type": "Literal",
+                                              "value": 1,
+                                              "raw": "1"
+                                            }
+                                          }
+                                        ],
+                                        "sourceType": "module",
+                                        "comments": []
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "mdxJsxFlowElement",
+                      "name": "slot",
+                      "attributes": [
+                        {
+                          "type": "mdxJsxAttribute",
+                          "name": "path",
+                          "value": "notes"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "element",
+                          "tagName": "p",
+                          "properties": {},
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "We need to transform the annotations from "
+                            },
+                            {
+                              "type": "element",
+                              "tagName": "code",
+                              "properties": {},
+                              "children": [
+                                { "type": "text", "value": "InlineAnnotation" }
+                              ]
+                            },
+                            { "type": "text", "value": " to " },
+                            {
+                              "type": "element",
+                              "tagName": "code",
+                              "properties": {},
+                              "children": [
+                                { "type": "text", "value": "BlockAnnotation" }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "mdxJsxFlowElement",
+                      "name": "slot",
+                      "attributes": [
+                        {
+                          "type": "mdxJsxAttribute",
+                          "name": "path",
+                          "value": "notes"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "element",
+                          "tagName": "p",
+                          "properties": {},
+                          "children": [
+                            {
+                              "type": "text",
+                              "value": "This will be the position of the arrow in the callout"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
+                  "tagName": "p",
+                  "properties": {},
+                  "children": [
+                    { "type": "text", "value": "Then pass the " },
+                    {
+                      "type": "element",
+                      "tagName": "code",
+                      "properties": {},
+                      "children": [{ "type": "text", "value": "callout" }]
+                    },
+                    { "type": "text", "value": " handler to the " },
+                    {
+                      "type": "element",
+                      "tagName": "code",
+                      "properties": {},
+                      "children": [{ "type": "text", "value": "Pre" }]
+                    },
+                    { "type": "text", "value": " component:" }
+                  ]
+                },
+                {
+                  "type": "mdxJsxFlowElement",
+                  "name": "MyCode",
+                  "attributes": [
+                    {
+                      "type": "mdxJsxAttribute",
+                      "name": "codeblock",
+                      "value": {
+                        "type": "mdxJsxAttributeValueExpression",
+                        "value": "",
+                        "data": {
+                          "estree": {
+                            "type": "Program",
+                            "body": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "ObjectExpression",
+                                  "properties": [
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "value"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "async function Code({ codeblock }: { codeblock: RawCode }) {\r\n  const highlighted = await highlight(codeblock, \"github-dark\")\r\n  return <Pre code={highlighted} handlers={[callout]} />\r\n}",
+                                        "raw": "\"async function Code({ codeblock }: { codeblock: RawCode }) {\\r\\n  const highlighted = await highlight(codeblock, \\\"github-dark\\\")\\r\\n  return <Pre code={highlighted} handlers={[callout]} />\\r\\n}\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "lang"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "tsx",
+                                        "raw": "\"tsx\""
+                                      }
+                                    },
+                                    {
+                                      "type": "Property",
+                                      "method": false,
+                                      "shorthand": false,
+                                      "computed": false,
+                                      "key": {
+                                        "type": "Literal",
+                                        "value": "meta"
+                                      },
+                                      "kind": "init",
+                                      "value": {
+                                        "type": "Literal",
+                                        "value": "code.tsx ln",
+                                        "raw": "\"code.tsx ln\""
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "sourceType": "module",
+                            "comments": []
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "type": "element",
+                  "tagName": "h2",
+                  "properties": {},
+                  "children": [{ "type": "text", "value": "Make it better" }]
+                },
+                {
+                  "type": "element",
+                  "tagName": "p",
+                  "properties": {},
+                  "children": [
+                    {
+                      "type": "text",
+                      "value": "Some ways to improve the callout annotation:"
+                    }
+                  ]
+                },
+                {
+                  "type": "element",
+                  "tagName": "ul",
+                  "properties": {},
+                  "children": [
+                    { "type": "text", "value": "\n" },
+                    {
+                      "type": "element",
+                      "tagName": "li",
+                      "properties": {},
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "add different annotations with different styles (like Warning, Error, Info, etc)"
+                        }
+                      ]
+                    },
+                    { "type": "text", "value": "\n" },
+                    {
+                      "type": "element",
+                      "tagName": "li",
+                      "properties": {},
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "add an option to show the callout either before or after the line"
+                        }
+                      ]
+                    },
+                    { "type": "text", "value": "\n" },
+                    {
+                      "type": "element",
+                      "tagName": "li",
+                      "properties": {},
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "put markdown inside the callout (see the "
+                        },
+                        {
+                          "type": "element",
+                          "tagName": "a",
+                          "properties": { "href": "/docs/code/tooltip/" },
+                          "children": [
+                            { "type": "text", "value": "tooltip example" }
+                          ]
+                        },
+                        { "type": "text", "value": ")" }
+                      ]
+                    },
+                    { "type": "text", "value": "\n" }
+                  ]
+                }
+              ]
             }
           ]
         }
