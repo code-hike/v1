@@ -3,6 +3,7 @@ import { CopyButton } from "@/components/copy-button"
 import { cn } from "@/lib/utils"
 import { fold } from "../annotations/fold"
 import theme from "@/theme.mjs"
+import { link } from "../annotations/link"
 
 export async function BasicCode({
   codeblock,
@@ -36,7 +37,7 @@ export async function BasicCode({
       <Pre
         code={highlighted}
         className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap group flex-1 selection:bg-editor-selectionBackground"
-        handlers={[focus, fold]}
+        handlers={[focus, fold, link]}
       />
     </div>
   )
