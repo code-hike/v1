@@ -3,6 +3,7 @@
   "scripts": {
     "build": "turbo build --filter=codehike...",
     "web": "turbo dev --filter=web --filter=codehike... ",
+    "talk": "turbo dev --filter=talk --filter=codehike... ",
     "test": "turbo test",
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
