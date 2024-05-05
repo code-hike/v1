@@ -1,5 +1,6 @@
 import { MDXProps } from "mdx/types.js"
 import { ZodTypeDef, z } from "zod"
+import { HighlightedCode } from "./code/types.js"
 
 type MDXContent = (props: MDXProps) => JSX.Element
 
@@ -29,6 +30,13 @@ export const CodeBlock = z.object({
   meta: z.string(),
   value: z.string(),
   lang: z.string(),
+})
+
+export const HighlightedCodeBlock = CodeBlock.extend({
+  code: z.string(),
+  tokens: z.custom<HighlightedCode["tokens"]>(),
+  annotations: z.custom<HighlightedCode["annotations"]>(),
+  themeName: z.string(),
 })
 
 export const ImageBlock = z.object({
