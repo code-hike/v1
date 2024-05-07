@@ -1,14 +1,14 @@
-# !! 2
+# !!
 
-![!video foo](/md.mp4)
+![!video center](/md.mp4)
 
 {/* prettier-ignore */}
-```mdx !left
+```mdx !left hidden-l
 ## Step 1
 ```
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right hidden-br
 import Content from "content.mdx"
 
 export default function Tutorial() {
@@ -29,10 +29,34 @@ function Section(props: {
 
 # !! 2
 
-![!video foo](/md.mp4)
+![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right code-r
+import Content from "content.mdx"
+
+export default function Tutorial() {
+  return <Content components={{ Section }} />
+}
+
+function Section(props: {
+  steps: Array<{
+
+
+
+
+  }>
+}) {
+  return <section />
+}
+```
+
+# !! 2
+
+![!video video-l](/md.mp4)
+
+{/* prettier-ignore */}
+```tsx !right code-r
 import Content from "content.mdx"
 
 export default function Tutorial() {
@@ -53,10 +77,10 @@ function Section(props: {
 
 # !! 2
 
-![!video foo](/md.mp4)
+![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right code-r
 import Content from "content.mdx"
 
 export default function Tutorial() {
@@ -77,10 +101,10 @@ function Section(props: {
 
 # !! 2
 
-![!video foo](/md.mp4)
+![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right code-r
 import Content from "content.mdx"
 
 export default function Tutorial() {
@@ -101,10 +125,10 @@ function Section(props: {
 
 # !! 2
 
-![!video foo](/md.mp4)
+![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right code-r
 import Content from "content.mdx"
 
 export default function Tutorial() {
@@ -125,10 +149,10 @@ function Section(props: {
 
 # !! 2
 
-![!video foo](/md.mp4)
+![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
-```tsx !right
+```tsx !right code-r
 function Section(props: {
   steps: Array<{
     title: string
@@ -150,90 +174,90 @@ function Section(props: {
 
 # !! 3
 
-```tsx !code
-import Content from "content.mdx"
+![!video video-r](/md.mp4)
 
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
+{/* prettier-ignore */}
+```tsx !right hidden-r
 function Section(props: {
-  steps: {
-    children: React.ReactNode
+  steps: Array<{
     title: string
+    children: React.ReactNode
     screenshot?: Image
     code?: Code
-  }[]
+  }>
 }) {
-  const [index, setIndex] = React.useState(0)
+  const [index, setIndex] = useState(0)
   const step = props.steps[index]
   return (
     <section>
-      <IntersectionObserver steps={steps} onChange={setIndex} />
+      <Observer steps={steps} onChange={setIndex} />
       <Sticky step={step} />
     </section>
   )
 }
 ```
 
-````mdx !right
+{/* prettier-ignore */}
+```mdx !left code-l
+<Section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Section>
+```
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
 ## Step 1
 
 Choose File > New > File, select iOS as the platform, select the “SwiftUI View” template, and click Next. Name the new file `MapView.swift` and click Create.
 
-![Create a new SwiftUI View](/images/create-new-swiftui-view.png)
-
-## Step 2
-
-Add an `import` statement for `MapKit`.
-
----
-
-When you import SwiftUI and certain other frameworks in the same file, you gain access to SwiftUI-specific functionality provided by that framework.
-
-```swift MapView.swift
-import SwiftUI
-import MapKit
 
 
-struct MapView: View {
-    var body: some View {
-        Text("Hello, World!")
-    }
-}
 
 
-#Preview {
-    MapView()
-}
-```
-
-## Step 3
-
-Create a private computed variable that holds the region information for the map.
-
-```swift MapView.swift
-import SwiftUI
-import MapKit
 
 
-struct MapView: View {
-    var body: some View {
-        Text("Hello, World!")
-    }
 
 
-    private var region: MKCoordinateRegion {
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868),
-            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        )
-    }
-}
+</Section>
+````
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
+## Step 1
+
+Choose File > New > File, select iOS as the platform, select the “SwiftUI View” template, and click Next. Name the new file `MapView.swift` and click Create.
+
+![SwiftUI View](/create-view.png)
 
 
-#Preview {
-    MapView()
-}
-```
+
+
+
+
+</Section>
 ````

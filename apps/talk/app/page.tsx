@@ -13,7 +13,7 @@ export default function Home() {
     <SelectionProvider className="h-screen w-screen flex flex-col justify-center items-center">
       <main
         style={{ height: 552, width: 980 }}
-        className="bg-zinc-100 shadow relative"
+        className="bg-zinc-100 shadow relative overflow-hidden"
       >
         <Selection
           from={slides.map((slide) => (
