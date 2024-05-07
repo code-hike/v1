@@ -41,6 +41,9 @@ importers:
       codehike:
         specifier: workspace:*
         version: link:../../packages/codehike
+      diff:
+        specifier: ^5.1.0
+        version: 5.1.0
       lucide-react:
         specifier: ^0.303.0
         version: 0.303.0(react@18.2.0)

@@ -1,21 +1,29 @@
 import MDX from "./content.mdx"
 import Image from "next/image"
-import { parseRoot, Block } from "codehike/blocks"
+import { parseRoot, Block, HighlightedCodeBlock } from "codehike/blocks"
 import { z } from "zod"
+import { Pre } from "codehike/code"
+import { Selection, Selectable, SelectionProvider } from "codehike/utils"
+import Nav from "./nav"
 
-const Schema = Block.extend({ blocks: z.array(Block) })
+import { slides } from "./sections/ideal.slides"
+
 export default function Home() {
-  const { blocks } = parseRoot(MDX, Schema)
   return (
-    <main>
-      {blocks.map((block, i) => (
-        <section
-          key={i}
-          className="border border-red-200 flex w-screen h-screen justify-center items-center max-w-full"
-        >
-          <div>{block.children}</div>
-        </section>
-      ))}
-    </main>
+    <SelectionProvider className="h-screen w-screen flex flex-col justify-center items-center">
+      <main
+        style={{ height: 552, width: 980 }}
+        className="bg-zinc-100 shadow relative"
+      >
+        <Selection
+          from={slides.map((slide) => (
+            <section className="flex justify-center items-center w-full h-full">
+              {slide}
+            </section>
+          ))}
+        />
+      </main>
+      <Nav blocks={slides} />
+    </SelectionProvider>
   )
 }

@@ -7,9 +7,9 @@ const chConfig = {
     code: "Code",
   },
   ignoreCode: (codeblock) => codeblock.lang === "mermaid",
-  // syntaxHighlighting: {
-  //   theme: "github-dark",
-  // },
+  syntaxHighlighting: {
+    theme: "github-dark",
+  },
 }
 
 const withMDX = createMDX({
