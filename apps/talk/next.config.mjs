@@ -8,7 +8,7 @@ const chConfig = {
   },
   ignoreCode: (codeblock) => codeblock.lang === "mermaid",
   syntaxHighlighting: {
-    theme: "github-dark",
+    theme: "github-light",
   },
 }
 

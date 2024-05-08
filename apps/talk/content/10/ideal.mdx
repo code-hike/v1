@@ -261,3 +261,152 @@ Choose File > New > File, select iOS as the platform, select the “SwiftUI View
 
 </Section>
 ````
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
+## Step 1
+
+Choose File > New > File, select iOS as the platform, select the “SwiftUI View” template, and click Next. Name the new file `MapView.swift` and click Create.
+
+![SwiftUI View](/create-view.png)
+
+## Step 2
+
+
+
+
+</Section>
+````
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
+## Step 1
+...
+
+## Step 2
+
+Add an `import` statement for `MapKit`.
+
+When you import SwiftUI and certain other frameworks in the same file, you gain access to SwiftUI-specific functionality provided by that framework.
+
+
+</Section>
+````
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
+## Step 1
+...
+
+## Step 2
+
+Add an `import` statement for `MapKit`.
+
+When you import SwiftUI and certain other frameworks in the same file, you gain access to SwiftUI-specific functionality provided by that framework.
+
+```swift MapView.swift
+import SwiftUI ...
+```
+
+</Section>
+````
+
+# !! 3
+
+![!video video-r](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-l
+<Section>
+
+## Step 1
+...
+
+## Step 2
+...
+
+## Step 3
+
+Create a private computed variable that holds the region information for the map.
+
+```swift MapView.swift
+import SwiftUI ...
+```
+
+</Section>
+````
+
+# !! 4
+
+![!video video-b](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-cl
+<Section>
+
+## Step 1
+Choose File ...
+
+![SwiftUI View](/create-view.png)
+
+## Step 2
+Add an `import`...
+
+```swift MapView.swift
+import SwiftUI ...
+```
+
+## Step 3
+Create a private...
+
+```swift MapView.swift
+import SwiftUI ...
+```
+
+</Section>
+````
+
+{/* prettier-ignore */}
+```tsx !right code-cr
+import Content from "content.mdx"
+
+export default function Tutorial() {
+  return <Content components={{ Section }} />
+}
+
+function Section(props: {
+  steps: Array<{
+    title: string
+    children: React.ReactNode
+    screenshot?: Image
+    code?: Code
+  }>
+}) {
+  const [index, setIndex] = useState(0)
+  const step = props.steps[index]
+  return (
+    <section>
+      <Observer steps={steps} onChange={setIndex} />
+      <Sticky step={step} />
+    </section>
+  )
+}
+```
