@@ -18,11 +18,13 @@ const Schema = Block.extend({
       left: HighlightedCodeBlock.optional(),
       right: HighlightedCodeBlock.optional(),
       video: ImageBlock.optional(),
+      note: Block.optional(),
     }),
   ),
 })
 
 const { blocks } = parseRoot(Content, Schema)
+console.log(blocks)
 
 // fill missing blocks
 let prevBlock = null
@@ -46,15 +48,15 @@ const positions = {
   "video-r": "top-0 left-[40%]",
   "video-l": "top-0 left-0",
   "video-b": "opacity-0 left-1/4 -top-20 scale-[0.85]",
-  "code-cl": "-bottom-10 left-5 h-[109%] scale-[0.85]",
-  "code-cr": "-bottom-10 right-5 h-[109%] scale-[0.85]",
+  "code-cl": "-bottom-10 left-5 h-[114%] scale-[0.85]",
+  "code-cr": "-bottom-10 right-5 h-[114%] scale-[0.85]",
 }
 
 function getPosition(title?: string) {
   return title ? positions[title as keyof typeof positions] : ""
 }
 
-export const slides = blocks.map(({ left, right, video }) => {
+export const slides = blocks.map(({ left, right, video, note }) => {
   return {
     children: (
       <div className="absolute inset-4 ">
@@ -71,6 +73,7 @@ export const slides = blocks.map(({ left, right, video }) => {
             "absolute w-1/2 h-4/5 transition-all duration-500",
             getPosition(left?.meta),
           )}
+          title="content.mdx"
         />
         <Code
           highlighted={right!}
@@ -78,29 +81,40 @@ export const slides = blocks.map(({ left, right, video }) => {
             "absolute w-1/2 h-4/5 transition-all duration-500 ",
             getPosition(right?.meta),
           )}
+          title="page.jsx"
         />
       </div>
     ),
-    notes: "",
+    notes: note?.children,
   }
 })
 
 function Code({
   highlighted,
   className,
+  title,
 }: {
   highlighted: HighlightedCode
+  title?: string
   className?: string
 }) {
   return (
-    <Pre
-      code={highlighted}
+    <div
       className={cn(
-        "bg-white p-2 rounded overflow-hidden whitespace-pre-wrap shadow",
+        "border border-editorGroup-border rounded overflow-hidden my-2 absolute",
         className,
       )}
-      handlers={[tokenTransitions, wordWrap]}
-      style={{ position: "absolute" }}
-    />
+    >
+      <div className="border-b border-zinc-200 bg-zinc-300 px-3 py-2 text-sm text-tab-activeForeground flex">
+        <span>{title}</span>
+      </div>
+      <Pre
+        code={highlighted}
+        className={cn(
+          "bg-white p-2 rounded-none overflow-hidden whitespace-pre-wrap shadow",
+        )}
+        handlers={[tokenTransitions, wordWrap]}
+      />
+    </div>
   )
 }

@@ -20,7 +20,7 @@ export default function Nav({ blocks }: { blocks: any[] }) {
   }, [blocks.length, setIndex])
 
   return (
-    <nav className="flex mt-4 gap-2">
+    <nav className="flex my-4 gap-2">
       {blocks.map((block, i) => (
         <Selectable
           key={i}

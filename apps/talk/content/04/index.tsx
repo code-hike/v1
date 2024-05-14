@@ -1,4 +1,4 @@
-import Content from "./pre-ch.mdx"
+import Content from "./form.mdx"
 import {
   parseProps,
   Block,
@@ -17,10 +17,11 @@ const Schema = Block.extend({
 })
 
 const { blocks } = parseRoot(Content, Schema)
+console.log(blocks)
 
 export const slides = blocks.map(({ children, note }) => {
   return {
-    children: <div className="">{children}</div>,
+    children: children,
     notes: note?.children,
   }
 })
