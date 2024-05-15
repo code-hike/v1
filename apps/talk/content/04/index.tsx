@@ -12,16 +12,28 @@ const Schema = Block.extend({
   blocks: z.array(
     Block.extend({
       note: Block.optional(),
+      video: ImageBlock,
     }),
   ),
 })
 
 const { blocks } = parseRoot(Content, Schema)
-console.log(blocks)
 
-export const slides = blocks.map(({ children, note }) => {
+export const slides = blocks.map(({ note, video }) => {
   return {
-    children: children,
+    children: (
+      <div className="relative h-full flex items-center">
+        <video
+          src={video.url}
+          autoPlay
+          className="rounded w-5/6 mx-auto"
+          key={video.url}
+        />
+        <span className="absolute w-full text-center bottom-3 text-white/80">
+          {video.alt}
+        </span>
+      </div>
+    ),
     notes: note?.children,
   }
 })
