@@ -18,3 +18,13 @@
 
 - here I present the tool I've created for this purpose
 - show some demos
+
+- end with:
+  - presentation follows content
+  - use the medium (take advantage of the web)
+  - content belongs in markdown
+  - mind the gap (between markdown and the web)
+
+## more
+
+- landing pages: peopl put a lot of effort into them, imagine the same effort for the main tutorial

@@ -22,14 +22,14 @@ function Slides({
   }[]
 }) {
   return (
-    <SelectionProvider className="w-screen flex flex-col justify-center items-center">
+    <SelectionProvider className="w-screen flex flex-col justify-center items-center mt-12 max-w-full">
       <main
         style={{ height: 552, width: 980 }}
         className="bg-zinc-100 shadow relative overflow-hidden"
       >
         <Selection
           from={slides.map(({ children }) => (
-            <section className="flex justify-center items-center w-full">
+            <section className="flex justify-center items-center w-full h-full bg-zinc-800 overflow-hidden text-white">
               {children}
             </section>
           ))}

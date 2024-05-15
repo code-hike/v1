@@ -17,7 +17,6 @@ const Schema = Block.extend({
 })
 
 const { blocks } = parseRoot(Content, Schema)
-console.log(blocks)
 
 export const slides = blocks.map(({ children, note }) => {
   return {
