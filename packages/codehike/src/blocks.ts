@@ -22,7 +22,7 @@ export function parseRoot<Output, Def extends ZodTypeDef, Input>(
 }
 
 export const Block = z.object({
-  title: z.string(),
+  title: z.string().optional(),
   children: z.custom<React.ReactNode>(),
 })
 
