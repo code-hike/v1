@@ -4,7 +4,7 @@ import { ObservedDiv, Scroller } from "./scroller.js"
 
 const StepsContext = React.createContext<{
   selectedIndex: number
-  selectIndex: (stepIndex: number) => void
+  selectIndex: React.Dispatch<React.SetStateAction<number>>
 }>({
   selectedIndex: 0,
   selectIndex: () => {},
