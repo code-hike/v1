@@ -1,4 +1,4 @@
-import Content from "./familiarity.mdx"
+import Content from "./markdown.mdx"
 import {
   parseProps,
   Block,

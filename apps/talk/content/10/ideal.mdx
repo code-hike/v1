@@ -1,4 +1,4 @@
-# !!
+# !! demo
 
 ![!video center](/md.mp4)
 
@@ -9,12 +9,6 @@
 
 {/* prettier-ignore */}
 ```tsx !right hidden-br
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
 
@@ -29,20 +23,14 @@ function Section(props: {
 
 ## !note
 
-This is the swift tutorials
+We have several of these sections with steps, so let's try to build a generic Section component, for each of these.
 
-# !! 2
+# !! define component
 
 ![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
 ```tsx !right code-r
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
 
@@ -55,18 +43,20 @@ function Section(props: {
 }
 ```
 
-# !! 2
+## !note
+
+I'm using react and typescript here.
+
+Let's start with the props of the component.
+
+We know we need a list of steps, so that's an array.
+
+# !! title
 
 ![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
 ```tsx !right code-r
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
     title: string
@@ -79,18 +69,16 @@ function Section(props: {
 }
 ```
 
-# !! 2
+## !note
+
+Each step has a title, so let's add that to the type.
+
+# !! step content
 
 ![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
 ```tsx !right code-r
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
     title: string
@@ -103,18 +91,18 @@ function Section(props: {
 }
 ```
 
-# !! 2
+## !note
+
+Then we have a block of content for each step.
+
+That can be any markdown, so we can abstract it as ReactNode.
+
+# !! screenshot
 
 ![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
 ```tsx !right code-r
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
     title: string
@@ -127,18 +115,16 @@ function Section(props: {
 }
 ```
 
-# !! 2
+## !note
+
+Some steps have a screenshot, so we add it as an optional prop.
+
+# !! code
 
 ![!video video-l](/md.mp4)
 
 {/* prettier-ignore */}
 ```tsx !right code-r
-import Content from "content.mdx"
-
-export default function Tutorial() {
-  return <Content components={{ Section }} />
-}
-
 function Section(props: {
   steps: Array<{
     title: string
@@ -151,7 +137,13 @@ function Section(props: {
 }
 ```
 
-# !! props end
+## !note
+
+And some steps display code, so we add that as an optional prop too.
+
+Don't worry about the types of `Image` and `Code`, we'll leave that for later.
+
+# !! props implementation
 
 ![!video video-l](/md.mp4)
 
@@ -178,9 +170,13 @@ function Section(props: {
 
 ## !note
 
-The key here is that: If content has structure, it's easier to manipulate, and display in the way we want.
+Once we have the content in the right shape, rendering it is not super hard. It's not trivial either, but if you known how to use intersection observers and sticky positioning, you can do it.
 
-# !! 3
+So in the left part of the layout we need an intersection observer to know when to change the step, and in the right part we need a sticky element to display the screenshot or the code for the current step.
+
+The key here is that: once the content has the right structure, it's easier to manipulate, and display in the way we want.
+
+# !! empty section
 
 ![!video video-r](/md.mp4)
 
@@ -225,7 +221,13 @@ function Section(props: {
 </Section>
 ```
 
-# !! 3
+## !note
+
+Now let's talk about the content.
+
+We want to use markdown, of course. Or MDX, same thing.
+
+# !! step 1 content
 
 ![!video video-r](/md.mp4)
 
@@ -248,29 +250,11 @@ Choose File > New > File, select iOS as the platform, select the “SwiftUI View
 </Section>
 ````
 
-# !! 3
+## !note
 
-![!video video-r](/md.mp4)
+For the first step we have the header and some text.
 
-{/* prettier-ignore */}
-````mdx !left code-l
-<Section>
-
-## Step 1
-
-Choose File > New > File, select iOS as the platform, select the “SwiftUI View” template, and click Next. Name the new file `MapView.swift` and click Create.
-
-![SwiftUI View](/create-view.png)
-
-
-
-
-
-
-</Section>
-````
-
-# !! 3
+# !! step 1 screenshot
 
 ![!video video-r](/md.mp4)
 
@@ -284,7 +268,7 @@ Choose File > New > File, select iOS as the platform, select the “SwiftUI View
 
 ![SwiftUI View](/create-view.png)
 
-## Step 2
+
 
 
 
@@ -292,7 +276,11 @@ Choose File > New > File, select iOS as the platform, select the “SwiftUI View
 </Section>
 ````
 
-# !! 3
+## !note
+
+Then we have an image, the screenshot.
+
+# !! step 2 content
 
 ![!video video-r](/md.mp4)
 
@@ -301,7 +289,6 @@ Choose File > New > File, select iOS as the platform, select the “SwiftUI View
 <Section>
 
 ## Step 1
-...
 
 ## Step 2
 
@@ -313,7 +300,11 @@ When you import SwiftUI and certain other frameworks in the same file, you gain 
 </Section>
 ````
 
-# !! 3
+## !note
+
+Second step. Again a header and two paragraphs.
+
+# !! step 2 code
 
 ![!video video-r](/md.mp4)
 
@@ -322,7 +313,6 @@ When you import SwiftUI and certain other frameworks in the same file, you gain 
 <Section>
 
 ## Step 1
-...
 
 ## Step 2
 
@@ -337,7 +327,11 @@ import SwiftUI ...
 </Section>
 ````
 
-# !! 3
+## !note
+
+After that we have a codeblock.
+
+# !! step 3
 
 ![!video video-r](/md.mp4)
 
@@ -346,10 +340,8 @@ import SwiftUI ...
 <Section>
 
 ## Step 1
-...
 
 ## Step 2
-...
 
 ## Step 3
 
@@ -362,7 +354,11 @@ import SwiftUI ...
 </Section>
 ````
 
-# !! 4
+## !note
+
+Then we have step 3, with a header, some text, and another codeblock.
+
+# !! content and presentation
 
 ![!video video-b](/md.mp4)
 
@@ -421,6 +417,83 @@ function Section(props: {
 
 ## !note
 
-This slide right here is a problem I've been trying to solve for a while now.
+So we have this, the content in markdown, and the a component to render it.
 
-What's the less invasive way we can give structure to the content?
+But that component needs the content in this specific shape that's defined there.
+
+And this is, in my opinion, the main reason why building this kind of content websites is hard, because markdown doesn't have a enough structure.
+
+For the last 5 years, I've been working on this space. I've built a couple of tools, I maintain an open source library called Code Hike. That library gives you a couple of components, that you use with markdown and it renders some specific layouts. But it's not really flexible, if you need something slightly different you depend on CSS.
+
+It took me a while to realize that the real problem I wanted to solve is a **generic** way to give structure to markdown, so you can use that structured content to render it as you want.
+
+What's the less invasive way we can give enough structure to the content?
+
+# !! structured markdown
+
+![!video video-b](/md.mp4)
+
+{/* prettier-ignore */}
+````mdx !left code-cl
+<Section>
+
+## !!steps Step 1
+Choose File ...
+
+![!screenshot SwiftUI View](/create-view.png)
+
+## !!steps Step 2
+Add an `import`...
+
+```swift !code MapView.swift
+import SwiftUI ...
+```
+
+## !!steps Step 3
+Create a private...
+
+```swift !code MapView.swift
+import SwiftUI ...
+```
+
+</Section>
+````
+
+{/* prettier-ignore */}
+```tsx !right code-cr
+import Content from "content.mdx"
+
+export default function Tutorial() {
+  return <Content components={{ Section }} />
+}
+
+function Section(props: {
+  steps: Array<{
+    title: string
+    children: React.ReactNode
+    screenshot?: Image
+    code?: Code
+  }>
+}) {
+  const [index, setIndex] = useState(0)
+  const step = props.steps[index]
+  return (
+    <section>
+      <Observer steps={steps} onChange={setIndex} />
+      <Sticky step={step} />
+    </section>
+  )
+}
+```
+
+## !note
+
+so this is the solution I came up with
+
+the idea is to add special annotations to some markdown elements, so then we can compile them into the structure we need.
+
+it may look a bit ugly at first, but you get used to it.
+
+this is what I'm working on right now, for the next major version of Code Hike.
+
+let me show you how it works, I'll go fast, because this is not a tutorial. I'll share the link to the docs later for anyone interested.
