@@ -24,7 +24,6 @@ const Schema = Block.extend({
 })
 
 const { blocks } = parseRoot(Content, Schema)
-console.log(blocks)
 
 // fill missing blocks
 let prevBlock = null

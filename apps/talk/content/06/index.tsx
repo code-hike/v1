@@ -17,11 +17,10 @@ const Schema = Block.extend({
 })
 
 const { blocks } = parseRoot(Content, Schema)
-console.log(blocks)
 
 export const slides = blocks.map(({ children, note }) => {
   return {
-    children: children,
+    children: <div>{children}</div>,
     notes: note?.children,
   }
 })
