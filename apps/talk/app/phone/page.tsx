@@ -3,13 +3,8 @@ import Nav from "./nav"
 import React from "react"
 import { getAllSlides } from "@/lib/source"
 
-export default async function Train({
-  params,
-}: {
-  params: { sections: string[] }
-}) {
-  const [section] = params.sections || []
-  const slides = await getAllSlides(section)
+export default async function Train() {
+  const slides = await getAllSlides(undefined)
   return <Slides slides={slides} />
 }
 

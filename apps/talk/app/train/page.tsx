@@ -1,7 +1,7 @@
 import { Selection, Selectable, SelectionProvider } from "codehike/utils"
 import Nav from "./nav"
 import React from "react"
-import { getAllSlides } from "@/lib/source"
+import { getAllSlides, getSectionNames } from "@/lib/source"
 
 export default async function Train({
   params,
@@ -12,6 +12,11 @@ export default async function Train({
   const slides = await getAllSlides(section)
   return <Slides slides={slides} />
 }
+
+// export async function generateStaticParams() {
+//   const names = await getSectionNames()
+//   return names.map((name) => ({ params: { sections: [name] } }))
+// }
 
 function Slides({
   slides,

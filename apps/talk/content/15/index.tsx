@@ -1,11 +1,5 @@
-import Content from "./pre-ch.mdx"
-import {
-  parseProps,
-  Block,
-  HighlightedCodeBlock,
-  ImageBlock,
-  parseRoot,
-} from "codehike/blocks"
+import { Block, parseRoot } from "codehike/blocks"
+import Content from "./conf-demo.mdx"
 import { z } from "zod"
 
 const Schema = Block.extend({
@@ -20,7 +14,7 @@ const { blocks } = parseRoot(Content, Schema)
 
 export const slides = blocks.map(({ children, note }) => {
   return {
-    children: <div className="">{children}</div>,
+    children: <div className="overflow-auto h-full w-full">{children}</div>,
     notes: note?.children,
   }
 })

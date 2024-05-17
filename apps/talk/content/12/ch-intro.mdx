@@ -8,6 +8,49 @@ export default function Page() {
 }
 ```
 
+```mdx !input c
+Hello world
+
+<MyComponent>
+
+The Fellowship of the Ring
+
+## !moria western gate
+
+Speak, friend
+
+</MyComponent>
+```
+
+```jsx !output rr
+export default function MDXContent() {
+  return (
+    <>
+      <p>Hello world</p>
+      <MyComponent>
+        <p>The Fellowship of the Ring</p>
+        <h2>!moria western gate</h2>
+        <p>Speak, friend</p>
+      </MyComponent>
+    </>
+  )
+}
+```
+
+## !note
+
+Code Hike is mostly an MDX plugin.
+
+# !! mdx
+
+```jsx !page rr
+import Content from "./content.mdx"
+
+export default function Page() {
+  return <Content />
+}
+```
+
 ```mdx !input l
 Hello world
 
@@ -182,57 +225,6 @@ export default function MDXContent() {
 
 I;ll go fast since this is not a tutorial, the goal here is to give you an idea of what's possible.
 
-# !! images, codeblocks, and paragraphs
-
-````mdx !input l
-<MyComponent>
-
-The Fellowship of the Ring
-
-!author Tolkien
-
-![!cover Gandalf](/gandalf.jpg)
-
-## !moria western gate
-
-Speak, friend
-
-```js !riddle mellon.js
-speak("friend")
-```
-
-</MyComponent>
-````
-
-```jsx !output r
-export default function MDXContent() {
-  return (
-    <MyComponent
-      author="Tolkien"
-      cover={{
-        alt: "Gandalf",
-        url: "/gandalf.jpg",
-      }}
-      moria={{
-        title: "western gate",
-        children: <p>Speak, friend</p>,
-        riddle: {
-          lang: "js",
-          meta: "mellon.js",
-          value: 'speak("friend")',
-        },
-      }}
-    >
-      <p>The Fellowship of the Ring</p>
-    </MyComponent>
-  )
-}
-```
-
-## !note
-
-Code Hike is mostly an MDX plugin.
-
 # !! lists
 
 ```mdx !input l
@@ -339,25 +331,58 @@ export default function MDXContent() {
 
 Code Hike is mostly an MDX plugin.
 
-# !! schemas
+# !! images, codeblocks, and paragraphs
 
 ````mdx !input l
 <MyComponent>
+
+The Fellowship of the Ring
 
 !author Tolkien
 
 ![!cover Gandalf](/gandalf.jpg)
 
+## !moria western gate
+
+Speak, friend
+
 ```js !riddle mellon.js
 speak("friend")
 ```
 
-## !!breakfasts first
-
-Apple pancakes
-
 </MyComponent>
 ````
+
+```jsx !output r
+export default function MDXContent() {
+  return (
+    <MyComponent
+      author="Tolkien"
+      cover={{
+        alt: "Gandalf",
+        url: "/gandalf.jpg",
+      }}
+      moria={{
+        title: "western gate",
+        children: <p>Speak, friend</p>,
+        riddle: {
+          lang: "js",
+          meta: "mellon.js",
+          value: 'speak("friend")',
+        },
+      }}
+    >
+      <p>The Fellowship of the Ring</p>
+    </MyComponent>
+  )
+}
+```
+
+## !note
+
+Code Hike is mostly an MDX plugin.
+
+# !! schemas
 
 ```jsx !output mh
 export default function MDXContent() {
@@ -391,13 +416,15 @@ export default function MDXContent() {
 
 ```jsx !page r
 import { z } from "zod"
-import { parseProps, Block, CodeBlock, ImageBlock } from "codehike/blocks"
+import { parseProps, Block, CodeBlock,
+  ImageBlock } from "codehike/blocks"
 
 const Schema = Block.extend({
   author: z.string(),
   cover: ImageBlock.optional(),
-  riddle: CodeBlock,
-  breakfasts: z.array(Block),
+  moria: Block.extend({
+    riddle: CodeBlock,
+  }),
 })
 
 export function MyComponent(props) {
@@ -413,21 +440,19 @@ Code Hike is mostly an MDX plugin.
 # !! root
 
 ````mdx !input l
-<MyComponent>
+The Fellowship of the Ring
 
 !author Tolkien
 
 ![!cover Gandalf](/gandalf.jpg)
 
+## !moria western gate
+
+Speak, friend
+
 ```js !riddle mellon.js
 speak("friend")
 ```
-
-## !!breakfasts first
-
-Apple pancakes
-
-</MyComponent>
 ````
 
 ```jsx !output mh
@@ -462,17 +487,20 @@ export default function MDXContent() {
 
 ```jsx !page r
 import { z } from "zod"
-import { parseProps, Block, CodeBlock, ImageBlock } from "codehike/blocks"
+import { parseRoot, Block, CodeBlock,
+  ImageBlock } from "codehike/blocks"
 
+import Content from "./content.md"
 const Schema = Block.extend({
   author: z.string(),
   cover: ImageBlock.optional(),
-  riddle: CodeBlock,
-  breakfasts: z.array(Block),
+  moria: Block.extend({
+    riddle: CodeBlock,
+  }),
 })
 
-export function MyComponent(props) {
-  const data = parseProps(props, Schema)
+export function Page() {
+  const data = parseRoot(Content, Schema)
   ...
 }
 ```

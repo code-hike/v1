@@ -45,7 +45,8 @@ const positions = {
   r: "right-16",
   l: "right-[55%]",
   mh: "opacity-0 right-[20%] scale-[0.85]",
-  rr: "opacity-50 -right-96",
+  rr: "opacity-0 -right-96",
+  c: "right-[30%]",
 }
 
 function getPosition(title?: string) {

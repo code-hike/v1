@@ -22,3 +22,9 @@ export async function getAllSlides(section?: string) {
   const slides = (await Promise.all(promises)).flatMap((a) => a)
   return slides as Slide[]
 }
+
+export async function getSectionNames() {
+  const content = path.join(process.cwd(), "content")
+  const dirs = await fs.promises.readdir(content)
+  return dirs
+}
