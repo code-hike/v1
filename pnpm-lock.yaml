@@ -29,6 +29,9 @@ importers:
       '@next/mdx':
         specifier: ^14.2.3
         version: 14.2.3(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1)
+      '@radix-ui/react-dialog':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@types/mdx':
         specifier: ^2.0.10
         version: 2.0.10
