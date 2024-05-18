@@ -1,5 +1,142 @@
 import { Conf } from "./conf"
 
-# !!
+```md !content content.md
+## !!speakers Tejas Kumar
 
-<Conf />
+!time 09:30 10:00
+
+![!pic Tejas](/tejas.webp)
+
+Tejas Kumar is an international keynote speaker with an engineering background spanning 22 years, from design to frontend to backend to devops.
+
+### !talk You are an AI engineer
+
+TBD
+
+## !!speakers Eva Ferreira
+
+!time 10:00 10:30
+
+![!pic Eva](/eva.webp)
+
+Eva Ferreira is a Front-end engineer and professor.
+
+### !talk The intentions were good
+
+We hope for our web applications to be as beautiful, performant, and accessible as possible; but sometimes… Things get in the way and the outcome is not as good as we hoped.
+
+## !!speakers Rose Akoth
+
+!time 11:30 12:00
+
+![!pic Rose](/rose.webp)
+
+Rose is a frontend developer and technical writer.
+
+### !talk Reimagining web layout for accessible multilingual content
+
+Web layout is one of the most important aspects of web development, as it determines how the content is presented and perceived by the users.
+
+## !!speakers Bramus Van Damme
+
+!time 12:00 12:30
+
+![!pic Bramus](/bramus.webp)
+
+Bramus Van Damme is a web developer from Belgium. From the moment he discovered `view-source` at the age of 14 _(way back in 1997)_, he **fell in love with the web** and has been tinkering with it ever since.
+
+### !talk MPA View Transitions are here!
+
+This year we bring you something new: View Transitions for MPA, activated by a same-origin navigation.
+```
+
+```tsx !!pages
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+    </main>
+  )
+}
+```
+
+```tsx !!pages
+import { Block, ImageBlock, parseRoot } from "codehike/blocks"
+
+const Schema = Block.extend({
+  speakers: z.array(
+    Block.extend({
+      pic: ImageBlock,
+      time: z.string(),
+      talk: Block,
+    }),
+  ),
+})
+
+import Content from "./speakers.md"
+const { speakers } = parseRoot(Content, Schema)
+
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+      <h2>Speakers</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <h3>{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```
+
+```tsx !!pages
+import { Block, ImageBlock, parseRoot } from "codehike/blocks"
+
+const Schema = Block.extend({
+  speakers: z.array(
+    Block.extend({
+      pic: ImageBlock,
+      time: z.string(),
+      talk: Block,
+    }),
+  ),
+})
+
+import Content from "./speakers.md"
+const { speakers } = parseRoot(Content, Schema)
+
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+      <h2>Speakers</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <h3>{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+      <h2>Agenda</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <span>{speaker.time}</span>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <span>
+              <h3>{speaker.title}</h3>
+              {speaker.talk.title}
+            </span>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```

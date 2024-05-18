@@ -1,4 +1,4 @@
-# !! mdx
+# !! mdx alone
 
 ```jsx !page rr
 import Content from "./content.mdx"
@@ -9,7 +9,7 @@ export default function Page() {
 ```
 
 ```mdx !input c
-Hello world
+# Hello world
 
 <MyComponent>
 
@@ -26,7 +26,7 @@ Speak, friend
 export default function MDXContent() {
   return (
     <>
-      <p>Hello world</p>
+      <h1>Hello world</h1>
       <MyComponent>
         <p>The Fellowship of the Ring</p>
         <h2>!moria western gate</h2>
@@ -41,7 +41,9 @@ export default function MDXContent() {
 
 Code Hike is mostly an MDX plugin.
 
-# !! mdx
+And MDX is something that runs at build time and compile markdown files into javascript.
+
+# !! mdx and output
 
 ```jsx !page rr
 import Content from "./content.mdx"
@@ -52,7 +54,7 @@ export default function Page() {
 ```
 
 ```mdx !input l
-Hello world
+# Hello world
 
 <MyComponent>
 
@@ -69,7 +71,7 @@ Speak, friend
 export default function MDXContent() {
   return (
     <>
-      <p>Hello world</p>
+      <h1>Hello world</h1>
       <MyComponent>
         <p>The Fellowship of the Ring</p>
         <h2>!moria western gate</h2>
@@ -82,9 +84,11 @@ export default function MDXContent() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+For example this is the output that we get from the MDX file on the left.
 
-# !! mdx page
+We have all the markdown nodes transformed into JSX.
+
+# !! mdx output and page
 
 ```jsx !page r
 import Content from "./content.mdx"
@@ -95,7 +99,7 @@ export default function Page() {
 ```
 
 ```mdx !input ll
-Hello world
+# Hello world
 
 <MyComponent>
 
@@ -112,7 +116,7 @@ Speak, friend
 export default function MDXContent() {
   return (
     <>
-      <p>Hello world</p>
+      <h1>Hello world</h1>
       <MyComponent>
         <p>The Fellowship of the Ring</p>
         <h2>!moria western gate</h2>
@@ -125,7 +129,7 @@ export default function MDXContent() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+Then, from your code, when you want to render that MDXContent, you can import the mdx file and you will be importing that generated component, so you can render it where you want.
 
 # !! mdx plugins
 
@@ -138,7 +142,7 @@ export default function Page() {
 ```
 
 ```mdx !input l
-Hello world
+# Hello world
 
 <MyComponent>
 
@@ -155,7 +159,7 @@ Speak, friend
 export default function MDXContent() {
   return (
     <>
-      <p>Hello world</p>
+      <h1>Hello world</h1>
       <MyComponent>
         <p>The Fellowship of the Ring</p>
         <h2>!moria western gate</h2>
@@ -168,9 +172,9 @@ export default function MDXContent() {
 
 ## !note
 
-MDX has plugins, and that's what the main part of Code Hike is.
+MDX has plugins, maybe you've heard about remark or rehype plugins. With plugins we can transform some stuff during the compilation to change the output.
 
-So, after we add the Code Hike plugin...
+And that's what Code Hike does.
 
 # !! mdx + ch
 
@@ -190,7 +194,7 @@ function MyComponent(props) {
 ```
 
 ```mdx !input l
-Hello world
+# Hello world
 
 <MyComponent>
 
@@ -207,7 +211,7 @@ Speak, friend
 export default function MDXContent() {
   return (
     <>
-      <p>Hello world</p>
+      <h1>Hello world</h1>
       <MyComponent
         moria={{
           title: "western gate",
@@ -223,7 +227,9 @@ export default function MDXContent() {
 
 ## !note
 
-I;ll go fast since this is not a tutorial, the goal here is to give you an idea of what's possible.
+In this example, when we add the Code Hike plugin, it will find that `!moria` annotation and transform it into a prop of `MyComponent`.
+
+This is what I call a block. And it has a title, which is the rest of the header after the annotation. And it has children, which are all the nodes that follow the header until the next block.
 
 # !! lists
 
@@ -274,7 +280,7 @@ export default function MDXContent() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+We can also have lists of blocks. Here the breakfasts annotation, starts with two exclamation marks instead of one, and this tells Code Hike that this should be a list of blocks. So MyComponent will receive an array of breakfasts.
 
 # !! nesting
 
@@ -285,7 +291,7 @@ Code Hike is mostly an MDX plugin.
 
 Apple pancakes
 
-### !recipe
+### !recipe foo
 
 - Cut apples
 - Mix batter
@@ -306,7 +312,7 @@ export default function MDXContent() {
           title: "first",
           children: <p>Apple pancakes</p>,
           recipe: {
-            title: "",
+            title: "foo",
             children: (
               <ul>
                 <li>Cut apples</li>
@@ -329,7 +335,13 @@ export default function MDXContent() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+We can also nest blocks.
+
+Here the recipe block is deeper than the breakfasts block, right? we have a level 2 header and then the recipe is a level 3 header.
+
+So, this tells Code Hike that the recipe block is a child of the breakfast block.
+
+And combining lists and nesting, makes it possible to represent complex structures.
 
 # !! images, codeblocks, and paragraphs
 
@@ -380,7 +392,15 @@ export default function MDXContent() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+Besides blocks, we can annotate other nodes.
+
+If we put the annotation at the start of a paragraph, it will be transformed into a string prop.
+
+We can also use it with images, so MyComponent will receive the alt and url.
+
+And we can use it with code blocks, and here the component will have access to the language, meta, and code itself. There's also an option to syntax highlight the code, so we could have more stuff here but we'll leave that for later.
+
+So this is the code generated by MDX and Code Hike. If we now go the implementation of MyComponent
 
 # !! schemas
 
@@ -435,7 +455,15 @@ export function MyComponent(props) {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+Here we can define a schema for the props of MyComponent.
+
+This gives us two advantages:
+
+One is autocompletion and all the editor tooling that comes with TypeScript.
+
+The other advantage is that we are validating that the markdown follows the structure we expect.
+
+For example, in this case we made the cover image optional, so we could have it or not. But the codeblock is required, if we miss it, we'll get an error.
 
 # !! root
 
@@ -490,7 +518,6 @@ import { z } from "zod"
 import { parseRoot, Block, CodeBlock,
   ImageBlock } from "codehike/blocks"
 
-import Content from "./content.md"
 const Schema = Block.extend({
   author: z.string(),
   cover: ImageBlock.optional(),
@@ -499,6 +526,7 @@ const Schema = Block.extend({
   }),
 })
 
+import Content from "./content.md"
 export function Page() {
   const data = parseRoot(Content, Schema)
   ...
@@ -507,4 +535,14 @@ export function Page() {
 
 ## !note
 
-Code Hike is mostly an MDX plugin.
+So far we've been using the annotated markdown inside a component, but we can also parse the markdown file and extract the data.
+
+So here, instead of parsing the props we are parsing the actual import of the markdown file.
+
+So why is this useful?
+
+Well, first we can use plain markdown, I mean, no JSX.
+
+And second, we are not limited to a component. You can use the markdown as data source. For example, let's say you have a blog, you can add a block to each post with an excerpt, and then when you list the posts, you can show the excerpt for each one.
+
+Now let's see a real demo of all this.

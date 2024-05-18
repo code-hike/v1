@@ -1,0 +1,470 @@
+# !! speakers content
+
+```md !content c
+# JSHeroes 2024
+
+## !!speakers Tejas Kumar
+
+!time 09:30 10:00
+
+![!pic Tejas](/tejas.webp)
+
+Tejas Kumar is an international keynote speaker with an engineering background spanning 22 years, from design to frontend to backend to devops.
+
+### !talk You are an AI engineer
+
+TBD
+
+## !!speakers Eva Ferreira
+
+!time 10:00 10:30
+
+![!pic Eva](/eva.webp)
+
+Eva Ferreira is a Front-end engineer and professor.
+
+### !talk The intentions were good
+
+We hope for our web applications to be as beautiful, performant, and accessible as possible; but sometimes… Things get in the way and the outcome is not as good as we hoped.
+
+## !!speakers Rose Akoth
+
+!time 11:30 12:00
+
+![!pic Rose](/rose.webp)
+
+Rose is a frontend developer and technical writer.
+
+### !talk Reimagining web layout for accessible multilingual content
+
+Web layout is one of the most important aspects of web development, as it determines how the content is presented and perceived by the users.
+
+## !!speakers Bramus Van Damme
+
+!time 12:00 12:30
+
+![!pic Bramus](/bramus.webp)
+
+Bramus Van Damme is a web developer from Belgium. From the moment he discovered `view-source` at the age of 14 _(way back in 1997)_, he **fell in love with the web** and has been tinkering with it ever since.
+
+### !talk MPA View Transitions are here!
+
+This year we bring you something new: View Transitions for MPA, activated by a same-origin navigation.
+```
+
+```tsx !page rr
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+    </main>
+  )
+}
+```
+
+!demo rr
+
+## !note
+
+I have a markdown file here, with some speakers from this conference.
+
+We have a block for each speaker, with the speaker's name, some details, time of the talk, picture, talk title.
+
+# !! empty Conf
+
+```md !content l
+# JSHeroes 2024
+
+## !!speakers Tejas Kumar
+
+!time 09:30 10:00
+
+![!pic Tejas](/tejas.webp)
+
+Tejas Kumar is an international keynote speaker with an engineering background spanning 22 years, from design to frontend to backend to devops.
+
+### !talk You are an AI engineer
+
+TBD
+
+## !!speakers Eva Ferreira
+
+!time 10:00 10:30
+
+![!pic Eva](/eva.webp)
+
+Eva Ferreira is a Front-end engineer and professor.
+
+### !talk The intentions were good
+
+We hope for our web applications to be as beautiful, performant, and accessible as possible; but sometimes… Things get in the way and the outcome is not as good as we hoped.
+
+## !!speakers Rose Akoth
+
+!time 11:30 12:00
+
+![!pic Rose](/rose.webp)
+
+Rose is a frontend developer and technical writer.
+
+### !talk Reimagining web layout for accessible multilingual content
+
+Web layout is one of the most important aspects of web development, as it determines how the content is presented and perceived by the users.
+
+## !!speakers Bramus Van Damme
+
+!time 12:00 12:30
+
+![!pic Bramus](/bramus.webp)
+
+Bramus Van Damme is a web developer from Belgium. From the moment he discovered `view-source` at the age of 14 _(way back in 1997)_, he **fell in love with the web** and has been tinkering with it ever since.
+
+### !talk MPA View Transitions are here!
+
+This year we bring you something new: View Transitions for MPA, activated by a same-origin navigation.
+```
+
+```tsx !page r
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+    </main>
+  )
+}
+```
+
+## !note
+
+So let's say we want to create the JSHeroes website.
+
+# !! schema
+
+```tsx !page r
+import { Block, ImageBlock, parseRoot } from "codehike/blocks"
+
+const Schema = Block.extend({
+  speakers: z.array(
+    Block.extend({
+      pic: ImageBlock,
+      time: z.string(),
+      talk: Block,
+    }),
+  ),
+})
+
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+    </main>
+  )
+}
+```
+
+## !note
+
+We start with the schema of the content.
+
+In this case is an array of speakers, each with a picture, time, and talk.
+
+# !! import
+
+```tsx !page r
+import { Block, ImageBlock, parseRoot } from "codehike/blocks"
+
+const Schema = Block.extend({
+  speakers: z.array(
+    Block.extend({
+      pic: ImageBlock,
+      time: z.string(),
+      talk: Block,
+    }),
+  ),
+})
+
+import Content from "./speakers.md"
+const { speakers } = parseRoot(Content, Schema)
+
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+    </main>
+  )
+}
+```
+
+## !note
+
+Now we can use this `parseRoot` function to extract the speakers array from the markdown file.
+
+# !! speaker section
+
+```tsx !page r
+const { speakers } = parseRoot(Content, Schema)
+
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+      <h2>Speakers</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <h3>{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```
+
+## !note
+
+And now that we have the speakers in the shape we want, we can for example render the speakers section, with picture and name of each speaker.
+
+Here it uses `speaker.title` but it would make more sense to have `speaker.name`, title is the default name for the content of the header of the block. Maybe I can show you later how to change it.
+
+# !! agenda section
+
+```tsx !page r
+export default function Conf() {
+  return (
+    <main>
+      <h1>JSHeroes 2024</h1>
+      <h2>Speakers</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <h3>{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+      <h2>Agenda</h2>
+      <section>
+        {speakers.map((speaker) => (
+          <div>
+            <span>{speaker.time}</span>
+            <img src={speaker.pic.url} alt={speaker.pic.alt} />
+            <span>
+              <h3>{speaker.title}</h3>
+              {speaker.talk.title}
+            </span>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```
+
+## !note
+
+We also want agenda section, with time, picture, title of the talk.
+
+# !! classNames
+
+```tsx !page r
+export default function Conf() {
+  return (
+    <main className="max-w-md mx-auto">
+      <h1 className="text-center text-5xl py-4">JSHeroes 2024</h1>
+      <h2 className="text-2xl py-4">Speakers</h2>
+      <section className="flex flex-wrap gap-4 pb-4 justify-between">
+        {speakers.map((speaker) => (
+          <div className="w-32">
+            <img
+              src={speaker.pic.url}
+              alt={speaker.pic.alt}
+              className="rounded-full h-32"
+            />
+            <h3 className="text-center pt-2">{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+      <h2 className="text-2xl py-4">Agenda</h2>
+      <section className="pb-4">
+        {speakers.map((speaker) => (
+          <div
+            className="flex items-center gap-4 py-2 text-left w-full"
+            speaker={speaker}
+          >
+            <span className="w-12 font-mono">{speaker.time}</span>
+            <img
+              src={speaker.pic.url}
+              alt={speaker.pic.alt}
+              className="grayscale h-20 w-20 rounded-full"
+            />
+            <span className="flex-1">
+              <h3 className="font-bold">{speaker.title}</h3>
+              {speaker.talk.title}
+            </span>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```
+
+## !note
+
+Now we magically add a lot of tailwind classes.
+
+# !! demo
+
+```md !content ll
+
+```
+
+```tsx !page l
+export default function Conf() {
+  return (
+    <main className="max-w-md mx-auto">
+      <h1 className="text-center text-5xl py-4">JSHeroes 2024</h1>
+      <h2 className="text-2xl py-4">Speakers</h2>
+      <section className="flex flex-wrap gap-4 pb-4 justify-between">
+        {speakers.map((speaker) => (
+          <div className="w-32">
+            <img
+              src={speaker.pic.url}
+              alt={speaker.pic.alt}
+              className="rounded-full h-32"
+            />
+            <h3 className="text-center pt-2">{speaker.title}</h3>
+          </div>
+        ))}
+      </section>
+      <h2 className="text-2xl py-4">Agenda</h2>
+      <section className="pb-4">
+        {speakers.map((speaker) => (
+          <div
+            className="flex items-center gap-4 py-2 text-left w-full"
+            speaker={speaker}
+          >
+            <span className="w-12 font-mono">{speaker.time}</span>
+            <img
+              src={speaker.pic.url}
+              alt={speaker.pic.alt}
+              className="grayscale h-20 w-20 rounded-full"
+            />
+            <span className="flex-1">
+              <h3 className="font-bold">{speaker.title}</h3>
+              {speaker.talk.title}
+            </span>
+          </div>
+        ))}
+      </section>
+    </main>
+  )
+}
+```
+
+!demo r
+
+## !note codesandbox
+
+And I have all this in this codesandbox.
+
+https://codesandbox.io/p/devbox/jsheroes-2024-grn3jr?file=%2Fapp%2Fcontent.md
+
+And this is how it looks.
+
+# !! dialog
+
+## !note
+
+here I also have a dialog trigger that we can use to show the speaker details.
+
+and we can do the same in the agenda section.
+
+# !! schema
+
+## !note
+
+here we have the schema, and we have all the right types for the speaker arrays.
+
+and also, if I go to the content and let's say I remove the picture from Eva. we should see an error, and it says that in the block of Eva Ferreira the picture is missing.
+
+# !! blocks navigation
+
+## !note
+
+another cool thing, since we are using markdown headers for the blocks, we can take advantage of a lot of existing tooling.
+
+for example
+
+- we can fold the blocks,
+- we can use the outline to navigate the content
+- we can even use this thing, the breadcrumbs,
+
+that's the demo,
+
+# !! codeblocks
+
+## !note
+
+there's also that we can do with codeblocks that I dont have to much time to show in detail, but I can show you some examples really quick
+
+for codeblocks we also have this idea applying annotations to take a part of the codeblock using our own components to render it.
+
+so in codeblocks the annotations are comments, and here for example we use a regular expression to match part of the next line, and then we have a specific component that handles this annotation and renders this thing.
+
+and this are custom components, they are not part of codehike. of course, this examples are copypastable, so you can go to the implementation and copy the component
+
+# !! codeblocks 2
+
+## !note
+
+here's another example, here we are using a range of lines, and the component here collapse or expand these four lines.
+
+we have more stuff
+
+this one I use a lot, it has a more complex regex, it matches all the classNames and fold them by default, and then when we click they expand
+
+this one is interesting, because we are using a component with blocks as we saw before, to define the content of some tooltips, and then we use them from inside the codeblock to show them as tooltips.
+
+# !! codeblocks and rsc
+
+## !note
+
+this one with typescript is also different.
+
+if we go to the implementation, we see that we are taking the code from the codeblock and running the typescript compiler, inside the component. and then after that we also run syntax highlighting.
+
+this is because, if you use a framework that supports react server components, every component that we saw by default is a server component, and server here means build server, so any code we put there is resolved at build time. and that allows some really cool use cases.
+
+ok, back to the slides.
+
+# !! code hike v1
+
+## !note
+
+Code Hike v1, currently in alpha, there's a beta version coming really soon. and i expect to have a stable version in the following weeks.
+
+that's the docs if you want to check it out.
+
+# !! recap
+
+## !note
+
+so, recap.
+
+- most technical content websites use the same static one-column layout
+- but there's a small minority building content websites with layouts that
+  - are better for the content
+  - take advantage of the medium
+
+if we put that into a chart it would look like this [chart]
+
+- so we want more websites in this space, but building them is harder
+- I showed what I think is the main pain point, the gap between markdown and UI components
+- and we've seen how Code Hike can help with that
+
+So I hope I convinced at least some of you to explore more ways of presenting content on the web.
+
+Thank you.
