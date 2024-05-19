@@ -1,15 +1,9 @@
-you are an expert speaker, your talks are really good, and you are also very good at giving the correct advice to other speakers. I hired you to help me improve a talk im giving at JSHeroes conf.
-
-This is my talk script
-
-"""
 Let's start with a quiz.
 
 We have two screenshots, which one do you think is from a website with all the navigation removed, and which one is from the page of a book, a physical book?
 
 I'll reveal the answer in 5 seconds.
-
----
+<break time="3.0s" />
 
 They are both from websites.
 
@@ -21,11 +15,11 @@ These are all screenshots of technical content websites, we are only showing the
 
 And this is a random sample of blogs, tutorials, documentation.
 
-They are from **different** ecosystems, using **different** technologies. Each of these explain a **different** concept.
+They are from different ecosystems, using different technologies. Each of these explain a different concept.
 
-Yet, they all look the **same**. They all use the same static one-column layout. Same layout as most books.
+Yet, they all look the same. They all use the same static one-column layout. Same layout as most books.
 
-There's nothing wrong either with books or with this layout. But this doesn't mean that this is **always** the best choice.
+There's nothing wrong either with books or with this layout. But this doesn't mean that this is always the best choice.
 
 ---
 
@@ -89,7 +83,7 @@ so, companies that care about their developer experience, they invest in this ty
 
 These companies invest in great content websites because they know it matters.
 
-And it **is** an investment, because it's not easy, it's harder than just using the same layout for everything.
+And it is an investment, because it's not easy, it's harder than just using the same layout for everything.
 
 ---
 
@@ -173,7 +167,7 @@ In my opinion, this is the main reason why building this kind of content website
 
 For the last 5 years, I've been working on this space. I've built a couple of tools, I maintain an open source library called Code Hike. This library gives you a couple of components to render specific layouts from markdown. But it's not really flexible, if you need something slightly different you depend on CSS.
 
-It took me a while to realize that the real problem I wanted to solve is a **generic** way to give structure to markdown, so you can use that structured content to render it in any way you want.
+It took me a while to realize that the real problem I wanted to solve is a generic way to give structure to markdown, so you can use that structured content to render it in any way you want.
 
 What's the less invasive way we can give enough structure to the content?
 
@@ -357,7 +351,7 @@ This one is interesting, because we are using a component that has blocks, and t
 
 This one with typescript is also interesting.
 
-If we go to the implementation, we see that we are taking the code from the codeblock and running the typescript compiler, **inside the component**. And then after that we also run syntax highlighting.
+If we go to the implementation, we see that we are taking the code from the codeblock and running the typescript compiler, inside the component. And then after that we also run syntax highlighting.
 
 This is because, if you use a framework that supports react server components, every component that we saw, by default is a server component, and server here means build server, so any code we put there is resolved at build time. And that allows some really cool use cases.
 
@@ -380,9 +374,3 @@ Next time you're building a content website, instead of defaulting to the same s
 Let's make the web better JSHeroes.
 
 Thank you.
-
-"""
-
-make it into nested bullet points, from the top start with the main sections of the talk, then go deeper into the sub-sections, until you reach the lowest level of detail.
-
-Then, for each section, write a short description of what you are trying to communicate in that section.
