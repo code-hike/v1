@@ -313,7 +313,7 @@ export default function Conf() {
 
 ## !note
 
-Now we magically add a lot of tailwind classes.
+Now we magically add a lot of tailwind classes to make it look good.
 
 # !! demo
 
@@ -378,23 +378,23 @@ And this is how it looks.
 
 ## !note
 
-here I also have a dialog trigger that we can use to show the speaker details.
+Here I also have a dialog trigger that we can use to show the speaker details.
 
-and we can do the same in the agenda section.
+And we can do the same in the agenda section.
 
 # !! schema
 
 ## !note
 
-here we have the schema, and we have all the right types for the speaker arrays.
+Here we have the schema, we should see all the right types for the speaker arrays.
 
-and also, if I go to the content and let's say I remove the picture from Eva. we should see an error, and it says that in the block of Eva Ferreira the picture is missing.
+And also, if I go to the content and let's say I remove the picture from Eva. we should see an error, and it says that in the block of Eva Ferreira the picture is missing.
 
 # !! blocks navigation
 
 ## !note
 
-another cool thing, since we are using markdown headers for the blocks, we can take advantage of a lot of existing tooling.
+Another cool thing, since we are using markdown headers for the blocks, we can take advantage of a lot of existing tooling.
 
 for example
 
@@ -402,51 +402,53 @@ for example
 - we can use the outline to navigate the content
 - we can even use this thing, the breadcrumbs,
 
-that's the demo,
+That's the demo.
 
 # !! codeblocks
 
 ## !note
 
-there's also that we can do with codeblocks that I dont have to much time to show in detail, but I can show you some examples really quick
+There's also some codeblock specific features that I don’t have time to cover in detail, but let me show you some quick examples.
 
-for codeblocks we also have this idea applying annotations to take a part of the codeblock using our own components to render it.
+We can have annotations inside codeblocks, and the we can define custom component to handle those annotations.
 
-so in codeblocks the annotations are comments, and here for example we use a regular expression to match part of the next line, and then we have a specific component that handles this annotation and renders this thing.
+So the annotations are comments inside the codeblock, and here for example we use a regular expression to match part of the next line, and then we have a specific component that handles this annotation and renders this thing.
 
-and this are custom components, they are not part of codehike. of course, this examples are copypastable, so you can go to the implementation and copy the component
+And this are custom components, they are not part of codehike. But of course, this examples are copypastable, so you can go to the implementation and copy the component.
 
 # !! codeblocks 2
 
 ## !note
 
-here's another example, here we are using a range of lines, and the component here collapse or expand these four lines.
+Here's another one, we are using a range instead of a regex.
 
-we have more stuff
+We have more stuff
 
-this one I use a lot, it has a more complex regex, it matches all the classNames and fold them by default, and then when we click they expand
+This one I use a lot, it has a more complex regex, that matches all the classNames so we can hide them until clicked. Very useful if your examples use tailwind.
 
-this one is interesting, because we are using a component with blocks as we saw before, to define the content of some tooltips, and then we use them from inside the codeblock to show them as tooltips.
+This one is interesting, because we are using a component that has blocks, and then from inside the codeblock we use those blocks and show them as tooltips.
 
 # !! codeblocks and rsc
 
 ## !note
 
-this one with typescript is also different.
+This one with typescript is also interesting.
 
-if we go to the implementation, we see that we are taking the code from the codeblock and running the typescript compiler, inside the component. and then after that we also run syntax highlighting.
+If we go to the implementation, we see that we are taking the code from the codeblock and running the typescript compiler, **inside the component**. And then after that we also run syntax highlighting.
 
-this is because, if you use a framework that supports react server components, every component that we saw by default is a server component, and server here means build server, so any code we put there is resolved at build time. and that allows some really cool use cases.
+This is because, if you use a framework that supports react server components, every component that we saw, by default is a server component, and server here means build server, so any code we put there is resolved at build time. And that allows some really cool use cases.
 
-ok, back to the slides.
+Ok, back to the slides.
 
 # !! code hike v1
 
 ## !note
 
-Code Hike v1, currently in alpha, there's a beta version coming really soon. and i expect to have a stable version in the following weeks.
+Code Hike v1, currently in alpha, there's a beta version coming really soon. and I expect to have a stable version in the following weeks.
 
-that's the docs if you want to check it out.
+That's the docs if you want to check it out.
+
+That's my twitter if you want to stay updated.
 
 # !! recap
 
@@ -456,10 +458,10 @@ that's the docs if you want to check it out.
 
 ## !note
 
-Next time you're building a content website, instead of defaulting to the same static layout, find something that fits better the content you are trying to communicate.
-Use the medium. If you are building for the web, use the power of the modern web.
-Maybe it will take more time, but we have the tools and we have the talent.
+So, to wrap up.
 
-Let's make the web better.
+Next time you're building a content website, instead of defaulting to the same static layout, find something that fits the content you are trying to communicate. Use the medium. If you are building for the web, use the power of the modern web. It may be harder than the default static layout, but we have the tools and we have the talent.
 
-Thank you JSHeroes.
+Let's make the web better JSHeroes.
+
+Thank you.

@@ -172,9 +172,9 @@ function Section(props: {
 
 Once we have the content in the right shape, rendering it is not super hard. It's not trivial either, but if you known how to use intersection observers and sticky positioning, you can do it.
 
-So in the left part of the layout we need an intersection observer to know when to change the step, and in the right part we need a sticky element to display the screenshot or the code for the current step.
+So, imagine we have a component to handle the intersection observer on the left and another one to handle the sticky element on the right.
 
-The key here is that: once the content has the right structure, it's easier to manipulate, and display in the way we want.
+The key here is that once the content has the right structure, it's easier to manipulate and display in the way we want.
 
 # !! empty section
 
@@ -417,15 +417,15 @@ function Section(props: {
 
 ## !note
 
-So we have this, the content in markdown, and the a component to render it.
+So, we have our content in markdown and a component to render it.
 
-But that component needs the content in this specific shape that's defined there.
+But that component needs the content in this specific shape that's defined here.
 
-And this is, in my opinion, the main reason why building this kind of content websites is hard, because markdown doesn't have a enough structure.
+In my opinion, this is the main reason why building this kind of content website is hard, markdown alone doesn't provide enough structure. Not because the UIs are hard to build, but because there is a gap between the content and the UI.
 
-For the last 5 years, I've been working on this space. I've built a couple of tools, I maintain an open source library called Code Hike. That library gives you a couple of components, that you use with markdown and it renders some specific layouts. But it's not really flexible, if you need something slightly different you depend on CSS.
+For the last 5 years, I've been working on this space. I've built a couple of tools, I maintain an open source library called Code Hike. This library gives you a couple of components to render specific layouts from markdown. But it's not really flexible, if you need something slightly different you depend on CSS.
 
-It took me a while to realize that the real problem I wanted to solve is a **generic** way to give structure to markdown, so you can use that structured content to render it as you want.
+It took me a while to realize that the real problem I wanted to solve is a **generic** way to give structure to markdown, so you can use that structured content to render it in any way you want.
 
 What's the less invasive way we can give enough structure to the content?
 
@@ -488,12 +488,10 @@ function Section(props: {
 
 ## !note
 
-so this is the solution I came up with
+This is my approach for the next version of Code Hike:
 
-the idea is to add special annotations to some markdown elements, so then we can compile them into the structure we need.
+The idea is to add special annotations to some markdown elements, so then we can compile them into the structure we need.
 
-it may look a bit ugly at first, but you get used to it.
+It may look a bit ugly at first, but you get used to it.
 
-this is what I'm working on right now, for the next major version of Code Hike.
-
-let me show you how it works, I'll go fast, because this is not a tutorial. I'll share the link to the docs later for anyone interested.
+Let me quickly show you how it works. This isn't a full tutorial, I'll share a link to the docs later for anyone interested.

@@ -174,7 +174,7 @@ What's the less invasive way we can give enough structure to the content?
 
 ---
 
-So this is my approach for the next version of Code Hike:
+This is my approach for the next version of Code Hike:
 
 The idea is to add special annotations to some markdown elements, so then we can compile them into the structure we need.
 
