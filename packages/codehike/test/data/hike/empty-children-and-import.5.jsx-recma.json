@@ -2,6 +2,21 @@
   "type": "Program",
   "body": [
     {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "imported": { "type": "Identifier", "name": "x" },
+          "local": { "type": "Identifier", "name": "x" }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "@/components/code/code-with-notes",
+        "raw": "\"@/components/code/code-with-notes\""
+      }
+    },
+    {
       "type": "FunctionDeclaration",
       "async": false,
       "id": { "type": "Identifier", "name": "_createMdxContent" },
@@ -52,50 +67,8 @@
                     }
                   ]
                 }
-              },
-              {
-                "type": "VariableDeclarator",
-                "id": {
-                  "type": "ObjectPattern",
-                  "properties": [
-                    {
-                      "type": "Property",
-                      "kind": "init",
-                      "key": { "type": "Identifier", "name": "MyCode" },
-                      "value": { "type": "Identifier", "name": "MyCode" },
-                      "method": false,
-                      "shorthand": true,
-                      "computed": false
-                    }
-                  ]
-                },
-                "init": { "type": "Identifier", "name": "_components" }
               }
             ]
-          },
-          {
-            "type": "IfStatement",
-            "test": {
-              "type": "UnaryExpression",
-              "operator": "!",
-              "prefix": true,
-              "argument": { "type": "Identifier", "name": "MyCode" }
-            },
-            "consequent": {
-              "type": "ExpressionStatement",
-              "expression": {
-                "type": "CallExpression",
-                "callee": {
-                  "type": "Identifier",
-                  "name": "_missingMdxReference"
-                },
-                "arguments": [
-                  { "type": "Literal", "value": "MyCode" },
-                  { "type": "Literal", "value": true }
-                ],
-                "optional": false
-              }
-            }
           },
           {
             "type": "ReturnStatement",
@@ -172,7 +145,7 @@
                             "method": false,
                             "shorthand": false,
                             "computed": false,
-                            "key": { "type": "Literal", "value": "code" },
+                            "key": { "type": "Literal", "value": "demo" },
                             "kind": "init",
                             "value": {
                               "type": "ObjectExpression",
@@ -184,13 +157,13 @@
                                   "computed": false,
                                   "key": {
                                     "type": "Literal",
-                                    "value": "value"
+                                    "value": "children"
                                   },
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
-                                    "raw": "\"import random\\n\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\nprint(random.choice(my_list))\""
+                                    "value": "demo",
+                                    "raw": "\"demo\""
                                   }
                                 },
                                 {
@@ -198,25 +171,47 @@
                                   "method": false,
                                   "shorthand": false,
                                   "computed": false,
-                                  "key": { "type": "Literal", "value": "lang" },
-                                  "kind": "init",
-                                  "value": {
+                                  "key": {
                                     "type": "Literal",
-                                    "value": "py",
-                                    "raw": "\"py\""
-                                  }
-                                },
-                                {
-                                  "type": "Property",
-                                  "method": false,
-                                  "shorthand": false,
-                                  "computed": false,
-                                  "key": { "type": "Literal", "value": "meta" },
+                                    "value": "title"
+                                  },
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
                                     "value": "",
                                     "raw": "\"\""
+                                  }
+                                },
+                                {
+                                  "type": "Property",
+                                  "method": false,
+                                  "shorthand": false,
+                                  "computed": false,
+                                  "key": {
+                                    "type": "Literal",
+                                    "value": "_data"
+                                  },
+                                  "kind": "init",
+                                  "value": {
+                                    "type": "ObjectExpression",
+                                    "properties": [
+                                      {
+                                        "type": "Property",
+                                        "method": false,
+                                        "shorthand": false,
+                                        "computed": false,
+                                        "key": {
+                                          "type": "Literal",
+                                          "value": "header"
+                                        },
+                                        "kind": "init",
+                                        "value": {
+                                          "type": "Literal",
+                                          "value": "## !demo",
+                                          "raw": "\"## !demo\""
+                                        }
+                                      }
+                                    ]
                                   }
                                 }
                               ]
@@ -262,6 +257,30 @@
                       },
                       "property": { "type": "JSXIdentifier", "name": "slot" }
                     },
+                    "selfClosing": true
+                  },
+                  "closingElement": null,
+                  "children": []
+                },
+                {
+                  "type": "JSXElement",
+                  "openingElement": {
+                    "type": "JSXOpeningElement",
+                    "attributes": [
+                      {
+                        "type": "JSXAttribute",
+                        "name": { "type": "JSXIdentifier", "name": "path" },
+                        "value": { "type": "Literal", "value": "demo" }
+                      }
+                    ],
+                    "name": {
+                      "type": "JSXMemberExpression",
+                      "object": {
+                        "type": "JSXIdentifier",
+                        "name": "_components"
+                      },
+                      "property": { "type": "JSXIdentifier", "name": "slot" }
+                    },
                     "selfClosing": false
                   },
                   "closingElement": {
@@ -277,129 +296,38 @@
                   },
                   "children": [
                     {
-                      "type": "JSXFragment",
-                      "openingFragment": { "type": "JSXOpeningFragment" },
-                      "closingFragment": { "type": "JSXClosingFragment" },
+                      "type": "JSXElement",
+                      "openingElement": {
+                        "type": "JSXOpeningElement",
+                        "attributes": [],
+                        "name": {
+                          "type": "JSXMemberExpression",
+                          "object": {
+                            "type": "JSXIdentifier",
+                            "name": "_components"
+                          },
+                          "property": { "type": "JSXIdentifier", "name": "p" }
+                        },
+                        "selfClosing": false
+                      },
+                      "closingElement": {
+                        "type": "JSXClosingElement",
+                        "name": {
+                          "type": "JSXMemberExpression",
+                          "object": {
+                            "type": "JSXIdentifier",
+                            "name": "_components"
+                          },
+                          "property": { "type": "JSXIdentifier", "name": "p" }
+                        }
+                      },
                       "children": [
                         {
-                          "type": "JSXElement",
-                          "openingElement": {
-                            "type": "JSXOpeningElement",
-                            "attributes": [],
-                            "name": {
-                              "type": "JSXMemberExpression",
-                              "object": {
-                                "type": "JSXIdentifier",
-                                "name": "_components"
-                              },
-                              "property": {
-                                "type": "JSXIdentifier",
-                                "name": "p"
-                              }
-                            },
-                            "selfClosing": false
-                          },
-                          "closingElement": {
-                            "type": "JSXClosingElement",
-                            "name": {
-                              "type": "JSXMemberExpression",
-                              "object": {
-                                "type": "JSXIdentifier",
-                                "name": "_components"
-                              },
-                              "property": {
-                                "type": "JSXIdentifier",
-                                "name": "p"
-                              }
-                            }
-                          },
-                          "children": [
-                            {
-                              "type": "JSXExpressionContainer",
-                              "expression": {
-                                "type": "Literal",
-                                "value": "hello"
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "type": "JSXElement",
-                          "openingElement": {
-                            "type": "JSXOpeningElement",
-                            "attributes": [
-                              {
-                                "type": "JSXAttribute",
-                                "name": {
-                                  "type": "JSXIdentifier",
-                                  "name": "codeblock"
-                                },
-                                "value": {
-                                  "type": "JSXExpressionContainer",
-                                  "expression": {
-                                    "type": "ObjectExpression",
-                                    "properties": [
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "value"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
-                                          "raw": "\"import random\\n\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\nprint(random.choice(my_list))\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "lang"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "py",
-                                          "raw": "\"py\""
-                                        }
-                                      },
-                                      {
-                                        "type": "Property",
-                                        "method": false,
-                                        "shorthand": false,
-                                        "computed": false,
-                                        "key": {
-                                          "type": "Literal",
-                                          "value": "meta"
-                                        },
-                                        "kind": "init",
-                                        "value": {
-                                          "type": "Literal",
-                                          "value": "",
-                                          "raw": "\"\""
-                                        }
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            ],
-                            "name": {
-                              "type": "JSXIdentifier",
-                              "name": "MyCode"
-                            },
-                            "selfClosing": true
-                          },
-                          "closingElement": null,
-                          "children": []
+                          "type": "JSXExpressionContainer",
+                          "expression": {
+                            "type": "Literal",
+                            "value": "Add callouts inside your code blocks."
+                          }
                         }
                       ]
                     }
@@ -524,62 +452,6 @@
             }
           ]
         }
-      }
-    },
-    {
-      "type": "FunctionDeclaration",
-      "id": { "type": "Identifier", "name": "_missingMdxReference" },
-      "generator": false,
-      "async": false,
-      "params": [
-        { "type": "Identifier", "name": "id" },
-        { "type": "Identifier", "name": "component" }
-      ],
-      "body": {
-        "type": "BlockStatement",
-        "body": [
-          {
-            "type": "ThrowStatement",
-            "argument": {
-              "type": "NewExpression",
-              "callee": { "type": "Identifier", "name": "Error" },
-              "arguments": [
-                {
-                  "type": "BinaryExpression",
-                  "left": {
-                    "type": "BinaryExpression",
-                    "left": {
-                      "type": "BinaryExpression",
-                      "left": {
-                        "type": "BinaryExpression",
-                        "left": { "type": "Literal", "value": "Expected " },
-                        "operator": "+",
-                        "right": {
-                          "type": "ConditionalExpression",
-                          "test": { "type": "Identifier", "name": "component" },
-                          "consequent": {
-                            "type": "Literal",
-                            "value": "component"
-                          },
-                          "alternate": { "type": "Literal", "value": "object" }
-                        }
-                      },
-                      "operator": "+",
-                      "right": { "type": "Literal", "value": " `" }
-                    },
-                    "operator": "+",
-                    "right": { "type": "Identifier", "name": "id" }
-                  },
-                  "operator": "+",
-                  "right": {
-                    "type": "Literal",
-                    "value": "` to be defined: you likely forgot to import, pass, or provide it."
-                  }
-                }
-              ]
-            }
-          }
-        ]
       }
     }
   ],

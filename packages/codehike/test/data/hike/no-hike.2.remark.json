@@ -7,16 +7,49 @@
       "children": [{ "type": "text", "value": "Hello world" }]
     },
     {
-      "type": "paragraph",
-      "children": [
-        { "type": "text", "value": "Shouldn't add any code hike stuff." }
-      ]
-    },
-    {
-      "type": "code",
-      "lang": "js",
-      "meta": null,
-      "value": "// !Foo\nconsole.log(1)"
+      "type": "mdxJsxFlowElement",
+      "name": "foo",
+      "attributes": [
+        {
+          "type": "mdxJsxAttribute",
+          "name": "x",
+          "value": {
+            "type": "mdxJsxAttributeValueExpression",
+            "value": "{ yyy: undefined }",
+            "data": {
+              "estree": {
+                "type": "Program",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "ObjectExpression",
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": { "type": "Identifier", "name": "yyy" },
+                          "value": {
+                            "type": "Identifier",
+                            "name": "undefined"
+                          },
+                          "kind": "init"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "sourceType": "module",
+                "comments": []
+              }
+            }
+          }
+        }
+      ],
+      "children": [],
+      "data": { "_mdxExplicitJsx": true }
     }
   ]
 }

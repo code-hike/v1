@@ -3,7 +3,7 @@
   "children": [
     {
       "type": "mdxjsEsm",
-      "value": "import { CodeWithNotes } from \"@/components/code/code-with-notes\"",
+      "value": "import { x } from \"@/components/code/code-with-notes\"",
       "data": {
         "estree": {
           "type": "Program",
@@ -13,8 +13,8 @@
               "specifiers": [
                 {
                   "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "CodeWithNotes" },
-                  "local": { "type": "Identifier", "name": "CodeWithNotes" }
+                  "imported": { "type": "Identifier", "name": "x" },
+                  "local": { "type": "Identifier", "name": "x" }
                 }
               ],
               "source": {
@@ -32,25 +32,13 @@
     {
       "type": "heading",
       "depth": 2,
-      "children": [{ "type": "text", "value": "!Demo" }]
+      "children": [{ "type": "text", "value": "!demo" }]
     },
     {
       "type": "paragraph",
       "children": [
         { "type": "text", "value": "Add callouts inside your code blocks." }
       ]
-    },
-    {
-      "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!implementation" }]
-    },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
-    {
-      "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!!notes x" }]
-    },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "y" }] }
+    }
   ]
 }

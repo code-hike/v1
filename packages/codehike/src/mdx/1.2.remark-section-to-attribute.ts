@@ -113,9 +113,9 @@ function sectionContainer(section: HikeSection, path: string): JSXChild {
 function placeholder(name: string, index?: number) {
   const startsWithLowercase =
     name && name.charAt(0) === name.charAt(0).toLowerCase()
-  // if (startsWithLowercase) {
-  //   return null
-  // }
+  if (startsWithLowercase) {
+    return null
+  }
 
   const attributes: MdxJsxFlowElement["attributes"] = [
     {
@@ -153,7 +153,7 @@ function placeholder(name: string, index?: number) {
   }
   return {
     type: "mdxJsxFlowElement",
-    name: "slot",
+    name: name,
     attributes,
     children: [],
   } as JSXChild

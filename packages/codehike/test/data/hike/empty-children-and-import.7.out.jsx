@@ -1,4 +1,5 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
+import { x } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
     p: "p",
@@ -6,21 +7,18 @@ function _createMdxContent(props) {
     ...props.components,
   }
   const _blocks = {
-    children: (
-      <>
-        <_components.p>{"hello"}</_components.p>
-        <_components.p>{"hey"}</_components.p>
-      </>
-    ),
+    children: undefined,
     title: "",
     _data: {
       header: "",
     },
-    foo: {
-      children: <></>,
-      title: "hey",
+    demo: {
+      children: (
+        <_components.p>{"Add callouts inside your code blocks."}</_components.p>
+      ),
+      title: "",
       _data: {
-        header: "# !foo hey",
+        header: "## !demo",
       },
     },
   }

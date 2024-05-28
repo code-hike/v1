@@ -7,21 +7,15 @@
       "children": [{ "type": "text", "value": "Hello world" }]
     },
     {
-      "type": "paragraph",
-      "children": [
-        { "type": "text", "value": "Shouldn't add any code hike stuff." }
-      ]
-    },
-    {
       "type": "mdxJsxFlowElement",
-      "name": "MyCode",
+      "name": "foo",
       "attributes": [
         {
           "type": "mdxJsxAttribute",
-          "name": "codeblock",
+          "name": "x",
           "value": {
             "type": "mdxJsxAttributeValueExpression",
-            "value": "",
+            "value": "{ yyy: undefined }",
             "data": {
               "estree": {
                 "type": "Program",
@@ -36,39 +30,12 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "value" },
-                          "kind": "init",
+                          "key": { "type": "Identifier", "name": "yyy" },
                           "value": {
-                            "type": "Literal",
-                            "value": "// !Foo\nconsole.log(1)",
-                            "raw": "\"// !Foo\\nconsole.log(1)\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "lang" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "js",
-                            "raw": "\"js\""
-                          }
-                        },
-                        {
-                          "type": "Property",
-                          "method": false,
-                          "shorthand": false,
-                          "computed": false,
-                          "key": { "type": "Literal", "value": "meta" },
-                          "kind": "init",
-                          "value": {
-                            "type": "Literal",
-                            "value": "",
-                            "raw": "\"\""
-                          }
+                            "type": "Identifier",
+                            "name": "undefined"
+                          },
+                          "kind": "init"
                         }
                       ]
                     }
@@ -81,7 +48,8 @@
           }
         }
       ],
-      "children": []
+      "children": [],
+      "data": { "_mdxExplicitJsx": true }
     }
   ]
 }

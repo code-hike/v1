@@ -19,7 +19,6 @@ function _createMdxContent(props) {
             meta: "",
           }}
         />
-        <_components.slot name="code" />
       </>
     ),
     title: "",

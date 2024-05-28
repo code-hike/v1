@@ -123,36 +123,6 @@
                             "type": "JSXElement",
                             "openingElement": {
                               "type": "JSXOpeningElement",
-                              "attributes": [
-                                {
-                                  "type": "JSXAttribute",
-                                  "name": {
-                                    "type": "JSXIdentifier",
-                                    "name": "name"
-                                  },
-                                  "value": { "type": "Literal", "value": "foo" }
-                                }
-                              ],
-                              "name": {
-                                "type": "JSXMemberExpression",
-                                "object": {
-                                  "type": "JSXIdentifier",
-                                  "name": "_components"
-                                },
-                                "property": {
-                                  "type": "JSXIdentifier",
-                                  "name": "slot"
-                                }
-                              },
-                              "selfClosing": true
-                            },
-                            "closingElement": null,
-                            "children": []
-                          },
-                          {
-                            "type": "JSXElement",
-                            "openingElement": {
-                              "type": "JSXOpeningElement",
                               "attributes": [],
                               "name": {
                                 "type": "JSXMemberExpression",

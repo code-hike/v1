@@ -40,9 +40,6 @@ function _createMdxContent(props) {
               meta: "",
             },
           }),
-          _jsx(_components.slot, {
-            name: "code",
-          }),
         ],
       }),
     }),

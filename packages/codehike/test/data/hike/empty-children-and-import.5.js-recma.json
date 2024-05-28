@@ -6,11 +6,6 @@
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "imported": { "type": "Identifier", "name": "Fragment" },
-          "local": { "type": "Identifier", "name": "_Fragment" }
-        },
-        {
-          "type": "ImportSpecifier",
           "imported": { "type": "Identifier", "name": "jsx" },
           "local": { "type": "Identifier", "name": "_jsx" }
         },
@@ -21,6 +16,21 @@
         }
       ],
       "source": { "type": "Literal", "value": "react/jsx-runtime" }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "imported": { "type": "Identifier", "name": "x" },
+          "local": { "type": "Identifier", "name": "x" }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "@/components/code/code-with-notes",
+        "raw": "\"@/components/code/code-with-notes\""
+      }
     },
     {
       "type": "FunctionDeclaration",
@@ -158,7 +168,7 @@
                             "method": false,
                             "shorthand": false,
                             "computed": false,
-                            "key": { "type": "Literal", "value": "foo" },
+                            "key": { "type": "Literal", "value": "demo" },
                             "kind": "init",
                             "value": {
                               "type": "ObjectExpression",
@@ -175,8 +185,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "foo",
-                                    "raw": "\"foo\""
+                                    "value": "demo",
+                                    "raw": "\"demo\""
                                   }
                                 },
                                 {
@@ -191,8 +201,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "hey",
-                                    "raw": "\"hey\""
+                                    "value": "",
+                                    "raw": "\"\""
                                   }
                                 },
                                 {
@@ -220,8 +230,8 @@
                                         "kind": "init",
                                         "value": {
                                           "type": "Literal",
-                                          "value": "# !foo hey",
-                                          "raw": "\"# !foo hey\""
+                                          "value": "## !demo",
+                                          "raw": "\"## !demo\""
                                         }
                                       }
                                     ]
@@ -274,138 +284,6 @@
                                     "method": false,
                                     "shorthand": false,
                                     "computed": false
-                                  },
-                                  {
-                                    "type": "Property",
-                                    "key": {
-                                      "type": "Identifier",
-                                      "name": "children"
-                                    },
-                                    "value": {
-                                      "type": "CallExpression",
-                                      "callee": {
-                                        "type": "Identifier",
-                                        "name": "_jsxs"
-                                      },
-                                      "arguments": [
-                                        {
-                                          "type": "Identifier",
-                                          "name": "_Fragment"
-                                        },
-                                        {
-                                          "type": "ObjectExpression",
-                                          "properties": [
-                                            {
-                                              "type": "Property",
-                                              "key": {
-                                                "type": "Identifier",
-                                                "name": "children"
-                                              },
-                                              "value": {
-                                                "type": "ArrayExpression",
-                                                "elements": [
-                                                  {
-                                                    "type": "CallExpression",
-                                                    "callee": {
-                                                      "type": "Identifier",
-                                                      "name": "_jsx"
-                                                    },
-                                                    "arguments": [
-                                                      {
-                                                        "type": "MemberExpression",
-                                                        "object": {
-                                                          "type": "Identifier",
-                                                          "name": "_components"
-                                                        },
-                                                        "property": {
-                                                          "type": "Identifier",
-                                                          "name": "p"
-                                                        },
-                                                        "computed": false,
-                                                        "optional": false
-                                                      },
-                                                      {
-                                                        "type": "ObjectExpression",
-                                                        "properties": [
-                                                          {
-                                                            "type": "Property",
-                                                            "key": {
-                                                              "type": "Identifier",
-                                                              "name": "children"
-                                                            },
-                                                            "value": {
-                                                              "type": "Literal",
-                                                              "value": "hello"
-                                                            },
-                                                            "kind": "init",
-                                                            "method": false,
-                                                            "shorthand": false,
-                                                            "computed": false
-                                                          }
-                                                        ]
-                                                      }
-                                                    ],
-                                                    "optional": false
-                                                  },
-                                                  {
-                                                    "type": "CallExpression",
-                                                    "callee": {
-                                                      "type": "Identifier",
-                                                      "name": "_jsx"
-                                                    },
-                                                    "arguments": [
-                                                      {
-                                                        "type": "MemberExpression",
-                                                        "object": {
-                                                          "type": "Identifier",
-                                                          "name": "_components"
-                                                        },
-                                                        "property": {
-                                                          "type": "Identifier",
-                                                          "name": "p"
-                                                        },
-                                                        "computed": false,
-                                                        "optional": false
-                                                      },
-                                                      {
-                                                        "type": "ObjectExpression",
-                                                        "properties": [
-                                                          {
-                                                            "type": "Property",
-                                                            "key": {
-                                                              "type": "Identifier",
-                                                              "name": "children"
-                                                            },
-                                                            "value": {
-                                                              "type": "Literal",
-                                                              "value": "hey"
-                                                            },
-                                                            "kind": "init",
-                                                            "method": false,
-                                                            "shorthand": false,
-                                                            "computed": false
-                                                          }
-                                                        ]
-                                                      }
-                                                    ],
-                                                    "optional": false
-                                                  }
-                                                ]
-                                              },
-                                              "kind": "init",
-                                              "method": false,
-                                              "shorthand": false,
-                                              "computed": false
-                                            }
-                                          ]
-                                        }
-                                      ],
-                                      "optional": false
-                                    },
-                                    "kind": "init",
-                                    "method": false,
-                                    "shorthand": false,
-                                    "computed": false
                                   }
                                 ]
                               }
@@ -440,7 +318,7 @@
                                     },
                                     "value": {
                                       "type": "Literal",
-                                      "value": "foo"
+                                      "value": "demo"
                                     },
                                     "kind": "init",
                                     "method": false,
@@ -461,12 +339,37 @@
                                       },
                                       "arguments": [
                                         {
-                                          "type": "Identifier",
-                                          "name": "_Fragment"
+                                          "type": "MemberExpression",
+                                          "object": {
+                                            "type": "Identifier",
+                                            "name": "_components"
+                                          },
+                                          "property": {
+                                            "type": "Identifier",
+                                            "name": "p"
+                                          },
+                                          "computed": false,
+                                          "optional": false
                                         },
                                         {
                                           "type": "ObjectExpression",
-                                          "properties": []
+                                          "properties": [
+                                            {
+                                              "type": "Property",
+                                              "key": {
+                                                "type": "Identifier",
+                                                "name": "children"
+                                              },
+                                              "value": {
+                                                "type": "Literal",
+                                                "value": "Add callouts inside your code blocks."
+                                              },
+                                              "kind": "init",
+                                              "method": false,
+                                              "shorthand": false,
+                                              "computed": false
+                                            }
+                                          ]
                                         }
                                       ],
                                       "optional": false

@@ -180,7 +180,11 @@ function moveChildrenToHikePropJSX(node: any, jsxOn: boolean) {
 
       const elements = childrenByPath[path].shift()
 
-      node.value = elements[0]
+      node.value = elements[0] || {
+        type: "Identifier",
+        name: "undefined",
+      }
+
       return SKIP
     }
   })
@@ -212,7 +216,7 @@ function moveChildrenToHikeProp(node: any) {
     const props = callExpression.arguments[1]?.properties
     const path = props.find((p: any) => p.key.name === "path").value.value
 
-    let slotChildren = props.find((p: any) => p.key.name === "children").value
+    let slotChildren = props.find((p: any) => p.key.name === "children")?.value
 
     childrenByPath[path] = childrenByPath[path] || []
     childrenByPath[path].push(slotChildren)
@@ -230,7 +234,10 @@ function moveChildrenToHikeProp(node: any) {
 
       const elements = childrenByPath[path].shift()
 
-      node.value = elements
+      node.value = elements || {
+        type: "Identifier",
+        name: "undefined",
+      }
       return SKIP
     }
   })

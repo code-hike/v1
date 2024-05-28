@@ -6,6 +6,7 @@ import path from "node:path"
 import * as prettier from "prettier"
 
 const dataPath = "./test/data/hike"
+// const testNames = ["basic"]
 const testNames = await getTestNames(dataPath)
 
 const chConfig: CodeHikeConfig = {
@@ -47,6 +48,25 @@ async function testCompilation(
 ) {
   const file = { value: mdx, history: [mdxPath] }
 
+  console.log(`${name}.4.out.jsx`)
+  // intermediate result jsx true
+  await expect(
+    await compileAndFormat(file, {
+      jsx: true,
+      remarkPlugins: [[remarkCodeHike, chConfig]],
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.jsx`)
+
+  console.log(`${name}.4.out.js`)
+  // intermediate result jsx false
+  await expect(
+    await compileAndFormat(file, {
+      jsx: false,
+      remarkPlugins: [[remarkCodeHike, chConfig]],
+    }),
+  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.js`)
+
+  console.log(`${name}.7.out.jsx`)
   // all steps jsx true
   await expect(
     await compileAndFormat(file, {
@@ -65,6 +85,7 @@ async function testCompilation(
     }),
   ).toMatchFileSnapshot(`./data/hike/${name}.7.out.jsx`)
 
+  console.log(`${name}.7.out.js`)
   // recma steps jsx false
   await expect(
     await compileAndFormat(file, {
@@ -77,22 +98,6 @@ async function testCompilation(
       ],
     }),
   ).toMatchFileSnapshot(`./data/hike/${name}.7.out.js`)
-
-  // intermediate result jsx true
-  await expect(
-    await compileAndFormat(file, {
-      jsx: true,
-      remarkPlugins: [[remarkCodeHike, chConfig]],
-    }),
-  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.jsx`)
-
-  // intermediate result jsx false
-  await expect(
-    await compileAndFormat(file, {
-      jsx: false,
-      remarkPlugins: [[remarkCodeHike, chConfig]],
-    }),
-  ).toMatchFileSnapshot(`./data/hike/${name}.4.out.js`)
 }
 
 async function compileAndFormat(file, options) {
@@ -106,6 +111,7 @@ async function compileAndFormat(file, options) {
 const ignoreProperties = ["start", "end", "position", "loc", "range"]
 function logRemark({ name }: { name: string }) {
   return async function transformer(tree: any) {
+    console.log("saving", name)
     const out = await prettier.format(
       JSON.stringify(tree, (key, value) =>
         ignoreProperties.includes(key) ? undefined : value,

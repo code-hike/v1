@@ -277,49 +277,6 @@
                                         }
                                       ],
                                       "optional": false
-                                    },
-                                    {
-                                      "type": "CallExpression",
-                                      "callee": {
-                                        "type": "Identifier",
-                                        "name": "_jsx"
-                                      },
-                                      "arguments": [
-                                        {
-                                          "type": "MemberExpression",
-                                          "object": {
-                                            "type": "Identifier",
-                                            "name": "_components"
-                                          },
-                                          "property": {
-                                            "type": "Identifier",
-                                            "name": "slot"
-                                          },
-                                          "computed": false,
-                                          "optional": false
-                                        },
-                                        {
-                                          "type": "ObjectExpression",
-                                          "properties": [
-                                            {
-                                              "type": "Property",
-                                              "key": {
-                                                "type": "Identifier",
-                                                "name": "name"
-                                              },
-                                              "value": {
-                                                "type": "Literal",
-                                                "value": "code"
-                                              },
-                                              "kind": "init",
-                                              "method": false,
-                                              "shorthand": false,
-                                              "computed": false
-                                            }
-                                          ]
-                                        }
-                                      ],
-                                      "optional": false
                                     }
                                   ]
                                 },

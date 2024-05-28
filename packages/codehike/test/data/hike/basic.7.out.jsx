@@ -2,66 +2,47 @@
 import { CodeWithNotes } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { Demo } = _components
+  if (!Demo) _missingMdxReference("Demo", true)
   const _blocks = {
     children: (
       <>
-        <_components.slot name="demo" />
-        <_components.slot name="implementation" />
+        <Demo name="Demo" />
       </>
     ),
     title: "",
     _data: {
       header: "",
     },
-    demo: {
+    Demo: {
       children: (
         <_components.p>{"Add callouts inside your code blocks."}</_components.p>
       ),
       title: "",
       _data: {
-        header: "## !demo",
+        header: "## !Demo",
       },
     },
     implementation: {
-      children: (
-        <CodeWithNotes
-          {...{
-            children: (
-              <>
-                <_components.slot name="code" />
-                <_components.slot name="notes" index={0} />
-              </>
-            ),
-            title: "",
-            _data: {
-              header: "",
-            },
-            code: {
-              value: "console",
-              lang: "tsx",
-              meta: "code.tsx",
-            },
-            notes: [
-              {
-                children: <_components.p>{"y"}</_components.p>,
-                title: "x",
-                _data: {
-                  header: "## !!notes x",
-                },
-              },
-            ],
-          }}
-        ></CodeWithNotes>
-      ),
+      children: <_components.p>{"foo"}</_components.p>,
       title: "",
       _data: {
         header: "## !implementation",
       },
     },
+    notes: [
+      {
+        children: <_components.p>{"y"}</_components.p>,
+        title: "x",
+        _data: {
+          header: "## !!notes x",
+        },
+      },
+    ],
   }
   if (props._returnBlocks) {
     return _blocks
@@ -76,5 +57,14 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
+  )
+}
+function _missingMdxReference(id, component) {
+  throw new Error(
+    "Expected " +
+      (component ? "component" : "object") +
+      " `" +
+      id +
+      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

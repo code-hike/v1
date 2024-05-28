@@ -34,7 +34,6 @@ function _createMdxContent(props) {
               meta: "",
             }}
           />
-          <_components.slot name="code" />
         </>
       </_components.slot>
     </_components.slot>

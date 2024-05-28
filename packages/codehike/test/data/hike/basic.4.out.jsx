@@ -2,10 +2,12 @@
 import { CodeWithNotes } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
-    p: "p",
-    slot: "slot",
-    ...props.components,
-  }
+      p: "p",
+      slot: "slot",
+      ...props.components,
+    },
+    { Demo } = _components
+  if (!Demo) _missingMdxReference("Demo", true)
   return (
     <_components.slot
       __hike={{
@@ -14,11 +16,11 @@ function _createMdxContent(props) {
         _data: {
           header: "",
         },
-        demo: {
-          children: "demo",
+        Demo: {
+          children: "Demo",
           title: "",
           _data: {
-            header: "## !demo",
+            header: "## !Demo",
           },
         },
         implementation: {
@@ -28,51 +30,30 @@ function _createMdxContent(props) {
             header: "## !implementation",
           },
         },
+        notes: [
+          {
+            children: "notes",
+            title: "x",
+            _data: {
+              header: "## !!notes x",
+            },
+          },
+        ],
       }}
     >
       <_components.slot path="">
         <>
-          <_components.slot name="demo" />
-          <_components.slot name="implementation" />
+          <Demo name="Demo" />
         </>
       </_components.slot>
-      <_components.slot path="demo">
+      <_components.slot path="Demo">
         <_components.p>{"Add callouts inside your code blocks."}</_components.p>
       </_components.slot>
       <_components.slot path="implementation">
-        <CodeWithNotes
-          __hike={{
-            children: "",
-            title: "",
-            _data: {
-              header: "",
-            },
-            code: {
-              value: "console",
-              lang: "tsx",
-              meta: "code.tsx",
-            },
-            notes: [
-              {
-                children: "notes",
-                title: "x",
-                _data: {
-                  header: "## !!notes x",
-                },
-              },
-            ],
-          }}
-        >
-          <_components.slot path="">
-            <>
-              <_components.slot name="code" />
-              <_components.slot name="notes" index={0} />
-            </>
-          </_components.slot>
-          <_components.slot path="notes">
-            <_components.p>{"y"}</_components.p>
-          </_components.slot>
-        </CodeWithNotes>
+        <_components.p>{"foo"}</_components.p>
+      </_components.slot>
+      <_components.slot path="notes">
+        <_components.p>{"y"}</_components.p>
       </_components.slot>
     </_components.slot>
   )
@@ -85,5 +66,14 @@ export default function MDXContent(props = {}) {
     </MDXLayout>
   ) : (
     _createMdxContent(props)
+  )
+}
+function _missingMdxReference(id, component) {
+  throw new Error(
+    "Expected " +
+      (component ? "component" : "object") +
+      " `" +
+      id +
+      "` to be defined: you likely forgot to import, pass, or provide it.",
   )
 }

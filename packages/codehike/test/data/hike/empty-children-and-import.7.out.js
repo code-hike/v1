@@ -1,8 +1,5 @@
-import {
-  Fragment as _Fragment,
-  jsx as _jsx,
-  jsxs as _jsxs,
-} from "react/jsx-runtime"
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime"
+import { x } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
     p: "p",
@@ -10,25 +7,18 @@ function _createMdxContent(props) {
     ...props.components,
   }
   const _blocks = {
-    children: _jsxs(_Fragment, {
-      children: [
-        _jsx(_components.p, {
-          children: "hello",
-        }),
-        _jsx(_components.p, {
-          children: "hey",
-        }),
-      ],
-    }),
+    children: undefined,
     title: "",
     _data: {
       header: "",
     },
-    foo: {
-      children: _jsx(_Fragment, {}),
-      title: "hey",
+    demo: {
+      children: _jsx(_components.p, {
+        children: "Add callouts inside your code blocks.",
+      }),
+      title: "",
       _data: {
-        header: "# !foo hey",
+        header: "## !demo",
       },
     },
   }

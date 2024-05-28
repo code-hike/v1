@@ -77,7 +77,7 @@
                           "method": false,
                           "shorthand": false,
                           "computed": false,
-                          "key": { "type": "Literal", "value": "foo" },
+                          "key": { "type": "Literal", "value": "demo" },
                           "kind": "init",
                           "value": {
                             "type": "ObjectExpression",
@@ -94,8 +94,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "foo",
-                                  "raw": "\"foo\""
+                                  "value": "demo",
+                                  "raw": "\"demo\""
                                 }
                               },
                               {
@@ -107,8 +107,8 @@
                                 "kind": "init",
                                 "value": {
                                   "type": "Literal",
-                                  "value": "hey",
-                                  "raw": "\"hey\""
+                                  "value": "",
+                                  "raw": "\"\""
                                 }
                               },
                               {
@@ -133,8 +133,8 @@
                                       "kind": "init",
                                       "value": {
                                         "type": "Literal",
-                                        "value": "# !foo hey",
-                                        "raw": "\"# !foo hey\""
+                                        "value": "## !demo",
+                                        "raw": "\"## !demo\""
                                       }
                                     }
                                   ]
@@ -163,23 +163,32 @@
           ],
           "children": [
             {
-              "type": "mdxJsxFlowElement",
-              "name": null,
-              "attributes": [],
-              "children": [
-                {
-                  "type": "element",
-                  "tagName": "p",
-                  "properties": {},
-                  "children": [{ "type": "text", "value": "hello" }]
-                },
-                {
-                  "type": "element",
-                  "tagName": "p",
-                  "properties": {},
-                  "children": [{ "type": "text", "value": "hey" }]
+              "type": "mdxjsEsm",
+              "value": "import { x } from \"@/components/code/code-with-notes\"",
+              "data": {
+                "estree": {
+                  "type": "Program",
+                  "body": [
+                    {
+                      "type": "ImportDeclaration",
+                      "specifiers": [
+                        {
+                          "type": "ImportSpecifier",
+                          "imported": { "type": "Identifier", "name": "x" },
+                          "local": { "type": "Identifier", "name": "x" }
+                        }
+                      ],
+                      "source": {
+                        "type": "Literal",
+                        "value": "@/components/code/code-with-notes",
+                        "raw": "\"@/components/code/code-with-notes\""
+                      }
+                    }
+                  ],
+                  "sourceType": "module",
+                  "comments": []
                 }
-              ]
+              }
             }
           ]
         },
@@ -187,14 +196,17 @@
           "type": "mdxJsxFlowElement",
           "name": "slot",
           "attributes": [
-            { "type": "mdxJsxAttribute", "name": "path", "value": "foo" }
+            { "type": "mdxJsxAttribute", "name": "path", "value": "demo" }
           ],
           "children": [
             {
-              "type": "mdxJsxFlowElement",
-              "name": null,
-              "attributes": [],
-              "children": []
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Add callouts inside your code blocks."
+                }
+              ]
             }
           ]
         }

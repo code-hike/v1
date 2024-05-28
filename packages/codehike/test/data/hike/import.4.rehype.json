@@ -233,18 +233,6 @@
                     }
                   ],
                   "children": []
-                },
-                {
-                  "type": "mdxJsxFlowElement",
-                  "name": "slot",
-                  "attributes": [
-                    {
-                      "type": "mdxJsxAttribute",
-                      "name": "name",
-                      "value": "code"
-                    }
-                  ],
-                  "children": []
                 }
               ]
             }
