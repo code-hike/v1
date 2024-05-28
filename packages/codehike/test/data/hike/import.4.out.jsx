@@ -17,7 +17,7 @@ function _createMdxContent(props) {
         },
         code: {
           value:
-            "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
+            "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
           lang: "py",
           meta: "",
         },
@@ -29,7 +29,7 @@ function _createMdxContent(props) {
           <MyCode
             codeblock={{
               value:
-                "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
+                "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
               lang: "py",
               meta: "",
             }}

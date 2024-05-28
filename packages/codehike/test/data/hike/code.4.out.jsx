@@ -12,7 +12,7 @@ function _createMdxContent(props) {
       <_components.p>{"Hello world!"}</_components.p>
       <MyCode
         codeblock={{
-          value: 'console.log("hello world")\r\nconsole.log("bye world")',
+          value: 'console.log("hello world")\nconsole.log("bye world")',
           lang: "js",
           meta: "my meta",
         }}

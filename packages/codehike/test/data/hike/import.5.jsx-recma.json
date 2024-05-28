@@ -189,8 +189,8 @@
                                   "kind": "init",
                                   "value": {
                                     "type": "Literal",
-                                    "value": "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
-                                    "raw": "\"import random\\r\\n\\r\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\r\\nprint(random.choice(my_list))\""
+                                    "value": "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
+                                    "raw": "\"import random\\n\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\nprint(random.choice(my_list))\""
                                   }
                                 },
                                 {
@@ -351,8 +351,8 @@
                                         "kind": "init",
                                         "value": {
                                           "type": "Literal",
-                                          "value": "import random\r\n\r\nmy_list = [1, 'a', 32, 'c', 'd', 31]\r\nprint(random.choice(my_list))",
-                                          "raw": "\"import random\\r\\n\\r\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\r\\nprint(random.choice(my_list))\""
+                                          "value": "import random\n\nmy_list = [1, 'a', 32, 'c', 'd', 31]\nprint(random.choice(my_list))",
+                                          "raw": "\"import random\\n\\nmy_list = [1, 'a', 32, 'c', 'd', 31]\\nprint(random.choice(my_list))\""
                                         }
                                       },
                                       {

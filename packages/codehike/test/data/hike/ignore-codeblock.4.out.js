@@ -22,7 +22,7 @@ function _createMdxContent(props) {
         children: _jsx(_components.code, {
           className: "language-mermaid",
           children:
-            "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;\n",
+            "graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;\n",
         }),
       }),
       "\n",

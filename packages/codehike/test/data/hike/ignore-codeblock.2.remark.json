@@ -6,7 +6,7 @@
       "type": "code",
       "lang": "mermaid",
       "meta": "foo",
-      "value": "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;"
+      "value": "graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;"
     },
     {
       "type": "code",

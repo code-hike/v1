@@ -23,7 +23,7 @@ function _createMdxContent(props) {
       "\n",
       _jsx(MyCode, {
         codeblock: {
-          value: "// !Foo\r\nconsole.log(1)",
+          value: "// !Foo\nconsole.log(1)",
           lang: "js",
           meta: "",
         },

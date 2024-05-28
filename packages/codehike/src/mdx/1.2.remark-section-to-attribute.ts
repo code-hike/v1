@@ -76,12 +76,14 @@ function getSectionContainers(section: HikeSection, path: string) {
 }
 
 function sectionContainer(section: HikeSection, path: string): JSXChild {
-  const elements = section.children.map((child) => {
-    if (child.type === "content") {
-      return child.value
-    }
-    return placeholder(child.name, child.index)
-  })
+  const elements = section.children
+    .map((child) => {
+      if (child.type === "content") {
+        return child.value
+      }
+      return placeholder(child.name, child.index)!
+    })
+    .filter((x) => !!x)
 
   const child: JSXChild =
     elements.length == 1
@@ -109,6 +111,12 @@ function sectionContainer(section: HikeSection, path: string): JSXChild {
 }
 
 function placeholder(name: string, index?: number) {
+  const startsWithLowercase =
+    name && name.charAt(0) === name.charAt(0).toLowerCase()
+  // if (startsWithLowercase) {
+  //   return null
+  // }
+
   const attributes: MdxJsxFlowElement["attributes"] = [
     {
       type: "mdxJsxAttribute",
