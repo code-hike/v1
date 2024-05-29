@@ -76,14 +76,31 @@ function getSectionContainers(section: HikeSection, path: string) {
 }
 
 function sectionContainer(section: HikeSection, path: string): JSXChild {
+  return {
+    type: "mdxJsxFlowElement",
+    name: "slot",
+    attributes: [
+      {
+        type: "mdxJsxAttribute",
+        name: "path",
+        value: path,
+      },
+    ],
+    children: sectionChildren(section),
+  }
+}
+
+function sectionChildren(section: HikeSection) {
   const elements = section.children
     .map((child) => {
       if (child.type === "content") {
         return child.value
       }
-      return placeholder(child.name, child.index)!
+      if (child.type === "section") {
+        return placeholder(child)
+      }
     })
-    .filter((x) => !!x)
+    .filter((x) => !!x) as JSXChild[]
 
   const child: JSXChild =
     elements.length == 1
@@ -96,21 +113,11 @@ function sectionContainer(section: HikeSection, path: string): JSXChild {
           children: elements,
         }
 
-  return {
-    type: "mdxJsxFlowElement",
-    name: "slot",
-    attributes: [
-      {
-        type: "mdxJsxAttribute",
-        name: "path",
-        value: path,
-      },
-    ],
-    children: child ? [child] : [],
-  }
+  return child ? [child] : []
 }
 
-function placeholder(name: string, index?: number) {
+function placeholder(node: HikeSection) {
+  const { name, index } = node
   const startsWithLowercase =
     name && name.charAt(0) === name.charAt(0).toLowerCase()
   if (startsWithLowercase) {
@@ -120,8 +127,8 @@ function placeholder(name: string, index?: number) {
   const attributes: MdxJsxFlowElement["attributes"] = [
     {
       type: "mdxJsxAttribute",
-      name: "name",
-      value: name,
+      name: "title",
+      value: node.title,
     },
   ]
   if (index != null) {
@@ -155,6 +162,6 @@ function placeholder(name: string, index?: number) {
     type: "mdxJsxFlowElement",
     name: name,
     attributes,
-    children: [],
+    children: sectionChildren(node),
   } as JSXChild
 }

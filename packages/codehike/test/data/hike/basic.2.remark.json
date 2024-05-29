@@ -1,56 +1,42 @@
 {
   "type": "root",
   "children": [
+    { "type": "paragraph", "children": [{ "type": "text", "value": "hey" }] },
     {
-      "type": "mdxjsEsm",
-      "value": "import { CodeWithNotes } from \"@/components/code/code-with-notes\"",
-      "data": {
-        "estree": {
-          "type": "Program",
-          "body": [
-            {
-              "type": "ImportDeclaration",
-              "specifiers": [
-                {
-                  "type": "ImportSpecifier",
-                  "imported": { "type": "Identifier", "name": "CodeWithNotes" },
-                  "local": { "type": "Identifier", "name": "CodeWithNotes" }
-                }
-              ],
-              "source": {
-                "type": "Literal",
-                "value": "@/components/code/code-with-notes",
-                "raw": "\"@/components/code/code-with-notes\""
-              }
-            }
-          ],
-          "sourceType": "module",
-          "comments": []
-        }
-      }
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "!Foo y" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "one" }] },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [{ "type": "text", "value": "!!Step x" }]
+    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "one" }] },
+    {
+      "type": "code",
+      "lang": "js",
+      "meta": "!code foo",
+      "value": "console.log(\"foo\")"
     },
     {
       "type": "heading",
       "depth": 2,
-      "children": [{ "type": "text", "value": "!Demo" }]
+      "children": [{ "type": "text", "value": "!!Step 4" }]
     },
-    {
-      "type": "paragraph",
-      "children": [
-        { "type": "text", "value": "Add callouts inside your code blocks." }
-      ]
-    },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "oned" }] },
     {
       "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!implementation" }]
+      "depth": 3,
+      "children": [{ "type": "text", "value": "!!Substep x3" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "foo" }] },
+    { "type": "paragraph", "children": [{ "type": "text", "value": "ff" }] },
     {
       "type": "heading",
-      "depth": 2,
-      "children": [{ "type": "text", "value": "!!notes x" }]
+      "depth": 3,
+      "children": [{ "type": "text", "value": "!bar" }]
     },
-    { "type": "paragraph", "children": [{ "type": "text", "value": "y" }] }
+    { "type": "paragraph", "children": [{ "type": "text", "value": "two" }] }
   ]
 }

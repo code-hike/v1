@@ -256,7 +256,7 @@
                                               },
                                               "value": {
                                                 "type": "Literal",
-                                                "value": "graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;\n"
+                                                "value": "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;\n"
                                               },
                                               "kind": "init",
                                               "method": false,

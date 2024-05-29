@@ -14,7 +14,9 @@ function _createMdxContent(props) {
       {"\n"}
       <_components.pre>
         <_components.code className="language-mermaid">
-          {"graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;\n"}
+          {
+            "graph TD;\r\n    A-->B;\r\n    A-->C;\r\n    B-->D;\r\n    C-->D;\n"
+          }
         </_components.code>
       </_components.pre>
       {"\n"}

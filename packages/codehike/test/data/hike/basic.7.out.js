@@ -3,51 +3,121 @@ import {
   jsx as _jsx,
   jsxs as _jsxs,
 } from "react/jsx-runtime"
-import { CodeWithNotes } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
       p: "p",
       slot: "slot",
       ...props.components,
     },
-    { Demo } = _components
-  if (!Demo) _missingMdxReference("Demo", true)
+    { Foo, Step, Substep } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
+  if (!Step) _missingMdxReference("Step", true)
+  if (!Substep) _missingMdxReference("Substep", true)
   const _blocks = {
-    children: _jsx(_Fragment, {
-      children: _jsx(Demo, {
-        name: "Demo",
-      }),
+    children: _jsxs(_Fragment, {
+      children: [
+        _jsx(_components.p, {
+          children: "hey",
+        }),
+        _jsx(Foo, {
+          title: "y",
+          children: _jsx(_components.p, {
+            children: "one",
+          }),
+        }),
+        _jsx(Step, {
+          title: "x",
+          index: 0,
+          children: _jsx(_components.p, {
+            children: "one",
+          }),
+        }),
+        _jsx(Step, {
+          title: "4",
+          index: 1,
+          children: _jsxs(_Fragment, {
+            children: [
+              _jsx(_components.p, {
+                children: "oned",
+              }),
+              _jsx(Substep, {
+                title: "x3",
+                index: 0,
+                children: _jsx(_components.p, {
+                  children: "ff",
+                }),
+              }),
+            ],
+          }),
+        }),
+      ],
     }),
     title: "",
     _data: {
       header: "",
     },
-    Demo: {
+    Foo: {
       children: _jsx(_components.p, {
-        children: "Add callouts inside your code blocks.",
+        children: "one",
       }),
-      title: "",
+      title: "y",
       _data: {
-        header: "## !Demo",
+        header: "## !Foo y",
       },
     },
-    implementation: {
-      children: _jsx(_components.p, {
-        children: "foo",
-      }),
-      title: "",
-      _data: {
-        header: "## !implementation",
-      },
-    },
-    notes: [
+    Step: [
       {
         children: _jsx(_components.p, {
-          children: "y",
+          children: "one",
         }),
         title: "x",
         _data: {
-          header: "## !!notes x",
+          header: "## !!Step x",
+        },
+        code: {
+          value: 'console.log("foo")',
+          lang: "js",
+          meta: "foo",
+        },
+      },
+      {
+        children: _jsxs(_Fragment, {
+          children: [
+            _jsx(_components.p, {
+              children: "oned",
+            }),
+            _jsx(Substep, {
+              title: "x3",
+              index: 0,
+              children: _jsx(_components.p, {
+                children: "ff",
+              }),
+            }),
+          ],
+        }),
+        title: "4",
+        _data: {
+          header: "## !!Step 4",
+        },
+        Substep: [
+          {
+            children: _jsx(_components.p, {
+              children: "ff",
+            }),
+            title: "x3",
+            _data: {
+              header: "### !!Substep x3",
+            },
+          },
+        ],
+        bar: {
+          children: _jsx(_components.p, {
+            children: "two",
+          }),
+          title: "",
+          _data: {
+            header: "### !bar",
+          },
         },
       },
     ],

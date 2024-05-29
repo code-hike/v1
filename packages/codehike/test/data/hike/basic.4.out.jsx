@@ -1,13 +1,14 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import { CodeWithNotes } from "@/components/code/code-with-notes"
 function _createMdxContent(props) {
   const _components = {
       p: "p",
       slot: "slot",
       ...props.components,
     },
-    { Demo } = _components
-  if (!Demo) _missingMdxReference("Demo", true)
+    { Foo, Step, Substep } = _components
+  if (!Foo) _missingMdxReference("Foo", true)
+  if (!Step) _missingMdxReference("Step", true)
+  if (!Substep) _missingMdxReference("Substep", true)
   return (
     <_components.slot
       __hike={{
@@ -16,26 +17,47 @@ function _createMdxContent(props) {
         _data: {
           header: "",
         },
-        Demo: {
-          children: "Demo",
-          title: "",
+        Foo: {
+          children: "Foo",
+          title: "y",
           _data: {
-            header: "## !Demo",
+            header: "## !Foo y",
           },
         },
-        implementation: {
-          children: "implementation",
-          title: "",
-          _data: {
-            header: "## !implementation",
-          },
-        },
-        notes: [
+        Step: [
           {
-            children: "notes",
+            children: "Step",
             title: "x",
             _data: {
-              header: "## !!notes x",
+              header: "## !!Step x",
+            },
+            code: {
+              value: 'console.log("foo")',
+              lang: "js",
+              meta: "foo",
+            },
+          },
+          {
+            children: "Step",
+            title: "4",
+            _data: {
+              header: "## !!Step 4",
+            },
+            Substep: [
+              {
+                children: "Step.Substep",
+                title: "x3",
+                _data: {
+                  header: "### !!Substep x3",
+                },
+              },
+            ],
+            bar: {
+              children: "Step.bar",
+              title: "",
+              _data: {
+                header: "### !bar",
+              },
             },
           },
         ],
@@ -43,17 +65,42 @@ function _createMdxContent(props) {
     >
       <_components.slot path="">
         <>
-          <Demo name="Demo" />
+          <_components.p>{"hey"}</_components.p>
+          <Foo title="y">
+            <_components.p>{"one"}</_components.p>
+          </Foo>
+          <Step title="x" index={0}>
+            <_components.p>{"one"}</_components.p>
+          </Step>
+          <Step title="4" index={1}>
+            <>
+              <_components.p>{"oned"}</_components.p>
+              <Substep title="x3" index={0}>
+                <_components.p>{"ff"}</_components.p>
+              </Substep>
+            </>
+          </Step>
         </>
       </_components.slot>
-      <_components.slot path="Demo">
-        <_components.p>{"Add callouts inside your code blocks."}</_components.p>
+      <_components.slot path="Foo">
+        <_components.p>{"one"}</_components.p>
       </_components.slot>
-      <_components.slot path="implementation">
-        <_components.p>{"foo"}</_components.p>
+      <_components.slot path="Step">
+        <_components.p>{"one"}</_components.p>
       </_components.slot>
-      <_components.slot path="notes">
-        <_components.p>{"y"}</_components.p>
+      <_components.slot path="Step">
+        <>
+          <_components.p>{"oned"}</_components.p>
+          <Substep title="x3" index={0}>
+            <_components.p>{"ff"}</_components.p>
+          </Substep>
+        </>
+      </_components.slot>
+      <_components.slot path="Step.Substep">
+        <_components.p>{"ff"}</_components.p>
+      </_components.slot>
+      <_components.slot path="Step.bar">
+        <_components.p>{"two"}</_components.p>
       </_components.slot>
     </_components.slot>
   )
