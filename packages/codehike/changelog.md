@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.17
+
+### Patch Changes
+
+- Add component blocks
+
 ## 1.0.0-alpha.16
 
 ### Patch Changes
