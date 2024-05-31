@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.18
+
+### Patch Changes
+
+- 09f9094: Add static fallback
+
 ## 1.0.0-alpha.17
 
 ### Patch Changes
