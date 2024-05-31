@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { ObservedDiv, Scroller } from "./scroller.js"
+import { ObservedDiv, Scroller } from "./utils/scroller.js"
 
 const StepsContext = React.createContext<{
   selectedIndex: number
@@ -73,3 +73,9 @@ export function useStepIndex() {
   const { selectedIndex, selectIndex } = React.useContext(StepsContext)
   return [selectedIndex, selectIndex] as const
 }
+
+export {
+  StaticFallback,
+  StaticToggle,
+  useStaticToggle,
+} from "./utils/static-fallback.js"
