@@ -16,24 +16,24 @@
     "amount": 2710
   },
   {
+    "name": "speakeasy-api",
+    "amount": 2423
+  },
+  {
     "name": "fmvilas",
     "amount": 2277
   },
   {
-    "name": "speakeasy-api",
-    "amount": 1787
-  },
-  {
     "name": "drivly",
-    "amount": 1292
+    "amount": 1490
   },
   {
     "name": "kickstartDS",
-    "amount": 754
+    "amount": 812
   },
   {
     "name": "brianespinosa",
-    "amount": 709
+    "amount": 767
   },
   {
     "name": "winkerVSbecks",
@@ -41,7 +41,7 @@
   },
   {
     "name": "scvnc",
-    "amount": 412
+    "amount": 421
   },
   {
     "name": "Naturalclar",
@@ -56,16 +56,28 @@
     "amount": 288
   },
   {
+    "name": "molebox",
+    "amount": 279
+  },
+  {
     "name": "nberger",
     "amount": 279
+  },
+  {
+    "name": "nathanclevenger",
+    "amount": 277
   },
   {
     "name": "arosenkranz",
     "amount": 262
   },
   {
-    "name": "molebox",
+    "name": "traviscooper",
     "amount": 261
+  },
+  {
+    "name": "obgibson",
+    "amount": 252
   },
   {
     "name": "matthiaszepper",
@@ -76,23 +88,11 @@
     "amount": 243
   },
   {
-    "name": "traviscooper",
-    "amount": 243
-  },
-  {
-    "name": "nathanclevenger",
-    "amount": 239
-  },
-  {
-    "name": "obgibson",
+    "name": "glenngillen",
     "amount": 234
   },
   {
     "name": "davo",
-    "amount": 225
-  },
-  {
-    "name": "glenngillen",
     "amount": 225
   },
   {
@@ -104,8 +104,16 @@
     "amount": 207
   },
   {
+    "name": "kiliman",
+    "amount": 201
+  },
+  {
     "name": "discordjs",
     "amount": 200
+  },
+  {
+    "name": "codeSTACKr",
+    "amount": 198
   },
   {
     "name": "mrboen94",
@@ -118,14 +126,6 @@
   {
     "name": "ouiliame",
     "amount": 189
-  },
-  {
-    "name": "kiliman",
-    "amount": 183
-  },
-  {
-    "name": "codeSTACKr",
-    "amount": 180
   },
   {
     "name": "josepot",
@@ -236,6 +236,10 @@
     "amount": 67
   },
   {
+    "name": "yacinelakel",
+    "amount": 64
+  },
+  {
     "name": "cdalsoniii",
     "amount": 63
   },
@@ -304,12 +308,12 @@
     "amount": 32
   },
   {
-    "name": "swyxio",
-    "amount": 30
+    "name": "ianaya89",
+    "amount": 31
   },
   {
-    "name": "ianaya89",
-    "amount": 29
+    "name": "swyxio",
+    "amount": 30
   },
   {
     "name": "akhilkurnool",
@@ -337,10 +341,6 @@
   },
   {
     "name": "vprtwn",
-    "amount": 26
-  },
-  {
-    "name": "yacinelakel",
     "amount": 26
   },
   {
