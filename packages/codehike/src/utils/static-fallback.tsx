@@ -2,7 +2,10 @@
 
 // server-side-media-queries-for-react
 // from: https://github.com/pomber/server-side-media-queries-for-react
-import React from "react"
+import React, { useEffect, useLayoutEffect } from "react"
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect
 
 let suffixCounter = 0
 const PREFERS_STATIC_KEY = "ch-prefers-static"
@@ -45,7 +48,7 @@ export function useStaticToggle() {
 
   const [firstRender, setFirstRender] = React.useState(true)
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (forceStatic) {
       setFirstRender(false)
     }

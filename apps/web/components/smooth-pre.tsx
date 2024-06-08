@@ -1,20 +1,3 @@
----
-title: Token Transitions
-description: Collapse annotation example
-layout: PreviewAndImplementation
----
-
-## !demo
-
-Animate the transition between code blocks at a token level.
-
-<Demo name="token-transitions" />
-
-## !implementation
-
-Create a `SmoothPre` component, that wraps the `Pre` component and animates the transition between code blocks:
-
-```tsx smooth-pre.tsx
 "use client"
 
 import React from "react"
@@ -79,22 +62,3 @@ const inlineBlockToken: AnnotationHandler = {
     <InnerToken merge={props} style={{ display: "inline-block" }} />
   ),
 }
-```
-
-Use it as a drop-in replacement for the `Pre` component:
-
-```tsx page.tsx
-import { SmoothPre } from "./smooth-pre"
-
-async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-  return <SmoothPre code={highlighted} className="..." handlers=[...] />
-}
-```
-
-When the `codeblock` changes, the `SmoothPre` component will animate the transition between the old and new code blocks.
-
-## See it in action
-
-- [Scrollycoding layout example](/docs/layouts/scrollycoding)
-- [Spotlight layout example](/docs/layouts/spotlight)

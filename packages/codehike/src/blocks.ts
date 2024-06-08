@@ -49,6 +49,12 @@ export function parseProps<Output, Def extends ZodTypeDef, Input>(
   content: unknown,
   Schema: z.ZodType<Output, Def, Input>,
 ): Output {
+  if ((content as any)?.__hike) {
+    throw new Error(
+      "Code Hike Error: can't parse component content. Looks like you are missing CodeHike's recma plugin or the framework you are using doesn't support it.",
+    )
+  }
+
   const result = Schema.safeParse(content)
   if (result.success) {
     return result.data

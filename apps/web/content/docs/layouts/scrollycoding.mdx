@@ -18,7 +18,7 @@ import { Selection, Selectable, SelectionProvider } from "codehike/utils"
 import Content from "./content.md"
 // !link[/token-transitions/] /docs/code/token-transitions
 // From token-transitions example
-import { tokenTransitions } from "@/components/annotations/token-transitions"
+import { SmoothPre } from "@/components/smooth-pre"
 // !fold[/className="(.*?)"/gm]
 
 const Schema = Block.extend({
@@ -57,13 +57,7 @@ export default function Page() {
 
 async function Code({ codeblock }) {
   const highlighted = await highlight(codeblock, "github-dark")
-  return (
-    <Pre
-      code={highlighted}
-      className="min-h-[40rem]"
-      handlers={[tokenTransitions]}
-    />
-  )
+  return <SmoothPre code={highlighted} className="min-h-[40rem]" />
 }
 ```
 

@@ -1,35 +1,71 @@
-import { diffList } from "./array-diff"
+import { diffArrays } from "diff"
 
-export type SnapshotElement = {
+type SnapshotElement = {
   x: number
   y: number
   color: string
   content: string | null
 }
 
+export type TokenTransitionsSnapshot = SnapshotElement[]
+
+export type TokenTransition = {
+  element: HTMLElement
+  keyframes: {
+    translateX?: [number, number]
+    translateY?: [number, number]
+    color?: [string, string]
+    opacity?: [number, number]
+  }
+  options: {
+    delay: number
+    duration: number
+    easing: string
+    fill: "backwards" | "both"
+  }
+}
+
+const config = {
+  moveDuration: 0.28,
+  addDuration: 0.22,
+}
+// max possible duration of the full transition is 1:
+// 0.28 * 2 + 0.22 * 2 = 1 (because of `fullStaggerDuration`)
+
+type Options = {
+  selector?: string
+}
+
+export function getStartingSnapshot(
+  parent: HTMLElement,
+  options?: Options,
+): TokenTransitionsSnapshot {
+  const elements = getFlipableElements(parent, options?.selector)
+  return elements.map(toSnapshotElement)
+}
+
+export function calculateTransitions(
+  parent: HTMLElement,
+  firstSnapshot: TokenTransitionsSnapshot,
+  options?: Options,
+) {
+  const elements = getFlipableElements(parent, options?.selector)
+  const flips = getFlips(elements, firstSnapshot)
+  return flipsToTransitions(flips)
+}
+
 type Flip = {
-  element: Element
+  element: HTMLElement
   first: SnapshotElement | null
   last: SnapshotElement
 }
 
-export function getFirstSnapshot(parent: HTMLElement): SnapshotElement[] {
-  const elements = getFlipableElements(parent)
-  return elements.map(toSnapshotElement)
-}
-
-export function animateChange(
-  parent: HTMLElement,
-  firstSnapshot: SnapshotElement[],
-) {
-  // TODO stop prev animations
-
-  const flips = getFlips(parent, firstSnapshot)
-
+function flipsToTransitions(flips: Flip[]) {
   const { added, moved } = groupFlips(flips)
   const removeDuration = 0
   const moveDuration = fullStaggerDuration(moved.length, config.moveDuration)
-  const addDuration = fullStaggerDuration(added.length, config.addDuration)
+
+  const transitions = [] as TokenTransition[]
 
   moved.forEach((group, groupIndex) => {
     group.forEach((flip) => {
@@ -43,56 +79,66 @@ export function animateChange(
           config.moveDuration,
         )
 
-      animateMove(element, first!, last, delay)
+      transitions.push(toMoveTransition(element, first!, last, delay))
     })
   })
 
-  added.forEach((group, groupIndex) => {
-    group.forEach((flip) => {
-      const { first, last, element } = flip
-      const delay =
-        removeDuration +
-        moveDuration +
-        staggerDelay(groupIndex, added.length, addDuration, config.addDuration)
+  const addedFlips = added.flat()
+  const addDuration = fullStaggerDuration(addedFlips.length, config.addDuration)
+  addedFlips.forEach((flip, index) => {
+    const { first, last, element } = flip
+    const delay =
+      removeDuration +
+      moveDuration +
+      staggerDelay(index, addedFlips.length, addDuration, config.addDuration)
 
-      animateAdd(element, last, delay)
-    })
+    transitions.push(toAddTransition(element, last, delay))
   })
+
+  return transitions
 }
 
-function animateMove(
-  element: Element,
+function toMoveTransition(
+  element: HTMLElement,
   first: SnapshotElement,
   last: SnapshotElement,
   delay: number,
-) {
+): TokenTransition {
   const dx = first.x - last.x
   const dy = first.y - last.y
-  element.animate(
-    {
+
+  return {
+    element,
+    keyframes: {
       // opacity: [first.opacity, last.opacity],
-      transform: [`translate(${dx}px, ${dy}px)`, "translate(0, 0)"],
+      translateX: [dx, 0],
+      translateY: [dy, 0],
       color: [first.color, last.color],
     },
-    {
+    options: {
       duration: config.moveDuration,
       easing: "ease-in-out",
       fill: "backwards",
       delay,
     },
-  )
+  }
 }
 
-function animateAdd(element: Element, last: SnapshotElement, delay: number) {
-  element.animate(
-    { opacity: [0, 1] },
-    {
+function toAddTransition(
+  element: HTMLElement,
+  last: SnapshotElement,
+  delay: number,
+): TokenTransition {
+  return {
+    element,
+    keyframes: { opacity: [0, 1] },
+    options: {
       duration: config.addDuration,
       fill: "both",
       easing: "ease-out",
       delay,
     },
-  )
+  }
 }
 
 // ---
@@ -141,16 +187,11 @@ function groupFlips(flips: Flip[]): {
 }
 
 // ---
-const config = {
-  removeDuration: 100,
-  moveDuration: 250,
-  addDuration: 200,
-}
 
 function fullStaggerDuration(count: number, singleDuration: number) {
   if (count === 0) return 0
   return 2 * singleDuration * (1 - 1 / (1 + count))
-  // return 1.5 * singleDuration - 1 / (1 + count)
+  // max possible duration is 2 * singleDuration
 }
 function staggerDelay(
   i: number,
@@ -165,10 +206,10 @@ function staggerDelay(
 
 // ---
 
-function getFlips(parent: HTMLElement, firstSnapshot: SnapshotElement[]) {
-  const elements = getFlipableElements(parent)
-  // TODO stop prev animations
-
+export function getFlips(
+  elements: HTMLElement[],
+  firstSnapshot: SnapshotElement[],
+) {
   const flips = elements.map((element) => ({
     element,
     first: null as SnapshotElement | null,
@@ -183,10 +224,11 @@ function getFlips(parent: HTMLElement, firstSnapshot: SnapshotElement[]) {
   return flips
 }
 
-function getFlipableElements(parent: HTMLElement): HTMLElement[] {
-  // TODO check browser support (Firefox missing?)
-  // return Array.from(parent.querySelectorAll(":not(:has(*))"))
-  return Array.from(parent.querySelectorAll("span"))
+function getFlipableElements(
+  parent: HTMLElement,
+  selector: string = ":not(:has(*))",
+): HTMLElement[] {
+  return Array.from(parent.querySelectorAll(selector))
 }
 
 function toSnapshotElement(el: HTMLElement): SnapshotElement {
@@ -204,4 +246,29 @@ function toSnapshotElement(el: HTMLElement): SnapshotElement {
   const content = el.textContent
 
   return { x, y, color, content }
+}
+
+// Returns a list of [a, b], where a is the index of the item in the first array
+// and b is the index of the item in the second array.
+// only returns indices of items that are in both arrays.
+export function diffList<T>(a: T[], b: T[]): [number, number][] {
+  const result = diffArrays(a, b)
+  const list: [number, number][] = []
+
+  let ai = 0
+  let bi = 0
+
+  result.forEach(({ count, added, removed }) => {
+    if (added) {
+      bi += count!
+    } else if (removed) {
+      ai += count!
+    } else {
+      for (let i = 0; i < count!; i++) {
+        list.push([ai++, bi++])
+      }
+    }
+  })
+
+  return list
 }

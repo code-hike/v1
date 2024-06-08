@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useEffect, useLayoutEffect } from "react"
 
 const ObserverContext = React.createContext<IntersectionObserver | undefined>(
   undefined,
 )
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect
 
 export function Scroller({
   onIndexChange,
@@ -15,7 +17,7 @@ export function Scroller({
 }) {
   const [observer, setObserver] = React.useState<IntersectionObserver>()
   const vh = useWindowHeight()
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const windowHeight = vh || 0
     const handleIntersect: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
@@ -60,7 +62,7 @@ export function ObservedDiv({
   const ref = React.useRef<HTMLDivElement>(null)
   const observer = React.useContext(ObserverContext)
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (observer && ref.current) {
       observer.observe(ref.current)
     }
@@ -85,7 +87,7 @@ function useWindowHeight() {
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // FIX when a horizontal scrollbar is added after the first layout
     setWindowHeight(getHeight())
   }, [])
