@@ -20,10 +20,8 @@ export class SmoothPre extends React.Component<PreProps> {
   }
 
   render() {
-    const handlers = this.props.handlers || []
-    handlers.push(inlineBlockToken)
-    const style = this.props.style || {}
-    style.position = "relative"
+    const handlers = [inlineBlockToken, ...(this.props.handlers || [])]
+    const style = { ...this.props.style, position: "relative" as const }
     const props = { ...this.props, style, handlers }
     return <Pre ref={this.ref} {...props} />
   }
