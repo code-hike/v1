@@ -1,9 +1,11 @@
 import { expect, test, describe } from "vitest"
 import { remarkCodeHike, recmaCodeHike, CodeHikeConfig } from "../src/mdx"
-import { compile } from "@mdx-js/mdx"
+import { compile, run } from "@mdx-js/mdx"
 import fs from "node:fs/promises"
 import path from "node:path"
 import * as prettier from "prettier"
+import * as runtime from "react/jsx-runtime"
+import { parseRoot, Block } from "../src/blocks"
 
 const dataPath = "./test/data/hike"
 // const testNames = ["basic"]
@@ -87,17 +89,26 @@ async function testCompilation(
 
   console.log(`${name}.7.out.js`)
   // recma steps jsx false
-  await expect(
-    await compileAndFormat(file, {
-      jsx: false,
-      remarkPlugins: [[remarkCodeHike, chConfig]],
-      recmaPlugins: [
-        [(n) => logRemark(n), { name: name + ".5.js-recma" }],
-        [recmaCodeHike, chConfig],
-        [(n) => logRemark(n), { name: name + ".6.js-recma" }],
-      ],
-    }),
-  ).toMatchFileSnapshot(`./data/hike/${name}.7.out.js`)
+  const r = await compileAndFormat(file, {
+    jsx: false,
+    remarkPlugins: [[remarkCodeHike, chConfig]],
+    recmaPlugins: [
+      [(n) => logRemark(n), { name: name + ".5.js-recma" }],
+      [recmaCodeHike, chConfig],
+      [(n) => logRemark(n), { name: name + ".6.js-recma" }],
+    ],
+    // outputFormat: "function-body",
+  })
+  await expect(r).toMatchFileSnapshot(`./data/hike/${name}.7.out.js`)
+}
+
+async function runContent(result: string) {
+  const { default: Content } = await run(result, runtime as any)
+  const block = parseRoot(Content, Block, {
+    components: { Foo: () => null, Step: () => null, Substep: () => null },
+  })
+
+  await expect(block).toMatchFileSnapshot(`./data/hike/${name}.8.out.js`)
 }
 
 async function compileAndFormat(file, options) {
