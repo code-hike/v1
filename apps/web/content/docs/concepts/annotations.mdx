@@ -4,3 +4,72 @@ description: How to use and handle annotations
 ---
 
 // TO DO
+
+## !soon
+
+import { Demo } from "@/components/demo"
+
+You can extend how the `Pre` component renders code by using annotation handlers.
+
+For example, here's how to wrap some lines inside a `div` with a background color:
+
+```tsx my-code.tsx
+import type { AnnotationHandler, RawCode } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
+
+export async function MyCode({ codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  // !mark[/handlers/]
+  return <Pre code={highlighted} handlers={[mark]} />
+}
+
+const mark: AnnotationHandler = {
+  name: "bg",
+  Block: ({ annotation, children }) => (
+    <div style={{ background: "#333" }}>{children}</div>
+  ),
+}
+```
+
+So:
+
+<Demo name="callout" />
+
+## AnnotationHandler
+
+```tsx my-code.tsx
+import type { AnnotationHandler, RawCode } from "codehike/code"
+import { Pre, highlight } from "codehike/code"
+
+export async function MyCode({ codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return <Pre code={highlighted} handlers={[myHandler]} />
+}
+
+const myHandler = {
+  name: "lorem",
+  transform: (a) => a,
+
+  Pre: () => <div>Pre</div>,
+  Line: ({ children }) => <div>Line {children}</div>,
+  Token: ({ children }) => <div>Token {children}</div>,
+
+  Block: ({ children }) => <div>Block {children}</div>,
+  AnnotatedLine: ({ children }) => <div>AnnotatedLine {children}</div>,
+  Inline: ({ children }) => <div>Inline {children}</div>,
+  AnnotatedToken: ({ children }) => <div>AnnotatedToken {children}</div>,
+}
+```
+
+````md
+```js
+const lorem = "ipsum"
+// !foo bar
+console.log(lorem)
+```
+````
+
+- comment syntax (depends on the language)
+  - json use jsonc
+- regex
+- handler
