@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.20
+
+### Patch Changes
+
+- 3032936: Move selection utils
+
 ## 1.0.0-alpha.19
 
 ### Patch Changes
