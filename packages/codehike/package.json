@@ -15,7 +15,9 @@
     "./blocks": "./dist/blocks.js",
     "./code": "./dist/code/index.js",
     "./utils": "./dist/utils.js",
-    "./utils/token-transitions": "./dist/utils/token-transitions.js"
+    "./utils/token-transitions": "./dist/utils/token-transitions.js",
+    "./utils/static-fallback": "./dist/utils/static-fallback.js",
+    "./utils/selection": "./dist/utils/selection.js"
   },
   "files": [
     "dist/**"

@@ -9,7 +9,7 @@ import {
   Selection,
   Selectable,
   SelectionProvider,
-} from "codehike/utils"
+} from "codehike/utils/selection"
 import { Pre, RawCode, highlight } from "codehike/code"
 import { Controls } from "./controls"
 

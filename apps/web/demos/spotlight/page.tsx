@@ -10,7 +10,7 @@ import {
   Selection,
   Selectable,
   SelectionProvider,
-} from "codehike/utils"
+} from "codehike/utils/selection"
 import { SmoothPre } from "@/components/smooth-pre"
 
 const Schema = Block.extend({

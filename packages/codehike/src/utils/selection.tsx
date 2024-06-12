@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { ObservedDiv, Scroller } from "./utils/scroller.js"
+import { ObservedDiv, Scroller } from "./scroller.js"
 
 const StepsContext = React.createContext<{
   selectedIndex: number
@@ -14,9 +14,6 @@ export function SelectionProvider({
   children,
   ...rest
 }: React.HTMLAttributes<HTMLDivElement>) {
-  throw new Error(
-    "<SelectionProvider/> moved from 'codehike/utils' to 'codehike/utils/selection'",
-  )
   const [selectedIndex, selectIndex] = React.useState<number>(0)
   return (
     <div data-selected-index={selectedIndex} {...rest}>
@@ -42,9 +39,6 @@ export function Selectable({
   index: number
   selectOn?: ("click" | "hover" | "scroll")[]
 } & React.HTMLAttributes<HTMLDivElement>) {
-  throw new Error(
-    "<Selectable/> moved from 'codehike/utils' to 'codehike/utils/selection'",
-  )
   const { selectedIndex, selectIndex } = React.useContext(StepsContext)
   const eventHandlers = React.useMemo(() => {
     const handlers: Record<string, () => void> = {}
@@ -71,20 +65,11 @@ export function Selectable({
 }
 
 export function Selection({ from }: { from: React.ReactNode[] }) {
-  throw new Error(
-    "<Selection/> moved from 'codehike/utils' to 'codehike/utils/selection'",
-  )
   const { selectedIndex } = React.useContext(StepsContext)
   return from[selectedIndex]
 }
 
-export function useStepIndex() {
+export function useSelectedIndex() {
   const { selectedIndex, selectIndex } = React.useContext(StepsContext)
   return [selectedIndex, selectIndex] as const
 }
-
-export {
-  StaticFallback,
-  StaticToggle,
-  useStaticToggle,
-} from "./utils/static-fallback.js"

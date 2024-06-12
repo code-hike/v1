@@ -1,14 +1,17 @@
 "use client"
-import { useStepIndex } from "codehike/utils"
+import { useSelectedIndex } from "codehike/utils/selection"
 
 export function Controls({ length }: { length: number }) {
-  const [selectedIndex, setSelectedIndex] = useStepIndex()
+  const [selectedIndex, setSelectedIndex] =
+    useSelectedIndex()
 
   return (
     <div className="flex justify-center py-4 items-center">
       <button
         className="mr-4"
-        onClick={() => setSelectedIndex(Math.max(0, selectedIndex - 1))}
+        onClick={() =>
+          setSelectedIndex(Math.max(0, selectedIndex - 1))
+        }
       >
         Prev
       </button>
@@ -24,7 +27,9 @@ export function Controls({ length }: { length: number }) {
       <button
         className="ml-4"
         onClick={() =>
-          setSelectedIndex(Math.min(length - 1, selectedIndex + 1))
+          setSelectedIndex(
+            Math.min(length - 1, selectedIndex + 1),
+          )
         }
       >
         Next
