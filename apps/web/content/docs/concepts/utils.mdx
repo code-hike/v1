@@ -30,7 +30,7 @@ function MyLayout({
         {steps.map((step, index) => (
           <Selectable
             key={index}
-            id={index}
+            index={index}
             selectOn={["click", "hover", "scroll"]}
             className="border border-zinc-700 data-[selected=true]:border-blue-400"
           >

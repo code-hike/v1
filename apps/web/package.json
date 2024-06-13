@@ -9,6 +9,7 @@
     "update-sponsors": "node app/landing/sponsors/update.js"
   },
   "dependencies": {
+    "@code-hike/lighter": "0.9.1",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toggle": "^1.0.3",

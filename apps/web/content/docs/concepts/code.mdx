@@ -3,16 +3,68 @@ title: Code Blocks
 description: Showing code
 ---
 
-By default, Code Hike won't touch your codeblocks. You need to opt-in by providing the name of the component you want to use to render the code.
+import { ThemePicker } from "./theme-picker"
+
+To use a **custom component to render code blocks**, you need to provide the name of the component in the Code Hike configuration, and then make sure the component is available in the scope where you render the markdown content.
+
+<div className="flex gap-2">
 
 ```js your-config.mjs
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
-/** @type {import('codehike/mdx').CodeHikeConfig} */
 const chConfig = {
-  components: {
-    // !Focus
-    code: "MyCode",
+  components: { code: "MyCode" },
+}
+
+const mdxOptions = {
+  remarkPlugins: [[remarkCodeHike, chConfig]],
+  recmaPlugins: [[recmaCodeHike, chConfig]],
+}
+```
+
+```tsx page.tsx
+import Content from "./content.md"
+import type { RawCode } from "codehike/code"
+
+export default function Page() {
+  return <Content components={{ MyCode }} />
+}
+
+function MyCode({ codeblock }: { codeblock: RawCode }) {
+  return <pre>{codeblock.value}</pre>
+}
+```
+
+</div>
+
+## Syntax highlighting
+
+To add syntax highlighting to your component, you can use the `highlight` function from the `codehike/code` module. This function takes a `RawCode` object and a theme name, and returns a `HighlightedCode` object. You can then pass this object to the `Pre` component to render the highlighted code.
+
+```tsx code.tsx
+import { Pre, RawCode, highlight } from "codehike/code"
+
+export async function MyCode({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return <Pre code={highlighted} />
+}
+```
+
+### React Server Components
+
+Note that the `highlight` function is asynchronous, which means that the `MyCode` component will need to be an async as well. So the example above will only work if you're using React Server Components.
+
+**If you're using a framework that doesn't support React Server Components:** you can configure Code Hike to run the `highlight` during the compilation step, and pass a `HighlightedCode` object to the `MyCode` component.
+
+<div className="flex gap-2">
+
+```js your-config.mjs
+import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
+
+const chConfig = {
+  components: { code: "MyCode" },
+  syntaxHighlighting: {
+    theme: "github-dark",
   },
 }
 
@@ -22,48 +74,39 @@ const mdxOptions = {
 }
 ```
 
-Now, the content of markdown codeblocks will be passed to the `MyCode` component.
+```tsx page.tsx
+import Content from "./content.md"
+import type { HighlightedCode, Pre } from "codehike/code"
 
-````mdx content.md
-# Lorem ipsum
+export default function Page() {
+  return <Content components={{ MyCode }} />
+}
 
-```js hello.js
-console.log(1)
-```
-````
-
-```jsx output.js
-function MDXContent() {
-  return (
-    <>
-      <h1>Lorem ipsum</h1>
-      {/* !Focus(1:5) */}
-      <MyCode codeblock={{
-        value: `console.log(1)`,
-        lang: "js",
-        meta: "hello.js",
-      }}>
-    </>
-  )
+function MyCode({ codeblock }: { codeblock: HighlightedCode }) {
+  return <Pre code={codeblock} />
 }
 ```
 
-Notice that the code isn't highlighted yet, this is intentional to give you more flexibility and take advantage of React Server Components.
+</div>
 
-```tsx code.tsx
-import { Pre, RawCode, highlight } from "codehike/code"
+This setting will also syntax highlight the code from [decorated codeblocks](/docs/concepts/blocks#images-codeblocks-and-paragraphs).
 
-export async function MyCode({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
-  return (
-    <div className="rounded border border-zinc-700">
-      <div className="bg-zinc-900 p-2">{highlighted.meta}</div>
-      <Pre code={highlighted} className="px-2" />
-    </div>
-  )
-}
-```
+## The `<Pre />` component
 
-TODO: ignoring some codeblocks
+Both the `highlight` function and the `Pre` component are optional. You can use a different solution for syntax highlighting instead of Code Hike's `highlight`, or render the highlighted tokens manually instead of using the `Pre` component. The main advantage of using them is the support for [annotations and annotation handlers](/docs/concepts/annotations).
 
-TODO: non-RSC example
+## Themes
+
+### !soon
+
+The `theme` option accepts a `string` for built-in themes or an `object` for custom themes.
+
+<ThemePicker />
+
+### CSS Light/Dark themes
+
+### /
+
+## Languages
+
+## Ignoring some codeblocks
