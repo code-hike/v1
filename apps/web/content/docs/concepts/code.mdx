@@ -3,7 +3,7 @@ title: Code Blocks
 description: Showing code
 ---
 
-import { ThemePicker } from "./theme-picker"
+import { LangList, ThemePicker } from "./theme-picker"
 
 To use a **custom component to render code blocks**, you need to provide the name of the component in the Code Hike configuration, and then make sure the component is available in the scope where you render the markdown content.
 
@@ -97,16 +97,39 @@ Both the `highlight` function and the `Pre` component are optional. You can use 
 
 ## Themes
 
-### !soon
-
 The `theme` option accepts a `string` for built-in themes or an `object` for custom themes.
+
+### Built-in themes
 
 <ThemePicker />
 
 ### CSS Light/Dark themes
 
-### /
+There are also two built-in themes that support light/dark mode using CSS: `"github-from-css"` and `"material-from-css"`.
+
+To use them you need to include the colors as CSS variables. You can copy the CSS from here:
+
+- [`github-from-css` colors](https://github.com/code-hike/lighter/blob/main/lib/themes/github-from-css.css)
+- [`material-from-css` colors](https://github.com/code-hike/lighter/blob/main/lib/themes/material-from-css.css)
+
+and adapt it to your needs by changing the CSS selector.
+
+### Custom themes and VS Code themes
+
+You can use the [Theme Editor](https://themes.codehike.org/editor) to customize any of the built-in themes or any theme from the VS Code marketplace.
 
 ## Languages
 
+<LangList />
+
 ## Ignoring some codeblocks
+
+If there are codeblocks that you don't want to be processed by Code Hike, you can add an `ignoreCode` function to the configuration. This function receives a `RawCode` object and should return `true` if the codeblock should be ignored.
+
+```js your-config.mjs
+/** @type {import('codehike/mdx').CodeHikeConfig} */
+const chConfig = {
+  components: { code: "MyCode" },
+  ignoreCode: (codeblock) => codeblock.lang === "mermaid",
+}
+```

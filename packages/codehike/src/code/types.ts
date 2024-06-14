@@ -93,6 +93,9 @@ export type HighlightedCode = {
 
   /** The name of the theme used for highlighting. */
   themeName: string
+
+  /** The style object for the highlighted code. */
+  style: React.CSSProperties
 }
 
 export type BlockAnnotationComponent = React.ComponentType<{

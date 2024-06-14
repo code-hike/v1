@@ -55,6 +55,7 @@ export async function highlight(
     lang: lighterLang,
     annotations: compatAnnotations(annotations),
     themeName: typeof theme === "string" ? theme : theme?.name || "unknown",
+    style,
   }
 }
 

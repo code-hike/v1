@@ -4,17 +4,22 @@ import {
   Selection,
 } from "codehike/utils/selection"
 
-import { THEME_NAMES } from "@code-hike/lighter"
+import { THEME_NAMES, LANG_NAMES } from "@code-hike/lighter"
 import { Pre, highlight } from "codehike/code"
 
 const themes = THEME_NAMES.filter((name) => !name.includes("from-css"))
 
 export async function ThemePicker() {
   return (
-    <SelectionProvider className="flex gap-4">
-      <div>
+    <SelectionProvider className="">
+      <div className="flex flex-wrap text-sm">
         {themes.map((name, index) => (
-          <Selectable key={index} index={index} selectOn={["click"]}>
+          <Selectable
+            key={index}
+            index={index}
+            selectOn={["click"]}
+            className="cursor-pointer text-accent-foreground/70 hover:bg-secondary p-2 rounded-md data-[selected=true]:text-primary"
+          >
             {name}
           </Selectable>
         ))}
@@ -35,7 +40,7 @@ async function Code({ theme }: { theme: string }) {
   
 async function Code({codeblock}: {codeblock: RawCode}) {
   const highlighted = await highlight(codeblock, "${theme}")
-  return <Pre code={highlighted} />
+  return <Pre code={highlighted} style={highlighted.style} />
 }`
   const rawCode = {
     value: code,
@@ -43,5 +48,29 @@ async function Code({codeblock}: {codeblock: RawCode}) {
     meta: "",
   }
   const highlighted = await highlight(rawCode, theme as any)
-  return <Pre code={highlighted} />
+  return <Pre code={highlighted} style={highlighted.style} />
+}
+
+export function LangList() {
+  return (
+    <div className="">
+      Code Hike handles syntax highlighting for{" "}
+      <strong>{LANG_NAMES.length} languages</strong>:{" "}
+      {LANG_NAMES.map((name, index) => (
+        <>
+          <span
+            key={index}
+            className="font-mono bg-accent-foreground/10 rounded px-1 py-0.5"
+          >
+            {name}
+          </span>
+          {index < LANG_NAMES.length - 2
+            ? ", "
+            : index === LANG_NAMES.length - 2
+              ? ", and "
+              : "."}
+        </>
+      ))}
+    </div>
+  )
 }
