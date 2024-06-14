@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation"
 import { Nav } from "next-docs-ui/nav"
 import { GithubIcon, TwitterIcon } from "lucide-react"
-export function NavBar() {
+export function NavBar({ version }: { version: string }) {
   const pathname = usePathname()
   return (
     <Nav
@@ -43,7 +43,7 @@ export function NavBar() {
       ]}
     >
       <span className="text-sm bg-yellow-200 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-200 rounded-lg px-2">
-        under development
+        {version}
       </span>
     </Nav>
   )

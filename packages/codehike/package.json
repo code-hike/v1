@@ -11,6 +11,7 @@
     "url": "https://github.com/sponsors/code-hike"
   },
   "exports": {
+    "./package.json": "./package.json",
     "./mdx": "./dist/mdx.js",
     "./blocks": "./dist/blocks.js",
     "./code": "./dist/code/index.js",

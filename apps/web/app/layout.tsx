@@ -9,12 +9,14 @@ const inter = Inter({
   subsets: ["latin"],
 })
 
+import ch from "codehike/package.json"
+
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <RootProvider>
-          <NavBar />
+          <NavBar version={ch.version} />
           {children}
         </RootProvider>
         <Analytics />
