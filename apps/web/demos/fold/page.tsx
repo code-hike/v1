@@ -1,6 +1,6 @@
 import { RawCode, Pre, highlight, AnnotationHandler } from "codehike/code"
 import Content from "./content.md"
-import { Inline } from "./annotations"
+import { InlineFold } from "./annotations"
 
 export default function Page() {
   return <Content components={{ Code }} />
@@ -13,6 +13,6 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 }
 
 export const fold: AnnotationHandler = {
-  name: "Fold",
-  Inline,
+  name: "fold",
+  Inline: InlineFold,
 }

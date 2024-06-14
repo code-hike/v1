@@ -1,9 +1,9 @@
 ```jsx
-// !Fold[/className="(.*?)"/gm]
+// !fold[/className="(.*?)"/gm]
 function Foo() {
   return (
     <div className="bg-red-200 opacity-50">
-      <span className="border">hey</span>
+      <span className="block">hey</span>
     </div>
   )
 }

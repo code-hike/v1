@@ -3,10 +3,7 @@
 import { AnnotationHandler } from "codehike/code"
 import { useState } from "react"
 
-export const Inline: AnnotationHandler["Inline"] = ({
-  annotation,
-  children,
-}) => {
+export const InlineFold: AnnotationHandler["Inline"] = ({ children }) => {
   const [folded, setFolded] = useState(true)
   if (!folded) {
     return children
