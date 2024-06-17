@@ -3,6 +3,7 @@ import { AnnotationHandler, InlineAnnotation, InnerLine } from "codehike/code"
 export const callout: AnnotationHandler = {
   name: "callout",
   transform: (annotation: InlineAnnotation) => {
+    // transform inline annotation to block annotation
     const { name, query, lineNumber, fromColumn, toColumn } = annotation
     return {
       name,
@@ -17,9 +18,9 @@ export const callout: AnnotationHandler = {
   },
   AnnotatedLine: ({ annotation, ...props }) => {
     const { column } = annotation.data
-    const { indentation } = props
+    const { indentation, children } = props
     return (
-      <>
+      <InnerLine merge={props}>
         <div
           style={{
             minWidth: `${column + 4}ch`,
@@ -33,8 +34,8 @@ export const callout: AnnotationHandler = {
           />
           {annotation.data.children || annotation.query}
         </div>
-        <InnerLine merge={props} />
-      </>
+        {children}
+      </InnerLine>
     )
   },
 }
