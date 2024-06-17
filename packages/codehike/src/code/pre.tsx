@@ -1,8 +1,9 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationHandler,
   BlockAnnotation,
+  CustomPre,
   InlineAnnotation,
   InnerLine,
   InternalToken,
@@ -12,7 +13,8 @@ import {
   isInlineAnnotation,
 } from "./types.js"
 import { mergeProps } from "./merge-props.js"
-import { getPreComponent } from "./component-reducer.js"
+import { AddRefIfNedded } from "./pre-ref.js"
+import { InnerPre } from "./inner.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -55,13 +57,22 @@ export const Pre: PreComponent = forwardRef(
 
     const groups = toLineGroups(lines, blockAnnotations)
 
-    const StackedPre = useMemo(() => {
-      return getPreComponent(handlers)
-    }, [handlers.map((c) => c.name).join(",")])
+    const noRefStack = handlers
+      .map(({ Pre: Pre3 }) => Pre3)
+      .filter(Boolean) as CustomPre[]
+    const refStack = handlers
+      .map(({ PreWithRef }) => PreWithRef)
+      .filter(Boolean) as CustomPre[]
+    if (refStack.length > 0) {
+      refStack.unshift(AddRefIfNedded as any)
+    }
 
+    const stack = [...noRefStack, ...refStack]
     return (
-      <StackedPre
-        ref={ref}
+      <InnerPre
+        // @ts-ignore
+        _ref={ref}
+        _stack={stack}
         data-theme={themeName}
         data-lang={lang}
         className={className}
@@ -73,7 +84,7 @@ export const Pre: PreComponent = forwardRef(
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
         />
-      </StackedPre>
+      </InnerPre>
     )
   },
 )

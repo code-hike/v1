@@ -14,6 +14,10 @@ function pushProp(
 ): void {
   if (key === "children") {
     target.children = target.children || value
+  } else if (key === "_ref") {
+    target._ref = target._ref || value
+  } else if (key === "data") {
+    target.data = target.data ? { ...value, ...target.data } : value
   } else if (key === "className") {
     target.className = [target.className, value].join(" ").trim()
   } else if (key === "style") {
