@@ -3,18 +3,17 @@ import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationHandler,
   BlockAnnotation,
+  CustomLineProps,
   CustomPre,
   InlineAnnotation,
-  InnerLine,
   InternalToken,
   PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
-import { mergeProps } from "./merge-props.js"
 import { AddRefIfNedded } from "./pre-ref.js"
-import { InnerPre } from "./inner.js"
+import { InnerLine, InnerPre } from "./inner.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -68,11 +67,10 @@ export const Pre: PreComponent = forwardRef(
     }
 
     const stack = [...noRefStack, ...refStack]
+    const merge = { _stack: stack, _ref: ref as any }
     return (
       <InnerPre
-        // @ts-ignore
-        _ref={ref}
-        _stack={stack}
+        merge={merge}
         data-theme={themeName}
         data-lang={lang}
         className={className}
@@ -124,7 +122,17 @@ function RenderLines({
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    let Line = getLineComponent(annotationStack, handlers)
+    const stack = handlers.flatMap(({ name, Line, AnnotatedLine }) => {
+      const s = [] as CustomLineProps["_stack"]
+      const annotation = annotationStack.find((a) => a.name === name)
+      if (annotation && AnnotatedLine) {
+        s.push({ Component: AnnotatedLine, annotation })
+      }
+      if (Line) {
+        s.push({ Component: Line })
+      }
+      return s
+    })
 
     let children: React.ReactNode = (
       <RenderLineContent
@@ -134,46 +142,14 @@ function RenderLines({
       />
     )
 
+    const merge = { lineNumber, indentation, _stack: stack }
+
     return (
-      <Line lineNumber={lineNumber} indentation={indentation} key={lineNumber}>
+      <InnerLine merge={merge} key={lineNumber}>
         {children}
-      </Line>
+      </InnerLine>
     )
   })
-}
-
-const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
-  const { lineNumber, indentation, ...props } = mergeProps(base, rest)
-  return <div {...props} />
-}
-
-function getLineComponent(
-  annotationStack: BlockAnnotation[],
-  handlers: AnnotationHandler[],
-): InnerLine {
-  const BaseLine = handlers.reduce((Inner, { Line }) => {
-    if (!Line) {
-      return Inner
-    }
-
-    return ({ merge = {}, ...props }) => {
-      const result = mergeProps(merge, props) as any
-      return <Line {...result} InnerLine={Inner} />
-    }
-  }, DefaultLine)
-
-  return handlers.reduce((Inner, { name, AnnotatedLine }) => {
-    const annotation = annotationStack.find((a) => a.name === name)
-    if (!annotation || !AnnotatedLine) {
-      return Inner
-    }
-    return ({ merge = {}, ...props }) => {
-      const result = mergeProps(merge, props) as any
-      return (
-        <AnnotatedLine {...result} annotation={annotation} InnerLine={Inner} />
-      )
-    }
-  }, BaseLine)
 }
 
 function AnnotatedLines({

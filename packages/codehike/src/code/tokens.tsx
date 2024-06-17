@@ -1,12 +1,10 @@
-import { mergeProps } from "./merge-props.js"
+import { InnerToken } from "./inner.js"
 import {
   AnnotationHandler,
   CodeAnnotation,
+  CustomTokenProps,
   InlineAnnotation,
-  InnerToken,
   InternalToken,
-  TokenAnnotationComponent,
-  TokenComponent,
 } from "./types.js"
 
 type TokenGroup = {
@@ -27,7 +25,19 @@ export function RenderLineContent({
   lineNumber: number
 }) {
   // TODO get Token from annotationStack
-  const TokenComp = getTokenComponent([], handlers)
+  const annotationStack: CodeAnnotation[] = []
+  const stack = handlers.flatMap(({ name, Token, AnnotatedToken }) => {
+    const s = [] as CustomTokenProps["_stack"]
+    const annotation = annotationStack.find((a) => a.name === name)
+    if (annotation && AnnotatedToken) {
+      s.push({ Component: AnnotatedToken, annotation })
+    }
+    if (Token) {
+      s.push({ Component: Token })
+    }
+    return s
+  })
+
   return lineContent.map((item, i) => {
     if (isGroup(item)) {
       return (
@@ -40,11 +50,14 @@ export function RenderLineContent({
       )
     } else {
       return item.style ? (
-        <TokenComp
-          style={item.style}
-          value={item.value}
+        <InnerToken
+          merge={{
+            _stack: stack,
+            style: item.style,
+            value: item.value,
+            lineNumber,
+          }}
           key={i}
-          lineNumber={lineNumber}
         />
       ) : (
         // whitespace
@@ -52,28 +65,6 @@ export function RenderLineContent({
       )
     }
   })
-}
-const DefaultToken: InnerToken = ({ merge: base = {}, ...rest }) => {
-  const { value, lineNumber, ...props } = mergeProps(base, rest)
-  return <span {...props}>{value}</span>
-}
-
-function getTokenComponent(
-  annotationStack: CodeAnnotation[],
-  handlers: AnnotationHandler[],
-) {
-  const BaseToken = handlers.reduce((Inner, { Token }) => {
-    if (!Token) {
-      return Inner
-    }
-
-    return ({ merge = {}, ...props }) => {
-      const result = mergeProps(merge, props) as any
-      return <Token {...result} InnerToken={Inner} />
-    }
-  }, DefaultToken)
-  // TODO use annotationStack
-  return BaseToken
 }
 
 function AnnotatedTokens({

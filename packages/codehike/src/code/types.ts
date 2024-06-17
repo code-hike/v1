@@ -103,27 +103,22 @@ export type BlockAnnotationComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
-type LineAnnotationProps = {
-  lineNumber: number
-  indentation: number
-  children: React.ReactNode
-}
-export type InnerLine = React.ComponentType<
-  Partial<LineAnnotationProps> & {
-    merge?: Partial<LineAnnotationProps>
-  } & Record<string, any>
->
+// type LineAnnotationProps = {
+//   lineNumber: number
+//   indentation: number
+//   children: React.ReactNode
+// }
 
-export type LineComponent = React.ComponentType<
-  LineAnnotationProps & { InnerLine: InnerLine } & Record<string, any>
->
+// export type LineComponent = React.ComponentType<
+//   LineAnnotationProps & { InnerLine: InnerLine } & Record<string, any>
+// >
 
-export type LineAnnotationComponent = React.ComponentType<
-  LineAnnotationProps & {
-    InnerLine: InnerLine
-    annotation: BlockAnnotation
-  } & Record<string, any>
->
+// export type LineAnnotationComponent = React.ComponentType<
+//   LineAnnotationProps & {
+//     InnerLine: InnerLine
+//     annotation: BlockAnnotation
+//   } & Record<string, any>
+// >
 
 export type InlineAnnotationComponent = React.ComponentType<{
   annotation: InlineAnnotation
@@ -131,11 +126,11 @@ export type InlineAnnotationComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
-export type InnerToken = React.ComponentType<
-  Partial<TokenAnnotationProps> & {
-    merge?: Partial<TokenAnnotationProps>
-  } & Record<string, any>
->
+// export type InnerToken = React.ComponentType<
+//   Partial<TokenAnnotationProps> & {
+//     merge?: Partial<TokenAnnotationProps>
+//   } & Record<string, any>
+// >
 
 type TokenAnnotationProps = {
   lineNumber: number
@@ -148,9 +143,9 @@ export type TokenAnnotationComponent = React.ComponentType<
   }
 >
 
-export type TokenComponent = React.ComponentType<
-  TokenAnnotationProps & { InnerToken: InnerToken } & Record<string, any>
->
+// export type TokenComponent = React.ComponentType<
+//   TokenAnnotationProps & { InnerToken: InnerToken } & Record<string, any>
+// >
 
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode
@@ -166,10 +161,44 @@ export type InternalToken = {
   range: [number, number]
 }
 
+// Pre
 export type CustomPreProps = React.ComponentProps<"pre"> & {
   data?: Record<string, any>
+  _stack: React.ComponentType<CustomPreProps>[]
+  _ref: React.RefObject<HTMLPreElement>
 }
 export type CustomPre = React.ComponentType<CustomPreProps>
+
+// Line
+export type CustomLineProps = React.ComponentProps<"div"> & {
+  lineNumber: number
+  indentation: number
+  data?: Record<string, any>
+  _stack: {
+    Component: CustomLine | CustomLineWithAnnotation
+    annotation?: BlockAnnotation
+  }[]
+}
+export type CustomLine = React.ComponentType<CustomLineProps>
+export type CustomLineWithAnnotation = React.ComponentType<
+  CustomLineProps & { annotation: BlockAnnotation }
+>
+
+// Token
+export type CustomTokenProps = {
+  value: string
+  lineNumber: number
+  style?: React.CSSProperties
+  data?: Record<string, any>
+  _stack: {
+    Component: CustomToken | CustomTokenWithAnnotation
+    annotation?: BlockAnnotation | InlineAnnotation
+  }[]
+}
+export type CustomToken = React.ComponentType<CustomTokenProps>
+export type CustomTokenWithAnnotation = React.ComponentType<
+  CustomTokenProps & { annotation: BlockAnnotation | InlineAnnotation }
+>
 
 type AnnotationTransformer<T> = (
   annotation: T,
@@ -184,9 +213,9 @@ export type AnnotationHandler = {
   PreWithRef?: CustomPre
   Pre?: CustomPre
   Block?: BlockAnnotationComponent
-  Line?: LineComponent
-  AnnotatedLine?: LineAnnotationComponent
+  Line?: CustomLine
+  AnnotatedLine?: CustomLineWithAnnotation
   Inline?: InlineAnnotationComponent
-  Token?: TokenComponent
-  AnnotatedToken?: TokenAnnotationComponent
+  Token?: CustomToken
+  AnnotatedToken?: CustomTokenWithAnnotation
 }
