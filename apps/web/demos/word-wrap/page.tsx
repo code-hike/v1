@@ -1,4 +1,10 @@
-import { RawCode, Pre, highlight, LineComponent } from "codehike/code"
+import {
+  RawCode,
+  Pre,
+  highlight,
+  AnnotationHandler,
+  InnerLine,
+} from "codehike/code"
 import Content from "./content.md"
 import {
   ResizableHandle,
@@ -21,7 +27,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
         <Pre
           className="m-0 px-0 bg-zinc-950 w-full whitespace-pre-wrap"
           code={highlighted}
-          handlers={[{ Line: NumberedLine }, { Line: WrapableLine }]}
+          handlers={[wordWrap, lineNumbers]}
         />
       </ResizablePanel>
       <ResizableHandle
@@ -33,26 +39,28 @@ const Code: CodeComponent = async ({ codeblock }) => {
   )
 }
 
-const NumberedLine: LineComponent = ({ InnerLine, ...props }) => {
-  return (
-    <div className="table-row">
-      <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-        {props.lineNumber}
-      </span>
-      <InnerLine {...props} />
-    </div>
-  )
-}
-
-const WrapableLine: LineComponent = ({ InnerLine, ...props }) => {
-  return (
+const wordWrap: AnnotationHandler = {
+  name: "word-wrap",
+  Line: (props) => (
     <InnerLine
-      {...props}
+      merge={props}
       className="px-2"
       style={{
         textIndent: `${-props.indentation}ch`,
         marginLeft: `${props.indentation}ch`,
       }}
     />
-  )
+  ),
+}
+
+const lineNumbers: AnnotationHandler = {
+  name: "line-numbers",
+  Line: (props) => (
+    <div className="table-row">
+      <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
+        {props.lineNumber}
+      </span>
+      <InnerLine merge={props} />
+    </div>
+  ),
 }

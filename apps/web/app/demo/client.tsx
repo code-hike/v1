@@ -1,7 +1,13 @@
 "use client"
 
+import {
+  AnnotationHandler,
+  CustomPreProps,
+  InnerPre,
+  getPreRef,
+} from "codehike/code"
+import { forwardRef } from "react"
 import React from "react"
-import { AnnotationHandler, InnerToken, Pre } from "codehike/code"
 import {
   TokenTransitionsSnapshot,
   calculateTransitions,
@@ -9,21 +15,15 @@ import {
 } from "codehike/utils/token-transitions"
 
 const MAX_TRANSITION_DURATION = 900 // milliseconds
-
-type PreProps = React.ComponentProps<typeof Pre>
-export class SmoothPre extends React.Component<PreProps> {
+export class SmoothPre extends React.Component<CustomPreProps> {
   ref: React.RefObject<HTMLPreElement>
-
-  constructor(props: PreProps) {
+  constructor(props: CustomPreProps) {
     super(props)
-    this.ref = React.createRef<HTMLPreElement>()
+    this.ref = getPreRef(this.props)
   }
 
   render() {
-    const handlers = [inlineBlockToken, ...(this.props.handlers || [])]
-    const style = { ...this.props.style, position: "relative" as const }
-    const props = { ...this.props, style, handlers }
-    return <Pre ref={this.ref} {...props} />
+    return <InnerPre merge={this.props} style={{ position: "relative" }} />
   }
 
   getSnapshotBeforeUpdate() {
@@ -31,7 +31,7 @@ export class SmoothPre extends React.Component<PreProps> {
   }
 
   componentDidUpdate(
-    prevProps: PreProps,
+    prevProps: never,
     prevState: never,
     snapshot: TokenTransitionsSnapshot,
   ) {
@@ -52,11 +52,4 @@ export class SmoothPre extends React.Component<PreProps> {
       })
     })
   }
-}
-
-const inlineBlockToken: AnnotationHandler = {
-  name: "inline-block",
-  Token: (props) => (
-    <InnerToken merge={props} style={{ display: "inline-block" }} />
-  ),
 }

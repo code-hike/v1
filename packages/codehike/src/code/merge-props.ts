@@ -13,11 +13,11 @@ function pushProp(
   value: any,
 ): void {
   if (key === "children") {
-    target.children = target.children || value
+    target.children = value || target.children
   } else if (key === "_ref") {
-    target._ref = target._ref || value
+    target._ref = value || target._ref
   } else if (key === "data") {
-    target.data = target.data ? { ...value, ...target.data } : value
+    target.data = target.data ? { ...target.data, ...value } : value
   } else if (key === "className") {
     target.className = [target.className, value].join(" ").trim()
   } else if (key === "style") {

@@ -30,6 +30,7 @@ export const InnerLine = ({
   ...rest
 }: { merge: CustomLineProps } & Partial<CustomLineProps>) => {
   const { _stack, ...result } = mergeProps(merge, rest)
+
   const [next, ...stack] = _stack
   if (next) {
     const { Component, annotation } = next

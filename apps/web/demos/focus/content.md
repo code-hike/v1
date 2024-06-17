@@ -9,7 +9,7 @@ function ipsum(ipsum, dolor = 1) {
   return dolor
 }
 
-// !Focus(1:5)
+// !focus(1:5)
 function dolor(ipsum, dolor = 1) {
   const sit = ipsum == null ? 0 : ipsum.sit
   dolor = sit - amet(dolor)

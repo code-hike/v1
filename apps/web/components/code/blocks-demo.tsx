@@ -3,6 +3,7 @@ import { parseProps, Block, CodeBlock } from "codehike/blocks"
 import {
   AnnotationHandler,
   InlineAnnotation,
+  InnerLine,
   Pre,
   RawCode,
   highlight,
@@ -61,7 +62,7 @@ async function CalloutCode({ code }: { code: RawCode }) {
 }
 
 const lineHandler: AnnotationHandler = {
-  Line: ({ InnerLine, ...props }) => {
+  Line: (props) => {
     return <InnerLine merge={props} className="px-3" />
   },
 }
@@ -118,14 +119,14 @@ const callout: AnnotationHandler = {
       },
     }
   },
-  Line: ({ InnerLine, ...props }) => {
+  Line: (props) => {
     return <InnerLine merge={props} className="px-3" />
   },
-  AnnotatedLine: ({ InnerLine, annotation, indentation, ...props }) => {
+  AnnotatedLine: ({ annotation, ...props }) => {
     const { column } = annotation.data
     return (
       <>
-        <InnerLine {...props} />
+        <InnerLine merge={props} />
         <div
           style={{ minWidth: `${column + 4}ch` }}
           className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-0 relative my-1 ml-[3ch] whitespace-break-spaces prose-p:my-0"

@@ -1,5 +1,5 @@
 import Content from "./content.md"
-import { RawCode, Pre, highlight } from "codehike/code"
+import { RawCode, Pre, highlight, InnerLine } from "codehike/code"
 import { AnnotationHandler } from "codehike/code"
 
 export default function Page() {
@@ -18,10 +18,10 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
 }
 const mark: AnnotationHandler = {
   name: "mark",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
+  AnnotatedLine: ({ annotation, ...props }) => (
     <InnerLine merge={props} data-mark={true} />
   ),
-  Line: ({ InnerLine, ...props }) => (
+  Line: (props) => (
     <InnerLine
       merge={props}
       className="px-2 border-l-4 border-transparent data-[mark]:border-blue-400"

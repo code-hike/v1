@@ -1,4 +1,10 @@
-import { AnnotationHandler, Pre, RawCode, highlight } from "codehike/code"
+import {
+  AnnotationHandler,
+  InnerLine,
+  Pre,
+  RawCode,
+  highlight,
+} from "codehike/code"
 import { CopyButton } from "@/components/copy-button"
 import { cn } from "@/lib/utils"
 import { fold } from "../annotations/fold"
@@ -79,10 +85,10 @@ function extractFlags(codeblock: RawCode) {
 
 const focus: AnnotationHandler = {
   name: "Focus",
-  AnnotatedLine: ({ InnerLine, ...props }) => (
+  AnnotatedLine: ({ annotation, ...props }) => (
     <InnerLine merge={props} data-focus={true} />
   ),
-  Line: ({ InnerLine, ...props }) => (
+  Line: (props) => (
     <InnerLine
       merge={props}
       className="group-has-[[data-focus]]:opacity-60 data-[focus]:!opacity-100 transition-opacity px-3 data-[focus]:bg-editor-rangeHighlightBackground"

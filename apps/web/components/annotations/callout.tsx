@@ -1,4 +1,4 @@
-import { AnnotationHandler, InlineAnnotation } from "codehike/code"
+import { AnnotationHandler, InlineAnnotation, InnerLine } from "codehike/code"
 
 export const callout: AnnotationHandler = {
   name: "callout",
@@ -15,8 +15,9 @@ export const callout: AnnotationHandler = {
       },
     }
   },
-  AnnotatedLine: ({ InnerLine, annotation, indentation, ...props }) => {
+  AnnotatedLine: ({ annotation, ...props }) => {
     const { column } = annotation.data
+    const { indentation } = props
     return (
       <>
         <div
@@ -32,7 +33,7 @@ export const callout: AnnotationHandler = {
           />
           {annotation.data.children || annotation.query}
         </div>
-        <InnerLine {...props} />
+        <InnerLine merge={props} />
       </>
     )
   },

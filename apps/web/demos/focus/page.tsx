@@ -1,4 +1,4 @@
-import { RawCode, Pre, highlight } from "codehike/code"
+import { RawCode, highlight } from "codehike/code"
 import Content from "./content.md"
 import { CodeContainer } from "./code"
 

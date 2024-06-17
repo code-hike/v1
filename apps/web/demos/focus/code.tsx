@@ -1,7 +1,14 @@
 "use client"
 
-import { HighlightedCode, Pre, AnnotationHandler } from "codehike/code"
-import React, { forwardRef, useLayoutEffect, useRef, useState } from "react"
+import {
+  HighlightedCode,
+  Pre,
+  AnnotationHandler,
+  InnerPre,
+  getPreRef,
+  InnerLine,
+} from "codehike/code"
+import React, { useLayoutEffect, useRef, useState } from "react"
 
 const ranges = {
   lorem: { fromLineNumber: 1, toLineNumber: 5 },
@@ -53,7 +60,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
           ...code,
           annotations: [
             {
-              name: "Focus",
+              name: "focus",
               query: "",
               ...ranges[focused],
             },
@@ -85,35 +92,19 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
 }
 
 const focus: AnnotationHandler = {
-  name: "Focus",
-  Pre: forwardRef(({ InnerPre, ...props }, ref) => {
-    ref = useRef<HTMLPreElement>(null)
+  name: "focus",
+  PreWithRef: (props) => {
+    const ref = getPreRef(props)
     useScrollToFocus(ref)
-    return <InnerPre {...props} ref={ref} />
-  }),
-  Line: ({ InnerLine, ...props }) => (
+    return <InnerPre merge={props} />
+  },
+  Line: (props) => (
     <InnerLine
       merge={props}
       className="opacity-50 data-[focus]:opacity-100 px-2"
     />
   ),
-  AnnotatedLine: ({ InnerLine, annotation, ...props }) => (
+  AnnotatedLine: ({ annotation, ...props }) => (
     <InnerLine merge={props} data-focus={true} className="bg-zinc-700/30" />
   ),
-}
-
-// from https://stackoverflow.com/questions/73015696/whats-the-difference-between-reacts-forwardedref-and-refobject
-function useForwardedRef<T>(ref: React.ForwardedRef<T>) {
-  const innerRef = React.useRef<T>(null)
-
-  React.useLayoutEffect(() => {
-    if (!ref) return
-    if (typeof ref === "function") {
-      ref(innerRef.current)
-    } else {
-      ref.current = innerRef.current
-    }
-  })
-
-  return innerRef
 }

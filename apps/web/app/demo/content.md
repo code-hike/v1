@@ -1,3 +1,3 @@
-dii
-
-!foo bar
+```js
+import React from "react"
+```
