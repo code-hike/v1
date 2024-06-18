@@ -21,20 +21,20 @@ export const callout: AnnotationHandler = {
     const { indentation, children } = props
     return (
       <InnerLine merge={props}>
+        {children}
         <div
           style={{
             minWidth: `${column + 4}ch`,
-            marginLeft: `${7 + indentation}ch`,
+            marginLeft: `${indentation - 1}ch`,
           }}
           className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-2 relative my-1 whitespace-break-spaces prose-p:my-1 text-center select-none"
         >
           <div
             style={{ left: `${column - indentation}ch` }}
-            className="absolute border-r border-b  border-editorGroup-border w-2 h-2 rotate-45 translate-y-1/2 -bottom-[1px] bg-editorGroupHeader-tabsBackground"
+            className="absolute border-l border-t  border-editorGroup-border w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px]  bg-editorGroupHeader-tabsBackground"
           />
           {annotation.data.children || annotation.query}
         </div>
-        {children}
       </InnerLine>
     )
   },

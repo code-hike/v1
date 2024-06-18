@@ -62,6 +62,7 @@ async function CalloutCode({ code }: { code: RawCode }) {
 }
 
 const lineHandler: AnnotationHandler = {
+  name: "line",
   Line: (props) => {
     return <InnerLine merge={props} className="px-3" />
   },
@@ -75,7 +76,7 @@ export async function CodeWithNotes({
   notes?: Record<string, { children: React.ReactNode }>
 }) {
   const highlighted = await highlight(code, theme)
-  const icon = <CodeIcon codeblock={code} />
+  const icon = <CodeIcon title={code.meta} />
 
   highlighted.annotations = highlighted.annotations.map((a) => {
     const note = notes[a.query]

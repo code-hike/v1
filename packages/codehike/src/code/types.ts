@@ -179,7 +179,9 @@ export type CustomLineProps = React.ComponentProps<"div"> & {
     annotation?: BlockAnnotation
   }[]
 }
-export type CustomLine = React.ComponentType<CustomLineProps>
+export type CustomLine = React.ComponentType<
+  CustomLineProps & { annotation?: BlockAnnotation }
+>
 export type CustomLineWithAnnotation = React.ComponentType<
   CustomLineProps & { annotation: BlockAnnotation }
 >
@@ -205,17 +207,29 @@ type AnnotationTransformer<T> = (
 ) => undefined | CodeAnnotation | CodeAnnotation[]
 
 export type AnnotationHandler = {
-  name?: string
+  /** Name of the annotation */
+  name: string
+  /** The Pre, Line and Token components are only used if there's at least one annotation in the whole codeblock */
+  onlyIfAnnotated?: boolean
+  /** Transform an annotation into one or more annotations */
   transform?:
     | AnnotationTransformer<InlineAnnotation>
     | AnnotationTransformer<BlockAnnotation>
     | AnnotationTransformer<CodeAnnotation>
-  PreWithRef?: CustomPre
+  /** Customize the pre element */
   Pre?: CustomPre
+  /** Customize the pre element and use the ref to the DOM element */
+  PreWithRef?: CustomPre
+  /** Wrap an annotated block */
   Block?: BlockAnnotationComponent
+  /** Customize how to render a line */
   Line?: CustomLine
+  /** Customize how to render a line targeted by the annotation */
   AnnotatedLine?: CustomLineWithAnnotation
+  /** Wrap an annotated part of a line */
   Inline?: InlineAnnotationComponent
+  /** Customize how to render a token */
   Token?: CustomToken
+  /** Customize how to render a token targeted by the annotation */
   AnnotatedToken?: CustomTokenWithAnnotation
 }

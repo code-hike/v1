@@ -10,35 +10,33 @@ import {
   InnerToken,
 } from "codehike/code"
 import { SmoothPre } from "./client"
+import { mark } from "@/components/annotations/mark"
+import { lineNumbers } from "@/components/annotations/line-numbers"
+import { callout } from "@/components/annotations/callout"
+import { line } from "@/components/annotations/line"
+import { collapse } from "@/components/annotations/collapse"
+import theme from "../../theme.mjs"
 
 export default function Page() {
   return <Content components={{ Code }} />
 }
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
-  const highlighted = await highlight(codeblock, "github-dark")
+  const highlighted = await highlight(codeblock, theme)
   return (
     <Pre
       code={highlighted}
-      className="border border-gray-200 m-4 w-56"
-      handlers={[lineNumbers]}
+      className="rounded-md overflow-hidden shadow-sm m-4 py-2 bg-editor-background  selection:bg-editor-selectionBackground border border-zinc-500/40"
+      handlers={[
+        //
+        mark,
+        lineNumbers,
+        callout,
+        ...collapse,
+        line,
+      ]}
     />
   )
-}
-
-const lineNumbers: AnnotationHandler = {
-  name: "line-numbers",
-  Line: (props) => {
-    const { children } = props
-    return (
-      <InnerLine merge={props} className="table-row">
-        <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-          {props.lineNumber}
-        </span>
-        <span className="table-cell">{children}</span>
-      </InnerLine>
-    )
-  },
 }
 
 const wordWrap: AnnotationHandler = {

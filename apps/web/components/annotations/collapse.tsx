@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "lucide-react"
 import { BlockAnnotation, AnnotationHandler, InnerLine } from "codehike/code"
 
 const collapseRoot: AnnotationHandler = {
-  name: "Collapse",
+  name: "collapse",
   transform: (annotation: BlockAnnotation) => {
     const { fromLineNumber } = annotation
     return [
@@ -36,6 +36,7 @@ const collapseRoot: AnnotationHandler = {
 
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
+  onlyIfAnnotated: true,
   AnnotatedLine: ({ annotation, ...props }) => {
     const icon = (
       <ChevronDownIcon
@@ -50,16 +51,15 @@ const collapseTrigger: AnnotationHandler = {
     )
   },
   Line: (props) => {
-    const { data, lineNumber, children } = props
+    const { data } = props
     const icon = data?.icon as React.ReactNode
     return (
-      <InnerLine merge={props} className="table-row">
-        <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-          {lineNumber}
-        </span>
-        <span className="w-6 text-center table-cell">{icon}</span>
-        <div className="table-cell break-words">{children}</div>
-      </InnerLine>
+      <div className="table-row">
+        <span className="w-4 text-center table-cell">{icon}</span>
+        <div className="table-cell">
+          <InnerLine merge={props} />
+        </div>
+      </div>
     )
   },
 }

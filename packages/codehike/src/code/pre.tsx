@@ -54,14 +54,23 @@ export const Pre: PreComponent = forwardRef(
     const blockAnnotations = annotations.filter(isBlockAnnotation)
     const inlineAnnotations = annotations.filter(isInlineAnnotation)
 
+    const annotationNames = new Set(annotations.map((a) => a.name))
+
     const groups = toLineGroups(lines, blockAnnotations)
 
     const noRefStack = handlers
-      .map(({ Pre: Pre3 }) => Pre3)
-      .filter(Boolean) as CustomPre[]
+      .filter(
+        ({ Pre, name, onlyIfAnnotated }) =>
+          Pre && (!onlyIfAnnotated || annotationNames.has(name)),
+      )
+      .map(({ Pre }) => Pre!)
     const refStack = handlers
-      .map(({ PreWithRef }) => PreWithRef)
-      .filter(Boolean) as CustomPre[]
+      .filter(
+        ({ PreWithRef, name, onlyIfAnnotated }) =>
+          PreWithRef && (!onlyIfAnnotated || annotationNames.has(name)),
+      )
+      .map(({ PreWithRef }) => PreWithRef!)
+
     if (refStack.length > 0) {
       refStack.unshift(AddRefIfNedded as any)
     }
@@ -78,6 +87,7 @@ export const Pre: PreComponent = forwardRef(
       >
         <RenderLines
           linesOrGroups={groups}
+          annotationNames={annotationNames}
           handlers={handlers}
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
@@ -93,12 +103,14 @@ function RenderLines({
   inlineAnnotations,
   indentations,
   annotationStack = [],
+  annotationNames,
 }: {
   linesOrGroups: LinesOrGroups
   handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
+  annotationNames: Set<string>
 }) {
   return linesOrGroups.map((group) => {
     if (isGroup(group)) {
@@ -110,6 +122,7 @@ function RenderLines({
           inlineAnnotations={inlineAnnotations}
           annotationStack={annotationStack}
           indentations={indentations}
+          annotationNames={annotationNames}
         />
       )
     }
@@ -122,17 +135,23 @@ function RenderLines({
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    const stack = handlers.flatMap(({ name, Line, AnnotatedLine }) => {
-      const s = [] as CustomLineProps["_stack"]
-      const annotation = annotationStack.find((a) => a.name === name)
-      if (annotation && AnnotatedLine) {
-        s.push({ Component: AnnotatedLine, annotation })
-      }
-      if (Line) {
-        s.push({ Component: Line })
-      }
-      return s
-    })
+    const stack = handlers.flatMap(
+      ({ name, Line, AnnotatedLine, onlyIfAnnotated }) => {
+        if (onlyIfAnnotated && !annotationNames.has(name)) {
+          return []
+        }
+
+        const s = [] as CustomLineProps["_stack"]
+        const annotation = annotationStack.find((a) => a.name === name)
+        if (annotation && AnnotatedLine) {
+          s.push({ Component: AnnotatedLine, annotation })
+        }
+        if (Line) {
+          s.push({ Component: Line, annotation })
+        }
+        return s
+      },
+    )
 
     let children: React.ReactNode = (
       <RenderLineContent
@@ -158,12 +177,14 @@ function AnnotatedLines({
   inlineAnnotations,
   annotationStack,
   indentations,
+  annotationNames,
 }: {
   group: LineGroup
   handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]
+  annotationNames: Set<string>
 }) {
   const { annotation, lines } = group
   const { name } = annotation
@@ -176,6 +197,7 @@ function AnnotatedLines({
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
+        annotationNames={annotationNames}
       />
     )
   }
@@ -187,6 +209,7 @@ function AnnotatedLines({
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
+        annotationNames={annotationNames}
       />
     </Component>
   )

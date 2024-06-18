@@ -19,7 +19,7 @@ function ipsum(ipsum, dolor = 1) {
 }
 ```
 
-```js
+```js -c
 function lorem(ipsum, dolor = 1) {
   const sit = ipsum == null ? 0 : ipsum.sit
   // !mark(1:2)
@@ -34,4 +34,8 @@ function ipsum(ipsum, dolor = 1) {
   dolor = sit - amet(dolor)
   return sit ? consectetur(ipsum) : []
 }
+```
+
+```bash -c
+npx create-next-app -e https://github.com/code-hike/v1-starter
 ```

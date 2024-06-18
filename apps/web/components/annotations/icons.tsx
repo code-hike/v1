@@ -1,8 +1,8 @@
 import { RawCode } from "codehike/code"
 import { themeIcons } from "seti-icons"
 
-export function CodeIcon({ codeblock }: { codeblock: RawCode }) {
-  let filename = codeblock.meta || ""
+export function CodeIcon({ title }: { title: string }) {
+  let filename = title || ""
   if (filename.endsWith(".mdx")) {
     filename = filename.slice(0, -4)
     filename += ".md"

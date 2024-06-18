@@ -23,11 +23,7 @@ export function CopyButton({
       }}
       aria-label="Copy to clipboard"
     >
-      {copied ? (
-        <Check size={16} className="text-green-500" />
-      ) : (
-        <Copy size={16} />
-      )}
+      {copied ? <Check size={16} /> : <Copy size={16} />}
     </button>
   )
 }
