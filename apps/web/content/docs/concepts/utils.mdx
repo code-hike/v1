@@ -9,7 +9,7 @@ Code Hike comes with a set of utilities that help you implement common patterns 
 
 A common use case with Code Hike is to switch part of the UI based on the user's interaction with the content. Some examples are the [Scrollycoding layout](/docs/layouts/scrollycoding) or the [Spotlight layout](/docs/layouts/spotlight).
 
-```tsx my-layout.tsx
+```tsx my-layout.tsx -c
 import {
   SelectionProvider,
   Selectable,
@@ -50,7 +50,7 @@ function MyLayout({
 
 For more control over the selection, you can use the `useSelection` hook.
 
-```tsx my-layout.tsx
+```tsx my-layout.tsx -c
 import { useSelection } from "codehike/utils/selection"
 
 function MyLayout(...) {
@@ -63,7 +63,7 @@ function MyLayout(...) {
 
 When you want to animate the changes between two code snippets.
 
-```tsx
+```tsx -c
 import {
   getStartingSnapshot,
   calculateTransitions,

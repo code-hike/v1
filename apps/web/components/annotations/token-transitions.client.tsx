@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  AnnotationHandler,
-  CustomPreProps,
-  InnerPre,
-  InnerToken,
-  getPreRef,
-} from "codehike/code"
+import { CustomPreProps, InnerPre, getPreRef } from "codehike/code"
 import {
   TokenTransitionsSnapshot,
   calculateTransitions,

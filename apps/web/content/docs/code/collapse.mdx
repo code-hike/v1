@@ -22,7 +22,7 @@ We use the `Collapsible` component from [shadcn/ui](https://ui.shadcn.com/docs/c
 npx shadcn-ui@latest add collapsible
 ```
 
-For each `!collapse` annotation we need to add to extra annotations, one for the trigger and one for the content.
+For each `!collapse` annotation we need to add two extra annotations, one for the trigger and one for the content.
 
 ```tsx code.tsx -c
 import {
@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/collapsible"
 import { ChevronDownIcon } from "lucide-react"
 
+// !fold[/className="(.*?)"/gm]
 const collapse: AnnotationHandler = {
   name: "collapse",
   transform: (annotation: BlockAnnotation) => {
@@ -59,15 +60,11 @@ const collapse: AnnotationHandler = {
     )
   },
 }
-```
 
-Then we add annotation handlers for `CollapseTrigger` and `CollapseContent`:
-
-```tsx code.tsx -c
-// !fold[/className="(.*?)"/gm]
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
+  onlyIfAnnotated: true,
+  AnnotatedLine: ({ annotation, ...props }) => {
     const icon = (
       <ChevronDownIcon
         className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
@@ -75,17 +72,21 @@ const collapseTrigger: AnnotationHandler = {
       />
     )
     return (
-      <CollapsibleTrigger className="group">
-        <InnerLine merge={props} icon={icon} />
+      <CollapsibleTrigger className="group contents">
+        <InnerLine merge={props} data={{ icon }} />
       </CollapsibleTrigger>
     )
   },
-  Line: ({ annotation, icon, InnerLine, children, ...props }) => {
+  Line: (props) => {
+    const { data } = props
+    const icon = data?.icon as React.ReactNode
     return (
-      <InnerLine merge={props}>
-        <span className="w-6 text-center inline-block">{icon}</span>
-        {children}
-      </InnerLine>
+      <div className="table-row">
+        <span className="w-5 text-center table-cell">{icon}</span>
+        <div className="table-cell">
+          <InnerLine merge={props} />
+        </div>
+      </div>
     )
   },
 }
@@ -96,7 +97,7 @@ const collapseContent: AnnotationHandler = {
 }
 ```
 
-Finally, we pass the `collapse`, `collapseTrigger`, and `collapseContent` handlers to the `Pre` component:
+Then we can pass the `collapse`, `collapseTrigger`, and `collapseContent` handlers to the `Pre` component:
 
 ```tsx code.tsx -c
 async function Code({ codeblock }: { codeblock: RawCode }) {

@@ -60,6 +60,7 @@ const collapse: AnnotationHandler = {
 
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
+  onlyIfAnnotated: true,
   AnnotatedLine: ({ annotation, ...props }) => {
     const icon = (
       <ChevronDownIcon
@@ -68,19 +69,21 @@ const collapseTrigger: AnnotationHandler = {
       />
     )
     return (
-      <CollapsibleTrigger className="group">
+      <CollapsibleTrigger className="group contents">
         <InnerLine merge={props} data={{ icon }} />
       </CollapsibleTrigger>
     )
   },
   Line: (props) => {
-    const { data, children } = props
+    const { data } = props
     const icon = data?.icon as React.ReactNode
     return (
-      <InnerLine merge={props}>
-        <span className="w-6 text-center inline-block">{icon}</span>
-        {children}
-      </InnerLine>
+      <div className="table-row">
+        <span className="w-5 text-center table-cell">{icon}</span>
+        <div className="table-cell">
+          <InnerLine merge={props} />
+        </div>
+      </div>
     )
   },
 }
