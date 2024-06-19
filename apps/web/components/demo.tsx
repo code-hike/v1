@@ -1,8 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { Pre, highlight } from "codehike/code"
-import { CopyButton } from "./copy-button"
-import { BasicCode } from "./code/basic-code"
+import { Code } from "./code"
 
 export async function Demo({
   name,
@@ -21,12 +19,12 @@ export async function Demo({
   )
 
   const usage = (
-    <BasicCode
+    <Code
       className="min-h-full flex flex-col my-0 max-h-full"
       codeblock={{
         value,
         lang: "mdx",
-        meta: `${content} prefix`,
+        meta: `${content} -pwc`,
       }}
     />
   )

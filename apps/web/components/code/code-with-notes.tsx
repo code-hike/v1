@@ -1,12 +1,8 @@
-import { Pre, highlight } from "codehike/code"
+import { highlight } from "codehike/code"
 import { Block, CodeBlock, ImageBlock, parseProps } from "codehike/blocks"
 import { z } from "zod"
-import { CopyButton } from "@/components/copy-button"
-import { tooltip } from "@/components/annotations/tooltip"
-import { collapse } from "../annotations/collapse"
-import { callout } from "../annotations/callout"
-import { fold } from "../annotations/fold"
 import theme from "@/theme.mjs"
+import { HighCode } from "../code"
 
 const ContentSchema = z.object({
   code: CodeBlock,
@@ -31,17 +27,5 @@ export async function CodeWithNotes(props: unknown) {
     }
   })
 
-  return (
-    <div className="border border-editorGroup-border rounded overflow-hidden">
-      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex">
-        <span>{highlighted.meta}</span>
-        <CopyButton text={highlighted.code} className="ml-auto" />
-      </div>
-      <Pre
-        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
-        code={highlighted}
-        handlers={[callout, tooltip, ...collapse, fold]}
-      />
-    </div>
-  )
+  return <HighCode highlighted={highlighted} />
 }

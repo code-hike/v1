@@ -14,7 +14,7 @@ This lets you add structure to your markdown content that you can then use to re
 
 !caption Code Hike transforming decorated markdown into props
 
-```mdx !content content.mdx
+```mdx !content content.mdx -c
 {/* !pill[/!!?mordor/mg] 2 */}
 {/* !pill[/!!?isengard/mg] 3 */}
 {/* !ruler(5) 1 */}
@@ -83,7 +83,7 @@ Besides headings, you can add the `!` decoration to images, codeblocks, and para
 
 !caption Decorated paragraphs, images, and codeblocks
 
-````mdx !content content.mdx
+````mdx !content content.mdx -c
 {/* !pill[/!!?author/mg] 2 */}
 {/* !pill[/!!?cover/mg] 3 */}
 {/* !pill[/!!?riddle/mg] 4 */}
@@ -162,7 +162,7 @@ You can use `!!`, instead of `!`, to list all the blocks with the same decoratio
 
 !caption Using !! for lists
 
-```mdx !content content.mdx
+```mdx !content content.mdx -c
 {/* !pill[/!!?\w+/mg] 0 */}
 {/* !ruler(5) 1 */}
 {/* !ruler(7:9) 2 */}
@@ -224,7 +224,7 @@ You can use headigns with different levels to create nested blocks.
 
 !caption Using header levels for nesting
 
-```mdx !content content.mdx
+```mdx !content content.mdx -c
 {/* !pill[/!!?master/mg] 2 */}
 {/* !pill[/!!?rings/mg] 0 */}
 {/* !ruler(5) 1 */}
@@ -309,7 +309,7 @@ You can use [zod](https://zod.dev/) schemas to validate the content coming from 
 
 !caption Using schemas for markdown validation and typing
 
-````mdx !content content.mdx
+````mdx !content content.mdx -c
 {/* !pill[/!!?author/mg] 2 */}
 {/* !pill[/!!?cover/mg] 3 */}
 {/* !pill[/!!?riddle/mg] 4 */}

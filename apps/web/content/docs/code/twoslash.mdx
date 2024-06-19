@@ -14,13 +14,13 @@ Include Typescript compiler's information in your code blocks using [Typescript 
 
 We use the [twoslash](https://twoslash.netlify.app/) library to extract the typescript compiler's information from the code block. For more information, check the [twoslash docs](https://twoslash.netlify.app/guide/).
 
-```bash command
+```bash -c
 npm i twoslash
 ```
 
 In the `Code` component we run typescript and transform twoslash queries and hovers into Code Hike annotations, that then use handlers similar to [Callout](/docs/code/callout) and [Tooltip](/docs/code/tooltip).
 
-```tsx code.tsx
+```tsx code.tsx -c
 import { RawCode, Pre, highlight, AnnotationHandler } from "codehike/code"
 import { createTwoslasher } from "twoslash"
 

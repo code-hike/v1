@@ -5,5 +5,3 @@ dolor = lorem - sit(dolor)
 // !bg[5:16] darkblue
 let amet = lorem ? consectetur(ipsum) : 3
 ```
-
-s

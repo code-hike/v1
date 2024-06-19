@@ -14,7 +14,7 @@ Add a copy button to a code block.
 
 First we make the button component:
 
-```tsx button.tsx
+```tsx button.tsx -c
 "use client"
 
 import { Copy, Check } from "lucide-react"
@@ -34,11 +34,7 @@ export function CopyButton({ text }: { text: string }) {
         setTimeout(() => setCopied(false), 1200)
       }}
     >
-      {copied ? (
-        <Check size={16} className="text-green-300" />
-      ) : (
-        <Copy size={16} />
-      )}
+      {copied ? <Check size={16} /> : <Copy size={16} />}
     </button>
   )
 }
@@ -46,7 +42,7 @@ export function CopyButton({ text }: { text: string }) {
 
 And then we use it when rendering the code block:
 
-```tsx code.tsx
+```tsx code.tsx -c
 import { Pre, RawCode, highlight } from "codehike/code"
 import { CopyButton } from "./button"
 

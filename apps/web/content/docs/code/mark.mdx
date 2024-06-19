@@ -18,7 +18,7 @@ We could do this in a few ways. One way is to have two components, one for _mark
 
 <CodeWithNotes>
 
-```tsx ! code.tsx
+```tsx ! code.tsx -c
 import { AnnotationHandler } from "codehike/code"
 
 const mark: AnnotationHandler = {
@@ -42,7 +42,7 @@ const mark: AnnotationHandler = {
 
 To use it, pass it to the `handlers` prop of the `Pre` component.
 
-```tsx code.tsx
+```tsx code.tsx -c
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
   return <Pre code={highlighted} handlers={[mark]} />

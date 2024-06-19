@@ -1,5 +1,6 @@
 import {
   AnnotationHandler,
+  HighlightedCode,
   InnerLine,
   Pre,
   RawCode,
@@ -15,6 +16,9 @@ import { CodeIcon } from "./annotations/icons"
 import { collapse } from "./annotations/collapse"
 import { callout } from "./annotations/callout"
 import { mark } from "./annotations/mark"
+import { pill } from "./annotations/pill"
+import { ruler } from "./annotations/ruler"
+import { wordWrap } from "./annotations/word-wrap"
 
 export async function Code({
   codeblock,
@@ -23,23 +27,39 @@ export async function Code({
   codeblock: RawCode
   className?: string
 }) {
-  const highlighted = await highlight(codeblock, theme)
-  const { title, flags } = extractFlags(codeblock)
-  highlighted.meta = title
+  const { flags } = extractFlags(codeblock)
+  const highlighted = await highlight(codeblock, theme, {
+    annotationPrefix: flags.includes("p") ? "!!" : undefined,
+  })
+  return <HighCode highlighted={highlighted} className={className} />
+}
+
+export function HighCode({
+  highlighted,
+  className,
+}: {
+  highlighted: HighlightedCode
+  className?: string
+}) {
+  const { title, flags } = extractFlags(highlighted)
+  const h = { ...highlighted, meta: title }
 
   const handlers = [
+    pill,
     fold,
     link,
     focus,
     mark,
+    ruler,
     flags.includes("n") && lineNumbers,
     callout,
+    flags.includes("w") && wordWrap,
     ...collapse,
   ].filter(Boolean) as AnnotationHandler[]
 
   const pre = (
     <Pre
-      code={highlighted}
+      code={h}
       className="m-0 py-2 px-0 bg-editor-background rounded-none group flex-1 selection:bg-editor-selectionBackground"
       handlers={handlers}
     />
@@ -56,10 +76,10 @@ export async function Code({
         <div className="px-3 py-2 border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground text-sm text-tab-activeForeground flex">
           <div className="text-tab-activeForeground text-sm flex items-center gap-3">
             <CodeIcon title={title} />
-            <span>{highlighted.meta}</span>
+            <span>{title}</span>
           </div>
           {flags.includes("c") && (
-            <CopyButton text={highlighted.code} className="ml-auto" />
+            <CopyButton text={h.code} className="ml-auto" />
           )}
         </div>
         {pre}
@@ -74,10 +94,7 @@ export async function Code({
         )}
       >
         {flags.includes("c") && (
-          <CopyButton
-            text={highlighted.code}
-            className="absolute right-4 my-0 top-2"
-          />
+          <CopyButton text={h.code} className="absolute right-4 my-0 top-2" />
         )}
         {pre}
       </div>
@@ -88,7 +105,10 @@ export async function Code({
 function extractFlags(codeblock: RawCode) {
   const flags =
     codeblock.meta.split(" ").filter((flag) => flag.startsWith("-"))[0] ?? ""
-  const title = codeblock.meta.replace(flags, "").trim()
+  const title =
+    codeblock.meta === flags
+      ? ""
+      : codeblock.meta.replace(" " + flags, "").trim()
   return { title, flags: flags.slice(1).split("") }
 }
 

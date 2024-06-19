@@ -6,6 +6,9 @@ export function CodeIcon({ title }: { title: string }) {
   if (filename.endsWith(".mdx")) {
     filename = filename.slice(0, -4)
     filename += ".md"
+  } else if (filename.endsWith(".mjs")) {
+    filename = filename.slice(0, -4)
+    filename += ".js"
   }
 
   const { svg, color } = getLightIcon(filename)

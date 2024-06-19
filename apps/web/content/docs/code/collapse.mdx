@@ -18,13 +18,13 @@ Fold and unfold blocks of code.
 
 We use the `Collapsible` component from [shadcn/ui](https://ui.shadcn.com/docs/components/collapsible):
 
-```bash
+```bash -c
 npx shadcn-ui@latest add collapsible
 ```
 
 For each `!collapse` annotation we need to add to extra annotations, one for the trigger and one for the content.
 
-```tsx code.tsx
+```tsx code.tsx -c
 import {
   Collapsible,
   CollapsibleContent,
@@ -63,7 +63,7 @@ const collapse: AnnotationHandler = {
 
 Then we add annotation handlers for `CollapseTrigger` and `CollapseContent`:
 
-```tsx code.tsx
+```tsx code.tsx -c
 // !fold[/className="(.*?)"/gm]
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
@@ -98,7 +98,7 @@ const collapseContent: AnnotationHandler = {
 
 Finally, we pass the `collapse`, `collapseTrigger`, and `collapseContent` handlers to the `Pre` component:
 
-```tsx code.tsx
+```tsx code.tsx -c
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
   return (

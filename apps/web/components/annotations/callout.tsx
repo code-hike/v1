@@ -27,7 +27,7 @@ export const callout: AnnotationHandler = {
             minWidth: `${column + 4}ch`,
             marginLeft: `${indentation - 1}ch`,
           }}
-          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-2 relative my-1 whitespace-break-spaces prose-p:my-1 text-center select-none"
+          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-0 relative my-1 whitespace-break-spaces prose-p:my-1 prose-p:mx-2 select-none"
         >
           <div
             style={{ left: `${column - indentation}ch` }}

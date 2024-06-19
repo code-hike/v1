@@ -14,7 +14,7 @@ Animate the transition between code blocks at a token level.
 
 Create a `SmoothPre` component, that wraps the `Pre` component and animates the transition between code blocks:
 
-```tsx smooth-pre.tsx
+```tsx smooth-pre.tsx -c
 "use client"
 
 import React from "react"
@@ -81,7 +81,7 @@ const inlineBlockToken: AnnotationHandler = {
 
 Use it as a drop-in replacement for the `Pre` component:
 
-```tsx page.tsx
+```tsx page.tsx -c
 import { SmoothPre } from "./smooth-pre"
 
 async function Code({ codeblock }: { codeblock: RawCode }) {

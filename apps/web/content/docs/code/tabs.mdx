@@ -14,13 +14,13 @@ Show multiple code blocks in tabs.
 
 We use the [`Tabs` components](https://ui.shadcn.com/docs/components/tabs) from shadcn/ui:
 
-```bash command
+```bash -c
 npx shadcn-ui@latest add tabs
 ```
 
 And then create a component to handle multiple codeblocks as tabs:
 
-```tsx code.tsx
+```tsx code.tsx -c
 import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { Pre, highlight } from "codehike/code"
 import { z } from "zod"

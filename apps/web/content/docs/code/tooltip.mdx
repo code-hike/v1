@@ -21,7 +21,7 @@ After we highlight the code, we find annotations where the query matches a toolt
 
 <CodeWithNotes lineNumbers={false}>
 
-```tsx ! code.tsx
+```tsx ! code.tsx -c
 import { Block, CodeBlock, parseProps } from "codehike/blocks"
 import { Pre, highlight } from "codehike/code"
 import { z } from "zod"
@@ -58,7 +58,7 @@ Then we define an `AnnotationHandler` to render the tooltip inline using the [sh
 
 <CodeWithNotes lineNumbers={false}>
 
-```tsx ! code.tsx
+```tsx ! code.tsx -c
 import { AnnotationHandler } from "codehike/code"
 import {
   TooltipProvider,
