@@ -1,4 +1,9 @@
-import { AnnotationHandler, InnerLine, InnerPre } from "codehike/code"
+import {
+  AnnotationHandler,
+  InnerLine,
+  InnerPre,
+  InnerToken,
+} from "codehike/code"
 
 export const wordWrap: AnnotationHandler = {
   name: "word-wrap",
@@ -12,4 +17,5 @@ export const wordWrap: AnnotationHandler = {
       }}
     />
   ),
+  Token: (props) => <InnerToken merge={props} style={{ textIndent: 0 }} />,
 }

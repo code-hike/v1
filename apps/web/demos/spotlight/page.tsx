@@ -11,7 +11,7 @@ import {
   Selectable,
   SelectionProvider,
 } from "codehike/utils/selection"
-import { SmoothPre } from "@/components/smooth-pre"
+import { tokenTransitions } from "@/components/annotations/token-transitions"
 
 const Schema = Block.extend({
   steps: z.array(Block.extend({ code: CodeBlock })),
@@ -53,9 +53,10 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     "github-dark",
   )
   return (
-    <SmoothPre
+    <Pre
       code={highlighted}
       className="max-h-[90vh] min-h-[38rem] bg-zinc-900 h-full m-0 border border-zinc-700 "
+      handlers={[tokenTransitions]}
     />
   )
 }

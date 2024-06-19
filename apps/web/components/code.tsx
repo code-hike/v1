@@ -20,6 +20,7 @@ import { pill } from "./annotations/pill"
 import { ruler } from "./annotations/ruler"
 import { wordWrap } from "./annotations/word-wrap"
 import { line } from "./annotations/line"
+import { tokenTransitions } from "./annotations/token-transitions"
 
 export async function Code({
   codeblock,
@@ -52,11 +53,12 @@ export function HighCode({
     focus,
     mark,
     ruler,
+    flags.includes("a") && tokenTransitions,
     flags.includes("n") && lineNumbers,
+    ...collapse,
     line,
     flags.includes("w") && wordWrap,
     callout,
-    ...collapse,
   ].filter(Boolean) as AnnotationHandler[]
 
   const pre = (
