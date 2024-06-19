@@ -7,11 +7,13 @@ description: Getting started with Code Hike
 
 Start from a template with Next.js, MDX, Tailwind CSS:
 
-```bash command
+```bash -c
 npx create-next-app -e https://github.com/code-hike/v1-starter
 ```
 
 Or try it online on [StackBlitz](https://stackblitz.com/github/code-hike/v1-starter) or [CodeSandbox](https://codesandbox.io/s/github/code-hike/v1-starter).
+
+For more complete starters, see the [examples](/docs/examples) page.
 
 For [manual installation](#manual-installation), see below.
 
@@ -73,13 +75,13 @@ For examples using various frameworks, see the [examples](/docs/examples).
 
 1. Install Code Hike:
 
-```bash command
-npm install codehike@alpha
+```bash -c
+npm install codehike@beta
 ```
 
 2. Set up MDX plugins:
 
-```js next.config.mjs
+```js next.config.mjs -c
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
 /** @type {import('codehike/mdx').CodeHikeConfig} */

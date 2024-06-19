@@ -1,18 +1,19 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef } from "react"
 import { RenderLineContent, toLineContent } from "./tokens.js"
 import {
   AnnotationHandler,
   BlockAnnotation,
+  CustomLineProps,
+  CustomPre,
   InlineAnnotation,
-  InnerLine,
   InternalToken,
   PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
-import { mergeProps } from "./merge-props.js"
-import { getPreComponent } from "./component-reducer.js"
+import { AddRefIfNedded } from "./pre-ref.js"
+import { InnerLine, InnerPre } from "./inner.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -53,15 +54,32 @@ export const Pre: PreComponent = forwardRef(
     const blockAnnotations = annotations.filter(isBlockAnnotation)
     const inlineAnnotations = annotations.filter(isInlineAnnotation)
 
+    const annotationNames = new Set(annotations.map((a) => a.name))
+
     const groups = toLineGroups(lines, blockAnnotations)
 
-    const StackedPre = useMemo(() => {
-      return getPreComponent(handlers)
-    }, [handlers.map((c) => c.name).join(",")])
+    const noRefStack = handlers
+      .filter(
+        ({ Pre, name, onlyIfAnnotated }) =>
+          Pre && (!onlyIfAnnotated || annotationNames.has(name)),
+      )
+      .map(({ Pre }) => Pre!)
+    const refStack = handlers
+      .filter(
+        ({ PreWithRef, name, onlyIfAnnotated }) =>
+          PreWithRef && (!onlyIfAnnotated || annotationNames.has(name)),
+      )
+      .map(({ PreWithRef }) => PreWithRef!)
 
+    if (refStack.length > 0) {
+      refStack.unshift(AddRefIfNedded as any)
+    }
+
+    const stack = [...noRefStack, ...refStack]
+    const merge = { _stack: stack, _ref: ref as any }
     return (
-      <StackedPre
-        ref={ref}
+      <InnerPre
+        merge={merge}
         data-theme={themeName}
         data-lang={lang}
         className={className}
@@ -69,11 +87,12 @@ export const Pre: PreComponent = forwardRef(
       >
         <RenderLines
           linesOrGroups={groups}
+          annotationNames={annotationNames}
           handlers={handlers}
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
         />
-      </StackedPre>
+      </InnerPre>
     )
   },
 )
@@ -84,12 +103,14 @@ function RenderLines({
   inlineAnnotations,
   indentations,
   annotationStack = [],
+  annotationNames,
 }: {
   linesOrGroups: LinesOrGroups
   handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
   indentations: number[]
+  annotationNames: Set<string>
 }) {
   return linesOrGroups.map((group) => {
     if (isGroup(group)) {
@@ -101,6 +122,7 @@ function RenderLines({
           inlineAnnotations={inlineAnnotations}
           annotationStack={annotationStack}
           indentations={indentations}
+          annotationNames={annotationNames}
         />
       )
     }
@@ -113,7 +135,23 @@ function RenderLines({
     )
     const lineContent = toLineContent(group.tokens, lineAnnotations)
 
-    let Line = getLineComponent(annotationStack, handlers)
+    const stack = handlers.flatMap(
+      ({ name, Line, AnnotatedLine, onlyIfAnnotated }) => {
+        if (onlyIfAnnotated && !annotationNames.has(name)) {
+          return []
+        }
+
+        const s = [] as CustomLineProps["_stack"]
+        const annotation = annotationStack.find((a) => a.name === name)
+        if (annotation && AnnotatedLine) {
+          s.push({ Component: AnnotatedLine, annotation })
+        }
+        if (Line) {
+          s.push({ Component: Line, annotation })
+        }
+        return s
+      },
+    )
 
     let children: React.ReactNode = (
       <RenderLineContent
@@ -123,46 +161,14 @@ function RenderLines({
       />
     )
 
+    const merge = { lineNumber, indentation, _stack: stack }
+
     return (
-      <Line lineNumber={lineNumber} indentation={indentation} key={lineNumber}>
+      <InnerLine merge={merge} key={lineNumber}>
         {children}
-      </Line>
+      </InnerLine>
     )
   })
-}
-
-const DefaultLine: InnerLine = ({ merge: base = {}, ...rest }) => {
-  const { lineNumber, indentation, ...props } = mergeProps(base, rest)
-  return <div {...props} />
-}
-
-function getLineComponent(
-  annotationStack: BlockAnnotation[],
-  handlers: AnnotationHandler[],
-): InnerLine {
-  const BaseLine = handlers.reduce((Inner, { Line }) => {
-    if (!Line) {
-      return Inner
-    }
-
-    return ({ merge = {}, ...props }) => {
-      const result = mergeProps(merge, props) as any
-      return <Line {...result} InnerLine={Inner} />
-    }
-  }, DefaultLine)
-
-  return handlers.reduce((Inner, { name, AnnotatedLine }) => {
-    const annotation = annotationStack.find((a) => a.name === name)
-    if (!annotation || !AnnotatedLine) {
-      return Inner
-    }
-    return ({ merge = {}, ...props }) => {
-      const result = mergeProps(merge, props) as any
-      return (
-        <AnnotatedLine {...result} annotation={annotation} InnerLine={Inner} />
-      )
-    }
-  }, BaseLine)
 }
 
 function AnnotatedLines({
@@ -171,12 +177,14 @@ function AnnotatedLines({
   inlineAnnotations,
   annotationStack,
   indentations,
+  annotationNames,
 }: {
   group: LineGroup
   handlers: AnnotationHandler[]
   inlineAnnotations: InlineAnnotation[]
   annotationStack: BlockAnnotation[]
   indentations: number[]
+  annotationNames: Set<string>
 }) {
   const { annotation, lines } = group
   const { name } = annotation
@@ -189,6 +197,7 @@ function AnnotatedLines({
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
+        annotationNames={annotationNames}
       />
     )
   }
@@ -200,6 +209,7 @@ function AnnotatedLines({
         inlineAnnotations={inlineAnnotations}
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
+        annotationNames={annotationNames}
       />
     </Component>
   )

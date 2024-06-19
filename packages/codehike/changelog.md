@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-alpha.21
+
+### Minor Changes
+
+- 218c6e2: Change annotation components layout
+
 ## 1.0.0-alpha.20
 
 ### Patch Changes

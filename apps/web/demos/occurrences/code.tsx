@@ -1,6 +1,6 @@
 "use client"
 
-import { HighlightedCode, Pre, TokenComponent } from "codehike/code"
+import { HighlightedCode, Pre } from "codehike/code"
 import React from "react"
 
 export function CodeWithOccurrences({ code }: { code: HighlightedCode }) {
@@ -31,13 +31,13 @@ export function CodeWithOccurrences({ code }: { code: HighlightedCode }) {
   )
 }
 
-const Token: TokenComponent = ({ value, lineNumber, ...props }) => {
-  return (
-    <span
-      {...props}
-      className="data-[selected]:bg-blue-500/40 data-[selected]:rounded"
-    >
-      {value}
-    </span>
-  )
-}
+// const Token: TokenComponent = ({ value, lineNumber, ...props }) => {
+//   return (
+//     <span
+//       {...props}
+//       className="data-[selected]:bg-blue-500/40 data-[selected]:rounded"
+//     >
+//       {value}
+//     </span>
+//   )
+// }

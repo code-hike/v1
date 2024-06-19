@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { AnnotationHandler, Pre } from "codehike/code"
+import { AnnotationHandler, InnerToken, Pre } from "codehike/code"
 import {
   TokenTransitionsSnapshot,
   calculateTransitions,
@@ -56,7 +56,7 @@ export class SmoothPre extends React.Component<PreProps> {
 
 const inlineBlockToken: AnnotationHandler = {
   name: "inline-block",
-  Token: ({ InnerToken, ...props }) => (
+  Token: (props) => (
     <InnerToken merge={props} style={{ display: "inline-block" }} />
   ),
 }

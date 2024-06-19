@@ -12,35 +12,30 @@ Animate the transition between code blocks at a token level.
 
 ## !implementation
 
-Create a `SmoothPre` component, that wraps the `Pre` component and animates the transition between code blocks:
+We are going to use some utils from `codehike/utils/token-transitions`. The easiest way of using them is inside a class component:
 
-```tsx smooth-pre.tsx
+```tsx smooth-pre.tsx -cw
 "use client"
 
-import React from "react"
-import { AnnotationHandler, Pre } from "codehike/code"
+import { CustomPreProps, InnerPre, getPreRef } from "codehike/code"
 import {
   TokenTransitionsSnapshot,
   calculateTransitions,
   getStartingSnapshot,
 } from "codehike/utils/token-transitions"
+import React from "react"
 
 const MAX_TRANSITION_DURATION = 900 // milliseconds
 
-type PreProps = React.ComponentProps<typeof Pre>
-export class SmoothPre extends React.Component<PreProps> {
+export class SmoothPre extends React.Component<CustomPreProps> {
   ref: React.RefObject<HTMLPreElement>
-
-  constructor(props: PreProps) {
+  constructor(props: CustomPreProps) {
     super(props)
-    this.ref = React.createRef<HTMLPreElement>()
+    this.ref = getPreRef(this.props)
   }
 
   render() {
-    const handlers = [inlineBlockToken, ...(this.props.handlers || [])]
-    const style = { ...this.props.style, position: "relative" as const }
-    const props = { ...this.props, style, handlers }
-    return <Pre ref={this.ref} {...props} />
+    return <InnerPre merge={this.props} style={{ position: "relative" }} />
   }
 
   getSnapshotBeforeUpdate() {
@@ -48,7 +43,7 @@ export class SmoothPre extends React.Component<PreProps> {
   }
 
   componentDidUpdate(
-    prevProps: PreProps,
+    prevProps: never,
     prevState: never,
     snapshot: TokenTransitionsSnapshot,
   ) {
@@ -70,27 +65,33 @@ export class SmoothPre extends React.Component<PreProps> {
     })
   }
 }
+```
 
-const inlineBlockToken: AnnotationHandler = {
-  name: "inline-block",
-  Token: ({ InnerToken, ...props }) => (
+Then we create the annotation handler:
+
+```tsx code.tsx -cw
+import { AnnotationHandler, InnerToken } from "codehike/code"
+import { SmoothPre } from "./smooth-pre"
+
+export const tokenTransitions: AnnotationHandler = {
+  name: "token-transitions",
+  PreWithRef: SmoothPre,
+  Token: (props) => (
     <InnerToken merge={props} style={{ display: "inline-block" }} />
   ),
 }
 ```
 
-Use it as a drop-in replacement for the `Pre` component:
+And then pass the handler to the `Pre` component:
 
-```tsx page.tsx
-import { SmoothPre } from "./smooth-pre"
-
+```tsx page.tsx -c
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-  return <SmoothPre code={highlighted} className="..." handlers=[...] />
+  return <Pre code={highlighted} handlers={[tokenTransitions]} />
 }
 ```
 
-When the `codeblock` changes, the `SmoothPre` component will animate the transition between the old and new code blocks.
+When the `codeblock` changes, the `Code` component will animate the transition between the old and new code blocks.
 
 ## See it in action
 

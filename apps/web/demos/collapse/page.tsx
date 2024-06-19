@@ -10,6 +10,7 @@ import {
   highlight,
   BlockAnnotation,
   AnnotationHandler,
+  InnerLine,
 } from "codehike/code"
 import Content from "./content.md"
 
@@ -59,7 +60,8 @@ const collapse: AnnotationHandler = {
 
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
+  onlyIfAnnotated: true,
+  AnnotatedLine: ({ annotation, ...props }) => {
     const icon = (
       <ChevronDownIcon
         className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
@@ -67,17 +69,21 @@ const collapseTrigger: AnnotationHandler = {
       />
     )
     return (
-      <CollapsibleTrigger className="group">
-        <InnerLine merge={props} icon={icon} />
+      <CollapsibleTrigger className="group contents">
+        <InnerLine merge={props} data={{ icon }} />
       </CollapsibleTrigger>
     )
   },
-  Line: ({ annotation, icon, InnerLine, children, ...props }) => {
+  Line: (props) => {
+    const { data } = props
+    const icon = data?.icon as React.ReactNode
     return (
-      <InnerLine merge={props}>
-        <span className="w-6 text-center inline-block">{icon}</span>
-        {children}
-      </InnerLine>
+      <div className="table-row">
+        <span className="w-5 text-center table-cell">{icon}</span>
+        <div className="table-cell">
+          <InnerLine merge={props} />
+        </div>
+      </div>
     )
   },
 }

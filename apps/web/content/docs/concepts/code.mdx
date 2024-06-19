@@ -9,7 +9,7 @@ To use a **custom component to render code blocks**, you need to provide the nam
 
 <div className="flex gap-2">
 
-```js your-config.mjs
+```js your-config.mjs -cw
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
 const chConfig = {
@@ -22,7 +22,7 @@ const mdxOptions = {
 }
 ```
 
-```tsx page.tsx
+```tsx page.tsx -cw
 import Content from "./content.md"
 import type { RawCode } from "codehike/code"
 
@@ -41,7 +41,7 @@ function MyCode({ codeblock }: { codeblock: RawCode }) {
 
 To add syntax highlighting to your component, you can use the `highlight` function from the `codehike/code` module. This function takes a `RawCode` object and a theme name, and returns a `HighlightedCode` object. You can then pass this object to the `Pre` component to render the highlighted code.
 
-```tsx code.tsx
+```tsx code.tsx -c
 import { Pre, RawCode, highlight } from "codehike/code"
 
 export async function MyCode({ codeblock }: { codeblock: RawCode }) {
@@ -58,7 +58,7 @@ Note that the `highlight` function is asynchronous, which means that the `MyCode
 
 <div className="flex gap-2">
 
-```js your-config.mjs
+```js your-config.mjs -cw
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 
 const chConfig = {
@@ -74,7 +74,7 @@ const mdxOptions = {
 }
 ```
 
-```tsx page.tsx
+```tsx page.tsx -cw
 import Content from "./content.md"
 import type { HighlightedCode, Pre } from "codehike/code"
 
@@ -126,7 +126,7 @@ You can use the [Theme Editor](https://themes.codehike.org/editor) to customize 
 
 If there are codeblocks that you don't want to be processed by Code Hike, you can add an `ignoreCode` function to the configuration. This function receives a `RawCode` object and should return `true` if the codeblock should be ignored.
 
-```js your-config.mjs
+```js your-config.mjs -c
 /** @type {import('codehike/mdx').CodeHikeConfig} */
 const chConfig = {
   components: { code: "MyCode" },

@@ -17,7 +17,7 @@
   },
   {
     "name": "speakeasy-api",
-    "amount": 2423
+    "amount": 2442
   },
   {
     "name": "fmvilas",
@@ -34,6 +34,10 @@
   {
     "name": "brianespinosa",
     "amount": 767
+  },
+  {
+    "name": "jsheroes",
+    "amount": 535
   },
   {
     "name": "winkerVSbecks",
@@ -68,16 +72,16 @@
     "amount": 277
   },
   {
+    "name": "traviscooper",
+    "amount": 270
+  },
+  {
     "name": "arosenkranz",
     "amount": 262
   },
   {
-    "name": "traviscooper",
-    "amount": 261
-  },
-  {
     "name": "obgibson",
-    "amount": 252
+    "amount": 261
   },
   {
     "name": "matthiaszepper",
@@ -100,6 +104,10 @@
     "amount": 217
   },
   {
+    "name": "codeSTACKr",
+    "amount": 207
+  },
+  {
     "name": "stefanjudis",
     "amount": 207
   },
@@ -110,10 +118,6 @@
   {
     "name": "discordjs",
     "amount": 200
-  },
-  {
-    "name": "codeSTACKr",
-    "amount": 198
   },
   {
     "name": "mrboen94",
@@ -212,6 +216,10 @@
     "amount": 86
   },
   {
+    "name": "yacinelakel",
+    "amount": 83
+  },
+  {
     "name": "grikomsn",
     "amount": 81
   },
@@ -234,10 +242,6 @@
   {
     "name": "devopsbarista",
     "amount": 67
-  },
-  {
-    "name": "yacinelakel",
-    "amount": 64
   },
   {
     "name": "cdalsoniii",
@@ -304,12 +308,12 @@
     "amount": 35
   },
   {
-    "name": "work-hadano",
+    "name": "ianaya89",
     "amount": 32
   },
   {
-    "name": "ianaya89",
-    "amount": 31
+    "name": "work-hadano",
+    "amount": 32
   },
   {
     "name": "swyxio",
@@ -382,6 +386,10 @@
   {
     "name": "seveibar",
     "amount": 14
+  },
+  {
+    "name": "AlexzanderFlores",
+    "amount": 13
   },
   {
     "name": "MarkusWendorf",

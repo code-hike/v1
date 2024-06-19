@@ -2,16 +2,16 @@ import { parseProps, Block, CodeBlock } from "codehike/blocks"
 
 import {
   AnnotationHandler,
-  InlineAnnotation,
+  InnerLine,
   Pre,
   RawCode,
   highlight,
 } from "codehike/code"
 import theme from "@/theme.mjs"
-import { CodeIcon } from "../annotations/icons"
 import { pill } from "../annotations/pill"
 import { ruler } from "../annotations/ruler"
 import { z } from "zod"
+import { HighCode } from "../code"
 
 export async function BlocksDemo(props: unknown) {
   const { content, component, result, caption } = parseProps(
@@ -49,23 +49,6 @@ export async function BlocksDemo(props: unknown) {
   )
 }
 
-async function CalloutCode({ code }: { code: RawCode }) {
-  const highlighted = await highlight(code, theme)
-  return (
-    <Pre
-      code={highlighted}
-      className="m-0 py-1 px-0 bg-transparent"
-      handlers={[ruler, lineHandler, pill]}
-    />
-  )
-}
-
-const lineHandler: AnnotationHandler = {
-  Line: ({ InnerLine, ...props }) => {
-    return <InnerLine merge={props} className="px-3" />
-  },
-}
-
 export async function CodeWithNotes({
   code,
   notes = {},
@@ -74,7 +57,6 @@ export async function CodeWithNotes({
   notes?: Record<string, { children: React.ReactNode }>
 }) {
   const highlighted = await highlight(code, theme)
-  const icon = <CodeIcon codeblock={code} />
 
   highlighted.annotations = highlighted.annotations.map((a) => {
     const note = notes[a.query]
@@ -88,55 +70,23 @@ export async function CodeWithNotes({
     }
   })
 
+  return <HighCode className="min-h-full" highlighted={highlighted} />
+}
+
+async function CalloutCode({ code }: { code: RawCode }) {
+  const highlighted = await highlight(code, theme)
   return (
-    <div className="min-h-full border border-editorGroup-border rounded overflow-hidden">
-      <div className="border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground px-3 py-2 text-tab-activeForeground text-sm flex items-center gap-3">
-        {icon}
-        <span>{highlighted.meta}</span>
-      </div>
-      <Pre
-        className="m-0 px-0 bg-editor-background rounded-none whitespace-pre-wrap selection:bg-editor-selectionBackground"
-        code={highlighted}
-        handlers={[callout, pill, ruler]}
-      />
-    </div>
+    <Pre
+      code={highlighted}
+      className="m-0 py-1 px-0 bg-transparent"
+      handlers={[ruler, lineHandler, pill]}
+    />
   )
 }
 
-const callout: AnnotationHandler = {
-  name: "callout",
-  transform: (annotation: InlineAnnotation) => {
-    const { name, query, lineNumber, fromColumn, toColumn } = annotation
-    return {
-      name,
-      query,
-      fromLineNumber: lineNumber,
-      toLineNumber: lineNumber,
-      data: {
-        ...annotation.data,
-        column: (fromColumn + toColumn) / 2,
-      },
-    }
-  },
-  Line: ({ InnerLine, ...props }) => {
+const lineHandler: AnnotationHandler = {
+  name: "line",
+  Line: (props) => {
     return <InnerLine merge={props} className="px-3" />
-  },
-  AnnotatedLine: ({ InnerLine, annotation, indentation, ...props }) => {
-    const { column } = annotation.data
-    return (
-      <>
-        <InnerLine {...props} />
-        <div
-          style={{ minWidth: `${column + 4}ch` }}
-          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-0 relative my-1 ml-[3ch] whitespace-break-spaces prose-p:my-0"
-        >
-          <div
-            style={{ left: `${column - 3}ch` }}
-            className="absolute border-l border-t border-editorGroup-border w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px] bg-editorGroupHeader-tabsBackground"
-          />
-          {annotation.data.children || annotation.query}
-        </div>
-      </>
-    )
   },
 }

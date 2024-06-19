@@ -16,11 +16,12 @@ Add callouts inside your code blocks.
 
 <CodeWithNotes>
 
-```tsx ! code.tsx
+```tsx ! code.tsx -cwn
 import { InlineAnnotation, AnnotationHandler } from "codehike/code"
 
 const callout: AnnotationHandler = {
   name: "callout",
+  // !mark
   // !callout[/transform/] transform-annotations
   transform: (annotation: InlineAnnotation) => {
     const { name, query, lineNumber, fromColumn, toColumn, data } = annotation
@@ -67,7 +68,7 @@ This will be the position of the arrow in the callout
 
 Then pass the `callout` handler to the `Pre` component:
 
-```tsx code.tsx ln
+```tsx code.tsx -c
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
   return <Pre code={highlighted} handlers={[callout]} />

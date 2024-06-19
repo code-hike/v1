@@ -11,7 +11,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 }
 
 const link: AnnotationHandler = {
-  name: "Link",
+  name: "link",
   Inline: ({ annotation, children }) => {
     const { query } = annotation
     return <a href={query}>{children}</a>

@@ -5,13 +5,13 @@ import {
   parseRoot,
 } from "codehike/blocks"
 import { z } from "zod"
-import { RawCode, highlight } from "codehike/code"
+import { Pre, RawCode, highlight } from "codehike/code"
 import {
   Selection,
   Selectable,
   SelectionProvider,
 } from "codehike/utils/selection"
-import { SmoothPre } from "@/components/smooth-pre"
+import { tokenTransitions } from "@/components/annotations/token-transitions"
 
 const Schema = Block.extend({
   steps: z.array(Block.extend({ code: CodeBlock })),
@@ -53,9 +53,10 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
     "github-dark",
   )
   return (
-    <SmoothPre
+    <Pre
       code={highlighted}
       className="min-h-[40rem] bg-transparent"
+      handlers={[tokenTransitions]}
     />
   )
 }

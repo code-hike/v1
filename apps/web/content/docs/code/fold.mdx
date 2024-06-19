@@ -12,7 +12,7 @@ Fold inline content.
 
 ## !implementation
 
-```tsx fold.tsx
+```tsx fold.tsx -c
 "use client"
 import { AnnotationHandler } from "codehike/code"
 import { useState } from "react"
@@ -32,7 +32,7 @@ export const InlineFold: AnnotationHandler["Inline"] = ({ children }) => {
 
 And then add the handler to your `Code` component:
 
-```tsx code.tsx
+```tsx code.tsx -c
 import { RawCode, Pre, highlight, AnnotationHandler } from "codehike/code"
 import { InlineFold } from "./fold"
 

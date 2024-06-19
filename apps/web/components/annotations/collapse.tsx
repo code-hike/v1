@@ -4,10 +4,10 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { ChevronDownIcon } from "lucide-react"
-import { BlockAnnotation, AnnotationHandler } from "codehike/code"
+import { BlockAnnotation, AnnotationHandler, InnerLine } from "codehike/code"
 
 const collapseRoot: AnnotationHandler = {
-  name: "Collapse",
+  name: "collapse",
   transform: (annotation: BlockAnnotation) => {
     const { fromLineNumber } = annotation
     return [
@@ -36,28 +36,30 @@ const collapseRoot: AnnotationHandler = {
 
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => {
+  onlyIfAnnotated: true,
+  AnnotatedLine: ({ annotation, ...props }) => {
     const icon = (
       <ChevronDownIcon
-        className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5"
+        className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5 ml-1 -mr-1 "
         size={15}
       />
     )
     return (
       <CollapsibleTrigger className="group contents">
-        <InnerLine merge={props} icon={icon} />
+        <InnerLine merge={props} data={{ icon }} />
       </CollapsibleTrigger>
     )
   },
-  Line: ({ annotation, icon, InnerLine, lineNumber, children, ...props }) => {
+  Line: (props) => {
+    const { data } = props
+    const icon = data?.icon as React.ReactNode
     return (
-      <InnerLine merge={props} className="table-row">
-        <span className="pr-2 w-[4ch] box-content !opacity-50 text-right select-none table-cell">
-          {lineNumber}
-        </span>
-        <span className="w-6 text-center table-cell">{icon}</span>
-        <div className="table-cell break-words">{children}</div>
-      </InnerLine>
+      <div className="table-row">
+        <span className="w-4 text-center table-cell">{icon}</span>
+        <div className="table-cell">
+          <InnerLine merge={props} />
+        </div>
+      </div>
     )
   },
 }

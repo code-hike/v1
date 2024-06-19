@@ -2,7 +2,8 @@
 
 import React from "react"
 import { HighlightedCode } from "codehike/code"
-import { SmoothPre } from "@/components/smooth-pre"
+import { Pre } from "codehike/code"
+import { tokenTransitions } from "@/components/annotations/token-transitions"
 
 export function CodeSwitcher({ infos }: { infos: HighlightedCode[] }) {
   const [index, setIndex] = React.useState(0)
@@ -21,8 +22,12 @@ export function CodeSwitcher({ infos }: { infos: HighlightedCode[] }) {
 }
 
 export function CodeClient(props: { highlighted: HighlightedCode }) {
-  const { highlighted, ...rest } = props
+  const { highlighted } = props
   return (
-    <SmoothPre code={highlighted} {...rest} className="m-0 h-80 bg-zinc-950" />
+    <Pre
+      code={highlighted}
+      handlers={[tokenTransitions]}
+      className="m-0 h-80 bg-zinc-950"
+    />
   )
 }

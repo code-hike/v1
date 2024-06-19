@@ -6,7 +6,6 @@ import {
   highlight,
 } from "codehike/code"
 import Content from "./auto-content.md"
-import { InlineLink } from "./link"
 
 export default function Page() {
   return <Content components={{ Code }} />
@@ -37,7 +36,7 @@ function getLinkAnnotations(code: string): InlineAnnotation[] {
       const end = start + url.length
 
       annotations.push({
-        name: "Link",
+        name: "link",
         query: url,
         lineNumber: i + 1,
         fromColumn: start + 1,

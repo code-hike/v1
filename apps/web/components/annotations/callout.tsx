@@ -1,8 +1,9 @@
-import { AnnotationHandler, InlineAnnotation } from "codehike/code"
+import { AnnotationHandler, InlineAnnotation, InnerLine } from "codehike/code"
 
 export const callout: AnnotationHandler = {
   name: "callout",
   transform: (annotation: InlineAnnotation) => {
+    // transform inline annotation to block annotation
     const { name, query, lineNumber, fromColumn, toColumn } = annotation
     return {
       name,
@@ -15,24 +16,25 @@ export const callout: AnnotationHandler = {
       },
     }
   },
-  AnnotatedLine: ({ InnerLine, annotation, indentation, ...props }) => {
+  AnnotatedLine: ({ annotation, ...props }) => {
     const { column } = annotation.data
+    const { indentation, children } = props
     return (
       <>
+        <InnerLine merge={props}>{children}</InnerLine>
         <div
           style={{
             minWidth: `${column + 4}ch`,
-            marginLeft: `${7 + indentation}ch`,
+            marginLeft: `${indentation - 1}ch`,
           }}
-          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-2 relative my-1 whitespace-break-spaces prose-p:my-1 text-center select-none"
+          className="w-fit border bg-editorGroupHeader-tabsBackground border-editorGroup-border rounded px-0 relative my-1 whitespace-break-spaces prose-p:my-1 prose-p:mx-2 select-none"
         >
           <div
             style={{ left: `${column - indentation}ch` }}
-            className="absolute border-r border-b  border-editorGroup-border w-2 h-2 rotate-45 translate-y-1/2 -bottom-[1px] bg-editorGroupHeader-tabsBackground"
+            className="absolute border-l border-t  border-editorGroup-border w-2 h-2 rotate-45 -translate-y-1/2 -top-[1px]  bg-editorGroupHeader-tabsBackground"
           />
           {annotation.data.children || annotation.query}
         </div>
-        <InnerLine {...props} />
       </>
     )
   },
