@@ -1,9 +1,9 @@
 {
   "mode": "pre",
-  "tag": "alpha",
+  "tag": "beta",
   "initialVersions": {
     "web": "0.1.0",
-    "codehike": "0.9.9"
+    "codehike": "1.0.0-alpha.21"
   },
   "changesets": [
     "blue-cameras-serve",
