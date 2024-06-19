@@ -1,9 +1,7 @@
 import fs from "fs"
 import path from "path"
-import { Pre, RawCode, highlight } from "codehike/code"
-import { CopyButton } from "./copy-button"
-import { BasicCode } from "./code/basic-code"
 import { Tab, Tabs } from "next-docs-ui/components/tabs"
+import { Code } from "./code"
 
 export async function LayoutDemo({
   name,
@@ -32,11 +30,11 @@ export async function LayoutDemo({
         </div>
       </Tab>
       <Tab value="MDX">
-        <BasicCode
+        <Code
           codeblock={{
             value,
             lang: "mdx",
-            meta: "content.md prefix",
+            meta: "content.md -pcw",
           }}
         />
       </Tab>
