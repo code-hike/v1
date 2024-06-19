@@ -53,7 +53,7 @@ Any extra content in the annotation comment is passed to the annotation componen
 
 For example, we can change the components from the previous example to use the query to define the color of the border and background:
 
-```tsx my-code.tsx
+```tsx my-code.tsx -cs
 const borderHandler: AnnotationHandler = {
   name: "border",
   Block: ({ annotation, children }) => {
@@ -77,10 +77,12 @@ const bgHandler: AnnotationHandler = {
 
 Sometimes you want to **customize the rendering of every line or token**, not just the annotated ones. You can do that by defining the `Line` and `Token` components:
 
-```tsx my-code.tsx
+```tsx my-code.tsx -c
+import { InnerLine } from "codehike/code"
+
 const myHandler: AnnotationHandler = {
   name: "uglyLineNumbers",
-  Line: ({ InnerLine, ...props }) => {
+  Line: (props) => {
     const { lineNumber, indentation } = props
     return (
       <div>
@@ -96,9 +98,9 @@ What's `InnerLine`? Since the same line can be targeted by many annotation handl
 
 For example, if we have these two handlers:
 
-```tsx my-code.tsx
+```tsx my-code.tsx -c
 const bgHandler: AnnotationHandler = {
-  Line: ({ InnerLine, ...props }) => (
+  Line: (props) => (
     <InnerLine
       merge={props}
       className="bg-red-200"
@@ -107,9 +109,7 @@ const bgHandler: AnnotationHandler = {
   ),
 }
 const paddingHandler: AnnotationHandler = {
-  Line: ({ InnerLine, ...props }) => (
-    <InnerLine merge={props} className="px-2" />
-  ),
+  Line: (props) => <InnerLine merge={props} className="px-2" />,
 }
 ```
 
@@ -125,9 +125,11 @@ The final rendering will be:
 
 Similarly, you can customize the rendering of every token, but this is far less common:
 
-```tsx my-code.tsx
+```tsx my-code.tsx -c
+import { InnerToken } from "codehike/code"
+
 const myHandler: AnnotationHandler = {
-  Token: ({ InnerToken, ...props }) => {
+  Token: (props) => {
     const { value, style, lineNumber } = props
     return <InnerToken merge={props} style={{ display: "inline-block" }} />
   },
@@ -139,10 +141,18 @@ const myHandler: AnnotationHandler = {
 You can also customize the rendering of the `<pre>` element itself:
 
 ```tsx my-code.tsx
+import { InnerPre, getPreRef } from "codehike/code"
+
 const myHandler: AnnotationHandler = {
-  Pre: forwardRef(({ InnerPre, ...props }, ref) => {
-    // WARN unstable API, might change in the future
-  }),
+  Pre: (props) => (
+    <InnerPre merge={props} classname="rounded border border-blue-100" />
+  ),
+  // If you need the ref to the pre element, use PreWithRef:
+  PreWithRef: (props) => {
+    const ref = getPreRef(props)
+    doSomethingWithRef(ref)
+    return <InnerPre merge={props} />
+  },
 }
 ```
 
@@ -157,10 +167,10 @@ For example, here we add a `data-mark` attribute to the lines inside a `mark` an
 ```tsx my-code.tsx
 const mark: AnnotationHandler = {
   name: "mark",
-  AnnotatedLine: ({ annotation, InnerLine, ...props }) => (
+  AnnotatedLine: ({ annotation, ...props }) => (
     <InnerLine merge={props} data-mark={true} />
   ),
-  Line: ({ InnerLine, ...props }) => (
+  Line: (props) => (
     <InnerLine
       merge={props}
       className="px-2 border-l-4 border-transparent data-[mark]:border-blue-400"
