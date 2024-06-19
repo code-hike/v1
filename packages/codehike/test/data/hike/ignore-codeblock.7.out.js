@@ -41,6 +41,10 @@ function _createMdxContent(props) {
           ],
           annotations: [],
           themeName: "github-dark",
+          style: {
+            color: "#c9d1d9",
+            background: "#0d1117",
+          },
         },
       }),
     ],
