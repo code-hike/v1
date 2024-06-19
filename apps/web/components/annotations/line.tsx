@@ -2,5 +2,9 @@ import { AnnotationHandler, InnerLine } from "codehike/code"
 
 export const line: AnnotationHandler = {
   name: "line",
-  Line: (props) => <InnerLine merge={props} className="px-2" />,
+  Line: (props) => (
+    <div className="px-3">
+      <InnerLine merge={props} />
+    </div>
+  ),
 }

@@ -16,11 +16,12 @@ Add callouts inside your code blocks.
 
 <CodeWithNotes>
 
-```tsx ! code.tsx -c
+```tsx ! code.tsx -cwn
 import { InlineAnnotation, AnnotationHandler } from "codehike/code"
 
 const callout: AnnotationHandler = {
   name: "callout",
+  // !mark
   // !callout[/transform/] transform-annotations
   transform: (annotation: InlineAnnotation) => {
     const { name, query, lineNumber, fromColumn, toColumn, data } = annotation

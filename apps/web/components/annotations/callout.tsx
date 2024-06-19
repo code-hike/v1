@@ -20,8 +20,8 @@ export const callout: AnnotationHandler = {
     const { column } = annotation.data
     const { indentation, children } = props
     return (
-      <InnerLine merge={props}>
-        {children}
+      <>
+        <InnerLine merge={props}>{children}</InnerLine>
         <div
           style={{
             minWidth: `${column + 4}ch`,
@@ -35,7 +35,7 @@ export const callout: AnnotationHandler = {
           />
           {annotation.data.children || annotation.query}
         </div>
-      </InnerLine>
+      </>
     )
   },
 }

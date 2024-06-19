@@ -19,6 +19,7 @@ import { mark } from "./annotations/mark"
 import { pill } from "./annotations/pill"
 import { ruler } from "./annotations/ruler"
 import { wordWrap } from "./annotations/word-wrap"
+import { line } from "./annotations/line"
 
 export async function Code({
   codeblock,
@@ -52,8 +53,9 @@ export function HighCode({
     mark,
     ruler,
     flags.includes("n") && lineNumbers,
-    callout,
+    line,
     flags.includes("w") && wordWrap,
+    callout,
     ...collapse,
   ].filter(Boolean) as AnnotationHandler[]
 
@@ -120,7 +122,7 @@ const focus: AnnotationHandler = {
   Line: (props) => (
     <InnerLine
       merge={props}
-      className="group-has-[[data-focus]]:opacity-60 data-[focus]:!opacity-100 transition-opacity px-3 data-[focus]:bg-editor-rangeHighlightBackground"
+      className="group-has-[[data-focus]]:opacity-60 data-[focus]:!opacity-100 transition-opacity data-[focus]:bg-editor-rangeHighlightBackground"
     />
   ),
 }
