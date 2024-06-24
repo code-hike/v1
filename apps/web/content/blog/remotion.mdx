@@ -1,0 +1,267 @@
+---
+title: Video code walkthroughs with Code Hike and Remotion
+description: From markdown to video
+date: 2024-06-22
+authors: [pomber]
+draft: false
+---
+
+import {
+  Code,
+  Columns,
+} from "./remotion/code"
+import { Scrollycoding } from "./remotion/scrollycoding"
+
+I love [Remotion](https://www.remotion.dev/). Partly because it allows me to take my web dev skills and use them to create videos, but mostly because it's a great example of how good the React composition model is.
+
+I love Code Hike (as the creator I may be a bit biased though). The heart of Code Hike is the React components provided by the user.
+
+- Code Hike focuses on turning Markdown (with a special focus on codeblocks) into React Components
+- Remotion focuses on turning React Components into videos
+
+## Rendering `steps` from Markdown
+
+We start by importing a markdown file:
+
+<Columns>
+
+### !left
+
+```md content.md -1
+## !!steps One
+
+Lorem
+
+## !!steps Two
+
+Ipsum
+```
+
+Then we can use Code Hike's [`parseRoot`](/docs/concepts/blocks) to trasform the markdown into a list:
+
+```jsx -2
+// !mark(1:10) 4
+const steps = [
+  {
+    title: "One",
+    children: <p>Lorem</p>,
+  },
+  {
+    title: "Two",
+    children: <p>Ipsum</p>,
+  },
+]
+```
+
+We can pass those `steps` to a `Video` component and render a `Sequence` for each step:
+
+```jsx -2
+// !mark(1:16) 0
+<AbsoluteFill>
+  <Sequence
+    title="One"
+    from={0}
+    durationInFrames={90}
+  >
+    <p>Lorem</p>
+  </Sequence>
+  <Sequence
+    title="Two"
+    from={90}
+    durationInFrames={90}
+  >
+    <p>Ipsum</p>
+  </Sequence>
+</AbsoluteFill>
+```
+
+This tells Remotion to render `Lorem` for the first 90 frames and then `Ipsum` from frame 90 to frame 180.
+
+The output:
+
+<video
+  src="/blog/remotion/00.mp4"
+  style={{ width: "100%", margin: 0 }}
+  className="rounded"
+  controls
+/>
+
+### !right
+
+```jsx root.jsx -cf
+!from ./remotion/00.jsx
+```
+
+</Columns>
+
+So far nothing too fancy.
+
+## Rendering Codeblocks
+
+Things get interesting when we start adding annotated codeblocks.
+
+<Scrollycoding>
+
+### !!steps codeblocks markdown
+
+```jsx ! code.jsx -a
+!from ./remotion/01.jsx
+```
+
+````md content.md -pc
+## !!steps One
+
+```js !
+let lorem = 1
+lorem += 2
+```
+
+## !!steps Two
+
+```js !
+let lorem = 1
+if (ipsum) {
+  lorem += 2
+}
+```
+````
+
+We can change the content and the `Schema` to include codeblocks.
+
+Now each step from `steps` will have a `code` property.
+
+### !!steps Pre component
+
+### Rendering code
+
+```jsx ! code.jsx -a
+!from ./remotion/02.jsx
+```
+
+We can use Code Hike's [`Pre` component](/docs/concepts/code) to render the code.
+
+Now the output video shows:
+
+<div
+  style={{
+    width: "100%",
+    height: 290,
+    background: "red",
+  }}
+  className="rounded"
+/>
+
+### !!steps annotations
+
+### Adding annotations
+
+```jsx ! code.jsx -a
+!from ./remotion/03.jsx
+```
+
+We can add [annotations](/docs/concepts/annotations) to the codeblocks:
+
+````md content.md -pc
+## !!steps One
+
+```js !
+let lorem = 1
+lorem += 2
+```
+
+## !!steps Two
+
+```js !
+// !!focus
+// !!mark
+// !mark
+let lorem = 1
+if (ipsum) {
+  // !!focus
+  // !!mark
+  // !mark
+  lorem += 2
+}
+```
+````
+
+And then tell Code Hike what component should use to render those annotations.
+
+### !!steps useFrame
+
+### Animating annotations
+
+```jsx ! code.jsx -a
+!from ./remotion/04.jsx
+```
+
+Since annotations are handled by React components, we can use Remotion hooks inside them.
+
+For example, this adds a fade-in effect to the annotations.
+This is the output:
+
+<div
+  style={{
+    width: "100%",
+    height: 290,
+    background: "red",
+  }}
+  className="rounded"
+/>
+
+Annotations are react components, you can do lots of things with them, visit the examples for inspiration.
+
+### !!steps annotation query
+
+```jsx ! code.jsx -a
+!from ./remotion/05.jsx
+```
+
+We can also make the delay and duration of the annotations parametrizable, by using the annotation query.
+
+````md content.md -p
+## !!steps One
+
+```js !
+let lorem = 1
+lorem += 2
+```
+
+## !!steps Two
+
+```js !
+// !!focus
+// !!mark
+// !mark 10
+let lorem = 1
+if (ipsum) {
+  // !!focus
+  // !!mark
+  // !mark 25
+  lorem += 2
+}
+```
+````
+
+### !!steps token-transition
+
+### Animating the code
+
+```jsx ! code.jsx -a
+!from ./remotion/06.jsx
+```
+
+To make the transition between the codeblocks more interesting, we can add a token transition.
+
+<div
+  style={{
+    width: "100%",
+    height: 290,
+    background: "red",
+  }}
+  className="rounded"
+/>
+
+</Scrollycoding>
+
+You can find the full code in the [Code Hike examples repository](https://github.com/code-hike/examples/tree/main/with-remotion).

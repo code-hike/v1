@@ -35,14 +35,14 @@ function Author({ name }: { name: string }) {
   if (name === "pomber") {
     return (
       <Link
-        className="inline-flex items-center gap-2 no-underline hover:bg-primary/10 rounded not-prose p-2 -m-2 mb-6"
+        className="inline-flex items-center gap-2 no-underline hover:bg-primary/10 rounded not-prose p-2 -m-2 mb-4"
         href="https://twitter.com/pomber"
       >
         <Image
           src={pomber}
           alt="pomber"
-          width={32}
-          height={32}
+          width={34}
+          height={34}
           priority={true}
           className="rounded-full"
         />
