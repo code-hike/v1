@@ -54,7 +54,7 @@ export function RemotionRoot() {
       defaultProps={{ steps }}
       width={300}
       height={200}
-      fps={30}
+      fps={60}
       durationInFrames={
         STEP_FRAMES * steps.length
       }

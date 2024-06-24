@@ -74,7 +74,7 @@ export function RemotionRoot() {
       durationInFrames={
         STEP_FRAMES * steps.length
       }
-      fps={30}
+      fps={60}
       width={140}
       height={90}
     />

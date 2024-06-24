@@ -7,7 +7,7 @@ export async function Code({ codeblock }: { codeblock: RawCode }) {
 
   const style = {} as any
   if (flags.includes("1")) {
-    style["--border-color"] = "rgb(96 165 250 / 0.75)"
+    style["--border-color"] = "rgb(96 165 250 / 0.5)"
     style["--bg-color"] = "rgb(96 165 250 / 0.10)"
   } else if (flags.includes("2")) {
     style["--border-color"] = "transparent"

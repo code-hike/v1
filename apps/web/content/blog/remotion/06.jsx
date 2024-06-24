@@ -13,8 +13,7 @@ const { steps } = parseRoot(
 )
 
 const STEP_FRAMES = 60
-function Video(props) {
-  const { steps } = props
+function Video({ steps }) {
   return (
     <AbsoluteFill
       style={{
@@ -90,7 +89,7 @@ export function RemotionRoot() {
       durationInFrames={
         STEP_FRAMES * steps.length
       }
-      fps={30}
+      fps={60}
       width={140}
       height={90}
     />
