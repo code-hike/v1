@@ -15,7 +15,7 @@ export function Scrollycoding(props: unknown) {
   const { steps } = parseProps(props, Schema)
   return (
     <SelectionProvider className="flex gap-4 -mx-8">
-      <div className="flex-1 min-w-0 mb-[40vh] prose prose-invert">
+      <div className="flex-1 min-w-0 mb-[40vh]">
         {steps.map((step, i) => (
           <Selectable
             key={i}
