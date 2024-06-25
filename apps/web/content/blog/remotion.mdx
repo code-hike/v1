@@ -9,22 +9,32 @@ draft: false
 import {
   Code,
   Columns,
+  Scrollycoding,
 } from "./remotion/code"
-import { Scrollycoding } from "./remotion/scrollycoding"
 
-**TL;DR**: Code Hike v1 allows you to turn code walkthroughs into videos using Remotion. You can find the full code in the [Code Hike examples repository](https://github.com/code-hike/examples/tree/main/with-remotion).
+import { Callout } from "next-docs-ui/components/callout"
 
-For a long time, many people have asked for a way to combine Code Hike and [Remotion](https://www.remotion.dev/) to turn code walkthroughs into videos. So far, because of Code Hike limitations, it wasn't possible to combine them without a lot of hacks.
+For a long time, many people have asked for a way to combine Code Hike and [Remotion](https://www.remotion.dev/) to turn code walkthroughs into videos. Because of Code Hike limitations, this wasn't possible without a lot of hacks. Until now.
 
 This changes with Code Hike v1.
 
-The new version focuses on flexibility. You can now use custom react components for everything and pass markdown content in any shape to those components.
+With the new version of Code Hike you can now use custom react components for everything. Also, v1 allows you to pass structured markdown content to these components in any shape you want.
 
 The process from markdown to video is something like this:
 
-- use code hike to pass annotated markdown content (and codeblocks) to your components
-- in your components, use code hike and remotion to animate transitions
-- use remotion to render your components into videos
+1. Use Code Hike to pass annotated markdown content (and codeblocks) to your components.
+1. In your components, use Code Hike and Remotion to animate annotations and transitions.
+1. Use Remotion to render your components into videos.
+
+Let's see how this works.
+
+<Callout>
+  In this example I'm not including the
+  project configuration. If you want to
+  follow along, you can find the full code
+  in the [Code Hike examples
+  repository](https://github.com/code-hike/examples/tree/main/with-remotion).
+</Callout>
 
 ## Rendering `steps` from Markdown
 
@@ -147,7 +157,7 @@ Now each step from `steps` will have a `code` property.
 
 We can use Code Hike's [`Pre` component](/docs/concepts/code) to render the code.
 
-Now the output video shows:
+Now the output video shows each codeblock for one second:
 
 <video
   src="/blog/remotion/02.mp4"
@@ -189,6 +199,8 @@ if (ipsum) {
 ````
 
 And then define an annotation handler to tell Code Hike what component should use to render those annotations.
+
+For more examples and inspiration of what you can do with annotations, check the [code examples](/docs/code).
 
 ### !!steps useFrame
 
