@@ -22,7 +22,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
         })}
       </div>
       <Author name={page.data.authors[0]} />
-      <h1>{page.data.title}</h1>
+      <h1 className="mb-4">{page.data.title}</h1>
+      <h2 className="text-accent-foreground/90 text-pretty mb-12 mt-4 text-xl">
+        {page.data.description}
+      </h2>
       <MDX />
     </main>
   )
