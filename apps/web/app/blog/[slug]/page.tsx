@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDX = page.data.exports.default
 
   return (
-    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12">
+    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content">
       <div className="mb-4">
         {page.data.date.toLocaleDateString("en-US", {
           year: "numeric",
@@ -22,7 +22,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
         })}
       </div>
       <Author name={page.data.authors[0]} />
-      <h1>{page.data.title}</h1>
+      <h1 className="mb-4">{page.data.title}</h1>
+      <h2 className="text-accent-foreground/90 text-pretty mb-12 mt-4 text-xl">
+        {page.data.description}
+      </h2>
       <MDX />
     </main>
   )
@@ -35,14 +38,14 @@ function Author({ name }: { name: string }) {
   if (name === "pomber") {
     return (
       <Link
-        className="inline-flex items-center gap-2 no-underline hover:bg-primary/10 rounded not-prose p-2 -m-2 mb-6"
+        className="inline-flex items-center gap-2 no-underline hover:bg-primary/10 rounded not-prose p-2 -m-2 mb-4"
         href="https://twitter.com/pomber"
       >
         <Image
           src={pomber}
           alt="pomber"
-          width={32}
-          height={32}
+          width={34}
+          height={34}
           priority={true}
           className="rounded-full"
         />

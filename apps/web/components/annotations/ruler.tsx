@@ -14,8 +14,8 @@ export const ruler: AnnotationHandler = {
   name: "ruler",
   Block: ({ annotation, children }) => {
     const [k, c] = annotation.query?.split(" ")
-    const n = Number(k || "1")
-    const bg = colors[n % colors.length]
+    const n = Number(k || "1") % colors.length
+    const bg = colors[n]
     return (
       <div className="relative" data-hover={n}>
         <div
