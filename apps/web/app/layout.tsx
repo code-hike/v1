@@ -27,4 +27,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 export const metadata = {
   title: "Code Hike",
   description: "Superpowered Markdown",
+  alternates: {
+    types: {
+      "application/rss+xml": "https://v1.codehike.org/blog/feed.xml",
+    },
+  },
 }
