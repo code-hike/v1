@@ -15,6 +15,7 @@ export async function GET() {
     language: "en-US",
     pubDate: new Date().toUTCString(),
     ttl: 120,
+    image_url: "https://v1.codehike.org/logo.png",
   })
 
   posts.map(({ data, url }) => {
