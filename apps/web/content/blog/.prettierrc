@@ -3,7 +3,7 @@
   "semi": false,
   "overrides": [
     {
-      "files": ["*.mdx"],
+      "files": ["remotion.mdx"],
       "options": {
         "printWidth": 42,
         "semi": false
