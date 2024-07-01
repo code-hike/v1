@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDX = page.data.exports.default
 
   return (
-    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content">
+    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content pb-36">
       <div className="mb-4">
         {page.data.date.toLocaleDateString("en-US", {
           year: "numeric",
