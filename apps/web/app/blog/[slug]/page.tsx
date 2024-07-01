@@ -73,5 +73,18 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return {
     title: page.data.title + " | Code Hike",
     description: page.data.description,
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+      images: `https://codehike.org/blog/${params.slug}.png`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@codehike_",
+      creator: "@pomber",
+      title: page.data.title,
+      description: page.data.description,
+      images: `https://codehike.org/blog/${params.slug}.png`,
+    },
   } satisfies Metadata
 }
