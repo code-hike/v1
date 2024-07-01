@@ -2,6 +2,7 @@ import { blog } from "@/app/source"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const page = blog.getPage([params.slug])
@@ -13,7 +14,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDX = page.data.exports.default
 
   return (
-    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content pb-36">
+    <main
+      className={cn(
+        "max-w-2xl mx-auto prose dark:prose-invert my-12 px-8 box-content pb-36",
+        page.data.className,
+      )}
+    >
       <div className="mb-4">
         {page.data.date.toLocaleDateString("en-US", {
           year: "numeric",

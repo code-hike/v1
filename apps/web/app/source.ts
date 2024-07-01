@@ -24,6 +24,7 @@ export const blog = loader({
         authors: z.array(z.string()).default([]),
         date: z.date().default(new Date()),
         draft: z.boolean().default(false),
+        className: z.string().default(""),
       }),
     },
   }),
