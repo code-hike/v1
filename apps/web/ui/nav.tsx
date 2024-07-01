@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation"
 import { Nav } from "next-docs-ui/nav"
 import { GithubIcon, TwitterIcon } from "lucide-react"
+import { cn } from "../lib/utils"
 export function NavBar({ version }: { version: string }) {
   const pathname = usePathname()
   return (
@@ -49,11 +50,11 @@ export function NavBar({ version }: { version: string }) {
   )
 }
 
-function CodeHikeLogo() {
+export function CodeHikeLogo({ className }: { className?: string }) {
   return (
     <svg
       fill="currentColor"
-      className="block h-6 w-6 mr-2"
+      className={cn("block h-6 w-6 mr-2", className)}
       viewBox="-100 -100 200 200"
     >
       <path d="M70 60L42-27h30l28 87z"></path>

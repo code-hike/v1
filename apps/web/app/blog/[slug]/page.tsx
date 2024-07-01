@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDX = page.data.exports.default
 
   return (
-    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content">
+    <main className="max-w-2xl mx-auto prose dark:prose-invert my-12 min-w-[700px] px-16 box-content pb-36">
       <div className="mb-4">
         {page.data.date.toLocaleDateString("en-US", {
           year: "numeric",
@@ -22,8 +22,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         })}
       </div>
       <Author name={page.data.authors[0]} />
-      <h1 className="mb-4">{page.data.title}</h1>
-      <h2 className="text-accent-foreground/90 text-pretty mb-12 mt-4 text-xl">
+      <h1 className="mb-4 text-pretty">{page.data.title}</h1>
+      <h2 className="text-accent-foreground/90 text-pretty mb-20 mt-4 text-xl">
         {page.data.description}
       </h2>
       <MDX />
@@ -73,5 +73,18 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return {
     title: page.data.title + " | Code Hike",
     description: page.data.description,
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+      images: `https://v1.codehike.org/blog/${params.slug}.png`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@codehike_",
+      creator: "@pomber",
+      title: page.data.title,
+      description: page.data.description,
+      images: `https://v1.codehike.org/blog/${params.slug}.png`,
+    },
   } satisfies Metadata
 }

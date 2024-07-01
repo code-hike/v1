@@ -26,8 +26,8 @@ function MonthGroup({ month }: { month: Month }) {
           key={page.url}
           className="block hover:bg-primary/10 p-4 rounded-md"
         >
-          <h2 className="text-xl font-bold">{page.data.title}</h2>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <h2 className="text-xl font-bold text-pretty">{page.data.title}</h2>
+          <p className="text-zinc-600 dark:text-zinc-400 text-pretty">
             {page.data.description}
           </p>
         </Link>

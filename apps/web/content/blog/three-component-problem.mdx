@@ -1,12 +1,128 @@
 ---
 title: The Three-Component Problem
-description: Is this the limit of React composability?
-date: 2024-04-10
+description: And the limits of React composability
+date: 2024-06-30
 authors: [pomber]
 draft: true
 ---
 
-There's an interesting problem I'm facing with React.
+I'm building a library that renders codeblocks.
+
+This is how a basic codeblock looks like in HTML:
+
+```html
+<!-- !caption A codeblock with two lines of code -->
+<pre>
+  <div>
+    <span style="color:#f87171">var</span> <span style="color:#7dd3fc">foo</span>
+  </div>
+  <div>
+    <span style="color:#f87171">let</span> <span style="color:#7dd3fc">bar</span>
+  </div>
+</pre>
+```
+
+The user of the library can customize how different parts of the codeblock look.
+
+For example, lines can be customized to have padding, line numers and an optional background:
+
+```html
+<!-- !caption A codeblock with two lines of code -->
+<pre>
+  <div style="padding: 8px">
+    <div>1</div>
+    <div><span style="...">var</span> <span style="...">foo</span></div>
+  </div>
+  <div style="padding: 8px; background: #f1f5f9">
+    <div>2</div>
+    <div><span style="...">let</span> <span style="...">bar</span></div>
+  </div>
+</pre>
+```
+
+To do something like this, the library allows the user to pass a `Line` component:
+
+```jsx
+// !caption Using React to customize a line
+import { Pre } from "library"
+
+function MyCode(props) {
+  return <Pre {...props} handlers={[{ Line: MyLine }]} />
+}
+
+function MyLine({ children, lineNumber }) {
+  return (
+    <div style={{ padding: "8px", background: "#f1f5f9" }}>
+      <div>{lineNumber}</div>
+      <div>{children}</div>
+    </div>
+  )
+}
+```
+
+But that makes all lines look the same.
+
+We want:
+
+- all lines to have padding
+- some codeblocks to have line numbers
+- some lines to have a background
+
+So we split `MyLine` into three components:
+
+```jsx
+function PaddedLine({ children }) {
+  return <div style={{ padding: "8px" }}>{children}</div>
+}
+
+function LineWithNumber({ children, lineNumber }) {
+  return (
+    <div>
+      <div>{lineNumber}</div>
+      <div>{children}</div>
+    </div>
+  )
+}
+
+function LineWithBackground({ children }) {
+  return <div style={{ background: "#f1f5f9" }}>{children}</div>
+}
+```
+
+But how to combine them?
+
+```jsx
+function PaddedLine({ children, style }) {
+  return <div style={{ padding: "8px", ...style }}>{children}</div>
+}
+
+function LineWithNumber({ children, lineNumber }) {
+  return (
+    <PaddedLine>
+      <div>{lineNumber}</div>
+      <div>{children}</div>
+    </PaddedLine>
+  )
+}
+
+function LineWithBackground({ children }) {
+  return <PaddedLine style={{ background: "#f1f5f9" }}>{children}</PaddedLine>
+}
+```
+
+```jsx library.jsx
+function Code(props) {
+  const lines = extractLinesAndAnnotations(props)
+  return <pre>{lines.map(renderLine)}</pre>
+}
+
+function renderLine({ components, children, lineNumber }) {
+  const Component = components[annotation] || components.Line
+  return <Component lineNumber={lineNumber}>{children}</Component>
+}
+```
+
+---
 
 ## Some context
 
@@ -75,7 +191,16 @@ The `Code` component that handles this could be something like this:
 ```jsx library.jsx
 function Code({ components, ...props }) {
   const lines = extractLinesAndAnnotations(props)
-  return <pre>{lines.map((line) => renderLine({ components, ...line }))}</pre>
+  return (
+    <pre>
+      {lines.map((line) =>
+        renderLine({
+          components,
+          ...line,
+        }),
+      )}
+    </pre>
+  )
 }
 
 function renderLine({ components, annotation, children, lineNumber }) {
