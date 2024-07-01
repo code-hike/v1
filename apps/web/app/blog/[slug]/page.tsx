@@ -76,7 +76,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
     openGraph: {
       title: page.data.title,
       description: page.data.description,
-      images: `https://codehike.org/blog/${params.slug}.png`,
+      images: `https://v1.codehike.org/blog/${params.slug}.png`,
     },
     twitter: {
       card: "summary_large_image",
@@ -84,7 +84,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       creator: "@pomber",
       title: page.data.title,
       description: page.data.description,
-      images: `https://codehike.org/blog/${params.slug}.png`,
+      images: `https://v1.codehike.org/blog/${params.slug}.png`,
     },
   } satisfies Metadata
 }
