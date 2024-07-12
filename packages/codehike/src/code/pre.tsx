@@ -91,6 +91,7 @@ export const Pre: PreComponent = forwardRef(
           handlers={handlers}
           inlineAnnotations={inlineAnnotations}
           indentations={indentations}
+          totalLines={lines.length}
         />
       </InnerPre>
     )
@@ -104,6 +105,7 @@ function RenderLines({
   indentations,
   annotationStack = [],
   annotationNames,
+  totalLines,
 }: {
   linesOrGroups: LinesOrGroups
   handlers: AnnotationHandler[]
@@ -111,6 +113,7 @@ function RenderLines({
   annotationStack?: BlockAnnotation[]
   indentations: number[]
   annotationNames: Set<string>
+  totalLines: number
 }) {
   return linesOrGroups.map((group) => {
     if (isGroup(group)) {
@@ -123,6 +126,7 @@ function RenderLines({
           annotationStack={annotationStack}
           indentations={indentations}
           annotationNames={annotationNames}
+          totalLines={totalLines}
         />
       )
     }
@@ -161,7 +165,7 @@ function RenderLines({
       />
     )
 
-    const merge = { lineNumber, indentation, _stack: stack }
+    const merge = { lineNumber, indentation, totalLines, _stack: stack }
 
     return (
       <InnerLine merge={merge} key={lineNumber}>
@@ -178,6 +182,7 @@ function AnnotatedLines({
   annotationStack,
   indentations,
   annotationNames,
+  totalLines,
 }: {
   group: LineGroup
   handlers: AnnotationHandler[]
@@ -185,6 +190,7 @@ function AnnotatedLines({
   annotationStack: BlockAnnotation[]
   indentations: number[]
   annotationNames: Set<string>
+  totalLines: number
 }) {
   const { annotation, lines } = group
   const { name } = annotation
@@ -198,6 +204,7 @@ function AnnotatedLines({
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
         annotationNames={annotationNames}
+        totalLines={totalLines}
       />
     )
   }
@@ -210,6 +217,7 @@ function AnnotatedLines({
         annotationStack={[annotation, ...annotationStack]}
         indentations={indentations}
         annotationNames={annotationNames}
+        totalLines={totalLines}
       />
     </Component>
   )

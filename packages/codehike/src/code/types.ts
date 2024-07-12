@@ -172,6 +172,7 @@ export type CustomPre = React.ComponentType<CustomPreProps>
 // Line
 export type CustomLineProps = React.ComponentProps<"div"> & {
   lineNumber: number
+  totalLines: number
   indentation: number
   data?: Record<string, any>
   _stack: {

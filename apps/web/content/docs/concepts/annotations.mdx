@@ -83,7 +83,7 @@ import { InnerLine } from "codehike/code"
 const myHandler: AnnotationHandler = {
   name: "uglyLineNumbers",
   Line: (props) => {
-    const { lineNumber, indentation } = props
+    const { lineNumber, totalLines, indentation } = props
     return (
       <div>
         {lineNumber} |
@@ -214,6 +214,6 @@ The regular expressions also support flags The two most common are `g` for globa
 - `m`: use it if you want to keep searching beyond the first line
 - `g`: use it if you want to match more than one occurrence
 
-You can also use [capturing groups](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Capturing_group)(see [fold example](/docs/code/fold)):
+You can also use [capturing groups](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Capturing_group) (see [fold example](/docs/code/fold)):
 
 <Demo name="annotations/groups" />
