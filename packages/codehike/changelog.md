@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.1
+
+### Minor Changes
+
+- f26b8c4: Add totalLines
+
 ## 1.0.0-alpha.21
 
 ### Minor Changes
