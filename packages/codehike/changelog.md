@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.2
+
+### Patch Changes
+
+- 5d9a9f7: Fix annotation detection for some languages
+
 ## 1.0.0-beta.1
 
 ### Minor Changes
