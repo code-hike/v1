@@ -21,8 +21,8 @@ importers:
   apps/web:
     dependencies:
       '@code-hike/lighter':
-        specifier: 0.9.1
-        version: 0.9.1
+        specifier: 0.9.4
+        version: 0.9.4
       '@radix-ui/react-collapsible':
         specifier: ^1.0.3
         version: 1.0.3(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -136,8 +136,8 @@ importers:
   packages/codehike:
     dependencies:
       '@code-hike/lighter':
-        specifier: 0.9.1
-        version: 0.9.1
+        specifier: 0.9.4
+        version: 0.9.4
       diff:
         specifier: ^5.1.0
         version: 5.1.0
@@ -268,8 +268,8 @@ packages:
   '@changesets/write@0.3.0':
     resolution: {integrity: sha512-slGLb21fxZVUYbyea+94uFiD6ntQW0M2hIKNznFizDhZPDgn2c/fv1UzzlW43RVzh1BEDuIqW6hzlJ1OflNmcw==}
 
-  '@code-hike/lighter@0.9.1':
-    resolution: {integrity: sha512-AS7m3VOEBHdvfJ7plloOW/M35W+WmopdAHSuI2hGM2xbzFWp4DTEpzATiuepC6b+QSSetfmKMuE5aQy8+i5+SQ==}
+  '@code-hike/lighter@0.9.4':
+    resolution: {integrity: sha512-WnYhKFaYDHOVKXyII5iYegve/W3jgV9kOfo34rKDXdZjTFbCJMbTPzdG+SKfvUtw7lzWWuJGmu0WQJ0/PDhL0g==}
 
   '@emnapi/runtime@0.44.0':
     resolution: {integrity: sha512-ZX/etZEZw8DR7zAB1eVQT40lNo0jeqpb6dCgOvctB6FIQ5PoXfMuNY8+ayQfu8tNQbAB8gQWSSJupR8NxeiZXw==}
@@ -3934,7 +3934,7 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@code-hike/lighter@0.9.1':
+  '@code-hike/lighter@0.9.4':
     dependencies:
       ansi-sequence-parser: 1.1.1
 
