@@ -1,22 +1,15 @@
----
-title: Diff
-description: Diff
-layout: PreviewAndImplementation
----
+import {
+  RawCode,
+  Pre,
+  highlight,
+  AnnotationHandler,
+  InnerLine,
+} from "codehike/code"
+import Content from "./content.md"
 
-## !demo
-
-Show inserted and deleted lines.
-
-<Demo name="diff" />
-
-## !implementation
-
-Similar to the [mark annotation](/docs/code/mark), wrap the line, and style the wrapper based on the annotation.
-
-```tsx diff.tsx -c
-import { AnnotationHandler, InnerLine } from "codehike/code"
-// !fold[/className="(.*?)"/gm]
+export default function Page() {
+  return <Content components={{ Code }} />
+}
 
 const styles = {
   ins: { borderColor: "#3fb9504d", background: "#2ea04326", icon: "+" },
@@ -33,7 +26,7 @@ export const diff: AnnotationHandler = {
     return (
       <div className="table-row" style={{ background }}>
         <div
-          className="min-w-[1ch] box-content !opacity-80 pl-2 select-none table-cell border-l-2"
+          className="min-w-[1ch] box-content !opacity-80 pl-2 select-none table-cell border-l-2 "
           style={{ borderColor }}
         >
           {icon}
@@ -45,15 +38,14 @@ export const diff: AnnotationHandler = {
     )
   },
 }
-```
-
-Then pass the `diff` handler to the `Pre` component:
-
-```tsx code.tsx -c
-import { diff } from "./diff"
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-  return <Pre code={highlighted} handlers={[diff]} />
+  return (
+    <Pre
+      className="m-0 px-0 bg-zinc-950"
+      code={highlighted}
+      handlers={[diff]}
+    />
+  )
 }
-```

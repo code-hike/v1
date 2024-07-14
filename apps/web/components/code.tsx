@@ -22,6 +22,7 @@ import { wordWrap } from "./annotations/word-wrap"
 import { line } from "./annotations/line"
 import { tokenTransitions } from "./annotations/token-transitions"
 import { focus } from "./annotations/focus"
+import { diff } from "./annotations/diff"
 
 export async function Code({
   codeblock,
@@ -55,6 +56,7 @@ export function HighCode({
     fold,
     link,
     focus,
+    diff,
     mark,
     ruler,
     flags.includes("a") && tokenTransitions,
