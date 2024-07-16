@@ -3,7 +3,7 @@
   "semi": false,
   "overrides": [
     {
-      "files": ["remotion.mdx"],
+      "files": ["remotion.mdx", "fine-grained-markdown.mdx"],
       "options": {
         "printWidth": 42,
         "semi": false

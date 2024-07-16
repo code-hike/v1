@@ -9,10 +9,12 @@ const useIsomorphicLayoutEffect =
 export function Scroller({
   onIndexChange,
   triggerPosition = "50%",
+  rootMargin,
   children,
 }: {
   onIndexChange: (index: number) => void
   triggerPosition?: TriggerPosition
+  rootMargin?: string
   children: React.ReactNode
 }) {
   const [observer, setObserver] = React.useState<IntersectionObserver>()
@@ -21,6 +23,7 @@ export function Scroller({
     const windowHeight = vh || 0
     const handleIntersect: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
+        console.log(entry)
         if (entry.intersectionRatio > 0) {
           // get entry.target index
           const index = entry.target.getAttribute("data-index")
@@ -30,7 +33,7 @@ export function Scroller({
     }
     const observer = newIntersectionObserver(
       handleIntersect,
-      defaultRootMargin(windowHeight, triggerPosition),
+      rootMargin || defaultRootMargin(windowHeight, triggerPosition),
     )
     setObserver(observer)
 

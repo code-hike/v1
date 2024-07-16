@@ -12,12 +12,15 @@ const StepsContext = React.createContext<{
 
 export function SelectionProvider({
   children,
+  rootMargin,
   ...rest
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLDivElement> & {
+  rootMargin?: string
+}) {
   const [selectedIndex, selectIndex] = React.useState<number>(0)
   return (
     <div data-selected-index={selectedIndex} {...rest}>
-      <Scroller onIndexChange={selectIndex}>
+      <Scroller onIndexChange={selectIndex} rootMargin={rootMargin}>
         <StepsContext.Provider
           value={{
             selectedIndex,
