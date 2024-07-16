@@ -40,7 +40,7 @@ function Placeholder({ className }: { className?: string }) {
     >
       TODO: Code Hike visualization
       <ButtonLink
-        href="docs/components/scrollycoding"
+        href="docs/layouts/scrollycoding"
         className="mx-auto w-36 block"
       >
         See it in action
