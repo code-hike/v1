@@ -188,7 +188,7 @@ export type CustomLineWithAnnotation = React.ComponentType<
 >
 
 // Token
-export type CustomTokenProps = {
+export type CustomTokenProps = React.ComponentProps<"span"> & {
   value: string
   lineNumber: number
   style?: React.CSSProperties

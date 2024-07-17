@@ -10,6 +10,8 @@ const colors = [
   // if adding more colors, dont forget to update global.css
 ]
 
+// needs ruler-group class in container
+
 export const ruler: AnnotationHandler = {
   name: "ruler",
   Block: ({ annotation, children }) => {
