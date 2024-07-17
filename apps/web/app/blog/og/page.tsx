@@ -1,7 +1,7 @@
 import { CodeHikeLogo } from "../../../ui/nav"
 
-const title = "From Markdown to Video"
-const description = "Animated code walkthroughs with Code Hike and Remotion"
+const title = "Fine-grained Markdown"
+const description = "Flexible content, richer presentation"
 
 export default function Page() {
   return (
