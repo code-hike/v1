@@ -31,6 +31,7 @@ export async function Code({
   codeblock: RawCode
   className?: string
   style?: React.CSSProperties
+  extraHandlers?: AnnotationHandler[]
 }) {
   const { flags } = extractFlags(codeblock)
   const highlighted = await highlight(codeblock, theme, {
@@ -43,15 +44,18 @@ export function HighCode({
   highlighted,
   className,
   style,
+  extraHandlers = [],
 }: {
   highlighted: HighlightedCode
   className?: string
   style?: React.CSSProperties
+  extraHandlers?: AnnotationHandler[]
 }) {
   const { title, flags } = extractFlags(highlighted)
   const h = { ...highlighted, meta: title }
 
   const handlers = [
+    ...extraHandlers,
     pill,
     fold,
     link,

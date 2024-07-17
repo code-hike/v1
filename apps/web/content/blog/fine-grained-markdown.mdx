@@ -73,6 +73,7 @@ import {
   frontmatter,
 } from "./content.md"
 
+// !fblock
 const { title } = frontmatter
 
 export function Page() {
@@ -80,6 +81,7 @@ export function Page() {
     <div>
       <SideBar />
       <main>
+        {/* !fblock  */}
         <h1>{title}</h1>
         <Content />
       </main>
@@ -88,7 +90,9 @@ export function Page() {
 }
 ```
 
+{/* prettier-ignore */}
 ```md !content content.md -wa
+<!-- !fblock(1:3) -->
 ---
 title: Hello
 ---
@@ -110,14 +114,15 @@ Elit sed do eiusmod
 
 To make the content really flexible, Code Hike introduces the concept of [blocks](/docs/concepts/blocks).
 
-We define blocks by adding a <Hover name="decoration">special decoration</Hover> to headings.
+We define blocks by adding a <Hover name="decoration">special decoration</Hover> to markdown headings.
 
-Blocks can now be <Hover name="destructured">destructured</Hover> from the main content, giving us fine-grained control to render them any way we want.
+Blocks can now be <Hover name="destructured">destructured from the content</Hover>, giving us fine-grained control to render them any way we want.
 
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
 import { parseRoot } from "codehike"
 
+// !fblock(1:2)
 const { intro, steps } =
   parseRoot(Content)
 
@@ -126,6 +131,7 @@ export function Page() {
     <div>
       <SideBar />
       <main>
+        {/* !fblock(1:7) */}
         {intro.children}
         {steps.map((step) => (
           <div>
@@ -139,15 +145,19 @@ export function Page() {
 }
 ```
 
+{/* prettier-ignore */}
 ```md !content content.md -wa
+<!-- !fblock -->
 ## !intro Hello
 
 Lorem ipsum dolor sit
 
+<!-- !fblock -->
 ## !!steps Step one
 
 Amet consectetur adipiscing
 
+<!-- !fblock -->
 ## !!steps Step two
 
 Elit sed do eiusmod
@@ -174,8 +184,9 @@ export function Page() {
         {intro.children}
         {steps.map((step) => (
           <div>
-            <h2>{step.title}</h2>
+            {/* !fblock */}
             <img src={step.cover} />
+            <h2>{step.title}</h2>
             {step.children}
           </div>
         ))}
@@ -185,6 +196,7 @@ export function Page() {
 }
 ```
 
+{/* prettier-ignore */}
 ```md !content content.md -wa
 ## !intro Hello
 
@@ -192,12 +204,14 @@ Lorem ipsum dolor sit
 
 ## !!steps Step one
 
+<!-- !fblock -->
 ![!cover](/one.png)
 
 Amet consectetur adipiscing
 
 ## !!steps Step two
 
+<!-- !fblock -->
 ![!cover](/two.png)
 ```
 
@@ -216,6 +230,7 @@ import {
 } from "codehike"
 import { z } from "zod"
 
+// !fblock(1:10)
 const Schema = Block.extend({
   intro: Block,
   steps: z.array(
@@ -268,9 +283,11 @@ import { z } from "zod"
 const Schema = Block.extend({
   intro: Block,
   steps: z.array(
+    // !fblock
     Block.extend({ cover: ImageBlock }),
   ),
 })
+// !fblock(1:4)
 const { intro, steps } = parseRoot(
   Content,
   Schema,
@@ -281,6 +298,7 @@ export function Page() {
 }
 ```
 
+{/* prettier-ignore */}
 ```md !content content.md -wa
 ## !intro Hello
 
@@ -288,7 +306,8 @@ Lorem ipsum dolor sit
 
 ## !!steps Step one
 
-> missing cover image
+<!-- !fblock -->
+> no cover image!
 
 Amet consectetur adipiscing
 

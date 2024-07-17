@@ -23,7 +23,6 @@ export function Scroller({
     const windowHeight = vh || 0
     const handleIntersect: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        console.log(entry)
         if (entry.intersectionRatio > 0) {
           // get entry.target index
           const index = entry.target.getAttribute("data-index")

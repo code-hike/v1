@@ -6,7 +6,7 @@ import {
 } from "codehike/utils/selection"
 import { CodeBlock } from "codehike/blocks"
 import { Block, parseProps } from "codehike/blocks"
-import { Code } from "@/components/code"
+import { Code } from "./code"
 
 const StepSchema = Block.extend({ page: CodeBlock, content: CodeBlock })
 
@@ -16,7 +16,9 @@ const Schema = Block.extend({
 
 export function Hover({ children }: { children: React.ReactNode }) {
   return (
-    <span className="underline decoration-dotted underline-offset-2 hover:text-white">
+    <span
+    // className="underline decoration-dotted underline-offset-2 hover:text-white"
+    >
       {children}
     </span>
   )
@@ -27,7 +29,10 @@ const stickerHeight = 640
 export function Scrolly(props: unknown) {
   const { blocks } = parseProps(props, Schema)
   return (
-    <SelectionProvider className="gap-4 relative" rootMargin="-96px 0px">
+    <SelectionProvider
+      className="gap-4 relative ruler-group"
+      rootMargin="-96px 0px"
+    >
       <div className="top-20 sticky">
         <Selection
           from={blocks.map((step, i) => (
