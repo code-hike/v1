@@ -90,7 +90,7 @@ function StepMessage({ step, index }: { step: Step; index: number }) {
     <Selectable
       index={index}
       selectOn={["scroll"]}
-      className="data-[selected=true]:opacity-100 opacity-50 transition-opacity duration-300 border border-[var(--ch-23)] rounded bg-[var(--ch-22)] px-4 mx-24 prose-h3:mt-6"
+      className="data-[selected=true]:opacity-100 opacity-50 transition-opacity duration-300 border border-[var(--ch-23)] rounded bg-[var(--ch-22)] px-4 mx-12 prose-h3:mt-4"
     >
       {step.children}
       {step.after?.children}
