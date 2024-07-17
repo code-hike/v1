@@ -24,8 +24,6 @@ Rendering markdown using React usually looks something like this:
 
 ## !! start
 
-We get the content as a component. We can render the rest of the page any way you want, but the content itself is a single rigid block.
-
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
 
@@ -57,15 +55,15 @@ Elit sed do eiusmod
 Tempor incididunt ut labore
 ```
 
+### !after
+
+We get the content as a component. We can render the rest of the page any way you want, but the content itself is a single rigid block.
+
 ## !! frontmatter
 
 ### Frontmatter
 
 We can convert part of the content into metadata using <Hover name="frontmatter">frontmatter</Hover>.
-
-This is a good start, it gives us some flexibility, but the main content is still a single block of markdown.
-
-If we want more flexibility, we need a way to break the content into smaller pieces.
 
 ```jsx !page page.jsx -wa
 import {
@@ -108,15 +106,17 @@ Amet consectetur adipiscing
 Elit sed do eiusmod
 ```
 
+### !after
+
+This is a good start, it gives us some flexibility, but the main content is still a single block of markdown.
+
+If we want more flexibility, we need a way to break the content into smaller pieces.
+
 ## !! parseRoot
 
 ### Code Hike Blocks
 
 To make the content really flexible, Code Hike introduces the concept of [blocks](/docs/concepts/blocks).
-
-We define blocks by adding a <Hover name="decoration">special decoration</Hover> to markdown headings.
-
-Blocks can now be <Hover name="destructured">destructured from the content</Hover>, giving us fine-grained control to render them any way we want.
 
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
@@ -162,6 +162,12 @@ Amet consectetur adipiscing
 
 Elit sed do eiusmod
 ```
+
+### !after
+
+We define blocks by adding a <Hover name="decoration">special decoration</Hover> to markdown headings.
+
+Blocks can now be <Hover name="destructured">destructured from the content</Hover>, giving us fine-grained control to render them any way we want.
 
 ## !! img
 

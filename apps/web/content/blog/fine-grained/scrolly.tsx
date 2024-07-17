@@ -8,7 +8,11 @@ import { CodeBlock } from "codehike/blocks"
 import { Block, parseProps } from "codehike/blocks"
 import { Code } from "./code"
 
-const StepSchema = Block.extend({ page: CodeBlock, content: CodeBlock })
+const StepSchema = Block.extend({
+  page: CodeBlock,
+  content: CodeBlock,
+  after: Block.optional(),
+})
 
 const Schema = Block.extend({
   blocks: z.array(StepSchema),
@@ -42,11 +46,12 @@ function Lean(props: ContentProps) {
   return (
     <div className="md:hidden">
       {blocks.map((step, i) => (
-        <section>
+        <section key={i}>
+          {step.children}
           <Code codeblock={step.content} />
           <Code codeblock={step.page} />
           <Preview i={i} />
-          <div key={i}>{step.children}</div>
+          {step.after?.children}
         </section>
       ))}
       <hr />
@@ -88,6 +93,7 @@ function StepMessage({ step, index }: { step: Step; index: number }) {
       className="data-[selected=true]:opacity-100 opacity-50 transition-opacity duration-300 border border-[var(--ch-23)] rounded bg-[var(--ch-22)] px-4 mx-24 prose-h3:mt-6"
     >
       {step.children}
+      {step.after?.children}
     </Selectable>
   )
 }
@@ -179,7 +185,7 @@ const previews = [
   <div className="h-full">
     <main className="border-t-4 border-red-600 bg-white p-2 rounded">
       <h2 className="text-black my-2 text-base">Unhandled Error</h2>
-      <p className="text-red-600 text-sm">
+      <p className="text-red-600 text-sm font-mono">
         Error at:
         <br />
         ## !!steps Step one
