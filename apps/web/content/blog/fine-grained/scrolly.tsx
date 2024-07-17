@@ -113,7 +113,7 @@ function Sticker({ step, index }: { step: Step; index: number }) {
 
 function Preview({ i }: { i: number }) {
   return (
-    <div className="h-52 rounded p-2 bg-blue-900/80 bg-[url(/dark-grid.svg)] ">
+    <div className="h-52 rounded p-2 bg-blue-900/80 bg-[url(/dark-grid.svg)] text-white">
       {previews[i]}
     </div>
   )
