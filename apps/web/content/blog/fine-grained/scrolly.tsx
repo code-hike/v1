@@ -27,10 +27,38 @@ export function Hover({ children }: { children: React.ReactNode }) {
 const stickerHeight = 640
 
 export function Scrolly(props: unknown) {
-  const { blocks } = parseProps(props, Schema)
+  const p = parseProps(props, Schema)
+  return (
+    <>
+      <Lean {...p} />
+      <Rich {...p} />
+    </>
+  )
+}
+
+type ContentProps = z.infer<typeof Schema>
+function Lean(props: ContentProps) {
+  const { blocks } = props
+  return (
+    <div className="md:hidden">
+      {blocks.map((step, i) => (
+        <section>
+          <Code codeblock={step.content} />
+          <Code codeblock={step.page} />
+          <Preview i={i} />
+          <div key={i}>{step.children}</div>
+        </section>
+      ))}
+      <hr />
+    </div>
+  )
+}
+
+function Rich(props: ContentProps) {
+  const { blocks } = props
   return (
     <SelectionProvider
-      className="gap-4 relative ruler-group"
+      className="hidden md:block gap-4 relative ruler-group"
       rootMargin="-96px 0px"
     >
       <div className="top-20 sticky">
@@ -71,10 +99,16 @@ function Sticker({ step, index }: { step: Step; index: number }) {
       <Code className="my-0 flex flex-col flex-1" codeblock={step.page} />
       <div className="flex flex-col flex-1 gap-2">
         <Code className="my-0 flex flex-col flex-1" codeblock={step.content} />
-        <div className="h-52 rounded p-2 bg-blue-900/80 bg-[url(/dark-grid.svg)] ">
-          {previews[index]}
-        </div>
+        <Preview i={index} />
       </div>
+    </div>
+  )
+}
+
+function Preview({ i }: { i: number }) {
+  return (
+    <div className="h-52 rounded p-2 bg-blue-900/80 bg-[url(/dark-grid.svg)] ">
+      {previews[i]}
     </div>
   )
 }
