@@ -3,6 +3,7 @@ import Link from "next/link"
 import { AllSponsors, PoweredBy, TopSponsors } from "./landing/sponsors"
 import { cn } from "../lib/utils"
 import { Boxes } from "./landing/boxes"
+import { Demo } from "./landing/demo"
 
 export default function HomePage() {
   return (
@@ -11,12 +12,19 @@ export default function HomePage() {
         Content belongs
         <br /> in Markdown
       </h1>
-      {/* <h2 className="mt-6 text-xl text-primary/80 text-center max-w-3xl mx-auto  pb-16">
-        The authoring experience of Markdown meets the dynamic versatility of
-        React
-      </h2> */}
 
       <Chart />
+
+      {/* <h1 className="text-slate-900/80 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
+        <div style={{ fontSize: "3.5rem" }}>
+          Build{" "}
+          <strong className=" dark:text-fuchsia-400 text-fuchsia-500/80">
+            rich content websites
+          </strong>{" "}
+        </div>
+        <div>with Markdown and React</div>
+      </h1> 
+      <Demo />  */}
 
       <div className="flex w-full justify-center gap-4 my-14">
         <ButtonLink href="docs" className="w-32">
