@@ -11,7 +11,7 @@ export const InnerPre = ({
     return <Next _stack={stack} {...result} />
   } else {
     const { _ref, data, ...props } = result
-    return <pre {...props} ref={_ref} />
+    return <pre {...props} ref={_ref} data-ch={true} />
   }
 }
 

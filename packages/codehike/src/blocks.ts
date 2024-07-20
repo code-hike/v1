@@ -21,6 +21,8 @@ export function parseRoot<Output, Def extends ZodTypeDef, Input>(
   return parseProps(data, Schema)
 }
 
+export const parse = parseRoot
+
 export const Block = z.object({
   title: z.string().optional(),
   children: z.custom<React.ReactNode>(),
