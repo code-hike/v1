@@ -50,7 +50,7 @@
     "react-dom": "18.3.0-canary-c5b937576-20231219",
     "typescript": "^5.3.3",
     "unified": "^11.0.4",
-    "vitest": "^1.6.0",
+    "vitest": "^2.0.3",
     "zod": "^3.22.4"
   },
   "publishConfig": {
