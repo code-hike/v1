@@ -2,7 +2,7 @@
 
 All the `*.0.mdx` files in this directory are tests
 
-Add the snapshots you are interested in testing to the `snapshots` array in the frontmatter of the markdown file:
+Add the snapshots you are interested in testing to the `snapshots` array in the frontmatter of the mdx file:
 
 ```md
 ---
