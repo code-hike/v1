@@ -7,6 +7,7 @@ import { renderToReadableStream } from "react-dom/server.edge"
 import React from "react"
 import { RawCode } from "../src/code/types"
 import { highlight, Pre } from "../src/code"
+import { MDXContent } from "mdx/types"
 
 export type MDFile = {
   value: string
@@ -57,18 +58,24 @@ export async function parsedJS(file: MDFile, options: CompileOptions) {
   return { block }
 }
 
-export async function renderHTML(file: MDFile, options: CompileOptions) {
+export async function renderHTML(
+  file: MDFile,
+  options: CompileOptions,
+  render: (Content: MDXContent) => any = defaultRender,
+) {
   const result = await compile(file, {
     ...options,
     outputFormat: "function-body",
   })
   const { default: Content } = await run(result, runtime as any)
 
-  const html = await rscToHTML(
-    // @ts-ignore
-    <Content components={{ MyCode }} />,
-  )
+  const html = await rscToHTML(render(Content))
   return html
+}
+
+function defaultRender(Content: MDXContent) {
+  // @ts-ignore
+  return <Content components={{ MyCode }} />
 }
 
 async function MyCode({ codeblock }: { codeblock: RawCode }) {

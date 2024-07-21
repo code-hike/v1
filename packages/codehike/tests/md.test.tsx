@@ -39,10 +39,21 @@ testNames.forEach(async (filename) => {
       chConfig.syntaxHighlighting = { theme: syntaxHighlight as any }
     }
 
+    let render: any
+    const renderPath = path.resolve(`${suitePath}/${filename}.0.render.tsx`)
+    if (
+      await fs
+        .access(renderPath)
+        .then(() => true)
+        .catch(() => false)
+    ) {
+      const renderModule = await import(renderPath)
+      render = renderModule.render
+    }
+
     for (const step of snapshots) {
       try {
-        console.log(chConfig)
-        const result = await getStepOutput(file, step, chConfig)
+        const result = await getStepOutput(file, step, chConfig, render)
         expect(result).toMatchFileSnapshot(sn(filename, step))
       } catch (e) {
         const md = errorToMd(e)
@@ -87,27 +98,11 @@ const indexes = {
   rendered: 9,
 }
 
-const STEPS = [
-  "error",
-  "before-remark",
-  "after-remark",
-  "after-rehype",
-  "before-recma-compiled-js",
-  "before-recma-compiled-jsx",
-  "before-recma-js",
-  "after-recma-js",
-  "before-recma-jsx",
-  "after-recma-jsx",
-  "compiled-js",
-  "compiled-jsx",
-  "parsed-jsx",
-  "rendered",
-]
-
 async function getStepOutput(
   file: MDFile,
   step: string,
   chConfig: CodeHikeConfig,
+  render: any,
 ) {
   switch (step) {
     case "before-remark":
@@ -175,10 +170,14 @@ async function getStepOutput(
         recmaPlugins: [[recmaCodeHike, chConfig]],
       })
     case "rendered":
-      return await renderHTML(file, {
-        remarkPlugins: [[remarkCodeHike, chConfig]],
-        recmaPlugins: [[recmaCodeHike, chConfig]],
-      })
+      return await renderHTML(
+        file,
+        {
+          remarkPlugins: [[remarkCodeHike, chConfig]],
+          recmaPlugins: [[recmaCodeHike, chConfig]],
+        },
+        render,
+      )
     default:
       throw new Error(`Unknown snapshot: ${step}`)
   }
