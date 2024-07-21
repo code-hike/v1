@@ -22,6 +22,15 @@
                     {
                       "type": "Property",
                       "kind": "init",
+                      "key": { "type": "Identifier", "name": "h1" },
+                      "value": { "type": "Literal", "value": "h1" },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false
+                    },
+                    {
+                      "type": "Property",
+                      "kind": "init",
                       "key": { "type": "Identifier", "name": "slot" },
                       "value": { "type": "Literal", "value": "slot" },
                       "method": false,
@@ -64,10 +73,46 @@
                       "key": { "type": "Literal", "value": "children" },
                       "kind": "init",
                       "value": {
-                        "type": "JSXFragment",
-                        "openingFragment": { "type": "JSXOpeningFragment" },
-                        "closingFragment": { "type": "JSXClosingFragment" },
-                        "children": []
+                        "type": "JSXElement",
+                        "openingElement": {
+                          "type": "JSXOpeningElement",
+                          "attributes": [],
+                          "name": {
+                            "type": "JSXMemberExpression",
+                            "object": {
+                              "type": "JSXIdentifier",
+                              "name": "_components"
+                            },
+                            "property": {
+                              "type": "JSXIdentifier",
+                              "name": "h1"
+                            }
+                          },
+                          "selfClosing": false
+                        },
+                        "closingElement": {
+                          "type": "JSXClosingElement",
+                          "name": {
+                            "type": "JSXMemberExpression",
+                            "object": {
+                              "type": "JSXIdentifier",
+                              "name": "_components"
+                            },
+                            "property": {
+                              "type": "JSXIdentifier",
+                              "name": "h1"
+                            }
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "JSXExpressionContainer",
+                            "expression": {
+                              "type": "Literal",
+                              "value": "Lorem"
+                            }
+                          }
+                        ]
                       }
                     },
                     {

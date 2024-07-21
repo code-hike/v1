@@ -1,6 +1,7 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = {
+    h1: "h1",
     slot: "slot",
     ...props.components,
   }
@@ -16,7 +17,7 @@ function _createMdxContent(props) {
       }}
     >
       <_components.slot path="">
-        <></>
+        <_components.h1>{"Lorem"}</_components.h1>
       </_components.slot>
     </_components.slot>
   )

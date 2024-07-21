@@ -4,7 +4,13 @@ import { expect, test } from "vitest"
 import fm from "front-matter"
 import { remarkCodeHike, recmaCodeHike, CodeHikeConfig } from "../src/mdx"
 
-import { compileAST, compileJS, MDFile, parsedJS } from "./utils.ast"
+import {
+  compileAST,
+  compileJS,
+  MDFile,
+  parsedJS,
+  renderHTML,
+} from "./utils.ast"
 import { errorToMd, getTestNames } from "./utils.suite"
 
 const chConfig: CodeHikeConfig = {
@@ -46,11 +52,13 @@ function sn(filename: string, step: string) {
   const extention =
     step === "error"
       ? "md"
-      : js.includes(step)
-        ? "js"
-        : jsx.includes(step)
-          ? "jsx"
-          : "json"
+      : step === "rendered"
+        ? "html"
+        : js.includes(step)
+          ? "js"
+          : jsx.includes(step)
+            ? "jsx"
+            : "json"
   return `./md-suite/${filename}.${index}.${step}.${extention}`
 }
 
@@ -151,7 +159,11 @@ async function getStepOutput(file: MDFile, step: string) {
       })
     case "parsed-jsx":
       return await parsedJS(file, {
-        jsx: true,
+        remarkPlugins: [[remarkCodeHike, chConfig]],
+        recmaPlugins: [[recmaCodeHike, chConfig]],
+      })
+    case "rendered":
+      return await renderHTML(file, {
         remarkPlugins: [[remarkCodeHike, chConfig]],
         recmaPlugins: [[recmaCodeHike, chConfig]],
       })

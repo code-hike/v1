@@ -105,10 +105,9 @@
           ],
           "children": [
             {
-              "type": "mdxJsxFlowElement",
-              "name": null,
-              "attributes": [],
-              "children": []
+              "type": "heading",
+              "depth": 1,
+              "children": [{ "type": "text", "value": "Lorem" }]
             }
           ]
         }

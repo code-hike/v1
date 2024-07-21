@@ -1,11 +1,14 @@
-import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime"
+import { jsx as _jsx } from "react/jsx-runtime"
 function _createMdxContent(props) {
   const _components = {
+    h1: "h1",
     slot: "slot",
     ...props.components,
   }
   const _blocks = {
-    children: _jsx(_Fragment, {}),
+    children: _jsx(_components.h1, {
+      children: "Lorem",
+    }),
     title: "",
     _data: {
       header: "",

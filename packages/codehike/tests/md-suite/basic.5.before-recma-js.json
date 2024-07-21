@@ -6,11 +6,6 @@
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "imported": { "type": "Identifier", "name": "Fragment" },
-          "local": { "type": "Identifier", "name": "_Fragment" }
-        },
-        {
-          "type": "ImportSpecifier",
           "imported": { "type": "Identifier", "name": "jsx" },
           "local": { "type": "Identifier", "name": "_jsx" }
         }
@@ -35,6 +30,15 @@
                 "init": {
                   "type": "ObjectExpression",
                   "properties": [
+                    {
+                      "type": "Property",
+                      "kind": "init",
+                      "key": { "type": "Identifier", "name": "h1" },
+                      "value": { "type": "Literal", "value": "h1" },
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false
+                    },
                     {
                       "type": "Property",
                       "kind": "init",
@@ -205,12 +209,37 @@
                                   },
                                   "arguments": [
                                     {
-                                      "type": "Identifier",
-                                      "name": "_Fragment"
+                                      "type": "MemberExpression",
+                                      "object": {
+                                        "type": "Identifier",
+                                        "name": "_components"
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "h1"
+                                      },
+                                      "computed": false,
+                                      "optional": false
                                     },
                                     {
                                       "type": "ObjectExpression",
-                                      "properties": []
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "key": {
+                                            "type": "Identifier",
+                                            "name": "children"
+                                          },
+                                          "value": {
+                                            "type": "Literal",
+                                            "value": "Lorem"
+                                          },
+                                          "kind": "init",
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false
+                                        }
+                                      ]
                                     }
                                   ],
                                   "optional": false
