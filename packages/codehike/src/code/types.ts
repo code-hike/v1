@@ -174,18 +174,15 @@ export type CustomLineProps = React.ComponentProps<"div"> & {
   lineNumber: number
   totalLines: number
   indentation: number
+  annotation?: BlockAnnotation
   data?: Record<string, any>
   _stack: {
     Component: CustomLine | CustomLineWithAnnotation
     annotation?: BlockAnnotation
   }[]
 }
-export type CustomLine = React.ComponentType<
-  CustomLineProps & { annotation?: BlockAnnotation }
->
-export type CustomLineWithAnnotation = React.ComponentType<
-  CustomLineProps & { annotation: BlockAnnotation }
->
+export type CustomLine = React.ComponentType<CustomLineProps>
+export type CustomLineWithAnnotation = React.ComponentType<CustomLineProps>
 
 // Token
 export type CustomTokenProps = React.ComponentProps<"span"> & {

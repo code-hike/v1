@@ -36,7 +36,8 @@ export const InnerLine = ({
     const { Component, annotation } = next
     return <Component _stack={stack} {...result} annotation={annotation!} />
   } else {
-    const { lineNumber, totalLines, indentation, data, ...props } = result
+    const { lineNumber, totalLines, indentation, data, annotation, ...props } =
+      result
     return <div {...props} />
   }
 }
