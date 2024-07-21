@@ -182,7 +182,11 @@ export type CustomLineProps = React.ComponentProps<"div"> & {
   }[]
 }
 export type CustomLine = React.ComponentType<CustomLineProps>
-export type CustomLineWithAnnotation = React.ComponentType<CustomLineProps>
+export type CustomLineWithAnnotation = React.ComponentType<
+  CustomLineProps & {
+    annotation: BlockAnnotation
+  }
+>
 
 // Token
 export type CustomTokenProps = React.ComponentProps<"span"> & {

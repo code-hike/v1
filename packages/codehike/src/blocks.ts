@@ -14,10 +14,20 @@ export function getBlocks(Content: MDXContent, props: MDXProps = {}) {
 
 export function parseRoot<Output, Def extends ZodTypeDef, Input>(
   Content: MDXContent,
-  Schema?: z.ZodType<Output, Def, Input>,
+  Schema?: undefined,
+  props?: MDXProps,
+): unknown
+export function parseRoot<Output, Def extends ZodTypeDef, Input>(
+  Content: MDXContent,
+  Schema: z.ZodType<Output, Def, Input>,
+  props?: MDXProps,
+): Output
+export function parseRoot<Output, Def extends ZodTypeDef, Input>(
+  Content: MDXContent,
+  Schema: z.ZodType<Output, Def, Input> | undefined,
   props: MDXProps = {},
 ) {
-  const data = getBlocks(Content, props)
+  const data = getBlocks(Content, props || {})
   if (Schema) {
     return parseProps(data, Schema)
   }
