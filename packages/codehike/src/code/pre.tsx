@@ -29,7 +29,7 @@ type LineTokens = {
 type LinesOrGroups = (LineTokens | LineGroup)[]
 
 export const Pre: PreComponent = forwardRef(
-  ({ code, handlers = [], className, ...rest }, ref) => {
+  ({ code, handlers = [], ...rest }, ref) => {
     let { tokens, themeName, lang, annotations } = code
 
     handlers
@@ -78,13 +78,7 @@ export const Pre: PreComponent = forwardRef(
     const stack = [...noRefStack, ...refStack]
     const merge = { _stack: stack, _ref: ref as any }
     return (
-      <InnerPre
-        merge={merge}
-        data-theme={themeName}
-        data-lang={lang}
-        className={className}
-        {...rest}
-      >
+      <InnerPre merge={merge} data-theme={themeName} data-lang={lang} {...rest}>
         <RenderLines
           linesOrGroups={groups}
           annotationNames={annotationNames}

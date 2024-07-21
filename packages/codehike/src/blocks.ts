@@ -14,12 +14,27 @@ export function getBlocks(Content: MDXContent, props: MDXProps = {}) {
 
 export function parseRoot<Output, Def extends ZodTypeDef, Input>(
   Content: MDXContent,
+  Schema?: undefined,
+  props?: MDXProps,
+): unknown
+export function parseRoot<Output, Def extends ZodTypeDef, Input>(
+  Content: MDXContent,
   Schema: z.ZodType<Output, Def, Input>,
+  props?: MDXProps,
+): Output
+export function parseRoot<Output, Def extends ZodTypeDef, Input>(
+  Content: MDXContent,
+  Schema: z.ZodType<Output, Def, Input> | undefined,
   props: MDXProps = {},
 ) {
-  const data = getBlocks(Content, props)
-  return parseProps(data, Schema)
+  const data = getBlocks(Content, props || {})
+  if (Schema) {
+    return parseProps(data, Schema)
+  }
+  return data
 }
+
+export const parse = parseRoot
 
 export const Block = z.object({
   title: z.string().optional(),

@@ -1,8 +1,0 @@
-{
-  "type": "root",
-  "children": [
-    { "type": "paragraph", "children": [{ "type": "text", "value": "hello" }] },
-    { "type": "code", "lang": "py", "meta": null, "value": "!from ./test.py" },
-    { "type": "code", "lang": "py", "meta": "!", "value": "!from ./test.py" }
-  ]
-}

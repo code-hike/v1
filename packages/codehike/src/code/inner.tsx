@@ -11,7 +11,7 @@ export const InnerPre = ({
     return <Next _stack={stack} {...result} />
   } else {
     const { _ref, data, ...props } = result
-    return <pre {...props} ref={_ref} />
+    return <pre {...props} ref={_ref} data-ch={true} />
   }
 }
 
@@ -36,7 +36,8 @@ export const InnerLine = ({
     const { Component, annotation } = next
     return <Component _stack={stack} {...result} annotation={annotation!} />
   } else {
-    const { lineNumber, totalLines, indentation, data, ...props } = result
+    const { lineNumber, totalLines, indentation, data, annotation, ...props } =
+      result
     return <div {...props} />
   }
 }
