@@ -6,6 +6,7 @@ Add the snapshots you are interested in testing to the `snapshots` array in the 
 
 ```md
 ---
+syntaxHighlight: github-light
 snapshots:
   - before-remark
   - after-remark

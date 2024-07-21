@@ -13,14 +13,6 @@ import {
 } from "./utils.ast"
 import { errorToMd, getTestNames } from "./utils.suite"
 
-const chConfig: CodeHikeConfig = {
-  components: {
-    code: "MyCode",
-  },
-
-  ignoreCode: (codeblock) => codeblock.lang === "mermaid",
-}
-
 const suitePath = "./tests/md-suite"
 const testNames = await getTestNames(suitePath)
 
@@ -28,13 +20,29 @@ testNames.forEach(async (filename) => {
   test(filename, async () => {
     const mdPath = path.resolve(`${suitePath}/${filename}.0.mdx`)
     const md = await fs.readFile(mdPath, "utf-8")
-    const { attributes, body } = fm<{ name?: string; snapshots?: string[] }>(md)
+    const { attributes, body } = fm<{
+      name?: string
+      snapshots?: string[]
+      syntaxHighlight?: string
+    }>(md)
     const file = { value: body, history: [mdPath] }
-    const { snapshots = [] } = attributes
+    const { snapshots = [], syntaxHighlight } = attributes
+
+    const chConfig: CodeHikeConfig = {
+      components: {
+        code: "MyCode",
+      },
+      ignoreCode: (codeblock) => codeblock.lang === "mermaid",
+    }
+
+    if (syntaxHighlight) {
+      chConfig.syntaxHighlighting = { theme: syntaxHighlight as any }
+    }
 
     for (const step of snapshots) {
       try {
-        const result = await getStepOutput(file, step)
+        console.log(chConfig)
+        const result = await getStepOutput(file, step, chConfig)
         expect(result).toMatchFileSnapshot(sn(filename, step))
       } catch (e) {
         const md = errorToMd(e)
@@ -96,7 +104,11 @@ const STEPS = [
   "rendered",
 ]
 
-async function getStepOutput(file: MDFile, step: string) {
+async function getStepOutput(
+  file: MDFile,
+  step: string,
+  chConfig: CodeHikeConfig,
+) {
   switch (step) {
     case "before-remark":
       return await compileAST(file, (X) => ({
