@@ -7,19 +7,32 @@ import {
   InternalToken,
 } from "./types.js"
 
-export function RenderLineContent({
-  lineContent,
+export function renderLineContent({
+  content,
   handlers,
+  annotationStack,
 }: {
-  lineContent: LineContent
+  content: LineContent
   handlers: AnnotationHandler[]
+  annotationStack: CodeAnnotation[]
 }) {
-  return lineContent.map((item, i) =>
+  return content.map((item, i) =>
     isGroup(item) ? (
-      <InlinedTokens group={item} handlers={handlers} key={i} />
+      <InlinedTokens
+        annotationStack={annotationStack}
+        handlers={handlers}
+        group={item}
+        key={i}
+      />
     ) : item.style ? (
-      <FinalToken handlers={handlers} token={item} key={i} />
+      <FinalToken
+        annotationStack={annotationStack}
+        handlers={handlers}
+        token={item}
+        key={i}
+      />
     ) : (
+      // whitespace
       item.value
     ),
   )
@@ -28,22 +41,22 @@ export function RenderLineContent({
 function FinalToken({
   handlers,
   token,
+  annotationStack,
 }: {
   handlers: AnnotationHandler[]
   token: InternalToken
+  annotationStack: CodeAnnotation[]
 }) {
-  // TODO get Token from annotationStack
-  const annotationStack: CodeAnnotation[] = []
   const stack = handlers.flatMap(({ name, Token, AnnotatedToken }) => {
-    const s = [] as CustomTokenProps["_stack"]
-    const annotation = annotationStack.find((a) => a.name === name)
-    if (annotation && AnnotatedToken) {
-      s.push({ Component: AnnotatedToken, annotation })
-    }
-    if (Token) {
-      s.push({ Component: Token })
-    }
-    return s
+    const annotations = annotationStack.filter((a) => a.name === name)
+    return annotations.flatMap(
+      (annotation) =>
+        [
+          annotation &&
+            AnnotatedToken && { Component: AnnotatedToken, annotation },
+          Token && { Component: Token, annotation },
+        ].filter(Boolean) as CustomTokenProps["_stack"],
+    )
   })
   return (
     <InnerToken
@@ -59,19 +72,25 @@ function FinalToken({
 function InlinedTokens({
   group,
   handlers,
+  annotationStack,
 }: {
   group: TokenGroup
   handlers: AnnotationHandler[]
+  annotationStack: CodeAnnotation[]
 }) {
   const { annotation, content } = group
   const { name } = annotation
+
+  const children = renderLineContent({
+    content,
+    handlers,
+    annotationStack: [...annotationStack, annotation],
+  })
+
   const Component = handlers.find((c) => c.name === name)?.Inline
-  if (!Component) {
-    return <RenderLineContent lineContent={content} handlers={handlers} />
-  }
-  return (
-    <Component annotation={annotation}>
-      <RenderLineContent lineContent={content} handlers={handlers} />
-    </Component>
+  return Component ? (
+    <Component annotation={annotation}>{children}</Component>
+  ) : (
+    children
   )
 }

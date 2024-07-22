@@ -14,7 +14,7 @@ import {
 } from "./types.js"
 import { AddRefIfNedded } from "./pre-ref.js"
 import { InnerLine, InnerPre } from "./inner.js"
-import { RenderLineContent } from "./inline.js"
+import { renderLineContent } from "./inline.js"
 
 type LineGroup = {
   annotation: BlockAnnotation
@@ -173,9 +173,11 @@ function RenderLines({
       return s
     })
 
-    let children: React.ReactNode = (
-      <RenderLineContent lineContent={lineContent} handlers={handlers} />
-    )
+    let children: React.ReactNode = renderLineContent({
+      content: lineContent,
+      handlers,
+      annotationStack,
+    })
 
     const merge = { lineNumber, indentation, totalLines, _stack: stack }
 
@@ -213,7 +215,7 @@ function AnnotatedLines({
         linesOrGroups={lines}
         handlers={handlers}
         inlineAnnotations={inlineAnnotations}
-        annotationStack={[annotation, ...annotationStack]}
+        annotationStack={[...annotationStack, annotation]}
         indentations={indentations}
         annotationNames={annotationNames}
         totalLines={totalLines}
@@ -226,7 +228,7 @@ function AnnotatedLines({
         linesOrGroups={lines}
         handlers={handlers}
         inlineAnnotations={inlineAnnotations}
-        annotationStack={[annotation, ...annotationStack]}
+        annotationStack={[...annotationStack, annotation]}
         indentations={indentations}
         annotationNames={annotationNames}
         totalLines={totalLines}

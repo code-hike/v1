@@ -192,6 +192,7 @@ export type CustomTokenProps = React.ComponentProps<"span"> & {
   value: string
   style?: React.CSSProperties
   data?: Record<string, any>
+  annotation?: BlockAnnotation | InlineAnnotation
   _stack: {
     Component: CustomToken | CustomTokenWithAnnotation
     annotation?: BlockAnnotation | InlineAnnotation
