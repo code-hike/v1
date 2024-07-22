@@ -1,33 +1,16 @@
 import { forwardRef } from "react"
-import { toLineContent } from "./tokens.js"
 import {
   AnnotationHandler,
-  BlockAnnotation,
   CodeAnnotation,
-  CustomLineProps,
-  InlineAnnotation,
-  InternalToken,
   PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
 import { AddRefIfNedded } from "./pre-ref.js"
-import { InnerLine, InnerPre } from "./inner.js"
-import { renderLineContent } from "./inline.js"
-
-type LineGroup = {
-  annotation: BlockAnnotation
-  lines: LinesOrGroups
-  range: [number, number]
-}
-
-type LineTokens = {
-  tokens: InternalToken[]
-  range: [number, number]
-}
-
-type LinesOrGroups = (LineTokens | LineGroup)[]
+import { InnerPre } from "./inner.js"
+import { renderLines } from "./block.js"
+import { toLineGroups, toLines } from "./lines.js"
 
 export const Pre: PreComponent = forwardRef(
   ({ code, handlers = [], ...rest }, ref) => {
@@ -83,20 +66,17 @@ function PreContent({
   const indentations = lines.map(
     (line) => line.tokens[0]?.value.match(/^\s*/)?.[0].length || 0,
   )
-
   const blockAnnotations = annotations.filter(isBlockAnnotation)
   const inlineAnnotations = annotations.filter(isInlineAnnotation)
   const groups = toLineGroups(lines, blockAnnotations)
-  return (
-    <RenderLines
-      linesOrGroups={groups}
-      annotationNames={annotationNames}
-      handlers={handlers}
-      inlineAnnotations={inlineAnnotations}
-      indentations={indentations}
-      totalLines={lines.length}
-    />
-  )
+  return renderLines({
+    linesOrGroups: groups,
+    annotationNames,
+    handlers,
+    inlineAnnotations,
+    indentations,
+    totalLines: lines.length,
+  })
 }
 
 function getStack(handlers: AnnotationHandler[], annotationNames: Set<string>) {
@@ -118,241 +98,4 @@ function getStack(handlers: AnnotationHandler[], annotationNames: Set<string>) {
   }
   const stack = [...noRefStack, ...refStack]
   return stack
-}
-
-function RenderLines({
-  linesOrGroups,
-  handlers,
-  inlineAnnotations,
-  indentations,
-  annotationStack = [],
-  annotationNames,
-  totalLines,
-}: {
-  linesOrGroups: LinesOrGroups
-  handlers: AnnotationHandler[]
-  inlineAnnotations: InlineAnnotation[]
-  annotationStack?: BlockAnnotation[]
-  indentations: number[]
-  annotationNames: Set<string>
-  totalLines: number
-}) {
-  return linesOrGroups.map((group) => {
-    if (isGroup(group)) {
-      return (
-        <AnnotatedLines
-          key={group.range[0]}
-          group={group}
-          handlers={handlers}
-          inlineAnnotations={inlineAnnotations}
-          annotationStack={annotationStack}
-          indentations={indentations}
-          annotationNames={annotationNames}
-          totalLines={totalLines}
-        />
-      )
-    }
-
-    const lineNumber = group.range[0]
-    const indentation = indentations[lineNumber - 1]
-
-    const lineAnnotations = inlineAnnotations.filter(
-      (annotation) => annotation.lineNumber === lineNumber,
-    )
-    const lineContent = toLineContent(group.tokens, lineAnnotations)
-
-    const stack = handlers.flatMap(({ name, Line, AnnotatedLine }) => {
-      const s = [] as CustomLineProps["_stack"]
-      const annotation = annotationStack.find((a) => a.name === name)
-      if (annotation && AnnotatedLine) {
-        s.push({ Component: AnnotatedLine, annotation })
-      }
-      if (Line) {
-        s.push({ Component: Line, annotation })
-      }
-      return s
-    })
-
-    let children: React.ReactNode = renderLineContent({
-      content: lineContent,
-      handlers,
-      annotationStack,
-    })
-
-    const merge = { lineNumber, indentation, totalLines, _stack: stack }
-
-    return (
-      <InnerLine merge={merge} key={lineNumber}>
-        {children}
-      </InnerLine>
-    )
-  })
-}
-
-function AnnotatedLines({
-  group,
-  handlers,
-  inlineAnnotations,
-  annotationStack,
-  indentations,
-  annotationNames,
-  totalLines,
-}: {
-  group: LineGroup
-  handlers: AnnotationHandler[]
-  inlineAnnotations: InlineAnnotation[]
-  annotationStack: BlockAnnotation[]
-  indentations: number[]
-  annotationNames: Set<string>
-  totalLines: number
-}) {
-  const { annotation, lines } = group
-  const { name } = annotation
-  const Component = handlers.find((c) => c.name === name)?.Block
-  if (!Component) {
-    return (
-      <RenderLines
-        linesOrGroups={lines}
-        handlers={handlers}
-        inlineAnnotations={inlineAnnotations}
-        annotationStack={[...annotationStack, annotation]}
-        indentations={indentations}
-        annotationNames={annotationNames}
-        totalLines={totalLines}
-      />
-    )
-  }
-  return (
-    <Component annotation={annotation}>
-      <RenderLines
-        linesOrGroups={lines}
-        handlers={handlers}
-        inlineAnnotations={inlineAnnotations}
-        annotationStack={[...annotationStack, annotation]}
-        indentations={indentations}
-        annotationNames={annotationNames}
-        totalLines={totalLines}
-      />
-    </Component>
-  )
-}
-
-function toLines(tokens: Tokens): LineTokens[] {
-  const lines = [[]] as InternalToken[][]
-  const tokenStack = tokens.slice()
-  let col = 1
-  while (tokenStack.length) {
-    const token = tokenStack.shift()!
-    if (typeof token === "string") {
-      const [value, ...tail] = token.split("\n")
-      if (value) {
-        let start = col
-        col += value.length
-        lines[lines.length - 1].push({
-          value,
-          range: [start, col],
-        })
-      }
-      if (tail.length) {
-        lines[lines.length - 1].push({
-          value: "\n",
-          range: [col, col + 1],
-        })
-        lines.push([])
-        col = 1
-        tokenStack.unshift(tail.join("\n"))
-      }
-    } else {
-      const [value, color, rest = {}] = token
-      let start = col
-      col += value.length
-      lines[lines.length - 1].push({
-        value,
-        style: { color, ...rest },
-        range: [start, col],
-      })
-    }
-  }
-  return lines.map((tokens, i) => ({ tokens, range: [i + 1, i + 1] }))
-}
-
-function toLineGroups(
-  lines: LineTokens[],
-  annotations: BlockAnnotation[],
-): LinesOrGroups {
-  let groups = lines as LinesOrGroups
-  for (let i = annotations.length - 1; i >= 0; i--) {
-    const annotation = annotations[i]
-    groups = applyBlockAnnotation(groups, annotation)
-  }
-  return groups
-}
-
-function applyBlockAnnotation(
-  lines: LinesOrGroups,
-  annotation: BlockAnnotation,
-): LinesOrGroups {
-  const { fromLineNumber, toLineNumber } = annotation
-  const range = [fromLineNumber, toLineNumber]
-  let groups = splitGroups(lines, range[0])
-  groups = splitGroups(groups, range[1] + 1)
-  let before = [] as LinesOrGroups
-  let inside = [] as LinesOrGroups
-  let after = [] as LinesOrGroups
-  groups.forEach((group) => {
-    if (group.range[1] < range[0]) {
-      before.push(group)
-    } else if (group.range[0] > range[1]) {
-      after.push(group)
-    } else {
-      inside.push(group)
-    }
-  })
-
-  return [
-    ...before,
-    {
-      annotation,
-      lines: inside,
-      range: [inside[0].range[0], inside[inside.length - 1].range[1]],
-    },
-    ...after,
-  ]
-}
-
-function splitGroups(groups: LinesOrGroups, lineNumber: number): LinesOrGroups {
-  const index = groups.findIndex((group) => {
-    return (
-      isGroup(group) &&
-      group.range[0] < lineNumber &&
-      lineNumber <= group.range[1]
-    )
-  })
-
-  if (index === -1) {
-    return groups
-  }
-
-  const group = groups[index] as LineGroup
-  const lines = splitGroups(group.lines, lineNumber)
-  let before = [] as LinesOrGroups
-  let after = [] as LinesOrGroups
-  lines.forEach((lineOrGroup) => {
-    if (lineOrGroup.range[1] < lineNumber) {
-      before.push(lineOrGroup)
-    } else {
-      after.push(lineOrGroup)
-    }
-  })
-
-  return [
-    ...groups.slice(0, index),
-    { ...group, lines: before, range: [group.range[0], lineNumber - 1] },
-    { ...group, lines: after, range: [lineNumber, group.range[1]] },
-    ...groups.slice(index + 1),
-  ]
-}
-
-function isGroup(item: LinesOrGroups[0]): item is LineGroup {
-  return (item as LineGroup).annotation !== undefined
 }
