@@ -4,18 +4,33 @@ import {
   AnnotationHandler,
   CodeAnnotation,
   CustomTokenProps,
-  InlineAnnotation,
   InternalToken,
 } from "./types.js"
 
 export function RenderLineContent({
   lineContent,
   handlers,
-  lineNumber,
 }: {
   lineContent: LineContent
   handlers: AnnotationHandler[]
-  lineNumber: number
+}) {
+  return lineContent.map((item, i) =>
+    isGroup(item) ? (
+      <InlinedTokens group={item} handlers={handlers} key={i} />
+    ) : item.style ? (
+      <FinalToken handlers={handlers} token={item} key={i} />
+    ) : (
+      item.value
+    ),
+  )
+}
+
+function FinalToken({
+  handlers,
+  token,
+}: {
+  handlers: AnnotationHandler[]
+  token: InternalToken
 }) {
   // TODO get Token from annotationStack
   const annotationStack: CodeAnnotation[] = []
@@ -30,42 +45,21 @@ export function RenderLineContent({
     }
     return s
   })
-
-  return lineContent.map((item, i) => {
-    if (isGroup(item)) {
-      return (
-        <AnnotatedTokens
-          group={item}
-          handlers={handlers}
-          key={i}
-          lineNumber={lineNumber}
-        />
-      )
-    } else {
-      return item.style ? (
-        <InnerToken
-          merge={{
-            _stack: stack,
-            style: item.style,
-            value: item.value,
-            lineNumber,
-          }}
-          key={i}
-        />
-      ) : (
-        // whitespace
-        item.value
-      )
-    }
-  })
+  return (
+    <InnerToken
+      merge={{
+        _stack: stack,
+        style: token.style,
+        value: token.value,
+      }}
+    />
+  )
 }
 
-function AnnotatedTokens({
-  lineNumber,
+function InlinedTokens({
   group,
   handlers,
 }: {
-  lineNumber: number
   group: TokenGroup
   handlers: AnnotationHandler[]
 }) {
@@ -73,21 +67,11 @@ function AnnotatedTokens({
   const { name } = annotation
   const Component = handlers.find((c) => c.name === name)?.Inline
   if (!Component) {
-    return (
-      <RenderLineContent
-        lineContent={content}
-        handlers={handlers}
-        lineNumber={lineNumber}
-      />
-    )
+    return <RenderLineContent lineContent={content} handlers={handlers} />
   }
   return (
-    <Component annotation={annotation} lineNumber={lineNumber}>
-      <RenderLineContent
-        lineContent={content}
-        handlers={handlers}
-        lineNumber={lineNumber}
-      />
+    <Component annotation={annotation}>
+      <RenderLineContent lineContent={content} handlers={handlers} />
     </Component>
   )
 }

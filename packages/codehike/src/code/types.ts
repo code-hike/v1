@@ -122,7 +122,6 @@ export type BlockAnnotationComponent = React.ComponentType<{
 
 export type InlineAnnotationComponent = React.ComponentType<{
   annotation: InlineAnnotation
-  lineNumber: number
   children: React.ReactNode
 }>
 
@@ -191,7 +190,6 @@ export type CustomLineWithAnnotation = React.ComponentType<
 // Token
 export type CustomTokenProps = React.ComponentProps<"span"> & {
   value: string
-  lineNumber: number
   style?: React.CSSProperties
   data?: Record<string, any>
   _stack: {

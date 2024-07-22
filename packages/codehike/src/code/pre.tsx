@@ -174,11 +174,7 @@ function RenderLines({
     })
 
     let children: React.ReactNode = (
-      <RenderLineContent
-        lineContent={lineContent}
-        handlers={handlers}
-        lineNumber={lineNumber}
-      />
+      <RenderLineContent lineContent={lineContent} handlers={handlers} />
     )
 
     const merge = { lineNumber, indentation, totalLines, _stack: stack }

@@ -52,7 +52,7 @@ export const InnerToken = ({
     const { Component, annotation } = next
     return <Component _stack={stack} {...result} annotation={annotation!} />
   } else {
-    const { value, lineNumber, data, ...props } = result
+    const { value, data, ...props } = result
     return <span {...props}>{value}</span>
   }
 }
