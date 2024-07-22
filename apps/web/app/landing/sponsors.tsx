@@ -73,7 +73,7 @@ export function TopSponsors({
         </a>
         <a
           className="overflow-hidden flex p-2 items-center gap-1  cursor-pointer opacity-80 hover:opacity-100"
-          href="https://www.speakeasyapi.dev/"
+          href="https://www.speakeasy.com/"
           target="_blank"
           rel="noopener noreferrer"
         >

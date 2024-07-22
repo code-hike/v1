@@ -104,6 +104,8 @@ Amet consectetur adipiscing
 ## Step two
 
 Elit sed do eiusmod
+
+## Step three
 ```
 
 ### !after
@@ -112,19 +114,18 @@ This is a good start, it gives us some flexibility, but the main content is stil
 
 If we want more flexibility, we need a way to break the content into smaller pieces.
 
-## !! parseRoot
+## !! parse
 
 ### Code Hike Blocks
 
-To make the content really flexible, Code Hike introduces the concept of [blocks](/docs/concepts/blocks).
+To make the content flexible, Code Hike introduces the concept of [blocks](/docs/concepts/blocks).
 
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
-import { parseRoot } from "codehike"
+import { parse } from "codehike"
 
-// !fblock(1:2)
-const { intro, steps } =
-  parseRoot(Content)
+// !fblock
+const { intro, steps } = parse(Content)
 
 export function Page() {
   return (
@@ -161,6 +162,11 @@ Amet consectetur adipiscing
 ## !!steps Step two
 
 Elit sed do eiusmod
+
+<!-- !fblock -->
+## !!steps Step three
+
+Tempor incididunt ut labore
 ```
 
 ### !after
@@ -177,10 +183,9 @@ For example, we can add a <Hover name="cover">cover image</Hover> to each step.
 
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
-import { parseRoot } from "codehike"
+import { parse } from "codehike"
 
-const { intro, steps } =
-  parseRoot(Content)
+const { intro, steps } = parse(Content)
 
 export function Page() {
   return (
@@ -219,6 +224,8 @@ Amet consectetur adipiscing
 
 <!-- !fblock -->
 ![!cover](/two.png)
+
+## !!steps Step three
 ```
 
 ## !! schema
@@ -230,7 +237,7 @@ We can define a schema so we get autocompletion and all the benefits of typescri
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
 import {
-  parseRoot,
+  parse,
   Block,
   ImageBlock,
 } from "codehike"
@@ -243,7 +250,7 @@ const Schema = Block.extend({
     Block.extend({ cover: ImageBlock }),
   ),
 })
-const { intro, steps } = parseRoot(
+const { intro, steps } = parse(
   Content,
   Schema,
 )
@@ -267,6 +274,8 @@ Amet consectetur adipiscing
 ## !!steps Step two
 
 ![!cover](/two.png)
+
+## !!steps Step three
 ```
 
 ## !! type-safe
@@ -280,7 +289,7 @@ For example, since we defined that each step should have a cover image, we get a
 ```jsx !page page.jsx -wa
 import Content from "./content.md"
 import {
-  parseRoot,
+  parse,
   Block,
   ImageBlock,
 } from "codehike"
@@ -294,7 +303,7 @@ const Schema = Block.extend({
   ),
 })
 // !fblock(1:4)
-const { intro, steps } = parseRoot(
+const { intro, steps } = parse(
   Content,
   Schema,
 )
@@ -320,6 +329,8 @@ Amet consectetur adipiscing
 ## !!steps Step two
 
 ![!cover](/two.png)
+
+## !!steps Step three
 ```
 
 </Scrolly>
@@ -331,6 +342,7 @@ And that's how Code Hike gives you type-safe fine-grained markdown, making your 
 Learn more:
 
 - [Rich content websites vs lean content websites](/blog/rich-content-websites)
+- [Code Hike blocks](/docs/concepts/blocks)
 - Examples:
   - [Scrollycoding layout](/docs/layouts/scrollycoding)
   - [Spotlight layout](/docs/layouts/spotlight)
