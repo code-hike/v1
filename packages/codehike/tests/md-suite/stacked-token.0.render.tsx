@@ -21,6 +21,7 @@ async function MyCode({ codeblock }: { codeblock: RawCode }) {
 
 const mark: AnnotationHandler = {
   name: "mark",
+  Pre: ({ children }) => <div>{children}</div>,
   Token: ({ annotation, ...props }) => (
     <InnerToken merge={props} className={annotation?.query} />
   ),

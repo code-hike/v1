@@ -47,24 +47,10 @@ function FinalToken({
   token: InternalToken
   annotationStack: CodeAnnotation[]
 }) {
-  const stack = handlers.flatMap(({ name, Token, AnnotatedToken }) => {
-    const annotations = annotationStack.filter((a) => a.name === name)
-    return annotations.flatMap(
-      (annotation) =>
-        [
-          annotation &&
-            AnnotatedToken && { Component: AnnotatedToken, annotation },
-          Token && { Component: Token, annotation },
-        ].filter(Boolean) as CustomTokenProps["_stack"],
-    )
-  })
+  const stack = buildTokenStack(handlers, annotationStack)
   return (
     <InnerToken
-      merge={{
-        _stack: stack,
-        style: token.style,
-        value: token.value,
-      }}
+      merge={{ _stack: stack, style: token.style, value: token.value }}
     />
   )
 }
@@ -93,4 +79,26 @@ function InlinedTokens({
   ) : (
     children
   )
+}
+
+function buildTokenStack(
+  handlers: AnnotationHandler[],
+  annotationStack: CodeAnnotation[],
+) {
+  const stack = [] as CustomTokenProps["_stack"]
+  handlers.forEach(({ name, Token, AnnotatedToken }) => {
+    const annotations = annotationStack.filter((a) => a.name === name)
+    if (AnnotatedToken) {
+      annotations.forEach((annotation) =>
+        stack.push({ Component: AnnotatedToken, annotation }),
+      )
+    }
+    if (Token) {
+      stack.push({ Component: Token })
+      annotations.forEach((annotation) =>
+        stack.push({ Component: Token, annotation }),
+      )
+    }
+  })
+  return stack
 }

@@ -89,5 +89,7 @@ async function rscToHTML(children: any) {
   const response = new Response(stream)
   const html = await response.text()
 
-  return html.replace(new RegExp("<!-- -->", "g"), "")
+  return await prettier.format(html.replace(new RegExp("<!-- -->", "g"), ""), {
+    parser: "html",
+  })
 }

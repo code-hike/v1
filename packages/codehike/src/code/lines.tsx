@@ -9,6 +9,9 @@ export type LineGroup = {
 export type LineTokens = {
   tokens: InternalToken[]
   range: [number, number]
+  lineNumber: number
+  indentation: number
+  totalLines: number
 }
 
 export type LinesOrGroups = (LineTokens | LineGroup)[]
@@ -49,7 +52,14 @@ export function toLines(tokens: Tokens): LineTokens[] {
       })
     }
   }
-  return lines.map((tokens, i) => ({ tokens, range: [i + 1, i + 1] }))
+  const totalLines = lines.length
+  return lines.map((tokens, i) => ({
+    tokens,
+    range: [i + 1, i + 1],
+    lineNumber: i + 1,
+    indentation: tokens[0]?.value.match(/^\s*/)?.[0].length || 0,
+    totalLines,
+  }))
 }
 
 export function toLineGroups(
