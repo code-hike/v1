@@ -12,12 +12,12 @@
     "amount": 3069
   },
   {
-    "name": "outerbounds",
-    "amount": 2710
+    "name": "speakeasy-api",
+    "amount": 2760
   },
   {
-    "name": "speakeasy-api",
-    "amount": 2442
+    "name": "outerbounds",
+    "amount": 2710
   },
   {
     "name": "fmvilas",
@@ -25,15 +25,15 @@
   },
   {
     "name": "drivly",
-    "amount": 1490
+    "amount": 1688
   },
   {
     "name": "kickstartDS",
-    "amount": 812
+    "amount": 841
   },
   {
     "name": "brianespinosa",
-    "amount": 767
+    "amount": 796
   },
   {
     "name": "jsheroes",
@@ -48,6 +48,18 @@
     "amount": 421
   },
   {
+    "name": "arosenkranz",
+    "amount": 370
+  },
+  {
+    "name": "molebox",
+    "amount": 297
+  },
+  {
+    "name": "nathanclevenger",
+    "amount": 296
+  },
+  {
     "name": "Naturalclar",
     "amount": 294
   },
@@ -60,28 +72,16 @@
     "amount": 288
   },
   {
-    "name": "molebox",
-    "amount": 279
-  },
-  {
     "name": "nberger",
     "amount": 279
   },
   {
-    "name": "nathanclevenger",
-    "amount": 277
-  },
-  {
     "name": "traviscooper",
-    "amount": 270
-  },
-  {
-    "name": "arosenkranz",
-    "amount": 262
+    "amount": 279
   },
   {
     "name": "obgibson",
-    "amount": 261
+    "amount": 270
   },
   {
     "name": "matthiaszepper",
@@ -105,15 +105,15 @@
   },
   {
     "name": "codeSTACKr",
-    "amount": 207
+    "amount": 216
+  },
+  {
+    "name": "kiliman",
+    "amount": 210
   },
   {
     "name": "stefanjudis",
     "amount": 207
-  },
-  {
-    "name": "kiliman",
-    "amount": 201
   },
   {
     "name": "discordjs",
@@ -192,6 +192,10 @@
     "amount": 114
   },
   {
+    "name": "yacinelakel",
+    "amount": 102
+  },
+  {
     "name": "mbifulco",
     "amount": 100
   },
@@ -214,10 +218,6 @@
   {
     "name": "ranman",
     "amount": 86
-  },
-  {
-    "name": "yacinelakel",
-    "amount": 83
   },
   {
     "name": "grikomsn",
@@ -309,6 +309,10 @@
   },
   {
     "name": "ianaya89",
+    "amount": 33
+  },
+  {
+    "name": "AlexzanderFlores",
     "amount": 32
   },
   {
@@ -372,6 +376,10 @@
     "amount": 19
   },
   {
+    "name": "IliasHad",
+    "amount": 19
+  },
+  {
     "name": "Kliton",
     "amount": 19
   },
@@ -386,10 +394,6 @@
   {
     "name": "seveibar",
     "amount": 14
-  },
-  {
-    "name": "AlexzanderFlores",
-    "amount": 13
   },
   {
     "name": "MarkusWendorf",
