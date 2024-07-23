@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.3
+
+### Minor Changes
+
+- a522ada: Improve annotation stacking
+
 ## 1.0.0-beta.2
 
 ### Patch Changes
