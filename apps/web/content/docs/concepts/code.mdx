@@ -122,6 +122,18 @@ You can use the [Theme Editor](https://themes.codehike.org/editor) to customize 
 
 <LangList />
 
+## Importing code from a file into a codeblock
+
+To include code from a file in your markdown codeblocks, you can use the `!from` directive followed by the path to the file (relative to the markdown file).
+
+````txt
+```js index.js
+!from ./assets/index.js
+```
+````
+
+This will try to find the `./assets/index.js` file relative to the markdown file and replace the codeblock with the content of the file.
+
 ## Ignoring some codeblocks
 
 If there are codeblocks that you don't want to be processed by Code Hike, you can add an `ignoreCode` function to the configuration. This function receives a `RawCode` object and should return `true` if the codeblock should be ignored.
