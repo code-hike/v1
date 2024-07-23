@@ -2,15 +2,16 @@ import { forwardRef } from "react"
 import {
   AnnotationHandler,
   CodeAnnotation,
+  CustomPreProps,
   PreComponent,
   Tokens,
   isBlockAnnotation,
   isInlineAnnotation,
 } from "./types.js"
 import { AddRefIfNedded } from "./pre-ref.js"
-import { InnerPre } from "./inner.js"
 import { renderLines } from "./block.js"
 import { toLineGroups, toLines } from "./lines.js"
+import { InnerPre } from "./inner.js"
 
 export const Pre: PreComponent = forwardRef(
   ({ code, handlers = [], ...rest }, ref) => {
@@ -35,7 +36,7 @@ export const Pre: PreComponent = forwardRef(
       (h) => !h.onlyIfAnnotated || annotationNames.has(h.name),
     )
 
-    const stack = getStack(hs)
+    const stack = buildPreStack(hs)
     const merge = { _stack: stack, _ref: ref as any }
     return (
       <InnerPre merge={merge} data-theme={themeName} data-lang={lang} {...rest}>
@@ -65,7 +66,7 @@ function PreContent({
   })
 }
 
-function getStack(handlers: AnnotationHandler[]) {
+function buildPreStack(handlers: AnnotationHandler[]) {
   const noRefStack = handlers.map(({ Pre }) => Pre!).filter(Boolean)
   const refStack = handlers.map(({ PreWithRef }) => PreWithRef!).filter(Boolean)
   if (refStack.length > 0) {

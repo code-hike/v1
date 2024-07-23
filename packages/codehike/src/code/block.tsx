@@ -1,7 +1,7 @@
 import { renderLineContent } from "./inline.js"
-import { InnerLine } from "./inner.js"
 import { isGroup, LineGroup, LinesOrGroups, LineTokens } from "./lines.js"
 import { toLineContent } from "./tokens.js"
+import { InnerLine } from "./inner.js"
 import {
   AnnotationHandler,
   BlockAnnotation,
@@ -57,17 +57,7 @@ function Line({
   )
   const lineContent = toLineContent(line.tokens, lineAnnotations)
 
-  const stack = handlers.flatMap(({ name, Line, AnnotatedLine }) => {
-    const s = [] as CustomLineProps["_stack"]
-    const annotation = annotationStack.find((a) => a.name === name)
-    if (annotation && AnnotatedLine) {
-      s.push({ Component: AnnotatedLine, annotation })
-    }
-    if (Line) {
-      s.push({ Component: Line, annotation })
-    }
-    return s
-  })
+  const stack = buildLineStack(handlers, annotationStack)
 
   let children: React.ReactNode = renderLineContent({
     content: lineContent,
@@ -111,4 +101,29 @@ function LineBlock({
   ) : (
     children
   )
+}
+
+function buildLineStack(
+  handlers: AnnotationHandler[],
+  annotationStack: BlockAnnotation[],
+) {
+  const stack = [] as CustomLineProps["_stack"]
+  handlers.forEach(({ name, Line, AnnotatedLine }) => {
+    const annotations = annotationStack.filter((a) => a.name === name)
+
+    if (AnnotatedLine) {
+      annotations.forEach((annotation) => {
+        stack.push({ Component: AnnotatedLine, annotation })
+      })
+    }
+    if (Line) {
+      if (!annotations.length) {
+        stack.push({ Component: Line })
+      }
+      annotations.forEach((annotation) => {
+        stack.push({ Component: Line, annotation })
+      })
+    }
+  })
+  return stack
 }

@@ -90,6 +90,7 @@ async function rscToHTML(children: any) {
   const html = await response.text()
 
   return await prettier.format(html.replace(new RegExp("<!-- -->", "g"), ""), {
+    htmlWhitespaceSensitivity: "ignore",
     parser: "html",
   })
 }

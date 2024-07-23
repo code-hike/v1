@@ -94,7 +94,9 @@ function buildTokenStack(
       )
     }
     if (Token) {
-      stack.push({ Component: Token })
+      if (!annotations.length) {
+        stack.push({ Component: Token })
+      }
       annotations.forEach((annotation) =>
         stack.push({ Component: Token, annotation }),
       )

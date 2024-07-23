@@ -23,6 +23,8 @@ const mark: AnnotationHandler = {
   name: "mark",
   Pre: ({ children }) => <div>{children}</div>,
   Token: ({ annotation, ...props }) => (
-    <InnerToken merge={props} className={annotation?.query} />
+    <span className={annotation?.query || "base"}>
+      <InnerToken merge={props} />
+    </span>
   ),
 }
