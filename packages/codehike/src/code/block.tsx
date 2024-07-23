@@ -52,11 +52,12 @@ function Line({
   inlineAnnotations: InlineAnnotation[]
   annotationStack?: BlockAnnotation[]
 }) {
+  const { lineNumber, totalLines, indentation } = line
   const lineAnnotations = inlineAnnotations.filter(
     (annotation) => annotation.lineNumber === lineNumber,
   )
-  const lineContent = toLineContent(line.tokens, lineAnnotations)
 
+  const lineContent = toLineContent(line.tokens, lineAnnotations)
   const stack = buildLineStack(handlers, annotationStack)
 
   let children: React.ReactNode = renderLineContent({
@@ -65,7 +66,6 @@ function Line({
     annotationStack,
   })
 
-  const { lineNumber, totalLines, indentation } = line
   const merge = { lineNumber, indentation, totalLines, _stack: stack }
 
   return (
