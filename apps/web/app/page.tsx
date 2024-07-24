@@ -14,17 +14,17 @@ export default function HomePage() {
       </h1>
 
       <Chart />
-
-      {/* <h1 className="text-slate-900/80 text-4xl sm:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
-        <div style={{ fontSize: "3.5rem" }}>
+      {/* 
+      <h1 className="text-slate-900/80 text-4xl md:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
+        <div className="sm:text-5xl md:text-[3.5rem]">
           Build{" "}
-          <strong className=" dark:text-fuchsia-400 text-fuchsia-500/80">
+          <strong className=" dark:text-fuchsia-400 text-fuchsia-600/80">
             rich content websites
           </strong>{" "}
         </div>
         <div>with Markdown and React</div>
-      </h1> 
-      <Demo />  */}
+      </h1>
+      <Demo /> */}
 
       <div className="flex w-full justify-center gap-4 my-14">
         <ButtonLink href="docs" className="w-32">

@@ -1,41 +1,46 @@
-<!-- prettier-ignore -->
-````md !content content.md
-<!-- !block(1:3) 0 -->
-## !intro hello
-
-lorem ipsum dolor sit amet
-
-<!-- !block(1:9) 1 -->
-## !!steps one
-
-consectetur adipiscing elit
-
-![!img cover](/one.png)
-
-```js !
-
-```
-
-<!-- !block(1:3) 2 -->
-## !!steps two
-
-sed do eiusmod tempor 
-````
-
 ```jsx !page page.jsx
 import Content from "./content.md"
 import { parse } from "codehike"
 
-// !tooltip[/intro/] foo
-// !rainbow 4
-const { intro, steps } = parse(Content)
+// !rainbow(1:2)
+// extract structured content:
+// !tt[/content/] foo
+const content = parse(Content)
 
 export function Page() {
+  // !rainbow(3:5) 1
   return (
     <div>
-      <Hero {...intro} />
-      <MyLayout steps={steps} />
+      {/* render it as you want: */}
+      <MyHeader {...content.intro} />
+      <MyMain steps={content.steps} />
     </div>
   )
+}
+```
+
+```jsx !content
+content = {
+  // !block(1:4) 1
+  intro: {
+    title: "The Roman Emperors",
+    children: <p>The ...</p>,
+  },
+  steps: [
+    // !block(1:9) 2
+    {
+      title: "Augustus",
+      children: <p>The ...</p>,
+      img: { src: "/one.png" },
+      code: {
+        lang: "js",
+        value: "console.log(1)",
+      },
+    },
+    // !block 3
+    { title: "Nero", ... },
+    // !block 4
+    { title: "Trajan", ... },
+  ],
 }
 ```

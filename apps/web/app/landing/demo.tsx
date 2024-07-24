@@ -6,6 +6,13 @@ import localFont from "next/font/local"
 import { AnnotationHandler } from "codehike/code"
 import { CodeIcon } from "@/components/annotations/icons"
 
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip"
+
 const myFont = localFont({
   src: "./placeholdifier.woff2",
   display: "swap",
@@ -36,7 +43,7 @@ export function Demo() {
         className="min-w-0 m-0 flex-2"
         // style={{ "--bg-color": "--background" } as any}
         codeblock={page}
-        extraHandlers={[rainbow]}
+        extraHandlers={[rainbow, tooltip]}
       />
       <div className="flex-1 flex items-center">
         <Preview>
@@ -64,36 +71,43 @@ function Content() {
       </div>
       <pre className={"flex-1 min-w-0 p-2 overflow-hidden "}>
         <div className="rounded -m-1 p-1 px-2 bg-teal-500/40">
-          ## !intro <span className={""}>hello</span>
+          <span className="font-bold">
+            ## !intro <span className={""}>The Roman Emperors</span>
+          </span>
           <br />
           <br />
-          <span className={""}>lorem ipsum dolor sit</span>
+          <span className={""}>The Roman Empire was ...</span>
           <br />
         </div>
         <br />
         <div className="rounded -m-1 p-1 px-2 bg-sky-500/40">
-          ## !!steps <span className={""}>one</span>
+          <span className="font-bold">
+            ## !!emperors <span className={""}>Augustus</span>
+          </span>
           <br />
           <br />
-          <span className={""}>lorem ipsum dolor sit</span>
+          <span className={""}>The founder of the ...</span>
           <br />
           <br />
           <span className={""}>![!img cover](/one.png)</span>
           <br />
           <br />
           ```js !<br />
+          console.log(1)
           <br />
           ```
         </div>
         <br />
         <div className="rounded -m-1 p-1 px-2 bg-violet-500/40">
-          ## !!steps <span className={""}>two</span>
+          <span className="font-bold">
+            ## !!emperors <span className={""}>Nero</span>
+          </span>
           <br />
           <br />
-          <span className={""}>lorem ipsum dolor sit</span>
+          <span className={""}>Tyrannical ruler ...</span>
           <br />
           <br />
-          <span className={""}>![!img cover](/one.png)</span>
+          <span className={""}>![!img cover](/nero.png)</span>
           <br />
           <br />
           ```js !<br />
@@ -121,9 +135,9 @@ function Preview({ children }: { children: React.ReactNode }) {
     >
       <div className="px-2 py-2 border-b border-editorGroup-border bg-editorGroupHeader-tabsBackground text-sm text-tab-activeForeground flex">
         <div className="flex gap-1 h-4 items-center">
-          <div className="size-[10px] rounded-full bg-slate-100/20" />
-          <div className="size-[10px] rounded-full bg-slate-100/20" />
-          <div className="size-[10px] rounded-full bg-slate-100/20" />
+          <div className="size-[10px] rounded-full bg-slate-600/20  dark:bg-slate-100/20" />
+          <div className="size-[10px] rounded-full bg-slate-600/20 dark:bg-slate-100/20" />
+          <div className="size-[10px] rounded-full bg-slate-600/20 dark:bg-slate-100/20" />
         </div>
       </div>
       <div
@@ -133,6 +147,7 @@ function Preview({ children }: { children: React.ReactNode }) {
           backgroundPosition: "center",
           backgroundSize: "32px",
           fontSize: "8px",
+          letterSpacing: "-0.8px",
         }}
         className={"flex-1 min-w-0 p-2 overflow-hidden " + myFont.className}
       >
@@ -145,31 +160,37 @@ function Preview({ children }: { children: React.ReactNode }) {
 function Scrolly() {
   return (
     <div className="flex flex-col gap-2 h-full">
-      <div className="bg-teal-500/40 rounded p-2">
-        intro
-        <p className="opacity-60">lorem ipsum dolor sit</p>
+      <div className="bg-teal-500/40 rounded p-2 ">
+        The Roman Emperors
+        <p className="opacity-60">The Roman Empire was led ...</p>
       </div>
       <div className="flex-1 flex gap-2">
         <div className="flex flex-col gap-2 flex-1">
           <div className="bg-sky-500/40 rounded p-2">
-            <div>step 2</div>
-            <p className="opacity-60">amet consectetur elit sed do </p>
+            <div>Augustus</div>
+            <p className="opacity-60">
+              The first emperor, established the empire in 27 BC
+            </p>
           </div>
           <div className="bg-violet-500/40 rounded p-2">
-            <div>step 2</div>
-            <p className="opacity-60">elit sed do eiusmod tempor inse</p>
+            <div>Nero</div>
+            <p className="opacity-60">
+              Tyrannical ruler, known for his cruelty and extravagance
+            </p>
           </div>
           <div className="bg-fuchsia-500/40 rounded p-2">
-            <div>step 2</div>
-            <p className="opacity-60">lorem ipsum dolor sit amet consectetur</p>
+            <div>Trajan</div>
+            <p className="opacity-60">
+              Renowned for his military conquests and public works
+            </p>
           </div>
         </div>
         <div className="bg-sky-500/40 rounded p-2 flex-1 h-40">
-          <div className="w-full h-16 bg-gray-300/50 rounded"></div>
+          <div className="w-full h-16 bg-gray-500/50 dark:bg-gray-300/50 rounded"></div>
           <pre
             className={
               monoFont.className +
-              " bg-slate-950 opacity-60 rounded m-0 mt-2 py-1"
+              " bg-slate-100 dark:bg-slate-950 opacity-60 rounded m-0 mt-2 py-1"
             }
           >
             {code}
@@ -240,9 +261,13 @@ const code = (
 const rainbow: AnnotationHandler = {
   name: "rainbow",
   Block: ({ annotation, ...props }) => {
+    const gradient = annotation?.query
+      ? "bg-gradient-to-tr"
+      : "bg-gradient-to-br"
+
     return (
       <div
-        className={`bg-gradient-to-br from-teal-500/20 via-sky-500/20 to-violet-500/20 -my-1 py-1`}
+        className={`${gradient} from-teal-500/20 via-sky-500/20 to-violet-500/20 -my-0.5 py-0.5`}
       >
         {props.children}
       </div>
@@ -255,8 +280,30 @@ const block: AnnotationHandler = {
   Block: ({ annotation, ...props }) => {
     const n = Number(annotation?.query || "2") % bgs.length
     const bg = bgs[n]
+    return <div className={`${bg} rounded mx-1 my-0.5`}>{props.children}</div>
+  },
+}
+
+const tooltip: AnnotationHandler = {
+  name: "tt",
+  Inline: ({ children, annotation }) => {
+    const { query, data } = annotation
     return (
-      <div className={`${bg} rounded mx-1 -my-1 py-1`}>{props.children}</div>
+      <TooltipProvider>
+        <Tooltip delayDuration={50}>
+          <TooltipTrigger className="underline decoration-dashed underline-offset-4">
+            {children}
+          </TooltipTrigger>
+          <TooltipContent align="start" side="bottom" className="p-0">
+            <Code
+              className="m-0 p-0 border-none"
+              style={{ fontSize: "13px", lineHeight: "1.2" }}
+              codeblock={content}
+              extraHandlers={[block]}
+            />
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     )
   },
 }
