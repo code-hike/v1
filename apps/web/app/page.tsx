@@ -8,13 +8,6 @@ import { Demo } from "./landing/demo"
 export default function HomePage() {
   return (
     <main className="min-h-screen max-w-3xl mx-auto">
-      <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white pt-20 max-w-2xl mx-auto">
-        Content belongs
-        <br /> in Markdown
-      </h1>
-
-      <Chart />
-      {/* 
       <h1 className="text-slate-900/80 text-4xl md:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
         <div className="sm:text-5xl md:text-[3.5rem]">
           Build{" "}
@@ -24,9 +17,9 @@ export default function HomePage() {
         </div>
         <div>with Markdown and React</div>
       </h1>
-      <Demo /> */}
+      <Demo />
 
-      <div className="flex w-full justify-center gap-4 my-14">
+      <div className="flex w-full justify-center gap-4 my-12">
         <ButtonLink href="docs" className="w-32">
           Docs
         </ButtonLink>

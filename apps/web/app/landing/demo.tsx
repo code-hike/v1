@@ -29,23 +29,19 @@ const { content, page } = parseRoot(
 
 export function Demo() {
   return (
-    <div className="flex gap-2 mt-12 max-w-3xl mx-auto">
-      <div className="flex-1 flex items-center">
-        {/* <Code
-          className="flex-1 min-w-0 m-0 h-72 "
-          style={{ fontSize: "10px", background: "#e6edff25" }}
-          codeblock={content}
-          extraHandlers={[block]}
-        /> */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-12 max-w-3xl mx-auto w-96 md:w-auto px-3 md:px-2">
+      <div className="col-span-1 items-center flex">
         <Content />
       </div>
-      <Code
-        className="min-w-0 m-0 flex-2"
-        // style={{ "--bg-color": "--background" } as any}
-        codeblock={page}
-        extraHandlers={[rainbow, tooltip]}
-      />
-      <div className="flex-1 flex items-center">
+      <div className="col-span-2 md:order-none order-first">
+        <Code
+          className="min-w-0 m-0 flex-2"
+          // style={{ "--bg-color": "--background" } as any}
+          codeblock={page}
+          extraHandlers={[rainbow, tooltip]}
+        />
+      </div>
+      <div className="col-span-1 items-center flex">
         <Preview>
           <Scrolly />
         </Preview>
