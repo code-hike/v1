@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const dynamic = "static"
+export const dynamic = "force-static"
 
 export async function GET(request: Request) {
   return new ImageResponse(
