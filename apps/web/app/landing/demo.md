@@ -12,8 +12,8 @@ export function Page() {
   return (
     <div>
       {/* render it as you want: */}
-      <MyHeader {...content.intro} />
-      <MyMain steps={content.steps} />
+      <Header {...content.intro} />
+      <Main steps={content.emperors} />
     </div>
   )
 }
@@ -26,7 +26,7 @@ content = {
     title: "The Roman Emperors",
     children: <p>The ...</p>,
   },
-  steps: [
+  emperors: [
     // !block(1:9) 2
     {
       title: "Augustus",
