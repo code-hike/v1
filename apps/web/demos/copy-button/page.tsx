@@ -12,7 +12,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   return (
     <div className="relative">
       <CopyButton text={highlighted.code} />
-      <Pre className="m-0 px-4 bg-zinc-950" code={highlighted} />
+      <Pre className="m-0 px-4 bg-zinc-950/80" code={highlighted} />
     </div>
   )
 }
