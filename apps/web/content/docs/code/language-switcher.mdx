@@ -77,3 +77,5 @@ export async function CodeSwitcher(props: { code: RawCode[] }) {
 ```
 
 If you want to animate the transitions, you can use the [token transitions handler](/docs/code/token-transitions).
+
+If you need to persist and/or sync the selected language across multiple code blocks, you can replace the `useState` with a `useLocalStorage` hook, for example using [`@uidotdev/usehooks`](https://usehooks.com/uselocalstorage) or your own implementation.
