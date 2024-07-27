@@ -276,7 +276,11 @@ const block: AnnotationHandler = {
   Block: ({ annotation, ...props }) => {
     const n = Number(annotation?.query || "2") % bgs.length
     const bg = bgs[n]
-    return <div className={`${bg} rounded mx-1 my-0.5`}>{props.children}</div>
+    return (
+      <div className={`${bg} rounded mx-1 my-0.5 overflow-hidden`}>
+        {props.children}
+      </div>
+    )
   },
 }
 
