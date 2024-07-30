@@ -3,15 +3,17 @@ import { AnnotationHandler, InnerLine } from "codehike/code"
 export const lineNumbers: AnnotationHandler = {
   name: "line-numbers",
   Line: (props) => {
+    const width = props.totalLines.toString().length + 1
     return (
-      <div className="table-row">
-        <div className="min-w-[3ch] box-content !opacity-50 text-right select-none table-cell">
+      <>
+        <span
+          style={{ minWidth: `${width}ch` }}
+          className="text-right opacity-50 select-none"
+        >
           {props.lineNumber}
-        </div>
-        <div className="table-cell">
-          <InnerLine merge={props} />
-        </div>
-      </div>
+        </span>
+        <InnerLine merge={props} />
+      </>
     )
   },
 }

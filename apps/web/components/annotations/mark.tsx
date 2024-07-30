@@ -1,42 +1,31 @@
 import { AnnotationHandler, InnerLine } from "codehike/code"
-import { cn } from "@/lib/utils"
 
 export const mark: AnnotationHandler = {
   name: "mark",
   Line: ({ annotation, ...props }) => {
-    const n = Number(annotation?.query || "2") % bgs.length
-    const bg = bgs[n]
-    const border = borders[n]
+    const n = Number(annotation?.query || "2") % colors.length
+    const color = colors[n]
 
     return (
       <div
-        data-mark={annotation ? "true" : undefined}
-        className={cn(
-          "border-l-2",
-          annotation ? border : "border-transparent",
-          annotation ? bg : "",
-        )}
+        style={{
+          borderLeft: "solid 2px transparent",
+          borderLeftColor: annotation && color,
+          backgroundColor: annotation && `rgb(from ${color} r g b / 0.13)`,
+        }}
+        className="flex"
       >
-        <InnerLine merge={props} />
+        <InnerLine merge={props} className="px-2 flex-1" />
       </div>
     )
   },
 }
 
-const bgs = [
-  "bg-green-500/10",
-  "bg-teal-500/10",
-  "bg-sky-500/10",
-  "bg-violet-500/10",
-  "bg-fuchsia-500/10",
-  "bg-pink-500/10",
-]
-
-const borders = [
-  "border-green-500",
-  "border-teal-500",
-  "border-sky-500",
-  "border-violet-500",
-  "border-fuchsia-500",
-  "border-pink-500",
+const colors = [
+  "#22c55e",
+  "#14b8a6",
+  "#0ea5e9",
+  "#8b5cf6",
+  "#d946ef",
+  "#ec4899",
 ]
