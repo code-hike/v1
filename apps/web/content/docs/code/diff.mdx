@@ -12,48 +12,41 @@ Show inserted and deleted lines.
 
 ## !implementation
 
-Similar to the [mark annotation](/docs/code/mark), wrap the line, and style the wrapper based on the annotation.
+There are two parts:
+
+- for the `+` and `-` icons, we customize the `Line` and prepend the `annotation.query`
+- for the border and color we use the `transform` function to add `mark` annotations and use the `AnnotationHandler` from the [mark example](/docs/code/mark)
 
 ```tsx diff.tsx -c
 import { AnnotationHandler, InnerLine } from "codehike/code"
 // !fold[/className="(.*?)"/gm]
 
-const styles = {
-  ins: { borderColor: "#3fb9504d", background: "#2ea04326", icon: "+" },
-  del: { borderColor: "#f851494d", background: "#f8514926", icon: "-" },
-  none: { borderColor: "transparent" },
-} as any
-
 export const diff: AnnotationHandler = {
   name: "diff",
   onlyIfAnnotated: true,
-  Line: ({ annotation, ...props }) => {
-    const query = annotation?.query || "none"
-    const { background, borderColor, icon } = styles[query]
-    return (
-      <div className="table-row" style={{ background }}>
-        <div
-          className="min-w-[1ch] box-content !opacity-80 pl-2 select-none table-cell border-l-2"
-          style={{ borderColor }}
-        >
-          {icon}
-        </div>
-        <div className="table-cell px-2">
-          <InnerLine merge={props} />
-        </div>
-      </div>
-    )
+  transform: (annotation: BlockAnnotation) => {
+    const color = annotation.query == "-" ? "#f85149" : "#3fb950"
+    return [annotation, { ...annotation, name: "mark", query: color }]
   },
+  Line: ({ annotation, ...props }) => (
+    <>
+      <div className="min-w-[1ch] box-content opacity-70 pl-2 select-none">
+        {annotation?.query}
+      </div>
+      <InnerLine merge={props} />
+    </>
+  ),
 }
 ```
 
-Then pass the `diff` handler to the `Pre` component:
+Then pass the `mark` and `diff` handlers to the `Pre` component:
 
 ```tsx code.tsx -c
 import { diff } from "./diff"
+import { mark } from "./mark"
 
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-  return <Pre code={highlighted} handlers={[diff]} />
+  return <Pre code={highlighted} handlers={[mark, diff]} />
 }
 ```
