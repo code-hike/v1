@@ -10,8 +10,20 @@ export const InnerPre = ({
   if (Next) {
     return <Next _stack={stack} {...result} />
   } else {
-    const { _ref, data, ...props } = result
-    return <pre {...props} ref={_ref} data-ch={true} />
+    const { _ref, data, children, ...props } = result
+    return (
+      <pre {...props} ref={_ref} data-ch={true}>
+        <code
+          style={{
+            all: "unset",
+            display: "block",
+            minWidth: "fit-content",
+          }}
+        >
+          {children}
+        </code>
+      </pre>
+    )
   }
 }
 
