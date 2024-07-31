@@ -1,9 +1,9 @@
 ```js
 function lorem(ipsum, dolor = 1) {
   const sit = ipsum == null ? 0 : ipsum.sit
-  // !diff del
+  // !diff -
   dolor = ipsum - sit
-  // !diff ins
+  // !diff +
   dolor = sit - amet(dolor)
   return sit ? consectetur(ipsum) : []
 }

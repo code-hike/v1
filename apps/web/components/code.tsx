@@ -19,10 +19,8 @@ import { mark } from "./annotations/mark"
 import { pill } from "./annotations/pill"
 import { ruler } from "./annotations/ruler"
 import { wordWrap } from "./annotations/word-wrap"
-import { line } from "./annotations/line"
 import { tokenTransitions } from "./annotations/token-transitions"
 import { focus } from "./annotations/focus"
-import { diff } from "./annotations/diff"
 
 export async function Code({
   codeblock,
@@ -56,17 +54,15 @@ export function HighCode({
 
   const handlers = [
     ...extraHandlers,
+    mark,
     pill,
     fold,
     link,
     focus,
-    diff,
-    mark,
     ruler,
     flags.includes("a") && tokenTransitions,
     flags.includes("n") && lineNumbers,
     ...collapse,
-    line,
     flags.includes("w") && wordWrap,
     callout,
   ].filter(Boolean) as AnnotationHandler[]

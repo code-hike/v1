@@ -27,7 +27,7 @@ export function CodeClient(props: { highlighted: HighlightedCode }) {
     <Pre
       code={highlighted}
       handlers={[tokenTransitions]}
-      className="m-0 h-80 bg-zinc-950"
+      className="m-0 h-80 bg-zinc-950/80"
     />
   )
 }

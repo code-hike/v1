@@ -39,7 +39,7 @@ async function CodeWithTooltips(props: unknown) {
   })
   return (
     <Pre
-      className="m-0 px-2 bg-zinc-950"
+      className="m-0 px-2 bg-zinc-950/80"
       code={highlighted}
       handlers={[tooltip]}
     />

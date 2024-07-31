@@ -7,30 +7,38 @@ import type {
   InlineAnnotation,
   BlockAnnotation,
   InlineAnnotationComponent,
-  TokenAnnotationComponent,
   BlockAnnotationComponent,
   AnnotationHandler,
   CustomPreProps,
+  CustomPre,
+  CustomLine,
+  CustomLineWithAnnotation,
+  CustomToken,
+  CustomTokenWithAnnotation,
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
 import { Pre } from "./pre.js"
 import { InnerPre, getPreRef, InnerLine, InnerToken } from "./inner.js"
 
-export {
-  Token,
+export type {
   RawCode,
   HighlightedCode,
+  Token,
   InlineAnnotation,
   BlockAnnotation,
-  InlineAnnotationComponent,
   CodeAnnotation,
-  Theme,
-  InnerLine,
-  InnerToken,
-  TokenAnnotationComponent,
-  BlockAnnotationComponent,
+  // AnnotationHandler:
   AnnotationHandler,
+  CustomPre,
   CustomPreProps,
+  BlockAnnotationComponent,
+  CustomLine,
+  CustomLineWithAnnotation,
+  InlineAnnotationComponent,
+  CustomToken,
+  CustomTokenWithAnnotation,
+  Theme,
 }
-export { highlight, Pre, InnerPre, getPreRef }
+
+export { highlight, Pre, InnerPre, InnerLine, InnerToken, getPreRef }
