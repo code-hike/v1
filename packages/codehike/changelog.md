@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.4
+
+### Minor Changes
+
+- 31bfd50: Add code element to Pre component
+
 ## 1.0.0-beta.3
 
 ### Minor Changes
