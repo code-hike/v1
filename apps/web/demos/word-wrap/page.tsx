@@ -25,7 +25,7 @@ const Code: CodeComponent = async ({ codeblock }) => {
     <ResizablePanelGroup direction="horizontal" className="max-w-2xl">
       <ResizablePanel defaultSize={95} className="min-w-64 max-w-[42ch]">
         <Pre
-          className="m-0 px-0 bg-zinc-950 w-full whitespace-pre-wrap"
+          className="m-0 px-0 bg-zinc-950/80 w-full whitespace-pre-wrap"
           code={highlighted}
           handlers={[wordWrap, lineNumbers]}
         />

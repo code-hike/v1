@@ -16,7 +16,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
   return (
     <Pre
-      className="m-0 px-1 bg-zinc-950"
+      className="m-0 px-1 bg-zinc-950/80"
       code={info}
       handlers={[lineNumbers]}
     />

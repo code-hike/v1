@@ -9,7 +9,7 @@ export default function Page() {
 async function Code({ codeblock }: { codeblock: RawCode }) {
   const info = await highlight(codeblock, "github-dark")
 
-  return <Pre className="m-0 bg-zinc-950" code={info} handlers={[fold]} />
+  return <Pre className="m-0 bg-zinc-950/80" code={info} handlers={[fold]} />
 }
 
 export const fold: AnnotationHandler = {

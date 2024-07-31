@@ -41,7 +41,7 @@ export async function BlocksDemo(props: unknown) {
         </div>
       </div>
       {caption && (
-        <figcaption className="text-sm mt-2 text-center opacity-70">
+        <figcaption className="text-sm pt-2 text-center opacity-70">
           {caption}
         </figcaption>
       )}

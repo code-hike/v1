@@ -55,7 +55,7 @@ export function CodeContainer({ code }: { code: HighlightedCode }) {
   return (
     <>
       <Pre
-        className="m-0 px-0 max-h-72 scroll-smooth overflow-auto bg-zinc-950"
+        className="m-0 px-0 max-h-72 scroll-smooth overflow-auto bg-zinc-950/90"
         code={{
           ...code,
           annotations: [

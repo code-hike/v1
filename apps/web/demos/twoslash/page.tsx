@@ -73,7 +73,7 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   })
 
   return (
-    <Pre className="m-0 bg-zinc-950" code={info} handlers={[hover, query]} />
+    <Pre className="m-0 bg-zinc-950/80" code={info} handlers={[hover, query]} />
   )
 }
 
