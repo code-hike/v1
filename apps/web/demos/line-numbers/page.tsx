@@ -28,16 +28,14 @@ export const lineNumbers: AnnotationHandler = {
   Line: (props) => {
     const width = props.totalLines.toString().length + 1
     return (
-      <div className="table-row">
-        <div
+      <div className="flex">
+        <span
           style={{ minWidth: `${width}ch` }}
-          className="!opacity-50 text-right select-none table-cell"
+          className="text-right opacity-50 select-none"
         >
           {props.lineNumber}
-        </div>
-        <div className="table-cell pl-3">
-          <InnerLine merge={props} />
-        </div>
+        </span>
+        <InnerLine merge={props} className="flex-1 pl-2" />
       </div>
     )
   },
