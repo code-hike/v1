@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.5
+
+### Minor Changes
+
+- Update lighter
+
 ## 1.0.0-beta.4
 
 ### Minor Changes
