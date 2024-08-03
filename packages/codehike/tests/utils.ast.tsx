@@ -5,8 +5,8 @@ import * as runtime from "react/jsx-runtime"
 import { parse } from "../src/blocks"
 import { renderToReadableStream } from "react-dom/server.edge"
 import React from "react"
-import { RawCode } from "../src/code/types"
-import { highlight, Pre } from "../src/code"
+import { AnnotationHandler, RawCode } from "../src/code/types"
+import { highlight, InnerLine, Pre } from "../src/code"
 import { MDXContent } from "mdx/types"
 
 export type MDFile = {
@@ -80,7 +80,15 @@ function defaultRender(Content: MDXContent) {
 
 async function MyCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
-  return <Pre code={highlighted} />
+  return <Pre code={highlighted} handlers={[handler]} />
+}
+
+const handler: AnnotationHandler = {
+  name: "m",
+  Pre: ({ _stack, ...props }) => <section {...props} />,
+  AnnotatedLine: ({ annotation, ...props }) => (
+    <InnerLine merge={props} data-m={annotation.query || "0"} />
+  ),
 }
 
 async function rscToHTML(children: any) {
