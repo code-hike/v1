@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.6
+
+### Patch Changes
+
+- eed5e28: Replace code element with div
+
 ## 1.0.0-beta.5
 
 ### Minor Changes
