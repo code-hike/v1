@@ -6,6 +6,7 @@ import {
 
 import { THEME_NAMES, LANG_NAMES } from "@code-hike/lighter"
 import { Pre, highlight } from "codehike/code"
+import React from "react"
 
 const themes = THEME_NAMES.filter((name) => !name.includes("from-css"))
 
@@ -57,11 +58,8 @@ export function LangList() {
       Code Hike handles syntax highlighting for{" "}
       <strong>{LANG_NAMES.length} languages</strong>:{" "}
       {LANG_NAMES.map((name, index) => (
-        <>
-          <span
-            key={index}
-            className="font-mono bg-accent-foreground/10 rounded px-1 py-0.5"
-          >
+        <React.Fragment key={index}>
+          <span className="font-mono bg-accent-foreground/10 rounded px-1 py-0.5">
             {name}
           </span>
           {index < LANG_NAMES.length - 2
@@ -69,7 +67,7 @@ export function LangList() {
             : index === LANG_NAMES.length - 2
               ? ", and "
               : "."}
-        </>
+        </React.Fragment>
       ))}
     </div>
   )

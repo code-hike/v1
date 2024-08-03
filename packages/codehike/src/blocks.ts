@@ -52,6 +52,7 @@ export const HighlightedCodeBlock = CodeBlock.extend({
   tokens: z.custom<HighlightedCode["tokens"]>(),
   annotations: z.custom<HighlightedCode["annotations"]>(),
   themeName: z.string(),
+  style: z.custom<HighlightedCode["style"]>(),
 })
 
 export const ImageBlock = z.object({
