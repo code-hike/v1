@@ -54,5 +54,5 @@ async function extractCommentAnnotations(
     lang,
     extractor,
   )
-  return { code: codeWithoutComments.trim(), annotations }
+  return { code: codeWithoutComments, annotations }
 }
