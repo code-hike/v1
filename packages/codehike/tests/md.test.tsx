@@ -22,6 +22,7 @@ testNames.forEach(async (filename) => {
     const md = await fs.readFile(mdPath, "utf-8")
     const { attributes, body } = fm<{
       name?: string
+      error?: boolean
       snapshots?: string[]
       syntaxHighlight?: string
     }>(md)
@@ -58,6 +59,9 @@ testNames.forEach(async (filename) => {
       } catch (e) {
         const md = errorToMd(e)
         await expect(md).toMatchFileSnapshot(sn(filename, "error"))
+        if (!attributes.error) {
+          expect.fail("Unexpected error, see snapshot.")
+        }
         return
       }
     }

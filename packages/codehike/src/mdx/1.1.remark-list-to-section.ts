@@ -121,7 +121,6 @@ export async function listToSection(
         parent = parent.parent
       }
     } else if (isHikeCode(child)) {
-      // TODO add config
       const parsedChild = await parseCode(child, config)
 
       const {
@@ -142,48 +141,48 @@ export async function listToSection(
         ...parsedChild,
         meta: title,
       })
-    } else if (
-      // ![!name title](image.png)
-      isHikeImage(child)
-    ) {
-      const img = child.children[0]
-      const {
-        name = DEFAULT_IMAGES_NAME,
-        title,
-        multi,
-      } = parseName(img.alt || "")
+    } else if (isImageAndParagraphs(child)) {
+      child.children.forEach((c) => {
+        if (c.type == "text" && c.value.trim() === "") {
+          // ignore
+        } else if (c.type == "text" && c.value.trim().startsWith("!")) {
+          const values = splitValues(c.value)
+          values.forEach((value) => {
+            const { name = DEFAULT_VALUE_NAME, multi, title } = parseName(value)
+            parent.children.push({
+              type: "quote",
+              name,
+              multi,
+              index: multi
+                ? parent.children.filter(
+                    (c) => c.type != "content" && c.name === name,
+                  ).length
+                : undefined,
+              value: title,
+            })
+          })
+        } else if (c.type == "image" && c.alt?.startsWith("!")) {
+          const img = c
+          const {
+            name = DEFAULT_IMAGES_NAME,
+            title,
+            multi,
+          } = parseName(img.alt || "")
 
-      parent.children.push({
-        type: "image",
-        name,
-        multi,
-        index: multi
-          ? parent.children.filter(
-              (c) => c.type != "content" && c.name === name,
-            ).length
-          : undefined,
-        alt: title,
-        title: img.title || "",
-        url: img.url,
-      })
-    } else if (
-      // !foo bar
-      isHikeValue(child)
-    ) {
-      const values = child.children[0].value.split(/\r?\n/)
-      values.forEach((value) => {
-        const { name = DEFAULT_VALUE_NAME, multi, title } = parseName(value)
-        parent.children.push({
-          type: "quote",
-          name,
-          multi,
-          index: multi
-            ? parent.children.filter(
-                (c) => c.type != "content" && c.name === name,
-              ).length
-            : undefined,
-          value: title,
-        })
+          parent.children.push({
+            type: "image",
+            name,
+            multi,
+            index: multi
+              ? parent.children.filter(
+                  (c) => c.type != "content" && c.name === name,
+                ).length
+              : undefined,
+            alt: title,
+            title: img.title || "",
+            url: img.url,
+          })
+        }
       })
     } else {
       parent.children.push({
@@ -196,46 +195,40 @@ export async function listToSection(
   return root
 }
 
-export function isHikeElement(child: any) {
-  return (
-    isHikeHeading(child) ||
-    isHikeCode(child) ||
-    isHikeImage(child) ||
-    isHikeValue(child)
-  )
+function splitValues(str: string) {
+  // (?:!!|!)           - Match either '!!' or '!' at the start of a line (non-capturing group)
+  // .*                 - Match any characters (except newline) after the '!!' or '!'
+  // (?:                - Start of non-capturing group
+  //   (?:\r?\n|\r)     - Match any common line ending: \r\n (Windows), \n (Unix), or \r (old Mac)
+  //   (?!!|!)          - Negative lookahead: the next line should not start with '!' or '!!'
+  //   .*               - Match any characters (except newline) on this continuation line
+  // )*                 - End of non-capturing group, repeat 0 or more times
+  return str.trim().match(/(?:!!|!).*(?:(?:\r?\n|\r)(?!!|!).*)*/g) || []
 }
 
-function isHikeValue(child: any): child is {
+function isImageAndParagraphs(child: any): child is {
   type: "paragraph"
-  children: [
-    {
-      type: "text"
-      value: string
-    },
-  ]
+  children: (Image | { type: "text"; value: string })[]
 } {
+  if (child.type !== "paragraph" || !child.children) return false
+
+  return child.children.every((c: any) => {
+    return (
+      (c.type === "image" && c.alt?.startsWith("!")) ||
+      (c.type === "text" && c.value.trim().startsWith("!")) ||
+      (c.type === "text" && c.value.trim() === "")
+    )
+  })
+}
+
+export function isHikeElement(child: any) {
   return (
-    child.type === "paragraph" &&
-    child.children.length === 1 &&
-    child.children[0].type === "text" &&
-    child.children[0].value?.trim().startsWith("!")
+    isHikeHeading(child) || isHikeCode(child) || isImageAndParagraphs(child)
   )
 }
 
 function isHikeCode(child: any): child is Code {
   return child.type === "code" && child.meta?.trim().startsWith("!")
-}
-
-function isHikeImage(child: any): child is {
-  type: "paragraph"
-  children: [Image]
-} {
-  return (
-    child.type === "paragraph" &&
-    child.children.length === 1 &&
-    child.children[0].type === "image" &&
-    child.children[0].alt?.startsWith("!")
-  )
 }
 
 function isHikeHeading(child: any) {
