@@ -300,7 +300,13 @@ props = {
 
 ## Schema
 
-You can use [zod](https://zod.dev/) schemas to validate the content coming from the MDX. This has two main benefits:
+You can use [zod](https://zod.dev/) schemas to validate the content coming from the MDX.
+
+```bash -c
+npm install zod
+```
+
+This has two benefits:
 
 - **Type-safe markdown**: You'll see an error if the content doesn't match the schema
 - **Better tooling**:You'll get autocompletion and type checking in your editor

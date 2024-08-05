@@ -1,16 +1,9 @@
 import { MDXProps } from "mdx/types.js"
 import { ZodTypeDef, z } from "zod"
 import { HighlightedCode } from "./code/types.js"
+import { parse } from "./index.js"
 
 type MDXContent = (props: MDXProps) => JSX.Element
-
-export function getBlocks(Content: MDXContent, props: MDXProps = {}) {
-  const result = Content({
-    _returnBlocks: true,
-    ...props,
-  }) as unknown
-  return result
-}
 
 export function parseRoot<Output, Def extends ZodTypeDef, Input>(
   Content: MDXContent,
@@ -27,14 +20,12 @@ export function parseRoot<Output, Def extends ZodTypeDef, Input>(
   Schema: z.ZodType<Output, Def, Input> | undefined,
   props: MDXProps = {},
 ) {
-  const data = getBlocks(Content, props || {})
+  const data = parse(Content, props || {})
   if (Schema) {
     return parseProps(data, Schema)
   }
   return data
 }
-
-export const parse = parseRoot
 
 export const Block = z.object({
   title: z.string().optional(),

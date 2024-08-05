@@ -12,6 +12,7 @@
   },
   "exports": {
     "./package.json": "./package.json",
+    "./index": "./dist/index.js",
     "./mdx": "./dist/mdx.js",
     "./blocks": "./dist/blocks.js",
     "./code": "./dist/code/index.js",
