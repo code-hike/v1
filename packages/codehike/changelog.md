@@ -1,5 +1,12 @@
 # codehike
 
+## 1.0.0-beta.7
+
+### Patch Changes
+
+- ea9312f: Fix empty lines at the start of codeblock
+- bf4c22f: Make parse independent of zod
+
 ## 1.0.0-beta.6
 
 ### Patch Changes
