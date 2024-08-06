@@ -1,5 +1,15 @@
 # codehike
 
+## 1.0.0-beta.8
+
+### Minor Changes
+
+- 614b36c: Add inline code component and plugin
+
+### Patch Changes
+
+- 132d6ef: Support consecutive lines of imgs and values
+
 ## 1.0.0-beta.7
 
 ### Patch Changes
