@@ -6,7 +6,7 @@ import { parse } from "../src/"
 import { renderToReadableStream } from "react-dom/server.edge"
 import React from "react"
 import { AnnotationHandler, RawCode } from "../src/code/types"
-import { highlight, InnerLine, Pre } from "../src/code"
+import { highlight, Inline, InnerLine, Pre } from "../src/code"
 import { MDXContent } from "mdx/types"
 
 export type MDFile = {
@@ -75,12 +75,17 @@ export async function renderHTML(
 
 function defaultRender(Content: MDXContent) {
   // @ts-ignore
-  return <Content components={{ MyCode }} />
+  return <Content components={{ MyCode, InlineCode }} />
 }
 
 async function MyCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, "github-dark")
   return <Pre code={highlighted} handlers={[handler]} />
+}
+
+async function InlineCode({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark")
+  return <Inline code={highlighted} style={highlighted.style} />
 }
 
 const handler: AnnotationHandler = {

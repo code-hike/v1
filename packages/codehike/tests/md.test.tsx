@@ -32,6 +32,7 @@ testNames.forEach(async (filename) => {
     const chConfig: CodeHikeConfig = {
       components: {
         code: "MyCode",
+        inlineCode: "InlineCode",
       },
       ignoreCode: (codeblock) => codeblock.lang === "mermaid",
     }

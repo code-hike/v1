@@ -268,7 +268,14 @@ function parseHeading(heading: Heading) {
   }
 }
 
-export async function parseCode(code: Code, config: CodeHikeConfig) {
+export async function parseCode(
+  code: {
+    value: string
+    lang?: string | null
+    meta?: string | null
+  },
+  config: CodeHikeConfig,
+) {
   const rawCode = {
     value: code.value,
     lang: code.lang || "",

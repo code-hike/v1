@@ -2,7 +2,7 @@ import { forwardRef } from "react"
 import {
   AnnotationHandler,
   CodeAnnotation,
-  CustomPreProps,
+  InlineProps,
   PreComponent,
   Tokens,
   isBlockAnnotation,
@@ -12,6 +12,31 @@ import { AddRefIfNedded } from "./pre-ref.js"
 import { renderLines } from "./block.js"
 import { toLineGroups, toLines } from "./lines.js"
 import { InnerPre } from "./inner.js"
+
+export const Inline = ({ code, ...rest }: InlineProps) => {
+  let { tokens } = code
+  if (!tokens) {
+    throw new Error(
+      "Missing tokens in inline code. Use the `highlight` function to generate the tokens.",
+    )
+  }
+
+  return (
+    <code {...rest}>
+      {tokens.map((t, i) => {
+        if (typeof t === "string") {
+          return t
+        }
+        const [value, color, rest = {}] = t
+        return (
+          <span key={i} style={{ color, ...rest }}>
+            {value}
+          </span>
+        )
+      })}
+    </code>
+  )
+}
 
 export const Pre: PreComponent = forwardRef(
   ({ code, handlers = [], ...rest }, ref) => {

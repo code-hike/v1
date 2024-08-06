@@ -108,6 +108,10 @@ export type InlineAnnotationComponent = React.ComponentType<{
   children: React.ReactNode
 }>
 
+export type InlineProps = React.HTMLAttributes<HTMLElement> & {
+  code: HighlightedCode
+}
+
 export type PreProps = React.HTMLAttributes<HTMLPreElement> & {
   code: HighlightedCode
   handlers?: AnnotationHandler[]
