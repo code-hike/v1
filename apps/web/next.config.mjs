@@ -5,6 +5,7 @@ import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
 const chConfig = {
   components: {
     code: "Code",
+    inlineCode: "InlineCode",
   },
   // ignoreCode: (codeblock) => codeblock.lang === "mermaid",
   // syntaxHighlighting: {
