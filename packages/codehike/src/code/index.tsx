@@ -15,10 +15,11 @@ import type {
   CustomLineWithAnnotation,
   CustomToken,
   CustomTokenWithAnnotation,
+  InlineProps,
 } from "./types.js"
 
 import { highlight } from "./highlight.js"
-import { Pre } from "./pre.js"
+import { Pre, Inline } from "./pre.js"
 import { InnerPre, getPreRef, InnerLine, InnerToken } from "./inner.js"
 
 export type {
@@ -30,6 +31,7 @@ export type {
   CodeAnnotation,
   // AnnotationHandler:
   AnnotationHandler,
+  InlineProps,
   CustomPre,
   CustomPreProps,
   BlockAnnotationComponent,
@@ -41,4 +43,4 @@ export type {
   Theme,
 }
 
-export { highlight, Pre, InnerPre, InnerLine, InnerToken, getPreRef }
+export { highlight, Pre, InnerPre, InnerLine, InnerToken, getPreRef, Inline }

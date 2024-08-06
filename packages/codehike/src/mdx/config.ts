@@ -8,6 +8,7 @@ import { RawCode } from "../code/types.js"
 export type CodeHikeConfig = {
   components?: {
     code?: string
+    inlineCode?: string
   }
   ignoreCode?: (codeblock: RawCode) => boolean
   syntaxHighlighting?: {
