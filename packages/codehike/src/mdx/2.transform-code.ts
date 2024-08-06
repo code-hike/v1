@@ -65,9 +65,10 @@ async function transformAllInlineCode(tree: Root, config: CodeHikeConfig) {
 
     const text = node.children
       .filter((c) => c.type === "text")
-      .map((c) => c.value)
+      .map((c: any) => c.value)
       .join(" ")
-    const value = node.children.find((c) => c.type === "inlineCode")?.value!
+    const codeNode = node.children.find((c) => c.type === "inlineCode") as any
+    const value = codeNode?.value || ""
 
     // split the first word from the rest
     const lang = text.split(/\s+/)[0]
