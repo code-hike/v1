@@ -1,11 +1,9 @@
 ---
 title: Headless Codeblocks
-description: foos
-date: 2024-07-17
+description: Headless codeblocks
+date: 2024-08-15
 authors: [pomber]
 draft: true
 ---
 
-hey
-
-the mother of all codeblocks
+TO DO
