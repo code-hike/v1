@@ -13,18 +13,18 @@ export function Boxes({ className }: { className?: string }) {
         <h2 className="text-2xl font-bold px-4 text-center">
           Fine-grained Markdown
         </h2>
-        <p className="px-4 md:px-28">
-          Add structure to your content, making it more flexible and easier to{" "}
-          <strong>adapt to different layouts</strong>.
+        <p className="px-4 md:px-12">
+          Add structure to your content, making it more flexible, more reusable,
+          and easier to <strong>adapt to different layouts</strong>.
           <br />
           <br />
-          Define content schemas for better tooling support and{" "}
-          <strong>type-safe markdown</strong>.
+          Define the structure of your markdown with content schemas for better
+          typescript tooling support and <strong>type-safe markdown</strong>.
         </p>
       </Box>
 
       <Box
-        className="flex flex-col justify-evenly items-center "
+        className="flex flex-col justify-evenly items-center"
         href="/docs/concepts/annotations"
       >
         <h2
