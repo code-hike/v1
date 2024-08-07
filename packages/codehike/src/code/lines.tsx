@@ -16,6 +16,8 @@ export type LineTokens = {
 
 export type LinesOrGroups = (LineTokens | LineGroup)[]
 
+const TAB_TO_SPACES = "  "
+
 export function toLines(tokens: Tokens): LineTokens[] {
   const lines = [[]] as InternalToken[][]
   const tokenStack = tokens.slice()
@@ -57,7 +59,9 @@ export function toLines(tokens: Tokens): LineTokens[] {
     tokens,
     range: [i + 1, i + 1],
     lineNumber: i + 1,
-    indentation: tokens[0]?.value.match(/^\s*/)?.[0].length || 0,
+    indentation:
+      tokens[0]?.value?.replace(/\t/g, TAB_TO_SPACES).match(/^\s*/)?.[0]
+        .length || 0,
     totalLines,
   }))
 }
