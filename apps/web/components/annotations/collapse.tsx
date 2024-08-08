@@ -33,26 +33,22 @@ const collapseRoot: AnnotationHandler = {
     )
   },
 }
-
+const icon = (
+  <ChevronDownIcon
+    className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5 ml-1 -mr-1 "
+    size={15}
+  />
+)
 const collapseTrigger: AnnotationHandler = {
   name: "CollapseTrigger",
   onlyIfAnnotated: true,
-  AnnotatedLine: ({ annotation, ...props }) => {
-    const icon = (
-      <ChevronDownIcon
-        className="inline-block group-data-[state=closed]:-rotate-90 transition select-none opacity-30 group-data-[state=closed]:opacity-80 group-hover:!opacity-100 mb-0.5 ml-1 -mr-1 "
-        size={15}
-      />
-    )
-    return (
-      <CollapsibleTrigger className="group contents">
-        <InnerLine merge={props} data={{ icon }} />
-      </CollapsibleTrigger>
-    )
-  },
+  AnnotatedLine: ({ annotation, ...props }) => (
+    <CollapsibleTrigger className="group contents">
+      <InnerLine merge={props} data={{ icon }} />
+    </CollapsibleTrigger>
+  ),
   Line: (props) => {
-    const { data } = props
-    const icon = data?.icon as React.ReactNode
+    const icon = props.data?.icon as React.ReactNode
     return (
       <div className="table-row">
         <span className="w-4 text-center table-cell">{icon}</span>
