@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip"
+import { cn } from "../../lib/utils"
 
 const myFont = localFont({
   src: "./placeholdifier.woff2",
@@ -27,9 +28,14 @@ const { content, page } = parseRoot(
   Block.extend({ page: CodeBlock, content: CodeBlock }),
 )
 
-export function Demo() {
+export function Demo({ className }: { className?: string }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-12 max-w-3xl mx-auto w-96 md:w-auto px-3 md:px-2">
+    <div
+      className={cn(
+        "grid grid-cols-2 md:grid-cols-4 gap-2 mt-12 max-w-3xl mx-auto w-96 md:w-auto px-3 md:px-2",
+        className,
+      )}
+    >
       <div className="col-span-1 items-center flex">
         <Content />
       </div>
@@ -54,7 +60,7 @@ function Content() {
   return (
     <div
       className={
-        "border border-editorGroup-border rounded overflow-hidden h-72 w-full"
+        " border border-editorGroup-border rounded overflow-hidden h-72 w-full"
       }
       style={{
         background: "#e6edff25",

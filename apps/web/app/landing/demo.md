@@ -4,7 +4,6 @@ import { parse } from "codehike"
 
 // !rainbow(1:2)
 // extract structured content:
-// !tt[/content/] foo
 const content = parse(Content)
 
 export function Page() {

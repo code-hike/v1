@@ -4,38 +4,68 @@ import { AllSponsors, PoweredBy, TopSponsors } from "./landing/sponsors"
 import { cn } from "../lib/utils"
 import { Boxes } from "./landing/boxes"
 import { Demo } from "./landing/demo"
+import { CodeHikeLogo } from "../ui/nav"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen max-w-3xl mx-auto">
-      <h1 className="text-slate-900/80 text-4xl md:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
-        <div className="sm:text-5xl md:text-[3.5rem]">
-          Build{" "}
-          <strong className=" dark:text-fuchsia-400 text-fuchsia-600/80">
-            rich content websites
-          </strong>{" "}
+    <>
+      <OG />
+      <main className="min-h-screen max-w-3xl mx-auto">
+        <h1 className="text-slate-900/80 text-4xl md:text-5xl lg:text-5xl tracking-tight text-center dark:text-white/80 pt-12 max-w-3xl mx-auto text-balance font-extrabold !leading-tight">
+          <div className="sm:text-5xl md:text-[3.5rem]">
+            Build{" "}
+            <strong className=" dark:text-fuchsia-400 text-fuchsia-600/80">
+              rich content websites
+            </strong>{" "}
+          </div>
+          <div>with Markdown and React</div>
+        </h1>
+        <Demo />
+
+        <div className="flex w-full justify-center gap-4 my-12">
+          <ButtonLink href="docs" className="w-32">
+            Docs
+          </ButtonLink>
+          <ButtonLink href="play" className="w-32">
+            Playground
+          </ButtonLink>
         </div>
-        <div>with Markdown and React</div>
-      </h1>
-      <Demo />
 
-      <div className="flex w-full justify-center gap-4 my-12">
-        <ButtonLink href="docs" className="w-32">
-          Docs
-        </ButtonLink>
-        <ButtonLink href="play" className="w-32">
-          Playground
-        </ButtonLink>
+        <TopSponsors className="mb-24" />
+
+        <Boxes className="mb-24" />
+
+        <AllSponsors className="mb-24" />
+
+        <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
+      </main>
+    </>
+  )
+}
+
+function OG() {
+  return (
+    <div className="m-4">
+      <div
+        data-og="true"
+        className="flex justify-between overflow-hidden flex-col"
+        style={{ width: 1200, height: 628 }}
+      >
+        {/* <div className="flex text-center mx-auto text-4xl font-extrabold text-slate-300 mb-4">
+        <CodeHikeLogo className="h-11 w-11 mr-2" /> Code Hike
+      </div> */}
+        <h1 className="text-slate-900/80 text-4xl md:text-6xl lg:text-5xl tracking-tight text-center dark:text-white/80 mx-auto text-balance font-extrabold !leading-tight flex-1 py-12">
+          <div className="sm:text-5xl md:text-[4.2rem]">
+            Build{" "}
+            <strong className="dark:text-fuchsia-400 text-fuchsia-600/80">
+              rich content websites
+            </strong>{" "}
+          </div>
+          <div>with Markdown and React</div>
+        </h1>
+        <Demo className="min-w-[24rem] scale-[1.21]" />
       </div>
-
-      <TopSponsors className="mb-24" />
-
-      <Boxes className="mb-24" />
-
-      <AllSponsors className="mb-24" />
-
-      <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
-    </main>
+    </div>
   )
 }
 
