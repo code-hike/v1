@@ -79,10 +79,11 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return {
     title: page.data.title + " | Code Hike",
     description: page.data.description,
+    metadataBase: new URL(`https://v1.codehike.org`),
     openGraph: {
       title: page.data.title,
       description: page.data.description,
-      images: `https://v1.codehike.org/blog/${params.slug}.png`,
+      images: `/blog/${params.slug}.png`,
     },
     twitter: {
       card: "summary_large_image",
@@ -90,7 +91,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       creator: "@pomber",
       title: page.data.title,
       description: page.data.description,
-      images: `https://v1.codehike.org/blog/${params.slug}.png`,
+      images: `/blog/${params.slug}.png`,
     },
   } satisfies Metadata
 }
