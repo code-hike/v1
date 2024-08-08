@@ -1,4 +1,3 @@
-import { Card, Cards } from "next-docs-ui/mdx/card"
 import Link from "next/link"
 import { AllSponsors, PoweredBy, TopSponsors } from "./landing/sponsors"
 import { cn } from "../lib/utils"

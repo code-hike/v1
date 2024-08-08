@@ -26,7 +26,18 @@ export default function Layout({ children }: { children: ReactNode }) {
 }
 export const metadata = {
   title: "Code Hike",
-  description: "Superpowered Markdown",
+  description:
+    "Use Markdown and React to build rich content websites. Documentation, tutorials, blogs, videos, interactive walkthroughs, and more.",
+  openGraph: {
+    title: "Code Hike",
+    images: `/codehike.png`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@codehike_",
+    creator: "@pomber",
+    images: `/codehike.png`,
+  },
   alternates: {
     types: {
       "application/rss+xml": "https://v1.codehike.org/blog/feed.xml",

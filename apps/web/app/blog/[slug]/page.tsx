@@ -79,7 +79,6 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return {
     title: page.data.title + " | Code Hike",
     description: page.data.description,
-    metadataBase: new URL(`https://v1.codehike.org`),
     openGraph: {
       title: page.data.title,
       description: page.data.description,
