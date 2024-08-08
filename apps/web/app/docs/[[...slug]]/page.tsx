@@ -71,5 +71,9 @@ export function generateMetadata({ params }: { params: { slug?: string[] } }) {
   return {
     title: page.data.title + " | Code Hike",
     description: page.data.description,
+    openGraph: {
+      title: page.data.title + " | Code Hike",
+      description: page.data.description,
+    },
   } satisfies Metadata
 }
