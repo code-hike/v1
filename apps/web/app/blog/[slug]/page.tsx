@@ -81,6 +81,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
     description: page.data.description,
     openGraph: {
       title: page.data.title,
+      type: "article",
       description: page.data.description,
       images: `/blog/${params.slug}.png`,
     },

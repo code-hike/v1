@@ -10,6 +10,7 @@ const inter = Inter({
 })
 
 import ch from "codehike/package.json"
+import { Metadata } from "next"
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -24,13 +25,14 @@ export default function Layout({ children }: { children: ReactNode }) {
     </html>
   )
 }
-export const metadata = {
+export const metadata: Metadata = {
   title: "Code Hike",
   description:
     "Use Markdown and React to build rich content websites. Documentation, tutorials, blogs, videos, interactive walkthroughs, and more.",
   openGraph: {
     title: "Code Hike",
     images: `/codehike.png`,
+    siteName: "Code Hike",
   },
   twitter: {
     card: "summary_large_image",
