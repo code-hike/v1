@@ -28,3 +28,9 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
   return <Pre code={info} handlers={[link]} />
 }
 ```
+
+### Autolinking
+
+Instead of manually adding links to code snippets, you can use a regex to automatically link URLs.
+
+<Demo name="autolink" />

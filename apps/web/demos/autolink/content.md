@@ -1,4 +1,5 @@
 ```js
+// !link[/"(http.*?)"/gm]
 function lorem(ipsum, dolor = 1) {
   const links = [
     "https://codehike.org",
