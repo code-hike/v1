@@ -21,6 +21,7 @@ import { ruler } from "./annotations/ruler"
 import { wordWrap } from "./annotations/word-wrap"
 import { tokenTransitions } from "./annotations/token-transitions"
 import { focus } from "./annotations/focus"
+import { diff } from "./annotations/diff"
 
 export async function InlineCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, theme)
@@ -67,6 +68,7 @@ export function HighCode({
     ruler,
     flags.includes("a") && tokenTransitions,
     flags.includes("n") && lineNumbers,
+    diff,
     ...collapse,
     flags.includes("w") && wordWrap,
     callout,

@@ -31,10 +31,7 @@ async function CodeWithTooltips(props: unknown) {
     if (!note) return a
     return {
       ...a,
-      data: {
-        ...a.data,
-        children: note.children,
-      },
+      data: { ...a.data, children: note.children },
     }
   })
   return (

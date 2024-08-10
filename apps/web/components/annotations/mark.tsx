@@ -1,10 +1,10 @@
-import { AnnotationHandler, InnerLine } from "codehike/code"
+import { AnnotationHandler, BlockAnnotation, InnerLine } from "codehike/code"
 
 export const mark: AnnotationHandler = {
   name: "mark",
   Line: ({ annotation, ...props }) => {
     const n = Number(annotation?.query || "2") % colors.length
-    const color = colors[n]
+    const color = colors[n] || annotation?.query
 
     return (
       <div

@@ -1,0 +1,133 @@
+---
+title: Migrating to Code Hike v1
+description: Incremental adoption guide
+authors: [pomber]
+date: 2024-08-16
+draft: true
+---
+
+import { CodeWithNotes } from "@/components/code/code-with-notes"
+
+If you were using Code Hike before v1 and want to migrate to the new version, this guide is for you.
+
+v1 is different from the previous versions in many ways, so migrating won't be trivial. But the good news is that **the two version can coexist**, so you can adopt the new version incrementally.
+
+## Installing v1 (without removing v0)
+
+Since the new version of Code Hike is a different package, you can install it alongside the old one:
+
+```bash -c
+npm install codehike@beta
+```
+
+Update your configuration file (depending on the framework, for example `next.config.mjs` for Next.js) to use the new package:
+
+```js config.mjs -cn
+// codehike v0
+import { remarkCodeHike } from "@code-hike/mdx"
+// !diff(1:2) +
+// codehike v1
+import * as v1 from "codehike/mdx"
+
+// !diff(1:4) +
+/** @type {import('codehike/mdx').CodeHikeConfig} */
+const chConfig = {
+  syntaxHighlighting: { theme: "github-dark" },
+}
+
+const mdxOptions = {
+  remarkPlugins: [
+    // !diff +
+    [v1.remarkCodeHike, chConfig],
+    [remarkCodeHike, { theme: "github-dark", lineNumbers: false }],
+  ],
+  // !diff +
+  recmaPlugins: [[v1.recmaCodeHike, chConfig]],
+}
+```
+
+With this setup, you can start using the new features of v1 while keeping the old ones working with v0.
+
+## Migrating codeblocks and annotations
+
+To avoid changing all your codeblocks at once, you can use the `ignoreCode` option to only use v1 for the codeblocks you want.
+
+<CodeWithNotes>
+
+```js ! config.mjs -cn
+import { remarkCodeHike } from "@code-hike/mdx"
+import * as v1 from "codehike/mdx"
+
+/** @type {import('codehike/mdx').CodeHikeConfig} */
+const chConfig = {
+  syntaxHighlighting: { theme: "github-dark" },
+  // !diff(1:2) +
+  // !callout[/MyCode/] MyCode
+  components: { code: "MyCode" },
+  // !callout[/use-v1/] use-v1
+  ignoreCode: ({ meta }) => !meta.startsWith("use-v1"),
+}
+
+const mdxOptions = {
+  remarkPlugins: [
+    [v1.remarkCodeHike, chConfig],
+    [remarkCodeHike, { theme: "github-dark", lineNumbers: false }],
+  ],
+  recmaPlugins: [[v1.recmaCodeHike, chConfig]],
+}
+```
+
+## !!notes MyCode
+
+In v1, you define [your own component to render codeblocks](/docs/concepts/code)
+
+## !!notes use-v1
+
+Opt-in to v1 when the codeblock metastring starts with `use-v1`
+
+</CodeWithNotes>
+
+In your MDX files, you can start adopting v1 by adding the `use-v1` metastring to the codeblocks you want to migrate:
+
+````mdx content.mdx
+# Hello world
+
+```js
+console.log("this is codehike v0")
+```
+
+```js use-v1
+console.log("this is codehike v1")
+```
+````
+
+## Comparison table
+
+Here's a comparison table of the features between v0 and v1:
+
+|                      | v0               | v1             | Notes |
+| -------------------- | ---------------- | -------------- | ----- |
+| Package name         | `@code-hike/mdx` | `codehike`     |       |
+| Line numbers         | [Config][1]      | [Example][1]   |       |
+| Copy button          | [Config][1]      | [Example][1]   |       |
+| Themes               | [Config][1]      | [Config][1]    |       |
+| Skip languages       | [Config][1]      | [Config][1]    |       |
+| Static components    | [Config][1]      | [Utils][1]     |       |
+| Auto import          | [Config][1]      | Not needed     |       |
+| Auto link            | [Config][1]      | [Example][1]   |       |
+| Codeblock filename   | [Directive][1]   | [Example][1]   |       |
+| `focus`              | [Annotation][1]  | [Example][1]   |       |
+| `mark`               | [Annotation][1]  | [Example][1]   |       |
+| `withClass`          | [Annotation][1]  | [Example][1]   |       |
+| `link`               | [Annotation][1]  | [Example][1]   |       |
+| `from`               | [Annotation][1]  | [Directive][1] |       |
+| `<CH.Code>` Tabs     | [Component][1]   | [Example][1]   |       |
+| `<CH.Code>` Panels   | [Component][1]   | [Example][1]   |       |
+| Inline code          | [Component][1]   | [Example][1]   |       |
+| Code mentions        | [Component][1]   | [Example][1]   |       |
+| `<CH.Scrollycoding>` | [Component][1]   | [Example][1]   |       |
+| `<CH.Spotlight>`     | [Component][1]   | [Example][1]   |       |
+| `<CH.Slideshow>`     | [Component][1]   | [Example][1]   |       |
+
+[1]: https://v0.codehike.org/docs/configuration#line-numbers
+[2]: /docs/code/line-numbers
