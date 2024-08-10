@@ -70,7 +70,13 @@ testNames.forEach(async (filename) => {
 })
 
 const js = ["before-recma-compiled-js", "compiled-js"]
-const jsx = ["before-recma-compiled-jsx", "compiled-jsx", "parsed-jsx"]
+const jsx = [
+  "before-recma-compiled-jsx",
+  "compiled-jsx",
+  "parsed-jsx",
+  "before-recma-compiled-function",
+  "compiled-function",
+]
 function sn(filename: string, step: string) {
   const index = indexes[step]
   const extention =
@@ -93,12 +99,14 @@ const indexes = {
   "after-rehype": 4,
   "before-recma-compiled-js": 5,
   "before-recma-compiled-jsx": 5,
+  "before-recma-compiled-function": 5,
   "before-recma-js": 5,
   "before-recma-jsx": 5,
   "after-recma-js": 6,
   "after-recma-jsx": 6,
   "compiled-js": 7,
   "compiled-jsx": 7,
+  "compiled-function": 7,
   "parsed-jsx": 8,
   rendered: 9,
 }
@@ -131,6 +139,12 @@ async function getStepOutput(
     case "before-recma-compiled-jsx":
       return await compileJS(file, {
         jsx: true,
+        remarkPlugins: [[remarkCodeHike, chConfig]],
+      })
+    case "before-recma-compiled-function":
+      return await compileJS(file, {
+        jsx: true,
+        outputFormat: "function-body",
         remarkPlugins: [[remarkCodeHike, chConfig]],
       })
     case "before-recma-js":
@@ -166,6 +180,13 @@ async function getStepOutput(
     case "compiled-jsx":
       return await compileJS(file, {
         jsx: true,
+        remarkPlugins: [[remarkCodeHike, chConfig]],
+        recmaPlugins: [[recmaCodeHike, chConfig]],
+      })
+    case "compiled-function":
+      return await compileJS(file, {
+        jsx: true,
+        outputFormat: "function-body",
         remarkPlugins: [[remarkCodeHike, chConfig]],
         recmaPlugins: [[recmaCodeHike, chConfig]],
       })
