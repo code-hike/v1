@@ -1,5 +1,11 @@
 # codehike
 
+## 1.0.0-beta.9
+
+### Patch Changes
+
+- 594a5a6: Tabs indentation
+
 ## 1.0.0-beta.8
 
 ### Minor Changes
