@@ -6,7 +6,13 @@ import { HighCode } from "../code"
 
 const ContentSchema = z.object({
   code: CodeBlock,
-  notes: z.array(Block).optional(),
+  notes: z
+    .array(
+      Block.extend({
+        code: CodeBlock.optional(),
+      }),
+    )
+    .optional(),
 })
 
 export async function CodeWithNotes(props: unknown) {
@@ -15,17 +21,28 @@ export async function CodeWithNotes(props: unknown) {
 
   // find matches between annotations and notes
   // and add the note as data to the annotation
-  highlighted.annotations = highlighted.annotations.map((a) => {
-    const note = notes.find((n) => a.query && n.title === a.query)
-    if (!note) return a
-    return {
-      ...a,
-      data: {
-        ...a.data,
-        children: note.children,
-      },
-    }
-  })
+  highlighted.annotations = await Promise.all(
+    highlighted.annotations.map(async (a) => {
+      const note = notes.find((n) => a.query && n.title === a.query)
+      if (!note) return a
+
+      let children = note.children
+      if (note.code) {
+        const highlighted = await highlight(note.code, theme)
+        children = (
+          <HighCode highlighted={highlighted} className="border-none my-0" />
+        )
+      }
+
+      return {
+        ...a,
+        data: {
+          ...a.data,
+          children,
+        },
+      }
+    }),
+  )
 
   return <HighCode highlighted={highlighted} />
 }
