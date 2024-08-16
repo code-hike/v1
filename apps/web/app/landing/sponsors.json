@@ -52,12 +52,12 @@
     "amount": 370
   },
   {
-    "name": "molebox",
-    "amount": 297
+    "name": "nathanclevenger",
+    "amount": 315
   },
   {
-    "name": "nathanclevenger",
-    "amount": 296
+    "name": "molebox",
+    "amount": 297
   },
   {
     "name": "Naturalclar",
@@ -76,12 +76,12 @@
     "amount": 279
   },
   {
-    "name": "traviscooper",
+    "name": "obgibson",
     "amount": 279
   },
   {
-    "name": "obgibson",
-    "amount": 270
+    "name": "traviscooper",
+    "amount": 279
   },
   {
     "name": "matthiaszepper",
@@ -309,7 +309,7 @@
   },
   {
     "name": "ianaya89",
-    "amount": 33
+    "amount": 34
   },
   {
     "name": "AlexzanderFlores",
@@ -322,6 +322,10 @@
   {
     "name": "swyxio",
     "amount": 30
+  },
+  {
+    "name": "hunterbecton",
+    "amount": 28
   },
   {
     "name": "akhilkurnool",
@@ -420,10 +424,6 @@
     "amount": 9
   },
   {
-    "name": "hunterbecton",
-    "amount": 9
-  },
-  {
     "name": "K3ARN3Y",
     "amount": 9
   },
@@ -437,6 +437,10 @@
   },
   {
     "name": "mkubilayk",
+    "amount": 9
+  },
+  {
+    "name": "n0lawz",
     "amount": 9
   },
   {
@@ -454,6 +458,10 @@
   {
     "name": "yld-labs",
     "amount": 9
+  },
+  {
+    "name": "zmzlois",
+    "amount": 8
   },
   {
     "name": "achan-godaddy",
