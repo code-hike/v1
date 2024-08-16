@@ -31,7 +31,7 @@ export default function HomePage() {
 
       <Boxes className="mb-24" />
 
-      <AllSponsors className="mb-24" />
+      <AllSponsors className="mb-24" title="Sponsors" cta="Sponsor Code Hike" />
 
       <PoweredBy className="mb-8 text-center flex items-center justify-center gap-4 w-full flex-wrap" />
     </main>

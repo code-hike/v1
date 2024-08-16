@@ -8,13 +8,13 @@ import {
 } from "@/components/ui/tooltip"
 
 export const tooltip: AnnotationHandler = {
-  name: "Tooltip",
+  name: "tooltip",
   Inline: ({ children, annotation }) => {
     const { query, data } = annotation
     return (
       <TooltipProvider delayDuration={300}>
         <Tooltip>
-          <TooltipTrigger className="underline decoration-dashed cursor-pointer">
+          <TooltipTrigger className="underline decoration-dashed cursor-pointer underline-offset-4">
             {children}
           </TooltipTrigger>
           <TooltipContent

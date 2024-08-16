@@ -90,21 +90,33 @@ export function TopSponsors({
   )
 }
 
-export async function AllSponsors({ className }: { className?: string }) {
+export async function AllSponsors({
+  className,
+  title,
+  cta,
+}: {
+  className?: string
+  title?: string
+  cta?: string
+}) {
   const sponsors = sponsorData
 
   return (
     <section className={className}>
-      <h3 className="text-center pb-8 text-primary/60 text-lg">Sponsors</h3>
+      {title && (
+        <h3 className="text-center pb-8 text-primary/60 text-lg">{title}</h3>
+      )}
       <Row sponsors={sponsors.slice(0, 20)} size={66} className="" />
       <Row sponsors={sponsors.slice(20, 52)} size={38} />
       <Row sponsors={sponsors.slice(52, 112)} size={30} />
-      <Link
-        href="https://github.com/sponsors/code-hike?metadata_source=landing"
-        className="block border text-primary border-primary/50 rounded p-2 w-48 mx-auto mt-8 text-center hover:border-primary transition-colors"
-      >
-        Sponsor Code Hike
-      </Link>
+      {cta && (
+        <Link
+          href="https://github.com/sponsors/code-hike?metadata_source=landing"
+          className="block border text-primary border-primary/50 rounded p-2 w-48 mx-auto mt-8 text-center hover:border-primary transition-colors"
+        >
+          {cta}
+        </Link>
+      )}
     </section>
   )
 }
@@ -133,7 +145,7 @@ function Row({
           rel="noopener noreferrer"
         >
           <Image
-            className="rounded grayscale-[80%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-150 cursor-pointer"
+            className="rounded grayscale-[80%] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-150 cursor-pointer my-0"
             src={`https://github.com/${s.name}.png`}
             alt={s.name}
             height={size}

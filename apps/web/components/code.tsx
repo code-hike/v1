@@ -22,6 +22,7 @@ import { wordWrap } from "./annotations/word-wrap"
 import { tokenTransitions } from "./annotations/token-transitions"
 import { focus } from "./annotations/focus"
 import { diff } from "./annotations/diff"
+import { tooltip } from "./annotations/tooltip"
 
 export async function InlineCode({ codeblock }: { codeblock: RawCode }) {
   const highlighted = await highlight(codeblock, theme)
@@ -61,6 +62,7 @@ export function HighCode({
   const handlers = [
     ...extraHandlers,
     mark,
+    tooltip,
     pill,
     fold,
     link,

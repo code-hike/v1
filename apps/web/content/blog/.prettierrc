@@ -8,6 +8,14 @@
         "printWidth": 42,
         "semi": false
       }
+    },
+
+    {
+      "files": ["v1.mdx"],
+      "options": {
+        "printWidth": 52,
+        "semi": false
+      }
     }
   ]
 }
