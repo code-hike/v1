@@ -17,7 +17,7 @@ v1 is different from the previous versions in many ways, so migrating won't be t
 Since the new version of Code Hike is a different package, you can install it alongside the old one:
 
 ```bash -c
-npm install codehike@beta
+npm install codehike
 ```
 
 Update your configuration file (depending on the framework, for example `next.config.mjs` for Next.js) to use the new package:
@@ -103,31 +103,68 @@ console.log("this is codehike v1")
 
 ## Comparison table
 
-Here's a comparison table of the features between v0 and v1:
+Here's the equivalent features between v0 and v1, they aren't exactly the same, but they are similar:
 
-|                      | v0               | v1             | Notes |
-| -------------------- | ---------------- | -------------- | ----- |
-| Package name         | `@code-hike/mdx` | `codehike`     |       |
-| Line numbers         | [Config][1]      | [Example][1]   |       |
-| Copy button          | [Config][1]      | [Example][1]   |       |
-| Themes               | [Config][1]      | [Config][1]    |       |
-| Skip languages       | [Config][1]      | [Config][1]    |       |
-| Static components    | [Config][1]      | [Utils][1]     |       |
-| Auto import          | [Config][1]      | Not needed     |       |
-| Auto link            | [Config][1]      | [Example][1]   |       |
-| Codeblock filename   | [Directive][1]   | [Example][1]   |       |
-| `focus`              | [Annotation][1]  | [Example][1]   |       |
-| `mark`               | [Annotation][1]  | [Example][1]   |       |
-| `withClass`          | [Annotation][1]  | [Example][1]   |       |
-| `link`               | [Annotation][1]  | [Example][1]   |       |
-| `from`               | [Annotation][1]  | [Directive][1] |       |
-| `<CH.Code>` Tabs     | [Component][1]   | [Example][1]   |       |
-| `<CH.Code>` Panels   | [Component][1]   | [Example][1]   |       |
-| Inline code          | [Component][1]   | [Example][1]   |       |
-| Code mentions        | [Component][1]   | [Example][1]   |       |
-| `<CH.Scrollycoding>` | [Component][1]   | [Example][1]   |       |
-| `<CH.Spotlight>`     | [Component][1]   | [Example][1]   |       |
-| `<CH.Slideshow>`     | [Component][1]   | [Example][1]   |       |
+|                      | v0               | v1              |
+| -------------------- | ---------------- | --------------- |
+| Package name         | `@code-hike/mdx` | `codehike`      |
+| Line numbers         | [Config][1]      | [Example][21]   |
+| Copy button          | [Config][2]      | [Example][22]   |
+| Themes               | [Config][3]      | [Config][23]    |
+| Skip languages       | [Config][4]      | [Config][24]    |
+| Static components    | [Config][5]      | [Utils][25]     |
+| Auto import          | [Config][6]      | Not needed      |
+| Auto link            | [Config][7]      | [Example][26]   |
+| Codeblock filename   | [Directive][8]   | [Example][27]   |
+| `focus`              | [Annotation][9]  | [Example][28]   |
+| `mark`               | [Annotation][10] | [Example][29]   |
+| `withClass`          | [Annotation][11] | [Example][30]   |
+| `link`               | [Annotation][12] | [Example][31]   |
+| `from`               | [Annotation][13] | [Directive][32] |
+| `<CH.Code>` Tabs     | [Component][14]  | [Example][33]   |
+| `<CH.Code>` Panels   | [Component][15]  | [Example][34]   |
+| Inline code          | [Component][16]  | [Example][35]   |
+| Code mentions        | [Component][17]  | [Example][36]   |
+| `<CH.Scrollycoding>` | [Component][18]  | [Example][37]   |
+| `<CH.Spotlight>`     | [Component][19]  | [Example][38]   |
+| `<CH.Slideshow>`     | [Component][20]  | [Example][39]   |
 
 [1]: https://v0.codehike.org/docs/configuration#line-numbers
-[2]: /docs/code/line-numbers
+[2]: https://v0.codehike.org/docs/configuration#copy-button
+[3]: https://v0.codehike.org/docs/themes
+[4]: https://v0.codehike.org/docs/configuration#skip-languages
+[5]: https://v0.codehike.org/docs/configuration#static-components
+[6]: https://v0.codehike.org/docs/configuration#auto-import
+[7]: https://v0.codehike.org/docs/configuration#auto-link
+[8]: https://v0.codehike.org/docs/codeblocks#filename
+[9]: https://v0.codehike.org/docs/annotations#focus-annotation
+[10]: https://v0.codehike.org/docs/annotations#mark-annotation
+[11]: https://v0.codehike.org/docs/annotations#withclass-annotation
+[12]: https://v0.codehike.org/docs/annotations#link-annotation
+[13]: https://v0.codehike.org/docs/annotations#from-annotation
+[14]: https://v0.codehike.org/docs/ch-code#tabs
+[15]: https://v0.codehike.org/docs/ch-code#panels
+[16]: https://v0.codehike.org/docs/ch-section#inline-code
+[17]: https://v0.codehike.org/docs/ch-section#code-mentions
+[18]: https://v0.codehike.org/docs/ch-scrollycoding
+[19]: https://v0.codehike.org/docs/ch-spotlight
+[20]: https://v0.codehike.org/docs/ch-slideshow
+[21]: /docs/code/line-numbers
+[22]: /docs/code/copy-button
+[23]: /docs/concepts/code#themes
+[24]: /docs/concepts/code#ignoring-some-codeblocks
+[25]: /
+[26]: /docs/code/link#autolinking
+[27]: /
+[28]: /docs/code/focus
+[29]: /docs/code/mark
+[30]: /docs/code/with-class
+[31]: /docs/code/link
+[32]: /docs/concepts/code#importing-code-from-a-file-into-a-codeblock
+[33]: /docs/code/tabs
+[34]: /
+[35]: /
+[36]: /docs/code/code-mentions
+[37]: /docs/layouts/scrollycoding
+[38]: /docs/layouts/spotlight
+[39]: /docs/layouts/slideshow
