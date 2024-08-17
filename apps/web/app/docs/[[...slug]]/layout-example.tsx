@@ -25,7 +25,7 @@ export function LayoutExample({ MDX }: { MDX: any }) {
           className="bg-blue-500/30 mt-0 p-6 bg-[url(/dark-grid.svg)]"
         >
           <div
-            className={`border border-primary/50 bg-zinc-950 rounded ${preview.title}`}
+            className={`border border-primary/50 bg-zinc-950 rounded overflow-hidden ${preview.title}`}
           >
             {preview.children}
           </div>

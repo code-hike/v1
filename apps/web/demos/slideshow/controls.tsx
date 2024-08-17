@@ -6,7 +6,7 @@ export function Controls({ length }: { length: number }) {
     useSelectedIndex()
 
   return (
-    <div className="flex justify-center py-4 items-center">
+    <div className="flex justify-center items-center">
       <button
         className="mr-4"
         onClick={() =>
