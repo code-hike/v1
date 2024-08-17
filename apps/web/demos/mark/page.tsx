@@ -28,6 +28,20 @@ const mark: AnnotationHandler = {
       </div>
     )
   },
+  Inline: ({ annotation, children }) => {
+    const color = annotation?.query || "rgb(14 165 233)"
+    return (
+      <span
+        className="rounded px-0.5 py-0 -mx-0.5"
+        style={{
+          outline: `solid 1px rgb(from ${color} r g b / 0.5)`,
+          background: `rgb(from ${color} r g b / 0.13)`,
+        }}
+      >
+        {children}
+      </span>
+    )
+  },
 }
 
 async function Code({ codeblock }: { codeblock: RawCode }) {

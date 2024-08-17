@@ -14,7 +14,7 @@ Highlight lines.
 
 ## !implementation
 
-Implemnt the `Line` component, and use the `annotation.query` as an optional color for the mark:
+For the block annotations: implement the `Line` component, and for the inline annotations: implement the `Inline` component. Use the `annotation.query` as an optional color for the mark.
 
 <CodeWithNotes>
 
@@ -39,6 +39,20 @@ const mark: AnnotationHandler = {
       </div>
     )
   },
+  Inline: ({ annotation, children }) => {
+    const color = annotation?.query || "rgb(14 165 233)"
+    return (
+      <span
+        className="rounded px-0.5 py-0 -mx-0.5"
+        style={{
+          outline: `solid 1px rgb(from ${color} r g b / 0.5)`,
+          background: `rgb(from ${color} r g b / 0.13)`,
+        }}
+      >
+        {children}
+      </span>
+    )
+  },
 }
 ```
 
@@ -57,5 +71,4 @@ async function Code({ codeblock }: { codeblock: RawCode }) {
 
 Some ideas to improve the mark annotation:
 
-- Add a handler for inline marks
 - Mix it with the [`Focus annotation`](/docs/code/focus)
