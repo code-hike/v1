@@ -66,9 +66,22 @@ Astro is not suppoted.
 
 Examples from the docs use Tailwind CSS, but it's not required.
 
-If you are building a documentation site, my current recommendation is Next.js + [Fuma Docs](https://fumadocs.vercel.app/).
+My recommendation for documentation sites is Next.js + [Fuma Docs](https://fumadocs.vercel.app/), because of its support of React Server Components. RSCs aren't required for Code Hike, but having components that only run at build-time gives you extra power and flexibility.
 
 For examples using various frameworks, see the [examples](/docs/examples).
+
+## Comparison with other tools
+
+**MDX**: Code Hike is built on top of MDX.
+
+**Markdoc**: Markdoc is another extension to Markdown. The main differences are:
+
+- Fine-grained markdown: similar to Code Hike, Markdoc lets you add some structure to Markdown, allowing more flexibility in how the content is rendered. Markdoc's approach is lower level, so an integration with Code Hike is something to explore in the future.
+- Code blocks: you can combine Code Hike and Markdoc by using Code Hike's `highlight` function instead of prismjs in Markdoc's [syntax highlighting example](https://markdoc.dev/docs/examples#syntax-highlighting).
+
+**Shiki**: A syntax highlighter that includes transformers to customize codeblocks. Code Hike uses [it's own highlighter](https://github.com/code-hike/lighter). The main difference between the highlighters is that Shiki transformers are used to transform the AST (abstract syntax tree) of the codebock, while Code Hike annotations are React components.
+
+**Docusaurus, Nextra, Fuma Docs**: These are _frameworks_ that help you build documentation sites, handling Markdown/MDX files and providing some UI components. You can use Code Hike on top of them. There is an overlap in how to handle codeblocks, but you can incrementally let Code Hike take over using the [`ignoreCode` config](docs/concepts/code#ignoring-some-codeblocks)
 
 ### Manual Installation
 
