@@ -20,7 +20,7 @@ export function Examples(props: unknown) {
       <div className="flex flex-wrap gap-4">
         {blocks.map((example) => (
           <a
-            className="min-w-72 w-72 border border-secondary rounded bg-secondary/50 overflow-hidden cursor-pointer hover:border-primary/50 hover:opacity-100 transition-colors no-underline"
+            className="min-w-80 w-80 border border-secondary rounded bg-secondary/50 overflow-hidden cursor-pointer hover:border-primary/50 hover:opacity-100 transition-colors no-underline"
             key={example.title}
             href={example.repo.url}
             target="_blank"
