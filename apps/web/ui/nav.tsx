@@ -3,6 +3,15 @@ import { usePathname } from "next/navigation"
 import { Nav } from "next-docs-ui/nav"
 import { GithubIcon, TwitterIcon } from "lucide-react"
 import { cn } from "../lib/utils"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 export function NavBar({ version }: { version: string }) {
   const pathname = usePathname()
   return (
@@ -43,10 +52,28 @@ export function NavBar({ version }: { version: string }) {
         // },
       ]}
     >
-      <span className="text-sm bg-yellow-200 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-200 rounded-lg px-2">
-        {version}
-      </span>
+      <VersionNav version={version} />
     </Nav>
+  )
+}
+
+function VersionNav({ version }: { version: string }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="text-sm bg-yellow-200 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-200 rounded-lg px-2">
+        {version}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem className="p-0">
+          <span className="w-full px-2 py-1">{version}</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="p-0">
+          <a href="https://v0.codehike.org" className="w-full px-2 py-1">
+            0.9.0
+          </a>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 
