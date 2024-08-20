@@ -8,9 +8,10 @@ draft: true
 
 import { CodeWithNotes } from "@/components/code/code-with-notes"
 
-If you were using Code Hike before v1 and want to migrate to the new version, this guide is for you.
+If you were using Code Hike before v1 and want to migrate to the new version,
+this guide is for you. To learn more about the new features, read the [v1 announcement post](/blog/v1).
 
-v1 is different from the previous versions in many ways, so migrating won't be trivial. But the good news is that **the two version can coexist**, so you can adopt the new version incrementally.
+Code Hike v1 is different from the previous versions in many ways, so migrating won't be trivial. The good news is that **the two version can coexist**, so you can adopt the new version incrementally.
 
 ## Installing v1 (without removing v0)
 
@@ -89,6 +90,7 @@ Opt-in to v1 when the codeblock metastring starts with `use-v1`
 
 In your MDX files, you can start adopting v1 by adding the `use-v1` metastring to the codeblocks you want to migrate:
 
+{/* prettier-ignore */}
 ````mdx content.mdx
 # Hello world
 
@@ -96,10 +98,13 @@ In your MDX files, you can start adopting v1 by adding the `use-v1` metastring t
 console.log("this is codehike v0")
 ```
 
+{/* !mark[/use-v1/] */}
 ```js use-v1
 console.log("this is codehike v1")
 ```
 ````
+
+Instead of "use-v1", you can use any string. Just make sure it's easy to find and replace when you finish the migration.
 
 ## Comparison table
 
