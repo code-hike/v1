@@ -23,7 +23,7 @@ export function Page() {
 content = {
   // !block(1:4) 1
   intro: {
-    title: "The Roman Emperors",
+    title: "Roman Emperors",
     children: <p>The ...</p>,
   },
   emperors: [

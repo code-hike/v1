@@ -68,7 +68,7 @@ function Content() {
       <pre className={"flex-1 min-w-0 p-2 overflow-hidden "}>
         <div className="rounded -m-1 p-1 px-2 bg-teal-500/40">
           <span className="font-bold">
-            ## !intro <span className={""}>The Roman Emperors</span>
+            ## !intro <span className={""}>Roman Emperors</span>
           </span>
           <br />
           <br />
@@ -157,7 +157,7 @@ function Scrolly() {
   return (
     <div className="flex flex-col gap-2 h-full">
       <div className="bg-teal-500/40 rounded p-2 ">
-        The Roman Emperors
+        Roman Emperors
         <p className="opacity-60">The Roman Empire was led ...</p>
       </div>
       <div className="flex-1 flex gap-2">
