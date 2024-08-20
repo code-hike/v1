@@ -105,29 +105,29 @@ console.log("this is codehike v1")
 
 Here's the equivalent features between v0 and v1, they aren't exactly the same, but they are similar:
 
-|                      | v0               | v1              |
-| -------------------- | ---------------- | --------------- |
-| Package name         | `@code-hike/mdx` | `codehike`      |
-| Line numbers         | [Config][1]      | [Example][21]   |
-| Copy button          | [Config][2]      | [Example][22]   |
-| Themes               | [Config][3]      | [Config][23]    |
-| Skip languages       | [Config][4]      | [Config][24]    |
-| Static components    | [Config][5]      | [Utils][25]     |
-| Auto import          | [Config][6]      | Not needed      |
-| Auto link            | [Config][7]      | [Example][26]   |
-| Codeblock filename   | [Directive][8]   | [Example][27]   |
-| `focus`              | [Annotation][9]  | [Example][28]   |
-| `mark`               | [Annotation][10] | [Example][29]   |
-| `withClass`          | [Annotation][11] | [Example][30]   |
-| `link`               | [Annotation][12] | [Example][31]   |
-| `from`               | [Annotation][13] | [Directive][32] |
-| `<CH.Code>` Tabs     | [Component][14]  | [Example][33]   |
-| `<CH.Code>` Panels   | [Component][15]  | [Example][34]   |
-| Inline code          | [Component][16]  | [Example][35]   |
-| Code mentions        | [Component][17]  | [Example][36]   |
-| `<CH.Scrollycoding>` | [Component][18]  | [Example][37]   |
-| `<CH.Spotlight>`     | [Component][19]  | [Example][38]   |
-| `<CH.Slideshow>`     | [Component][20]  | [Example][39]   |
+|                      | v0               | v1                  |
+| -------------------- | ---------------- | ------------------- |
+| Package name         | `@code-hike/mdx` | `codehike`          |
+| Line numbers         | [Config][1]      | [Example][21]       |
+| Copy button          | [Config][2]      | [Example][22]       |
+| Themes               | [Config][3]      | [Config][23]        |
+| Skip languages       | [Config][4]      | [Config][24]        |
+| Static components    | [Config][5]      | [Media queries][25] |
+| Auto import          | [Config][6]      | Not needed          |
+| Auto link            | [Config][7]      | [Example][26]       |
+| Codeblock filename   | [Directive][8]   | [Example][27]       |
+| `focus`              | [Annotation][9]  | [Example][28]       |
+| `mark`               | [Annotation][10] | [Example][29]       |
+| `withClass`          | [Annotation][11] | [Example][30]       |
+| `link`               | [Annotation][12] | [Example][31]       |
+| `from`               | [Annotation][13] | [Syntax][32]        |
+| `<CH.Code>` Tabs     | [Component][14]  | [Example][33]       |
+| `<CH.Code>` Panels   | [Component][15]  | -                   |
+| Inline code          | [Syntax][16]     | [Syntax][35]        |
+| Code mentions        | [Syntax][17]     | [Example][36]       |
+| `<CH.Scrollycoding>` | [Component][18]  | [Example][37]       |
+| `<CH.Spotlight>`     | [Component][19]  | [Example][38]       |
+| `<CH.Slideshow>`     | [Component][20]  | [Example][39]       |
 
 [1]: https://v0.codehike.org/docs/configuration#line-numbers
 [2]: https://v0.codehike.org/docs/configuration#copy-button
@@ -153,7 +153,7 @@ Here's the equivalent features between v0 and v1, they aren't exactly the same, 
 [22]: /docs/code/copy-button
 [23]: /docs/concepts/code#themes
 [24]: /docs/concepts/code#ignoring-some-codeblocks
-[25]: /
+[25]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries
 [26]: /docs/code/link#autolinking
 [27]: /docs/code/filename
 [28]: /docs/code/focus
@@ -163,7 +163,7 @@ Here's the equivalent features between v0 and v1, they aren't exactly the same, 
 [32]: /docs/concepts/code#importing-code-from-a-file-into-a-codeblock
 [33]: /docs/code/tabs
 [34]: /
-[35]: /
+[35]: /docs/concepts/code#inline-code
 [36]: /docs/code/code-mentions
 [37]: /docs/layouts/scrollycoding
 [38]: /docs/layouts/spotlight
