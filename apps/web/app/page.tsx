@@ -22,8 +22,8 @@ export default function HomePage() {
         <ButtonLink href="docs" className="w-32">
           Docs
         </ButtonLink>
-        <ButtonLink href="play" className="w-32">
-          Playground
+        <ButtonLink href="blog" className="w-32">
+          Blog
         </ButtonLink>
       </div>
 

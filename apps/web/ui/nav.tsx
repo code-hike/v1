@@ -37,10 +37,10 @@ export function NavBar({ version }: { version: string }) {
           url: "/blog",
           text: "Blog",
         },
-        {
-          url: "/play",
-          text: "Playground",
-        },
+        // {
+        //   url: "/play",
+        //   text: "Playground",
+        // },
       ]}
     >
       <span className="text-sm bg-yellow-200 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-200 rounded-lg px-2">
