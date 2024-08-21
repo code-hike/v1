@@ -1,17 +1,18 @@
 import fs from "fs"
 import path from "path"
 import { Code } from "./code"
+import { cn } from "../lib/utils"
 
 export async function Demo({
   name,
   children,
-  maxHeight,
+  className,
   content = "content.md",
 }: {
   name: string
   content?: string
   children: React.ReactNode
-  maxHeight?: number
+  className?: string
 }) {
   const value = await fs.promises.readFile(
     path.join(process.cwd(), "demos", name, content),
@@ -43,7 +44,12 @@ export async function Demo({
   )
 
   return (
-    <div className="flex gap-2 items-stretch" style={{ maxHeight }}>
+    <div
+      className={cn(
+        "flex gap-2 flex-wrap [&>*]:flex-1 [&>*]:min-w-72",
+        className,
+      )}
+    >
       <div className="min-w-0 flex-1 max-h-full">{usage}</div>
       {preview}
     </div>
