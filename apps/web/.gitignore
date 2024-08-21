@@ -25,6 +25,3 @@ yarn-error.log*
 .env*.local
 .vercel
 next-env.d.ts
-
-code-hike-sponsorships-all-time.csv
-codehike-transactions.csv

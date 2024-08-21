@@ -8,12 +8,12 @@
     "amount": 5000
   },
   {
-    "name": "uidotdev",
-    "amount": 3069
+    "name": "speakeasy-api",
+    "amount": 3078
   },
   {
-    "name": "speakeasy-api",
-    "amount": 3059
+    "name": "uidotdev",
+    "amount": 3069
   },
   {
     "name": "outerbounds",
@@ -72,15 +72,15 @@
     "amount": 288
   },
   {
+    "name": "traviscooper",
+    "amount": 288
+  },
+  {
     "name": "nberger",
     "amount": 279
   },
   {
     "name": "obgibson",
-    "amount": 279
-  },
-  {
-    "name": "traviscooper",
     "amount": 279
   },
   {
@@ -96,6 +96,10 @@
     "amount": 234
   },
   {
+    "name": "codeSTACKr",
+    "amount": 225
+  },
+  {
     "name": "davo",
     "amount": 225
   },
@@ -106,10 +110,6 @@
   {
     "name": "invertase",
     "amount": 217
-  },
-  {
-    "name": "codeSTACKr",
-    "amount": 216
   },
   {
     "name": "stefanjudis",
@@ -184,16 +184,16 @@
     "amount": 122
   },
   {
+    "name": "yacinelakel",
+    "amount": 121
+  },
+  {
     "name": "seanmay",
     "amount": 117
   },
   {
     "name": "NukaCody",
     "amount": 114
-  },
-  {
-    "name": "yacinelakel",
-    "amount": 102
   },
   {
     "name": "mbifulco",
