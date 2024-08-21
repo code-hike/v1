@@ -4,10 +4,11 @@ description: Showing code
 ---
 
 import { LangList, ThemePicker } from "./theme-picker"
+import { SideBySide } from "@/components/code/side-by-side"
 
 To use a **custom component to render code blocks**, you need to provide the name of the component in the Code Hike configuration, and then make sure the component is available in the scope where you render the markdown content.
 
-<div className="flex gap-2">
+<SideBySide>
 
 ```js your-config.mjs -cw
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
@@ -35,7 +36,7 @@ function MyCode({ codeblock }: { codeblock: RawCode }) {
 }
 ```
 
-</div>
+</SideBySide>
 
 ## Syntax highlighting
 
@@ -56,7 +57,7 @@ Note that the `highlight` function is asynchronous, which means that the `MyCode
 
 **If you're using a framework that doesn't support React Server Components:** you can configure Code Hike to run the `highlight` during the compilation step, and pass a `HighlightedCode` object to the `MyCode` component.
 
-<div className="flex gap-2">
+<SideBySide>
 
 ```js your-config.mjs -cw
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
@@ -88,7 +89,7 @@ function MyCode({ codeblock }: { codeblock: HighlightedCode }) {
 }
 ```
 
-</div>
+</SideBySide>
 
 This setting will also syntax highlight the code from [decorated codeblocks](/docs/concepts/blocks#images-codeblocks-and-paragraphs).
 
@@ -151,7 +152,7 @@ const chConfig = {
 
 You can also provide a custom component for inline code:
 
-<div className="flex gap-2">
+<SideBySide>
 
 ```js your-config.mjs -cw
 import { remarkCodeHike, recmaCodeHike } from "codehike/mdx"
@@ -185,13 +186,13 @@ async function MyInlineCode({ codeblock }: { codeblock: RawCode }) {
 }
 ```
 
-</div>
+</SideBySide>
 
 To use `MyInlineCode` from Markdown you need to use a special syntax: ``_`code`_``.
 
 This syntax also allows you to specify the language and meta for inline code ``_py lorem ipsum`print 5`_``, will give you _`{lang: "py", meta: "lorem ipsum", value: "print 5"}`_.
 
-<div className="flex gap-2">
+<SideBySide>
 
 ```md content.md -w
 This is not handled by Code Hike: `var x = 10`
@@ -220,4 +221,4 @@ With a diffrent language: _css`a { color: #123 }`_
 
 </div>
 
-</div>
+</SideBySide>

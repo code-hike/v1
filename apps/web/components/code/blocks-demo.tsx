@@ -27,11 +27,11 @@ export async function BlocksDemo(props: unknown) {
   const resultChildren = <CalloutCode code={result} />
   return (
     <figure className="ruler-group m-0">
-      <div className="flex gap-2 items-stretch w-full">
-        <div className="min-w-0 flex-1 ">
+      <div className="flex gap-2 items-stretch w-full flex-wrap">
+        <div className="min-w-72 flex-1 ">
           <CodeWithNotes code={content} />
         </div>
-        <div className="min-w-0 flex-1 min-h-full">
+        <div className="min-w-72 flex-1 min-h-full">
           <CodeWithNotes
             code={component}
             notes={{
