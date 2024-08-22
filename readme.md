@@ -1,7 +1,1 @@
-> Work in progress
-
-```
-$ pnpm i
-$ pnpm build
-$ pnpm web
-```
+Moved to https://github.com/code-hike/codehike
